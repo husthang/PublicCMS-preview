@@ -35,13 +35,15 @@ BUG修复:
 
 框架升级:
 
-1. Spring Framework升级到4.3.4
+1. Spring Framework升级到4.3.5
 1. Hibernate Search升级到5.5.5
 1. Hibernate升级到5.1.2
 1. Jackson升级到2.8.5
 1. mysql-connector-java升级到5.1.40
 1. 新增mybatis 3.4.1
 1. 新增jedis2.9.0
+1. 新增测试环境spring boot启动方式支持
+1. 源码与gralde,maven配置分离
 
 新增功能:
 
