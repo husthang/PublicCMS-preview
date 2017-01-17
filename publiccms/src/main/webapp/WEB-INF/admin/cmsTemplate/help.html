@@ -1,0 +1,150 @@
+<@_metadata path=path><#assign metadata=object/></@_metadata>
+<#macro getAction code>onclick="${editor!'cmsTemplateEditor'}.replaceSelection('${code?js_string}');$.pdialog.closeCurrent();return false;"</#macro>
+<div class="tabs">
+	<div class="tabsHeader">
+		<div class="tabsHeaderContent">
+			<ul>
+				<li><a href="javascript:;">输出变量</a></li>
+				<li><a href="javascript:;">常用指令</a></li>
+				<li><a href="javascript:;">常用方法</a></li>
+				<li><a href="javascript:;">配置参数</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="tabsContent" layoutH="38">
+		<div class="pageFormContent">
+			<ul class="tree treeFolder">
+				<li>
+					<a href="javascript:;">站点属性</a>
+					<ul>
+						<li><a href="javascript:;" <@getAction r'${site.id!}'/>>站点ID</a></li>
+						<li><a href="javascript:;" <@getAction r'${site.name!}'/>>站点名称</a></li>
+						<li><a href="javascript:;" <@getAction r'${site.useStatic?string}'/>>启用静态化</a></li>
+						<li><a href="javascript:;" <@getAction r'${site.sitePath!}'/>>静态站点访问地址</a></li>
+						<li><a href="javascript:;" <@getAction r'${site.useSsi?string}'/>>启用服务器端包含</a></li>
+						<li><a href="javascript:;" <@getAction r'${site.dynamicPath!}'/>>动态站点访问地址</a></li>
+						<li><a href="javascript:;" <@getAction r'${site.disabled?string}'/>>已禁用</a></li>
+					</ul>
+				</li>
+			<#if metadata?has_content>
+				<li>
+					<a href="javascript:;">模板属性</a>
+					<ul>
+						<li><a href="javascript:;" <@getAction r'${metadata.alias!}'/>>模板名称</a></li>
+				<#if metadata.useDynamic&&metadata.acceptParamters?has_content>
+					<#list metadata.acceptParamters?split(',') as paramter>
+						<li><a href="javascript:;" <@getAction r'${'+paramter+r'!}'/>>参数:${paramter}</a></li>
+					</#list>
+				</#if>
+				<#if metadata.extendList?has_content>
+					<#list metadata.extendList as extend>
+						<li><a href="javascript:;" <@getAction r'${medatada.extendData.'+extend.id.code+r'!}'/>>扩展字段:${extend.name}</a></li>
+					</#list>
+				</#if>
+					</ul>
+				</li>
+			</#if>
+			<#if site.useStatic>
+				<li>
+					<a href="javascript:;">静态化内容模板数据</a>
+					<ul>
+						<li><a href="javascript:;" <@getAction r'${content.title!}'/>>内容标题</a></li>
+						<li><a href="javascript:;" <@getAction r'${content.url!}'/>>链接地址</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">静态化分类模板数据</a>
+					<ul>
+						<li><a href="javascript:;" <@getAction r'${category.title!}'/>>分类名称</a></li>
+						<li><a href="javascript:;" <@getAction r'${category.url!}'/>>链接地址</a></li>
+					</ul>
+				</li>
+				<li>
+					<li><a href="javascript:;" <@getAction r'${url!}'/>>静态化页面当前页面路径</a></li>
+				</li>
+			</#if>
+			</ul>
+		</div>
+		<div class="pageFormContent">
+			<ul class="tree treeFolder">
+				<li>
+					<a href="javascript:;">获取数据列表</a>
+					<ul>
+						<li><a href="javascript:;" <@getAction r'<@_contentList><#list page.list as a><a href="${a.url!}">${a.title}</a></#list></@_contentList>'/>>内容</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_contentFileList contentId=contentId><#list page.list as a>${a.filePath}</#list></@_contentFileList>'/>>内容附件</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_categoryList><#list page.list as a><a href="${a.url!}">${a.name}</a></#list></@_categoryList>'/>>分类</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_categoryTypeList><#list page.list as a><a href="${a.url!}">${a.name}</a></#list></@_categoryTypeList>'/>>分类类型</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_search word=word><#list page.list as a><a href="${a.url!}">${a.title}</a></#list></@_search>'/>>搜索</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_modelList><#list page.list as a>${a.id}:${a.name}<#if a?has_next>,</#if></#list></@_modelList>'/>>模型</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">获取单条/多条数据</a>
+					<ul>
+						<li><a href="javascript:;" <@getAction r'<@_content id=id><a href="${object.url!}">${object.title}</a></#list></@_content>'/>>内容</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_category id=id><a href="${object.url!}">${object.name}</a></#list></@_category>'/>>分类</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="pageFormContent">
+			<ul class="tree treeFolder">
+				<li>
+					<a href="javascript:;">获取扩展数据</a>
+					<ul>
+						<li><a href="javascript:;" <@getAction r'<#assign arrtibute=getContentAttribute(contentId)/>'/>>内容扩展数据(参数为内容Id)</a></li>
+						<li><a href="javascript:;" <@getAction r'<#assign arrtibuteMap=getContentAttributes(contentIds)/>'/>>多个内容扩展数据(参数为多个内容ID以逗号分隔组成的字符串)</a></li>
+						<li><a href="javascript:;" <@getAction r'<#assign arrtibute=getCategoryAttribute(categoryId)/>'/>>分类扩展数据(参数为分类ID)</a></li>
+						<li><a href="javascript:;" <@getAction r'<#assign arrtibuteMap=getCategoryAttributes(categoryIds)/>'/>>多个分类扩展数据(参数为多个分类ID以逗号分隔组成的字符串)</a></li>
+						<li><a href="javascript:;" <@getAction r'<#assign arrtibute=getPlaceAttribute(placeId)/>'/>>推荐位扩展数据(参数为推荐位数据ID)</a></li>
+						<li><a href="javascript:;" <@getAction r'<#assign arrtibuteMap=getPlaceAttributes(placeIds)/>'/>>多个推荐位扩展数据(参数为多个推荐位数据ID以逗号分隔组成的字符串)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getHomeArticleContent(articleId)?no_esc}'/>>空间文章内容(参数为文章ID)</a></li>
+						<li><a href="javascript:;" <@getAction r'<#assign articleContentMap=getHomeArticleContents(articleIds)/>'/>>多条空间文章内容(参数为多个文章ID以逗号分隔组成的字符串)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getHomeGroupPostContent(postId)?no_esc}'/>>群组帖子内容(参数为帖子ID)</a></li>
+						<li><a href="javascript:;" <@getAction r'<#assign arrtibuteMap=getHomeGroupPostContents(postIds)/>'/>>多条群组帖子内容(参数为多个帖子ID以逗号分隔组成的字符串)</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">工具方法</a>
+					<ul>
+						<li><a href="javascript:;" <@getAction r'${getDate(.now,"thisSunday")}'/>>日期处理(参数1为日期，参数2为特殊标记，少于两个参数输出当前时间)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getDate(.now)}'/>>日期转数字(参数1为日期)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getHtml(url,paramter)}'/>>获取远程文本内容(参数1为网址，参数2为参数组成的map或字符串消息体)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getKeywords(url,paramter)}'/>>获取远程文本内容(参数1为网址，参数2为参数组成的map或字符串消息体)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getMd5(value)}'/>>输出文本MD5加密结果(参数1为字符串)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getPage(url,pageIndex)}'/>>获取静态化页面分页地址(参数1为页面地址，参数2为页码)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getRandom(number)}'/>>输出随机数(参数1为最大值，参数可以为空)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getSha1Encode(value)}'/>>输出文本SHA-1加密结果(参数1为字符串)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getSleep(second)}'/>>睡眠一段时间(参数1睡眠时间)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getTemplateResult(template)}'/>>输出模板渲染结果(参数1为Freemarker模板字符串)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getTextFromHtml(html)}'/>>输出HTML中的文本(参数1为html格式字符串)</a></li>
+						<li><a href="javascript:;" <@getAction r'${getUUID()}'/>>输出UUID</a></li>
+						<li><a href="javascript:;" <@getAction r'getXml(xml)'/>>获取xml节点(参数1为xml格式字符串)</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="pageFormContent">
+			<ul class="tree treeFolder">
+<@_sysConfigList>
+	<#list list as a>
+				<li>
+					<a href="javascript:;">${a.code}:${a.description!}</a>
+					<ul>
+			<@_sysConfigFieldList code=a.code>
+					<#list list as extend>
+						<li><a href="javascript:;" <@getAction r'<@_sysConfigData code="'+a.code+r'">${object.'+extend.id.code+r'}</@_sysConfigData>'/>>${extend.id.code}:${extend.name}</a></li>
+					<#else>
+						<li><a href="javascript:;">没有字段</a></li>
+					</#list>
+			</@_sysConfigFieldList>
+					</ul>
+				</li>
+	<#else>
+				<li><a href="javascript:;">没有配置项</a></li>
+	</#list>
+</@_sysConfigList>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.publiccms.mapper.CmsCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.publiccms.model.CmsCategory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="site_id" property="siteId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="template_path" property="templatePath" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="only_url" property="onlyUrl" jdbcType="BIT" />
+    <result column="has_static" property="hasStatic" jdbcType="BIT" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="content_path" property="contentPath" jdbcType="VARCHAR" />
+    <result column="page_size" property="pageSize" jdbcType="INTEGER" />
+    <result column="allow_contribute" property="allowContribute" jdbcType="BIT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="hidden" property="hidden" jdbcType="BIT" />
+    <result column="disabled" property="disabled" jdbcType="BIT" />
+    <result column="contents" property="contents" jdbcType="INTEGER" />
+    <result column="extend_id" property="extendId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.publiccms.model.CmsCategory" extends="BaseResultMap" >
+    <result column="child_ids" property="childIds" jdbcType="LONGVARCHAR" />
+    <result column="tag_type_ids" property="tagTypeIds" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, site_id, name, parent_id, type_id, code, template_path, path, only_url, has_static, 
+    url, content_path, page_size, allow_contribute, sort, hidden, disabled, contents, 
+    extend_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    child_ids, tag_type_ids
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.publiccms.model.CmsCategoryQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.publiccms.model.CmsCategoryQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cms_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms_category
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.publiccms.model.CmsCategoryQuery" >
+    delete from cms_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.publiccms.model.CmsCategory" >
+    insert into cms_category (id, site_id, name, 
+      parent_id, type_id, code, 
+      template_path, path, only_url, 
+      has_static, url, content_path, 
+      page_size, allow_contribute, sort, 
+      hidden, disabled, contents, 
+      extend_id, child_ids, tag_type_ids
+      )
+    values (#{id,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{templatePath,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{onlyUrl,jdbcType=BIT}, 
+      #{hasStatic,jdbcType=BIT}, #{url,jdbcType=VARCHAR}, #{contentPath,jdbcType=VARCHAR}, 
+      #{pageSize,jdbcType=INTEGER}, #{allowContribute,jdbcType=BIT}, #{sort,jdbcType=INTEGER}, 
+      #{hidden,jdbcType=BIT}, #{disabled,jdbcType=BIT}, #{contents,jdbcType=INTEGER}, 
+      #{extendId,jdbcType=INTEGER}, #{childIds,jdbcType=LONGVARCHAR}, #{tagTypeIds,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.publiccms.model.CmsCategory" >
+    insert into cms_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="templatePath != null" >
+        template_path,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="onlyUrl != null" >
+        only_url,
+      </if>
+      <if test="hasStatic != null" >
+        has_static,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="contentPath != null" >
+        content_path,
+      </if>
+      <if test="pageSize != null" >
+        page_size,
+      </if>
+      <if test="allowContribute != null" >
+        allow_contribute,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="hidden != null" >
+        hidden,
+      </if>
+      <if test="disabled != null" >
+        disabled,
+      </if>
+      <if test="contents != null" >
+        contents,
+      </if>
+      <if test="extendId != null" >
+        extend_id,
+      </if>
+      <if test="childIds != null" >
+        child_ids,
+      </if>
+      <if test="tagTypeIds != null" >
+        tag_type_ids,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="templatePath != null" >
+        #{templatePath,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="onlyUrl != null" >
+        #{onlyUrl,jdbcType=BIT},
+      </if>
+      <if test="hasStatic != null" >
+        #{hasStatic,jdbcType=BIT},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="contentPath != null" >
+        #{contentPath,jdbcType=VARCHAR},
+      </if>
+      <if test="pageSize != null" >
+        #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="allowContribute != null" >
+        #{allowContribute,jdbcType=BIT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="hidden != null" >
+        #{hidden,jdbcType=BIT},
+      </if>
+      <if test="disabled != null" >
+        #{disabled,jdbcType=BIT},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=INTEGER},
+      </if>
+      <if test="extendId != null" >
+        #{extendId,jdbcType=INTEGER},
+      </if>
+      <if test="childIds != null" >
+        #{childIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tagTypeIds != null" >
+        #{tagTypeIds,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.publiccms.model.CmsCategoryQuery" resultType="java.lang.Integer" >
+    select count(*) from cms_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cms_category
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeId != null" >
+        type_id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.templatePath != null" >
+        template_path = #{record.templatePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlyUrl != null" >
+        only_url = #{record.onlyUrl,jdbcType=BIT},
+      </if>
+      <if test="record.hasStatic != null" >
+        has_static = #{record.hasStatic,jdbcType=BIT},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentPath != null" >
+        content_path = #{record.contentPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pageSize != null" >
+        page_size = #{record.pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="record.allowContribute != null" >
+        allow_contribute = #{record.allowContribute,jdbcType=BIT},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.hidden != null" >
+        hidden = #{record.hidden,jdbcType=BIT},
+      </if>
+      <if test="record.disabled != null" >
+        disabled = #{record.disabled,jdbcType=BIT},
+      </if>
+      <if test="record.contents != null" >
+        contents = #{record.contents,jdbcType=INTEGER},
+      </if>
+      <if test="record.extendId != null" >
+        extend_id = #{record.extendId,jdbcType=INTEGER},
+      </if>
+      <if test="record.childIds != null" >
+        child_ids = #{record.childIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.tagTypeIds != null" >
+        tag_type_ids = #{record.tagTypeIds,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update cms_category
+    set id = #{record.id,jdbcType=INTEGER},
+      site_id = #{record.siteId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      template_path = #{record.templatePath,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      only_url = #{record.onlyUrl,jdbcType=BIT},
+      has_static = #{record.hasStatic,jdbcType=BIT},
+      url = #{record.url,jdbcType=VARCHAR},
+      content_path = #{record.contentPath,jdbcType=VARCHAR},
+      page_size = #{record.pageSize,jdbcType=INTEGER},
+      allow_contribute = #{record.allowContribute,jdbcType=BIT},
+      sort = #{record.sort,jdbcType=INTEGER},
+      hidden = #{record.hidden,jdbcType=BIT},
+      disabled = #{record.disabled,jdbcType=BIT},
+      contents = #{record.contents,jdbcType=INTEGER},
+      extend_id = #{record.extendId,jdbcType=INTEGER},
+      child_ids = #{record.childIds,jdbcType=LONGVARCHAR},
+      tag_type_ids = #{record.tagTypeIds,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cms_category
+    set id = #{record.id,jdbcType=INTEGER},
+      site_id = #{record.siteId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      template_path = #{record.templatePath,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      only_url = #{record.onlyUrl,jdbcType=BIT},
+      has_static = #{record.hasStatic,jdbcType=BIT},
+      url = #{record.url,jdbcType=VARCHAR},
+      content_path = #{record.contentPath,jdbcType=VARCHAR},
+      page_size = #{record.pageSize,jdbcType=INTEGER},
+      allow_contribute = #{record.allowContribute,jdbcType=BIT},
+      sort = #{record.sort,jdbcType=INTEGER},
+      hidden = #{record.hidden,jdbcType=BIT},
+      disabled = #{record.disabled,jdbcType=BIT},
+      contents = #{record.contents,jdbcType=INTEGER},
+      extend_id = #{record.extendId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.publiccms.model.CmsCategory" >
+    update cms_category
+    <set >
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="templatePath != null" >
+        template_path = #{templatePath,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="onlyUrl != null" >
+        only_url = #{onlyUrl,jdbcType=BIT},
+      </if>
+      <if test="hasStatic != null" >
+        has_static = #{hasStatic,jdbcType=BIT},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="contentPath != null" >
+        content_path = #{contentPath,jdbcType=VARCHAR},
+      </if>
+      <if test="pageSize != null" >
+        page_size = #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="allowContribute != null" >
+        allow_contribute = #{allowContribute,jdbcType=BIT},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="hidden != null" >
+        hidden = #{hidden,jdbcType=BIT},
+      </if>
+      <if test="disabled != null" >
+        disabled = #{disabled,jdbcType=BIT},
+      </if>
+      <if test="contents != null" >
+        contents = #{contents,jdbcType=INTEGER},
+      </if>
+      <if test="extendId != null" >
+        extend_id = #{extendId,jdbcType=INTEGER},
+      </if>
+      <if test="childIds != null" >
+        child_ids = #{childIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tagTypeIds != null" >
+        tag_type_ids = #{tagTypeIds,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.publiccms.model.CmsCategory" >
+    update cms_category
+    set site_id = #{siteId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      template_path = #{templatePath,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      only_url = #{onlyUrl,jdbcType=BIT},
+      has_static = #{hasStatic,jdbcType=BIT},
+      url = #{url,jdbcType=VARCHAR},
+      content_path = #{contentPath,jdbcType=VARCHAR},
+      page_size = #{pageSize,jdbcType=INTEGER},
+      allow_contribute = #{allowContribute,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      hidden = #{hidden,jdbcType=BIT},
+      disabled = #{disabled,jdbcType=BIT},
+      contents = #{contents,jdbcType=INTEGER},
+      extend_id = #{extendId,jdbcType=INTEGER},
+      child_ids = #{childIds,jdbcType=LONGVARCHAR},
+      tag_type_ids = #{tagTypeIds,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.publiccms.model.CmsCategory" >
+    update cms_category
+    set site_id = #{siteId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      template_path = #{templatePath,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      only_url = #{onlyUrl,jdbcType=BIT},
+      has_static = #{hasStatic,jdbcType=BIT},
+      url = #{url,jdbcType=VARCHAR},
+      content_path = #{contentPath,jdbcType=VARCHAR},
+      page_size = #{pageSize,jdbcType=INTEGER},
+      allow_contribute = #{allowContribute,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      hidden = #{hidden,jdbcType=BIT},
+      disabled = #{disabled,jdbcType=BIT},
+      contents = #{contents,jdbcType=INTEGER},
+      extend_id = #{extendId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="ResultMapWithBLOBs" parameterType="com.publiccms.model.CmsCategoryQuery" id="selectByExampleWithBLOBsWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cms_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select resultMap="BaseResultMap" parameterType="com.publiccms.model.CmsCategoryQuery" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cms_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
