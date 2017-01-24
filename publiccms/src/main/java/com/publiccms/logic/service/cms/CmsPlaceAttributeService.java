@@ -1,6 +1,6 @@
 package com.publiccms.logic.service.cms;
 
-// Generated 2015-5-8 16:50:23 by com.sanluan.common.source.SourceMaker
+// Generated 2015-5-8 16:50:23 by com.sanluan.common.source.SourceGenerator
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

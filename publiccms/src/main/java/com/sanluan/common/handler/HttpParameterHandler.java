@@ -26,10 +26,12 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sanluan.common.api.Json;
 import com.sanluan.common.base.BaseHandler;
 
-public class HttpParameterHandler extends BaseHandler {
-    public static final Pattern FUNCTIONNAME_PATTERN = Pattern.compile("^[A-Za-z_]{1}[0-9A-Za-z_]{0,100}$");
+public class HttpParameterHandler extends BaseHandler implements Json {
+    public static final Pattern FUNCTIONNAME_PATTERN = Pattern.compile("[0-9A-Za-z_\\.]*");
     private MediaType mediaType;
     private HttpMessageConverter<Object> httpMessageConverter;
     private HttpServletRequest request;
@@ -37,7 +39,7 @@ public class HttpParameterHandler extends BaseHandler {
     private String callback;
 
     public HttpParameterHandler(HttpMessageConverter<Object> httpMessageConverter, MediaType mediaType,
-            HttpServletRequest request, String callback, HttpServletResponse response) throws Exception {
+            HttpServletRequest request, String callback, HttpServletResponse response) {
         this.httpMessageConverter = httpMessageConverter;
         this.request = request;
         this.callback = callback;
@@ -161,5 +163,10 @@ public class HttpParameterHandler extends BaseHandler {
     @Override
     public Locale getLocale() throws Exception {
         return RequestContextUtils.getLocale(request);
+    }
+
+    @Override
+    public void dump() throws JsonProcessingException, IOException {
+        print(objectMapper.writeValueAsString(request.getParameterMap()));
     }
 }

@@ -1,0 +1,16 @@
+打包 ：war
+清空 ：clean
+配置eclipse工程 ：eclipse
+清空eclipse配置 ：cleanEclipse
+配置idea工程 ：idea
+清空idea配置 ：cleanIdea
+tomcat运行工程 ：tomcatStart
+tomcat运行工程 ：tomcatStartDebug
+tomcat运行war ：tomcatStartWar
+tomcat运行war ：tomcatStartWarDebug
+tomcat停止 ：tomcatStop
+jetty运行工程 ：jettyStart
+jetty运行工程 ：jettyStartDebug
+jetty运行war ：jettyStartWar
+jetty运行war ：jettyStartWarDebug
+jetty停止 ：jettyStop

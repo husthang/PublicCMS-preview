@@ -24,6 +24,11 @@ import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactoryImp
 import com.sanluan.common.hibernate.redis.timestamper.CacheTimestamper;
 import com.sanluan.common.hibernate.redis.timestamper.Timestamper;
 
+/**
+ *
+ * AbstractRedisRegionFactory
+ * 
+ */
 public abstract class AbstractRedisRegionFactory extends Base implements RegionFactory, ConfigurableRedisRegionFactory {
 
     /**

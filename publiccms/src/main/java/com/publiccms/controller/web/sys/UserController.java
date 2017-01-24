@@ -23,10 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.publiccms.common.base.AbstractController;
 import com.publiccms.entities.log.LogOperate;
@@ -48,7 +47,7 @@ import freemarker.template.TemplateException;
  * UserController 用户逻辑处理
  *
  */
-@RestController
+@Controller
 @RequestMapping("user")
 public class UserController extends AbstractController {
     @Autowired
@@ -76,15 +75,19 @@ public class UserController extends AbstractController {
      * @return
      */
     @RequestMapping(value = "changePassword")
-    public MappingJacksonValue changePassword(String oldpassword, String password, String repassword, String callback,
+    public String changePassword(String oldpassword, String password, String repassword, String returnUrl,
             HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model) {
+        SysSite site = getSite(request);
+        if (empty(returnUrl)) {
+            returnUrl = site.getDynamicPath();
+        }
         SysUser user = getUserFromSession(session);
         if (null != user) {
             user = service.getEntity(user.getId());
             if (null != user) {
                 if (verifyNotEmpty("password", password, model) || verifyNotEquals("repassword", password, repassword, model)
                         || verifyNotEquals("password", user.getPassword(), encode(oldpassword), model)) {
-                    return getMappingJacksonValue(model, callback);
+                    return REDIRECT + returnUrl;
                 }
                 Cookie userCookie = getCookie(request.getCookies(), getCookiesUser());
                 if (null != userCookie && notEmpty(userCookie.getValue())) {
@@ -99,11 +102,11 @@ public class UserController extends AbstractController {
                 clearUserToSession(request.getContextPath(), session, response);
                 service.updatePassword(user.getId(), encode(password));
                 model.addAttribute(MESSAGE, SUCCESS);
-                logOperateService.save(new LogOperate(getSite(request).getId(), user.getId(), LogLoginService.CHANNEL_WEB,
-                        "changepassword", getIpAddress(request), getDate(), user.getPassword()));
+                logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB, "changepassword",
+                        getIpAddress(request), getDate(), user.getPassword()));
             }
         }
-        return getMappingJacksonValue(model, callback);
+        return REDIRECT + returnUrl;
     }
 
     /**
@@ -114,16 +117,18 @@ public class UserController extends AbstractController {
      * @return
      */
     @RequestMapping(value = "saveEmail")
-    public MappingJacksonValue saveEmail(String email, String callback, HttpServletRequest request, HttpSession session,
-            ModelMap model) {
+    public String saveEmail(String email, String returnUrl, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
+        if (empty(returnUrl)) {
+            returnUrl = site.getDynamicPath();
+        }
         Map<String, String> config = configComponent.getConfigData(site.getId(), CONFIG_CODE);
         String emailTitle = config.get(CONFIG_EMAIL_TITLE);
         String emailPath = config.get(CONFIG_EMAIL_PATH);
         if (verifyNotEmpty("email", email, model) || verifyNotEmpty("email.config", emailTitle, model)
                 || verifyNotEmpty("email.config", emailPath, model) || verifyNotEMail("email", email, model)
                 || verifyHasExist("email", service.findByEmail(site.getId(), email), model)) {
-            return getMappingJacksonValue(model, callback);
+            return REDIRECT + returnUrl;
         }
         SysUser user = getUserFromSession(session);
         SysEmailToken sysEmailToken = new SysEmailToken();
@@ -147,7 +152,7 @@ public class UserController extends AbstractController {
         } catch (IOException | TemplateException | MessagingException e) {
             model.addAttribute(ERROR, "sendEmail.error");
         }
-        return getMappingJacksonValue(model, callback);
+        return REDIRECT + returnUrl;
     }
 
     /**
@@ -157,16 +162,21 @@ public class UserController extends AbstractController {
      * @return
      */
     @RequestMapping("verifyEmail")
-    public MappingJacksonValue verifyEmail(String authToken, String callback, HttpSession session, ModelMap model) {
+    public String verifyEmail(String authToken, String returnUrl, HttpServletRequest request, HttpSession session,
+            ModelMap model) {
+        SysSite site = getSite(request);
+        if (empty(returnUrl)) {
+            returnUrl = site.getDynamicPath();
+        }
         SysEmailToken sysEmailToken = sysEmailTokenService.getEntity(authToken);
         if (verifyNotEmpty("verifyEmail.authToken", authToken, model)
                 || verifyNotExist("verifyEmail.sysEmailToken", sysEmailToken, model)) {
-            return getMappingJacksonValue(model, callback);
+            return REDIRECT + returnUrl;
         }
         sysEmailTokenService.delete(sysEmailToken.getAuthToken());
         service.checked(sysEmailToken.getUserId(), sysEmailToken.getEmail());
         clearUserTimeToSession(session);
         model.addAttribute(MESSAGE, "verifyEmail.success");
-        return getMappingJacksonValue(model, callback);
+        return REDIRECT + returnUrl;
     }
 }

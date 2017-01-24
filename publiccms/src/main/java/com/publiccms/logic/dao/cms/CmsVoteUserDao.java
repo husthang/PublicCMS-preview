@@ -1,6 +1,6 @@
 package com.publiccms.logic.dao.cms;
 
-// Generated 2016-3-3 17:46:06 by com.sanluan.common.source.SourceMaker
+// Generated 2016-3-3 17:46:06 by com.sanluan.common.source.SourceGenerator
 
 import java.util.Date;
 
@@ -13,9 +13,8 @@ import com.sanluan.common.handler.QueryHandler;
 
 @Repository
 public class CmsVoteUserDao extends BaseDao<CmsVoteUser> {
-    public PageHandler getPage(Integer lotteryId, Long userId, 
-                String ip, Date startCreateDate, Date endCreateDate, 
-                String orderType, Integer pageIndex, Integer pageSize) {
+    public PageHandler getPage(Integer lotteryId, Long userId, String ip, Date startCreateDate, Date endCreateDate,
+            String orderType, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from CmsVoteUser bean");
         if (notEmpty(lotteryId)) {
             queryHandler.condition("bean.lotteryId = :lotteryId").setParameter("lotteryId", lotteryId);
@@ -32,9 +31,9 @@ public class CmsVoteUserDao extends BaseDao<CmsVoteUser> {
         if (notEmpty(endCreateDate)) {
             queryHandler.condition("bean.createDate <= :endCreateDate").setParameter("endCreateDate", endCreateDate);
         }
-        if("asc".equalsIgnoreCase(orderType)){
+        if ("asc".equalsIgnoreCase(orderType)) {
             orderType = "asc";
-        }else{
+        } else {
             orderType = "desc";
         }
         queryHandler.order("bean.createDate " + orderType);
@@ -43,6 +42,9 @@ public class CmsVoteUserDao extends BaseDao<CmsVoteUser> {
 
     @Override
     protected CmsVoteUser init(CmsVoteUser entity) {
+        if (empty(entity.getCreateDate())) {
+            entity.setCreateDate(getDate());
+        }
         return entity;
     }
 

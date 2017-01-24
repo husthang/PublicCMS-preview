@@ -1,6 +1,6 @@
 package com.publiccms.logic.dao.sys;
 
-// Generated 2016-1-20 11:19:19 by com.sanluan.common.source.SourceMaker
+// Generated 2016-1-20 11:19:19 by com.sanluan.common.source.SourceGenerator
 
 import org.springframework.stereotype.Repository;
 

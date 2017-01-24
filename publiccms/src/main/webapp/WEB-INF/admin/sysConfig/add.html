@@ -20,6 +20,7 @@
 			<dt>配置描述:</dt>
 			<dd>
 				<textarea class="required" name="description" maxlength="300" style="width: 100%;" rows="5">${(a.description)!}</textarea>
+				<#if !a.customed><span class="info">当前配置编码与系统编码重复，配置描述将被系统配置描述覆盖</span></#if>
 			</dd>
 		</dl>
 <#if a?has_content>

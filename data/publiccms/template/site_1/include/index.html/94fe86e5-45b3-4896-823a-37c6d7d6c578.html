@@ -1,4 +1,3 @@
-<@compress single_line=true>
 <style>
 #index-focus{ margin-top:30px;}
 #index-focus .owl-item img{ display:block;width:100%;height:auto;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;}
@@ -9,21 +8,3 @@
     <div class="item"><a href="${site.dynamicPath}place/redirect.do?id=${a.id!}" target="_blank"><img class="lazyOwl" data-src="${site.sitePath+a.cover}" alt="${a.title!}"></a></div>
   </#list>
 </div>
-<script>
-$("#index-focus").owlCarousel({
-    items : 2,
-    itemsDesktop : false,
-    itemsDesktopSmall : false,
-    itemsTablet : [768,1],
-    itemsTabletSmall: false,
-    itemsMobile : false,
-    autoPlay : 4000,
-    stopOnHover : true,
-    paginationSpeed : 1000,
-    goToFirstSpeed : 2000,
-    autoHeight : false,
-    transitionStyle:"fade",
-    lazyLoad:true
-});
-</script>
-</@compress>

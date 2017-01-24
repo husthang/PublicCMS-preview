@@ -11,8 +11,9 @@ import com.sanluan.common.hibernate.redis.regions.RedisEntityRegion;
 import com.sanluan.common.hibernate.redis.regions.RedisNaturalIdRegion;
 
 /**
- * @author zhangxdr
  *
+ * RedisAccessStrategyFactoryImpl
+ * 
  */
 public class RedisAccessStrategyFactoryImpl extends Base implements RedisAccessStrategyFactory {
 

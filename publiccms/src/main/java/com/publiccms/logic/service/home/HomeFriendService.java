@@ -1,6 +1,6 @@
 package com.publiccms.logic.service.home;
 
-// Generated 2016-11-19 9:58:46 by com.sanluan.common.source.SourceMaker
+// Generated 2016-11-19 9:58:46 by com.sanluan.common.source.SourceGenerator
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

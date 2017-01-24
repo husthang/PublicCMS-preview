@@ -30,19 +30,7 @@
 					</@_tag>
 				</div>
 			</#if>
-			<script>uParse('#content',{rootPath: '${site.sitePath!}ueditor'});</script>
-<@include path="/ftl/content_page.ftl"/>
-			<script>
-				var link=$('article .page a:last').attr('href');
-				if("undefined" != typeof link && "" != link ){
-					$('article #content img').each(function(){
-						$(this).wrapAll("<a href=\"" + link + "\" title=\"点击查看下一页\"></a>");
-					});
-				}
-				$.getJSON('${site.dynamicPath!}api/contentClick?id=${content.id}&callback=?', function(data){
-					$('article .author em').text(data.clicks);
-				});
-			</script>
+			<@include path="/ftl/content_page.ftl"/>
 			<div id="SOHUCS" class="comment" sid="${content.id}"></div>
 			<script charset="utf-8"src="http://changyan.sohu.com/upload/changyan.js"></script>
 			<script type="text/javascript">
@@ -76,5 +64,17 @@
 	<div class="clearfix-before"></div>
 </main>
 <@_includePlace path="/index.html/6369e868-50b9-4245-9d39-fd440384a685.html"/> <#-- 尾部Footer -->
+<script>uParse('#content',{rootPath: '${site.sitePath!}ueditor'});</script>
+<script>
+	var link=$('article .page a:last').attr('href');
+	if("undefined" != typeof link && "" != link ){
+		$('article #content img').each(function(){
+			$(this).wrapAll("<a href=\"" + link + "\" title=\"点击查看下一页\"></a>");
+		});
+	}
+	$.getJSON('${site.dynamicPath!}api/contentClick?id=${content.id}&callback=?', function(data){
+		$('article .author em').text(data.clicks);
+	});
+</script>
 </body>
 </html>

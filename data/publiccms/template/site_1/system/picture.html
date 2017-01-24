@@ -139,6 +139,28 @@
 					</div>
 				</div>
 			</div>
+			<#if content.tags?has_content>
+				<div class="tags">
+					标签：
+					<@_tag ids=content.tags>
+						<#list map?keys as key>
+							<a href="${site.dynamicPath!}tags.html?id=${map[key].id}" target="_blank"><em>${map[key].name}</em></a>
+						</#list>
+					</@_tag>
+				</div>
+			</#if>
+			<div id="SOHUCS" class="comment" sid="${content.id}"></div>
+			<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+			<script type="text/javascript">
+				window.changyan.api.config({
+					appid: 'cyrUsl0PT',
+					conf: 'prod_64e213c0c1210c839584707e2d5e7cd7'
+				});
+			</script>
+		</article>
+	</div>
+</main>
+<@_includePlace path="/index.html/6369e868-50b9-4245-9d39-fd440384a685.html"/> <#-- 尾部Footer -->
 <script>
 $(function(){
 	var gallery = new Gallery({
@@ -167,27 +189,5 @@ $.getJSON('${site.dynamicPath!}api/contentClick?id=${content.id}&callback=?', fu
 	$('.gallery-info em').text(data.clicks);
 });
 </script>
-			<#if content.tags?has_content>
-				<div class="tags">
-					标签：
-					<@_tag ids=content.tags>
-						<#list map?keys as key>
-							<a href="${site.dynamicPath!}tags.html?id=${map[key].id}" target="_blank"><em>${map[key].name}</em></a>
-						</#list>
-					</@_tag>
-				</div>
-			</#if>
-			<div id="SOHUCS" class="comment" sid="${content.id}"></div>
-			<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
-			<script type="text/javascript">
-				window.changyan.api.config({
-					appid: 'cyrUsl0PT',
-					conf: 'prod_64e213c0c1210c839584707e2d5e7cd7'
-				});
-			</script>
-		</article>
-	</div>
-</main>
-<@_includePlace path="/index.html/6369e868-50b9-4245-9d39-fd440384a685.html"/> <#-- 尾部Footer -->
 </body>
 </html>

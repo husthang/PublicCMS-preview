@@ -1,6 +1,6 @@
 package com.publiccms.logic.dao.cms;
 
-// Generated 2015-12-24 10:49:03 by com.sanluan.common.source.SourceMaker
+// Generated 2015-12-24 10:49:03 by com.sanluan.common.source.SourceGenerator
 
 import java.util.Date;
 

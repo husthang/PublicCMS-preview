@@ -1,14 +1,26 @@
+buildscript {
+	repositories {
+		jcenter()
+	    mavenCentral()
+	}
+    dependencies {
+        // https://mvnrepository.com/artifact/org.akhikhl.gretty/gretty-runner-jetty
+		classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
 import org.gradle.plugins.ide.eclipse.model.Facet
 project(':publiccms') {
 	apply plugin: "java"
 	apply plugin: "eclipse-wtp"
 	apply plugin: "war"
 	apply plugin: 'idea'
+	apply plugin: 'org.akhikhl.gretty'
 
-	[compileJava]*.options*.encoding = "UTF-8"
 	version = "V2016.0828"
 	sourceCompatibility = 1.7
 	targetCompatibility = 1.7
+	
+	war{ baseName ="cms" }
 
 	repositories {
 		mavenLocal()
@@ -22,10 +34,9 @@ project(':publiccms') {
 	    // http://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
 	    httpclientVersion = "4.5.2"
 	    // http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
-	    jacksonVersion = "2.8.5"
+	    jacksonVersion = "2.8.6"
 	}
-
-	war{ baseName ="cms" }
+	[compileJava]*.options*.encoding = "UTF-8"
 
 	dependencies {
 	    compile (
@@ -50,14 +61,14 @@ project(':publiccms') {
 	        "org.springframework:spring-webmvc:${springVersion}",
 
 	        // http://mvnrepository.com/artifact/org.mybatis/mybatis
-	        "org.mybatis:mybatis:3.4.1",
+	        "org.mybatis:mybatis:3.4.2",
 	        // http://mvnrepository.com/artifact/org.mybatis/mybatis-spring
-	        "org.mybatis:mybatis-spring:1.3.0",
+	        "org.mybatis:mybatis-spring:1.3.1",
 
 	        // http://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache
-	        "org.hibernate:hibernate-ehcache:5.1.2.Final",
+	        "org.hibernate:hibernate-ehcache:5.1.3.Final",
 	        // http://mvnrepository.com/artifact/org.hibernate/hibernate-search
-	        "org.hibernate:hibernate-search:5.5.5.Final",
+	        "org.hibernate:hibernate-search:5.5.6.Final",
 	        // https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-smartcn
 	        "org.apache.lucene:lucene-analyzers-smartcn:5.3.1",
 	        // http://mvnrepository.com/artifact/redis.clients/jedis
@@ -79,7 +90,7 @@ project(':publiccms') {
 	        // http://mvnrepository.com/artifact/javax.transaction/jta
 	        "javax.transaction:jta:1.1",
 	        // http://mvnrepository.com/artifact/javax.mail/mail
-	        "javax.mail:mail:1.5.0-b01",
+	        "javax.mail:mail:1.4.7",
 
 	        // http://mvnrepository.com/artifact/eu.bitwalker/UserAgentUtils
 	        "eu.bitwalker:UserAgentUtils:1.20",
@@ -89,28 +100,36 @@ project(':publiccms') {
 	        "cglib:cglib-nodep:3.2.4",
 
 	        // http://mvnrepository.com/artifact/org.apache.ant/ant
-	        "org.apache.ant:ant:1.9.7",
+	        "org.apache.ant:ant:1.10.0",
 
 	        // http://mvnrepository.com/artifact/org.quartz-scheduler/quartz
 	        "org.quartz-scheduler:quartz:2.2.3"
 	    )
+	    compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
 	    providedCompile(
 		    // http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
 		    "javax.servlet:javax.servlet-api:3.1.0"
 	    )
 	    testCompile(
-		    // http://mvnrepository.com/artifact/junit/junit
+	    	// http://mvnrepository.com/artifact/junit/junit
 		    "junit:junit:4.12",
 		    "org.springframework:spring-test:${springVersion}",
+		    // http://mvnrepository.com/artifact/org.dom4j/dom4j
 		    "org.dom4j:dom4j:2.0.0",
-		    "log4j:log4j:1.2.17",
-		    "org.mybatis.generator:mybatis-generator-core:1.3.2"
+		    // http://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core
+		    "org.mybatis.generator:mybatis-generator-core:1.3.5"
 		)
 		// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
 	    testCompile("org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE") {
 	    	exclude group:"org.springframework.boot", module: 'spring-boot-starter-logging'
 	    }
 	}
+	
+    gretty {
+    	port = 8080
+  		contextPath = '/cms'
+  		servletContainer = 'tomcat7'
+    }
 
 	eclipse {
 	    wtp {

@@ -11,8 +11,9 @@ import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**
- * @author zhangxdr
  *
+ * RedisGeneralDataRegion
+ * 
  */
 public class RedisGeneralDataRegion extends RedisDataRegion implements GeneralDataRegion {
 

@@ -6,10 +6,9 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
+ *
  * RedisUtils
  * 
- * @author zhangxdr
- *
  */
 public class RedisUtils {
     public static JedisPool createJedisPool(Properties redisProperties) {

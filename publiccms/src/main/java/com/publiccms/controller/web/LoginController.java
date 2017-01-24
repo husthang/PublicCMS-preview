@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -114,7 +113,7 @@ public class LoginController extends AbstractController {
      */
     @RequestMapping(value = "loginStatus")
     @ResponseBody
-    public MappingJacksonValue loginStatus(String callback, HttpServletRequest request, HttpSession session,
+    public ModelMap loginStatus(String callback, HttpServletRequest request, HttpSession session,
             HttpServletResponse response, ModelMap model) {
         SysUser user = getUserFromSession(session);
         if (null != user) {
@@ -125,7 +124,7 @@ public class LoginController extends AbstractController {
             model.addAttribute("emailChecked", user.isEmailChecked());
             model.addAttribute("superuserAccess", user.isSuperuserAccess());
         }
-        return getMappingJacksonValue(model, callback);
+        return model;
     }
 
     /**

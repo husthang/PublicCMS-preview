@@ -1,4 +1,4 @@
-package com.sanluan.common;
+package com.sanluan.common.source;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

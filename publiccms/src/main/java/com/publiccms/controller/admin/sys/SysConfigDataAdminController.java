@@ -5,7 +5,7 @@ import static com.publiccms.common.tools.ExtendUtils.getExtentDataMap;
 import static com.sanluan.common.tools.JsonUtils.getString;
 import static com.sanluan.common.tools.RequestUtils.getIpAddress;
 import static org.springframework.web.servlet.support.RequestContextUtils.getLocale;
-// Generated 2016-7-16 11:54:16 by com.sanluan.common.source.SourceMaker
+// Generated 2016-7-16 11:54:16 by com.sanluan.common.source.SourceGenerator
 
 import java.util.Map;
 

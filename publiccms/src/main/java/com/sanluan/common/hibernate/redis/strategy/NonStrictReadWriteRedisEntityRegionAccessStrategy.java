@@ -13,8 +13,9 @@ import org.hibernate.persister.entity.EntityPersister;
 import com.sanluan.common.hibernate.redis.regions.RedisEntityRegion;
 
 /**
- * @author zhangxdr
  *
+ * NonStrictReadWriteRedisEntityRegionAccessStrategy
+ * 
  */
 public class NonStrictReadWriteRedisEntityRegionAccessStrategy extends AbstractRedisAccessStrategy<RedisEntityRegion>
         implements EntityRegionAccessStrategy {
@@ -38,7 +39,7 @@ public class NonStrictReadWriteRedisEntityRegionAccessStrategy extends AbstractR
     @Override
     public Object generateCacheKey(Object id, EntityPersister persister, SessionFactoryImplementor factory,
             String tenantIdentifier) {
-        return DefaultCacheKeysFactory.createEntityKey(id, persister, factory, tenantIdentifier);
+        return DefaultCacheKeysFactory.staticCreateEntityKey(id, persister, factory, tenantIdentifier);
     }
 
     /*
@@ -50,7 +51,7 @@ public class NonStrictReadWriteRedisEntityRegionAccessStrategy extends AbstractR
      */
     @Override
     public Object getCacheKeyId(Object cacheKey) {
-        return DefaultCacheKeysFactory.getEntityId(cacheKey);
+        return DefaultCacheKeysFactory.staticGetEntityId(cacheKey);
     }
 
     @Override

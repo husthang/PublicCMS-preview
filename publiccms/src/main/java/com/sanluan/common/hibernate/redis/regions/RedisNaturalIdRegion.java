@@ -14,8 +14,9 @@ import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**
- * @author zhangxdr
  *
+ * RedisNaturalIdRegion
+ * 
  */
 public class RedisNaturalIdRegion extends RedisTransactionalDataRegion implements NaturalIdRegion {
 

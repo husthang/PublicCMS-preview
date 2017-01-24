@@ -2,7 +2,7 @@ package com.publiccms.views.directive.sys;
 
 import static com.publiccms.common.tools.ExtendUtils.getExtendMap;
 
-// Generated 2016-7-16 11:54:15 by com.sanluan.common.source.SourceMaker
+// Generated 2016-7-16 11:54:15 by com.sanluan.common.source.SourceGenerator
 
 import java.io.IOException;
 import java.util.HashMap;

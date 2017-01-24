@@ -36,18 +36,19 @@ BUG修复:
 框架升级:
 
 1. Spring Framework升级到4.3.5
-1. Hibernate Search升级到5.5.5
-1. Hibernate升级到5.1.2
-1. Jackson升级到2.8.5
+1. Hibernate Search升级到5.5.6
+1. Hibernate升级到5.1.3
+1. Jackson升级到2.8.6
 1. mysql-connector-java升级到5.1.40
-1. 新增mybatis 3.4.1
+1. 新增mybatis 3.4.2
 1. 新增jedis2.9.0
 1. 新增测试环境spring boot启动方式支持
 1. 源码与gralde,maven配置分离
+1. 新增gradle、maven插件：maven-eclipse，maven-idea，gradle-idea，gradle-gretty
 
 新增功能:
 
-1. 静态文件管理
+1. 新增静态文件管理
 1. 新增配置管理
 1. 新增站点默认设置
 1. 新增免重启的配置引导程序
@@ -56,7 +57,12 @@ BUG修复:
 1. 新增静态文件支持
 1. 新增域名格式提示
 1. 新增分词器设置、默认中文分词器
-1. 新增关键词处理指令
+1. 新增关键词处理函数
+1. 新增UserAgeent获取指令，UserAgent解析函数
+1. 新增模板demo
+1. 新增模板制作帮助页面
+1. 新增推荐位异步渲染支持
+1. 新增多条内容、分类、推荐位扩展字段获取函数
 
 其他提升:
 
@@ -76,6 +82,7 @@ BUG修复:
 1. 简化站点配置，站点取消资源站点属性
 1. 配置文件结构调整
 1. 优化推荐位输出
+1. 优化jsonp支持，安全性提升
 
 模板升级所需修改：
 
@@ -85,5 +92,5 @@ BUG修复:
 
 数据库升级所需修改：
 
-1. 根据database/mysql-change-log.sql时间轴执行最新修改脚本
+1. 根据data/mysql-change-log.sql时间轴执行最新修改脚本
 1. 执行MyTest类中UpdateTo2017方法

@@ -10,8 +10,9 @@ import org.hibernate.boot.spi.SessionFactoryOptions;
 import org.hibernate.cache.CacheException;
 
 /**
- * @author zhangxdr
  *
+ * SingletonRedisRegionFactory
+ * 
  */
 public class SingletonRedisRegionFactory extends AbstractRedisRegionFactory {
 

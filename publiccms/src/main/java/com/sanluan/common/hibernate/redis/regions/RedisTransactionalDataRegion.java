@@ -12,8 +12,9 @@ import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**
- * @author zhangxdr
  *
+ * RedisTransactionalDataRegion
+ * 
  */
 public class RedisTransactionalDataRegion extends RedisDataRegion implements TransactionalDataRegion {
 

@@ -13,8 +13,9 @@ import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.regions.RedisCollectionRegion;
 
 /**
- * @author zhangxdr
  *
+ * TransactionalRedisCollectionRegionAccessStrategy
+ * 
  */
 public class TransactionalRedisCollectionRegionAccessStrategy extends AbstractRedisAccessStrategy<RedisCollectionRegion>
         implements CollectionRegionAccessStrategy {
@@ -33,12 +34,12 @@ public class TransactionalRedisCollectionRegionAccessStrategy extends AbstractRe
     @Override
     public Object generateCacheKey(Object id, CollectionPersister persister, SessionFactoryImplementor factory,
             String tenantIdentifier) {
-        return DefaultCacheKeysFactory.createCollectionKey(id, persister, factory, tenantIdentifier);
+        return DefaultCacheKeysFactory.staticCreateCollectionKey(id, persister, factory, tenantIdentifier);
     }
 
     @Override
     public Object getCacheKeyId(Object cacheKey) {
-        return DefaultCacheKeysFactory.getCollectionId(cacheKey);
+        return DefaultCacheKeysFactory.staticGetCollectionId(cacheKey);
     }
 
     @Override

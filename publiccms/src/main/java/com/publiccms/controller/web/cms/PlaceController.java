@@ -13,12 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.publiccms.common.base.AbstractController;
 import com.publiccms.entities.cms.CmsPlace;
@@ -58,11 +56,13 @@ public class PlaceController extends AbstractController {
      * @return
      */
     @RequestMapping(value = "save")
-    @ResponseBody
-    public MappingJacksonValue save(CmsPlace entity, String callback, @ModelAttribute CmsPlaceParamters placeParamters,
+    public String save(CmsPlace entity, String returnUrl, @ModelAttribute CmsPlaceParamters placeParamters,
             HttpServletRequest request, HttpSession session, ModelMap model) {
+        SysSite site = getSite(request);
+        if (empty(returnUrl)) {
+            returnUrl = site.getDynamicPath();
+        }
         if (null != entity && notEmpty(entity.getPath())) {
-            SysSite site = getSite(request);
             entity.setPath(entity.getPath().replace("//", SEPARATOR));
             String placePath = INCLUDE_DIRECTORY + entity.getPath();
             String filePath = siteComponent.getWebTemplateFilePath(site, placePath);
@@ -70,14 +70,14 @@ public class PlaceController extends AbstractController {
             SysUser user = getUserFromSession(session);
             if (verifyCustom("contribute",
                     null == user || null == metadata || !metadata.isAllowContribute() || 0 >= metadata.getSize(), model)) {
-                return getMappingJacksonValue(model, callback);
+                return REDIRECT + returnUrl;
             }
             if (null != entity.getId()) {
                 CmsPlace oldEntity = service.getEntity(entity.getId());
                 if (null == oldEntity || empty(oldEntity.getUserId()) || null == user
                         || verifyNotEquals("siteId", site.getId(), oldEntity.getSiteId(), model)
                         || verifyNotEquals("siteId", user.getId(), oldEntity.getUserId(), model)) {
-                    return getMappingJacksonValue(model, callback);
+                    return REDIRECT + returnUrl;
                 }
                 entity = service.update(entity.getId(), entity, ignoreProperties);
                 logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB, "update.place",
@@ -98,7 +98,7 @@ public class PlaceController extends AbstractController {
             String extentString = getExtendString(map);
             attributeService.updateAttribute(entity.getId(), extentString);
         }
-        return getMappingJacksonValue(model, callback);
+        return REDIRECT + returnUrl;
     }
 
     /**
@@ -110,22 +110,24 @@ public class PlaceController extends AbstractController {
      * @return
      */
     @RequestMapping("delete")
-    @ResponseBody
-    public MappingJacksonValue delete(Long id, String callback, HttpServletRequest request, HttpSession session, ModelMap model) {
-        CmsPlace entity = service.getEntity(id);
+    public String delete(Long id, String returnUrl, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
+        if (empty(returnUrl)) {
+            returnUrl = site.getDynamicPath();
+        }
+        CmsPlace entity = service.getEntity(id);
         SysUser user = getUserFromSession(session);
         CmsPlaceMetadata metadata = metadataComponent.getPlaceMetadata(INCLUDE_DIRECTORY + entity.getPath());
         if (verifyCustom("manage",
                 null == entity || null == user || empty(metadata.getAdminIds())
                         || !contains(metadata.getAdminIds(), user.getId()),
                 model) || verifyNotEquals("siteId", site.getId(), entity.getSiteId(), model)) {
-            return getMappingJacksonValue(model, callback);
+            return REDIRECT + returnUrl;
         }
         service.delete(id);
-        logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(), LogLoginService.CHANNEL_WEB,
-                "delete.place", getIpAddress(request), getDate(), id.toString()));
-        return getMappingJacksonValue(model, callback);
+        logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB, "delete.place",
+                getIpAddress(request), getDate(), id.toString()));
+        return REDIRECT + returnUrl;
     }
 
     /**
@@ -137,22 +139,24 @@ public class PlaceController extends AbstractController {
      * @return
      */
     @RequestMapping("check")
-    @ResponseBody
-    public MappingJacksonValue check(Long id, String callback, HttpServletRequest request, HttpSession session, ModelMap model) {
-        CmsPlace entity = service.getEntity(id);
+    public String check(Long id, String returnUrl, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
+        if (empty(returnUrl)) {
+            returnUrl = site.getDynamicPath();
+        }
+        CmsPlace entity = service.getEntity(id);
         SysUser user = getUserFromSession(session);
         CmsPlaceMetadata metadata = metadataComponent.getPlaceMetadata(INCLUDE_DIRECTORY + entity.getPath());
         if (verifyCustom("manage",
                 null == entity || null == user || empty(metadata.getAdminIds())
                         || !contains(metadata.getAdminIds(), user.getId()),
                 model) || verifyNotEquals("siteId", site.getId(), entity.getSiteId(), model)) {
-            return getMappingJacksonValue(model, callback);
+            return REDIRECT + returnUrl;
         }
         service.check(id);
-        logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(), LogLoginService.CHANNEL_WEB,
+        logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB,
                 "check.place", getIpAddress(request), getDate(), id.toString()));
-        return getMappingJacksonValue(model, callback);
+        return REDIRECT + returnUrl;
     }
 
     /**

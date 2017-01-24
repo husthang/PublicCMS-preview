@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.publiccms.common.spi.Config;
 import com.publiccms.entities.sys.SysSite;
 import com.publiccms.views.pojo.ExtendField;
-import com.sanluan.common.base.Base;
 
 /**
  *
@@ -19,7 +18,7 @@ import com.sanluan.common.base.Base;
  *
  */
 @Component
-public class LoginConfigComponent extends Base implements Config {
+public class LoginConfigComponent implements Config {
     public static final String CONFIG_LOGIN_PATH = "login_path";
     public static final String CONFIG_CODE_DESCRIPTION = CONFIGPREFIX + CONFIG_CODE_SITE;
 

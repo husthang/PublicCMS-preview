@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,7 +50,7 @@ public class MethodController extends AbstractController {
      * @return
      */
     @RequestMapping("method/{name}")
-    public MappingJacksonValue method(@PathVariable String name, String appToken, String callback, HttpServletRequest request,
+    public Object method(@PathVariable String name, String appToken, HttpServletRequest request,
             HttpServletResponse response) {
         BaseMethod method = methodMap.get(name);
         if (null != method) {
@@ -59,11 +58,11 @@ public class MethodController extends AbstractController {
                 if (method.needAppToken()) {
                     SysAppToken token = appTokenService.getEntity(appToken);
                     if (null == token) {
-                        return getMappingJacksonValue(NOT_FOUND_MAP, callback);
+                        return NOT_FOUND_MAP;
                     }
                     SysApp app = appService.getEntity(token.getAppId());
                     if (null == app) {
-                        return getMappingJacksonValue(NOT_FOUND_MAP, callback);
+                        return NOT_FOUND_MAP;
                     }
                 }
                 String[] paramters = request.getParameterValues("paramters");
@@ -72,21 +71,21 @@ public class MethodController extends AbstractController {
                     for (String paramter : paramters) {
                         list.add(getObjectWrapper().wrap(paramter));
                     }
-                    return getMappingJacksonValue(method.exec(list), callback);
+                    return method.exec(list);
                 } else if (empty(paramters) && 0 == method.minParamtersNumber()) {
-                    return getMappingJacksonValue(method.exec(null), callback);
+                    return method.exec(null);
                 } else {
                     Map<String, String> map = new HashMap<String, String>();
                     map.put(ERROR, "paramtersError");
-                    return getMappingJacksonValue(map, callback);
+                    return map;
                 }
             } catch (TemplateModelException e) {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put(ERROR, e.getMessage());
-                return getMappingJacksonValue(map, callback);
+                return map;
             }
         } else {
-            return getMappingJacksonValue(NOT_FOUND_MAP, callback);
+            return NOT_FOUND_MAP;
         }
 
     }
@@ -98,8 +97,8 @@ public class MethodController extends AbstractController {
      * @return
      */
     @RequestMapping("methods")
-    public MappingJacksonValue methods(String callback) {
-        return getMappingJacksonValue(methodList, callback);
+    public List<Map<String, String>> methods() {
+        return methodList;
     }
 
     /**

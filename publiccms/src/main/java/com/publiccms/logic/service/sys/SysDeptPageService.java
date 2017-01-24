@@ -1,6 +1,6 @@
 package com.publiccms.logic.service.sys;
 
-// Generated 2016-1-19 11:41:45 by com.sanluan.common.source.SourceMaker
+// Generated 2016-1-19 11:41:45 by com.sanluan.common.source.SourceGenerator
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.apache.commons.lang3.ArrayUtils.removeElement;
 

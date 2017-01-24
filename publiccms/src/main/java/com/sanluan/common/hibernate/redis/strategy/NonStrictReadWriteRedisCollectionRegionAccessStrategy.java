@@ -12,8 +12,9 @@ import org.hibernate.persister.collection.CollectionPersister;
 import com.sanluan.common.hibernate.redis.regions.RedisCollectionRegion;
 
 /**
- * @author zhangxdr
  *
+ * NonStrictReadWriteRedisCollectionRegionAccessStrategy
+ * 
  */
 public class NonStrictReadWriteRedisCollectionRegionAccessStrategy extends AbstractRedisAccessStrategy<RedisCollectionRegion>
         implements CollectionRegionAccessStrategy {
@@ -37,7 +38,7 @@ public class NonStrictReadWriteRedisCollectionRegionAccessStrategy extends Abstr
     @Override
     public Object generateCacheKey(Object id, CollectionPersister persister, SessionFactoryImplementor factory,
             String tenantIdentifier) {
-        return DefaultCacheKeysFactory.createCollectionKey(id, persister, factory, tenantIdentifier);
+        return DefaultCacheKeysFactory.staticCreateCollectionKey(id, persister, factory, tenantIdentifier);
     }
 
     /*
@@ -48,7 +49,7 @@ public class NonStrictReadWriteRedisCollectionRegionAccessStrategy extends Abstr
      */
     @Override
     public Object getCacheKeyId(Object cacheKey) {
-        return DefaultCacheKeysFactory.getCollectionId(cacheKey);
+        return DefaultCacheKeysFactory.staticGetCollectionId(cacheKey);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.publiccms.logic.service.cms;
 import java.io.Serializable;
 import java.util.Collection;
 
-// Generated 2015-7-10 16:36:23 by com.sanluan.common.source.SourceMaker
+// Generated 2015-7-10 16:36:23 by com.sanluan.common.source.SourceGenerator
 
 import java.util.HashSet;
 import java.util.List;

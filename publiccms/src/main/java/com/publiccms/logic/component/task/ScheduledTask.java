@@ -5,12 +5,9 @@ import java.util.List;
 
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
-import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
-import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +36,13 @@ public class ScheduledTask extends Base {
     @Autowired
     private Scheduler scheduler;
     @Autowired
+    private JobDetail jobDetail;
+    @Autowired
     private LogTaskService logTaskService;
     @Autowired
     private SysSiteService siteService;
-    private Date startDate = null;
 
-    public void init() {
+    public void init(Date startDate) {
         @SuppressWarnings("unchecked")
         List<SysTask> sysTaskList = (List<SysTask>) sysTaskService.getPage(null, null, startDate, null, null).getList();
         for (SysTask sysTask : sysTaskList) {
@@ -68,16 +66,15 @@ public class ScheduledTask extends Base {
     public void create(SysSite site, Integer id, String cronExpression) {
         if (notEmpty(id) && notEmpty(cronExpression)) {
             Date startTime = getDate();
-            String taskName = getTaskName(id);
-            TriggerKey triggerKey = TriggerKey.triggerKey(taskName);
+            TriggerKey triggerKey = TriggerKey.triggerKey(jobDetail.getKey().getName());
             try {
-                CronTrigger trigger = getCronTrigger(triggerKey);
+                CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
                 CronScheduleBuilder scheduleBuilder = CronScheduleBuilder
                         .cronSchedule(site.getId() % 60 + BLANK_SPACE + cronExpression);
                 if (null == trigger) {
-                    JobDetail jobDetail = JobBuilder.newJob(ScheduledJob.class).withIdentity(taskName).build();
                     jobDetail.getJobDataMap().put(ID, id);
-                    trigger = TriggerBuilder.newTrigger().withIdentity(taskName).withSchedule(scheduleBuilder).startNow().build();
+                    trigger = TriggerBuilder.newTrigger().withIdentity(triggerKey).withSchedule(scheduleBuilder).startNow()
+                            .build();
                     scheduler.scheduleJob(jobDetail, trigger);
                 } else {
                     trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).startNow()
@@ -100,7 +97,7 @@ public class ScheduledTask extends Base {
         if (notEmpty(id)) {
             Date startTime = getDate();
             try {
-                scheduler.triggerJob(JobKey.jobKey(getTaskName(id)));
+                scheduler.triggerJob(jobDetail.getKey());
             } catch (SchedulerException e) {
                 sysTaskService.updateStatus(id, TASK_STATUS_ERROR);
                 logTaskService.save(new LogTask(site.getId(), id, startTime, getDate(), false, e.getMessage()));
@@ -117,7 +114,7 @@ public class ScheduledTask extends Base {
         if (notEmpty(id)) {
             Date startTime = getDate();
             try {
-                scheduler.pauseJob(JobKey.jobKey(getTaskName(id)));
+                scheduler.pauseJob(jobDetail.getKey());
             } catch (SchedulerException e) {
                 sysTaskService.updateStatus(id, TASK_STATUS_ERROR);
                 logTaskService.save(new LogTask(site.getId(), id, startTime, getDate(), false, e.getMessage()));
@@ -134,7 +131,7 @@ public class ScheduledTask extends Base {
         if (notEmpty(id)) {
             Date startTime = getDate();
             try {
-                scheduler.resumeJob(JobKey.jobKey(getTaskName(id)));
+                scheduler.resumeJob(jobDetail.getKey());
             } catch (SchedulerException e) {
                 sysTaskService.updateStatus(id, TASK_STATUS_ERROR);
                 logTaskService.save(new LogTask(site.getId(), id, startTime, getDate(), false, e.getMessage()));
@@ -150,32 +147,10 @@ public class ScheduledTask extends Base {
     public void delete(Integer id) {
         if (notEmpty(id)) {
             try {
-                scheduler.deleteJob(JobKey.jobKey(getTaskName(id)));
+                scheduler.deleteJob(jobDetail.getKey());
             } catch (SchedulerException e) {
                 log.error(e.getMessage());
             }
         }
-    }
-
-    /**
-     * 任务计划名称
-     * 
-     * @param id
-     * @return
-     */
-    public String getTaskName(Integer id) {
-        return "task-" + id;
-    }
-
-    private CronTrigger getCronTrigger(TriggerKey triggerKey) throws SchedulerException {
-        Trigger trigger = scheduler.getTrigger(triggerKey);
-        if (null != trigger) {
-            return (CronTrigger) trigger;
-        }
-        return null;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
     }
 }

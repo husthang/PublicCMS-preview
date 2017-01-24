@@ -8,9 +8,9 @@ import java.io.ObjectOutputStream;
 import com.sanluan.common.base.Base;
 
 /**
- * @author zhangxdr
  *
- * @param <T>
+ * BinarySerializer
+ * 
  */
 public class BinarySerializer<T> extends Base implements RedisSerializer<T> {
     public byte[] serialize(String str) {

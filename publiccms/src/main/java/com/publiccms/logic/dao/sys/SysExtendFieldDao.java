@@ -3,7 +3,7 @@ package com.publiccms.logic.dao.sys;
 import java.util.ArrayList;
 import java.util.List;
 
-// Generated 2016-3-2 13:39:54 by com.sanluan.common.source.SourceMaker
+// Generated 2016-3-2 13:39:54 by com.sanluan.common.source.SourceGenerator
 
 import org.springframework.stereotype.Repository;
 

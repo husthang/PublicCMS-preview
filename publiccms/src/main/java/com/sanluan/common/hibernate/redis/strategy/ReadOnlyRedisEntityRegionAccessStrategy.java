@@ -11,8 +11,9 @@ import org.hibernate.persister.entity.EntityPersister;
 import com.sanluan.common.hibernate.redis.regions.RedisEntityRegion;
 
 /**
- * @author zhangxdr
  *
+ * ReadOnlyRedisEntityRegionAccessStrategy
+ * 
  */
 public class ReadOnlyRedisEntityRegionAccessStrategy extends AbstractRedisAccessStrategy<RedisEntityRegion>
         implements EntityRegionAccessStrategy {

@@ -15,16 +15,16 @@
 		</thead>
 		<tbody>
 			<#list list as a>
-			<#if a.customed>
 			<tr target="sid" rel="${a.code}">
-				<td>${(a.code)!}</td>
+				<td>${(a.code)!}<#if !a.customed>[系统配置项]</#if></td>
 				<td>${(a.description)!}</td>
 				<td>
 					<a href="sysConfig/add.html?code={sid}" target="navTab" rel="sysConfig/edit">修改配置</a>
+				<#if a.customed>
 					<a href="sysConfig/delete.do?code={sid}&navTabId=sysConfig/list" title="确定要删除该配置吗?" target="ajaxTodo">删除配置</a>
+				</#if>
 				</td>
 			</tr>
-			</#if>
 			</#list>
 		</tbody>
 	</table>

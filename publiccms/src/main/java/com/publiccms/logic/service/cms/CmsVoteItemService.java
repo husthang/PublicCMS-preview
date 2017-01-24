@@ -1,6 +1,6 @@
 package com.publiccms.logic.service.cms;
 
-// Generated 2016-3-3 17:43:34 by com.sanluan.common.source.SourceMaker
+// Generated 2016-3-3 17:43:34 by com.sanluan.common.source.SourceGenerator
 
 
 import org.springframework.beans.factory.annotation.Autowired;

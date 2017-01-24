@@ -1,21 +1,6 @@
 package config.spring;
 
 import static config.initializer.InstallationInitializer.CMS_CONFIG_FILE;
-import static freemarker.core.Configurable.AUTO_IMPORT_KEY;
-import static freemarker.core.Configurable.AUTO_INCLUDE_KEY;
-import static freemarker.core.Configurable.BOOLEAN_FORMAT_KEY;
-import static freemarker.core.Configurable.DATETIME_FORMAT_KEY;
-import static freemarker.core.Configurable.DATE_FORMAT_KEY;
-import static freemarker.core.Configurable.LAZY_AUTO_IMPORTS_KEY;
-import static freemarker.core.Configurable.LOCALE_KEY;
-import static freemarker.core.Configurable.NEW_BUILTIN_CLASS_RESOLVER_KEY;
-import static freemarker.core.Configurable.NUMBER_FORMAT_KEY;
-import static freemarker.core.Configurable.TEMPLATE_EXCEPTION_HANDLER_KEY;
-import static freemarker.core.Configurable.TIME_FORMAT_KEY;
-import static freemarker.core.Configurable.URL_ESCAPING_CHARSET_KEY;
-import static freemarker.template.Configuration.DEFAULT_ENCODING_KEY;
-import static freemarker.template.Configuration.OUTPUT_FORMAT_KEY;
-import static freemarker.template.Configuration.TEMPLATE_UPDATE_DELAY_KEY;
 import static java.lang.Integer.parseInt;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
 import static org.springframework.scheduling.quartz.SchedulerFactoryBean.PROP_THREAD_COUNT;
@@ -75,7 +60,7 @@ import com.sanluan.common.cache.CacheEntityFactory;
 @Configuration
 @ComponentScan(basePackages = "com.publiccms", excludeFilters = { @ComponentScan.Filter(value = { Controller.class }) })
 @MapperScan(basePackages = "com.publiccms.logic.mapper")
-@PropertySource({ "classpath:config/properties/freemarker.properties", "classpath:" + CMS_CONFIG_FILE })
+@PropertySource({ "classpath:" + CMS_CONFIG_FILE })
 @EnableTransactionManagement
 @EnableScheduling
 public class ApplicationConfig extends Base {
@@ -250,9 +235,9 @@ public class ApplicationConfig extends Base {
     @Bean
     public TemplateComponent templateComponent() {
         TemplateComponent bean = new TemplateComponent();
-        bean.setDirectivePrefix(env.getProperty("freeMarkerExtendHandler.directivePrefix"));
-        bean.setDirectiveRemoveRegex(env.getProperty("freeMarkerExtendHandler.directiveRemoveRegex"));
-        bean.setMethodRemoveRegex(env.getProperty("freeMarkerExtendHandler.methodRemoveRegex"));
+        bean.setDirectivePrefix(env.getProperty("cms.directivePrefix"));
+        bean.setDirectiveRemoveRegex(env.getProperty("cms.directiveRemoveRegex"));
+        bean.setMethodRemoveRegex(env.getProperty("cms.methodRemoveRegex"));
         return bean;
     }
 
@@ -284,27 +269,13 @@ public class ApplicationConfig extends Base {
      * </p>
      * 
      * @return
+     * @throws IOException
      */
     @Bean
-    public FreeMarkerConfigurer freeMarkerConfigurer() {
+    public FreeMarkerConfigurer freeMarkerConfigurer() throws IOException {
         FreeMarkerConfigurer bean = new FreeMarkerConfigurer();
         bean.setTemplateLoaderPath("/WEB-INF/");
-        Properties properties = new Properties();
-        properties.setProperty(NEW_BUILTIN_CLASS_RESOLVER_KEY, env.getProperty("freemarkerSettings.newBuiltinClassResolver"));
-        properties.setProperty(TEMPLATE_UPDATE_DELAY_KEY, env.getProperty("freemarkerSettings.templateUpdateDelay"));
-        properties.setProperty(DEFAULT_ENCODING_KEY, env.getProperty("freemarkerSettings.defaultEncoding"));
-        properties.setProperty(URL_ESCAPING_CHARSET_KEY, env.getProperty("freemarkerSettings.urlEscapingCharset"));
-        properties.setProperty(LOCALE_KEY, env.getProperty("freemarkerSettings.locale"));
-        properties.setProperty(BOOLEAN_FORMAT_KEY, env.getProperty("freemarkerSettings.booleanFormat"));
-        properties.setProperty(DATETIME_FORMAT_KEY, env.getProperty("freemarkerSettings.datetimeFormat"));
-        properties.setProperty(DATE_FORMAT_KEY, env.getProperty("freemarkerSettings.dateFormat"));
-        properties.setProperty(TIME_FORMAT_KEY, env.getProperty("freemarkerSettings.timeFormat"));
-        properties.setProperty(NUMBER_FORMAT_KEY, env.getProperty("freemarkerSettings.numberFormat"));
-        properties.setProperty(OUTPUT_FORMAT_KEY, env.getProperty("freemarkerSettings.outputFormat"));
-        properties.setProperty(AUTO_IMPORT_KEY, env.getProperty("freemarkerSettings.autoImport"));
-        properties.setProperty(LAZY_AUTO_IMPORTS_KEY, env.getProperty("freemarkerSettings.lazyAutoImports"));
-        properties.setProperty(AUTO_INCLUDE_KEY, env.getProperty("freemarkerSettings.autoInclude"));
-        properties.setProperty(TEMPLATE_EXCEPTION_HANDLER_KEY, env.getProperty("freemarkerSettings.templateExceptionHandler"));
+        Properties properties = loadAllProperties(env.getProperty("cms.freemarker.configFilePath"));
         bean.setFreemarkerSettings(properties);
         return bean;
     }

@@ -45,9 +45,9 @@ function use(action,needAppToken,needUserToken,minParamters){
 	if('true'==needUserToken){
 		$('#sendData').val($('#sendData').val()+getSymbol($('#sendData').val())+'authToken={用户登录Token}&authUserId={用户ID}');
 	}
-	if(typeof(minParamters) != 'undefined'){
-		for (var i = 1; i <= minParamters; i++) {
-			$('#sendData').val($('#sendData').val() + getSymbol($('#sendData').val()) + 'paramters=value' + i);
+	if(minParamters != 'undefined'){
+		for (var j = 1; j <= minParamters; j++) {
+			$('#sendData').val($('#sendData').val() + getSymbol($('#sendData').val()) + 'paramters=value' + j);
 		}
 	}else if($('input[name=showParamters]').is(':checked')&&$('input[name=showParamters]').is(':visible')){
 		$('#sendData').val($('#sendData').val()+getSymbol($('#sendData').val())+'showParamters=true');

@@ -13,8 +13,9 @@ import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 import com.sanluan.common.hibernate.redis.timestamper.CacheTimestamper;
 
 /**
- * @author zhangxdr
  *
+ * RedisDataRegion
+ * 
  */
 public abstract class RedisDataRegion extends Base implements Region {
 

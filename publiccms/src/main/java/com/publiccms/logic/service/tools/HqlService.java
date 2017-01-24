@@ -35,20 +35,21 @@ public class HqlService extends BaseService<Object> {
 
     public List<String> getToken(String text) {
         List<String> list = new ArrayList<String>();
-        try (StringReader stringReader = new StringReader(text);
-                TokenStream tokenStream = dao.getAnalyzer().tokenStream(BLANK, stringReader)) {
-            if (notEmpty(text)) {
+        if (notEmpty(text)) {
+            try (StringReader stringReader = new StringReader(text);
+                    TokenStream tokenStream = dao.getAnalyzer().tokenStream(BLANK, stringReader)) {
                 CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
                 tokenStream.reset();
                 while (tokenStream.incrementToken()) {
                     list.add(charTermAttribute.toString());
                 }
                 tokenStream.end();
+                return list;
+            } catch (IOException e) {
+                return list;
             }
-            return list;
-        } catch (IOException e) {
-            return list;
         }
+        return list;
     }
 
     public void clear() {

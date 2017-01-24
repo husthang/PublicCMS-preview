@@ -178,4 +178,9 @@ public interface RenderHandler {
      * 
      */
     public void setRenderd();
+
+    /**
+     * @throws Exception 
+     */
+    public void dump() throws Exception;
 }

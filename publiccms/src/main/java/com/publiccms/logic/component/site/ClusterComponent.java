@@ -71,13 +71,13 @@ public class ClusterComponent extends Base {
                     for (SysCluster cluster : (List<SysCluster>) page.getList()) {
                         if (skip) {
                             service.updateMaster(cluster.getUuid(), false);
+                        } else {
+                            skip = true;
                         }
-                        skip = true;
                     }
                 }
             }
-            scheduledTask.setStartDate(lastHeartbeatDate);
-            scheduledTask.init();
+            scheduledTask.init(lastHeartbeatDate);
         }
     }
 

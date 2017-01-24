@@ -1,6 +1,6 @@
 package com.publiccms.logic.service.sys;
 
-// Generated 2015-7-22 13:48:39 by com.sanluan.common.source.SourceMaker
+// Generated 2015-7-22 13:48:39 by com.sanluan.common.source.SourceGenerator
 
 import java.util.HashSet;
 import java.util.List;

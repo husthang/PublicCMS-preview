@@ -16,7 +16,7 @@ import com.sanluan.common.handler.HttpParameterHandler;
  * BaseDirective 自定义模板指令，接口指令基类
  *
  */
-public abstract class BaseHttpDirective extends Base implements HttpDirective, Directive{
+public abstract class BaseHttpDirective extends Base implements HttpDirective, Directive {
 
     @Override
     public void execute(HttpMessageConverter<Object> httpMessageConverter, MediaType mediaType, HttpServletRequest request,

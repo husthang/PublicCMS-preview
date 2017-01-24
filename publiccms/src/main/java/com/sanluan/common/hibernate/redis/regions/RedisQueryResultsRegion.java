@@ -9,8 +9,9 @@ import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**
- * @author zhangxdr
  *
+ * RedisQueryResultsRegion
+ * 
  */
 public class RedisQueryResultsRegion extends RedisGeneralDataRegion implements QueryResultsRegion {
 

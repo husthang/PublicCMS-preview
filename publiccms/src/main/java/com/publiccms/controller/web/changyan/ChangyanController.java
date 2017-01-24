@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,7 +44,7 @@ public class ChangyanController extends AbstractController {
     private LogLoginService logLoginService;
 
     @RequestMapping("login")
-    public MappingJacksonValue login(User user, String callback, HttpServletRequest request, HttpSession session,
+    public LoginResult login(User user, HttpServletRequest request, HttpSession session,
             HttpServletResponse response) {
         LoginResult loginResult = new LoginResult();
         String ip = getIpAddress(request);
@@ -80,11 +79,11 @@ public class ChangyanController extends AbstractController {
                 logLoginService.save(new LogLogin(site.getId(), null, user.getUser_id(), ip, CHANNEL, false, getDate(), null));
             }
         }
-        return getMappingJacksonValue(loginResult, callback);
+        return loginResult;
     }
 
     @RequestMapping("loginout")
-    public MappingJacksonValue login(String callback, HttpServletRequest request, HttpServletResponse response) {
+    public LogoutResult login(HttpServletRequest request, HttpServletResponse response) {
         Cookie userCookie = getCookie(request.getCookies(), getCookiesUser());
         if (null != userCookie && notEmpty(userCookie.getValue())) {
             String value = userCookie.getValue();
@@ -96,11 +95,11 @@ public class ChangyanController extends AbstractController {
             }
         }
         clearUserToSession(request.getContextPath(), request.getSession(), response);
-        return getMappingJacksonValue(LOGOUTRESULT, callback);
+        return LOGOUTRESULT;
     }
 
     @RequestMapping("getUserInfo")
-    public MappingJacksonValue getUserInfo(String callback, HttpSession session) {
+    public UserInfo getUserInfo(HttpSession session) {
         SysUser sysUser = getUserFromSession(session);
         UserInfo userinfo = new UserInfo();
         if (null != sysUser) {
@@ -112,6 +111,6 @@ public class ChangyanController extends AbstractController {
         } else {
             userinfo.setIs_login(0);// 用户未登录
         }
-        return getMappingJacksonValue(userinfo, callback);
+        return userinfo;
     }
 }

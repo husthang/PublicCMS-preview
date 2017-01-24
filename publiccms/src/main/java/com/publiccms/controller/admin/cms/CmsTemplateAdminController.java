@@ -94,7 +94,7 @@ public class CmsTemplateAdminController extends AbstractController {
                     publish(site, path);
                 }
             } catch (IOException | TemplateException e) {
-                verifyCustom("template.save", true, model);
+                model.put(ERROR, e.getMessage());
                 log.error(e.getMessage());
                 return TEMPLATE_ERROR;
             }
@@ -120,7 +120,7 @@ public class CmsTemplateAdminController extends AbstractController {
                 logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
                         LogLoginService.CHANNEL_WEB_MANAGER, "upload.web.template", getIpAddress(request), getDate(), path));
             } catch (IOException e) {
-                verifyCustom("webfile.save", true, model);
+                model.put(ERROR, e.getMessage());
                 log.error(e.getMessage());
                 return TEMPLATE_ERROR;
             }
@@ -210,7 +210,7 @@ public class CmsTemplateAdminController extends AbstractController {
                 logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
                         LogLoginService.CHANNEL_WEB_MANAGER, "update.template.meta", getIpAddress(request), getDate(), path));
             } catch (IOException e) {
-                verifyCustom("metadata.save", true, model);
+                model.put(ERROR, e.getMessage());
                 log.error(e.getMessage());
                 return TEMPLATE_ERROR;
             }
@@ -254,7 +254,7 @@ public class CmsTemplateAdminController extends AbstractController {
                 logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
                         LogLoginService.CHANNEL_WEB_MANAGER, "update.template.meta", getIpAddress(request), getDate(), path));
             } catch (IOException | TemplateException e) {
-                verifyCustom("metadata.save", true, model);
+                model.put(ERROR, e.getMessage());
                 log.error(e.getMessage());
                 return TEMPLATE_ERROR;
             }
@@ -266,10 +266,11 @@ public class CmsTemplateAdminController extends AbstractController {
      * @param path
      * @param request
      * @param session
+     * @param model
      * @return
      */
     @RequestMapping("publishPlace")
-    public String publishPlace(String path, HttpServletRequest request, HttpSession session) {
+    public String publishPlace(String path, HttpServletRequest request, HttpSession session, ModelMap model) {
         try {
             SysSite site = getSite(request);
             if (notEmpty(path) && site.isUseSsi()) {
@@ -281,6 +282,7 @@ public class CmsTemplateAdminController extends AbstractController {
             }
             return TEMPLATE_DONE;
         } catch (IOException | TemplateException e) {
+            model.put(ERROR, e.getMessage());
             log.error(e.getMessage());
             return TEMPLATE_ERROR;
         }
@@ -290,15 +292,18 @@ public class CmsTemplateAdminController extends AbstractController {
      * @param path
      * @param request
      * @param session
+     * @param model
      * @return
      */
     @RequestMapping("publish")
-    public String publish(String path, HttpServletRequest request, HttpSession session) {
+    public String publish(String path, HttpServletRequest request, HttpSession session, ModelMap model) {
         try {
             SysSite site = getSite(request);
             publish(site, path);
             return TEMPLATE_DONE;
         } catch (IOException | TemplateException e) {
+            model.put(ERROR, e.getMessage());
+            log.error(e.getMessage());
             return TEMPLATE_ERROR;
         }
     }

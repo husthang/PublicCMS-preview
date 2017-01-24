@@ -1,6 +1,6 @@
 package com.publiccms.controller.web.home;
 
-// Generated 2016-11-19 11:25:19 by com.sanluan.common.source.SourceMaker
+// Generated 2016-11-19 11:25:19 by com.sanluan.common.source.SourceGenerator
 
 import static com.sanluan.common.tools.RequestUtils.getIpAddress;
 import static org.apache.commons.lang3.StringUtils.join;
@@ -118,7 +118,7 @@ public class HomeCommentController extends AbstractController {
         SysSite site = getSite(request);
         if (notEmpty(ids)) {
             service.delete(ids);
-            logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
+            logOperateService.save(new LogOperate(site.getId(), getUserFromSession(session).getId(),
                     LogLoginService.CHANNEL_WEB_MANAGER, "delete.homeComment", getIpAddress(request), getDate(), join(ids, ',')));
         }
         return TEMPLATE_DONE;

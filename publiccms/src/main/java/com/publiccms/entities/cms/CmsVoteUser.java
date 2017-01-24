@@ -31,7 +31,7 @@ public class CmsVoteUser implements java.io.Serializable {
     @GeneratorColumn(title = "ID")
     private Long id;
     @GeneratorColumn(title = "投票", condition = true)
-    private int lotteryId;
+    private int voteId;
     @GeneratorColumn(title = "用户", condition = true)
     private long userId;
     @GeneratorColumn(title = "选项")
@@ -44,8 +44,8 @@ public class CmsVoteUser implements java.io.Serializable {
     public CmsVoteUser() {
     }
 
-    public CmsVoteUser(int lotteryId, long userId, String itemIds, String ip, Date createDate) {
-        this.lotteryId = lotteryId;
+    public CmsVoteUser(int voteId, long userId, String itemIds, String ip, Date createDate) {
+        this.voteId = voteId;
         this.userId = userId;
         this.itemIds = itemIds;
         this.ip = ip;
@@ -63,13 +63,13 @@ public class CmsVoteUser implements java.io.Serializable {
         this.id = id;
     }
 
-    @Column(name = "lottery_id", nullable = false)
-    public int getLotteryId() {
-        return this.lotteryId;
+    @Column(name = "vote_id", nullable = false)
+    public int getVoteId() {
+        return this.voteId;
     }
 
-    public void setLotteryId(int lotteryId) {
-        this.lotteryId = lotteryId;
+    public void setVoteId(int voteId) {
+        this.voteId = voteId;
     }
 
     @Column(name = "user_id", nullable = false)

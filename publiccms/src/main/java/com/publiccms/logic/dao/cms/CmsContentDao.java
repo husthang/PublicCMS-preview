@@ -2,7 +2,7 @@ package com.publiccms.logic.dao.cms;
 
 import java.io.Serializable;
 
-// Generated 2015-5-8 16:50:23 by com.sanluan.common.source.SourceMaker
+// Generated 2015-5-8 16:50:23 by com.sanluan.common.source.SourceGenerator
 
 import java.util.Date;
 import java.util.HashMap;

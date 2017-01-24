@@ -4,9 +4,7 @@ import static com.publiccms.common.constants.CommonConstants.getCookiesUser;
 import static com.publiccms.common.constants.CommonConstants.getSessionAdmin;
 import static com.publiccms.common.constants.CommonConstants.getSessionUser;
 import static com.publiccms.common.constants.CommonConstants.getSessionUserTime;
-import static com.sanluan.common.handler.HttpParameterHandler.FUNCTIONNAME_PATTERN;
 import static com.sanluan.common.tools.RequestUtils.cancleCookie;
-import static com.sanluan.common.tools.RequestUtils.getUserAgent;
 
 import java.util.Date;
 import java.util.Map;
@@ -18,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import com.publiccms.entities.sys.SysDomain;
 import com.publiccms.entities.sys.SysSite;
@@ -26,9 +25,6 @@ import com.publiccms.entities.sys.SysUser;
 import com.publiccms.logic.component.site.SiteComponent;
 import com.publiccms.logic.service.log.LogOperateService;
 import com.sanluan.common.base.BaseController;
-
-import eu.bitwalker.useragentutils.DeviceType;
-import eu.bitwalker.useragentutils.UserAgent;
 
 public abstract class AbstractController extends BaseController {
     protected static final String TEMPLATE_INDEX = "index";
@@ -38,6 +34,7 @@ public abstract class AbstractController extends BaseController {
     protected static final String SUCCESS = "success";
     protected static final String ERROR = "error";
     protected static final String ERROR_PAGE = "error.html";
+    protected static MediaType jsonMediaType = new MediaType("application", "json", DEFAULT_CHARSET);
 
     public static final Pattern MOBILE_PATTERN = Pattern.compile("^(13|14|15|17|18|)\\d{9}$");
     public static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
@@ -51,6 +48,8 @@ public abstract class AbstractController extends BaseController {
     protected LogOperateService logOperateService;
     @Autowired
     protected SiteComponent siteComponent;
+    @Autowired
+    protected MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter;
 
     protected SysDomain getDomain(HttpServletRequest request) {
         return siteComponent.getDomain(request.getServerName());
@@ -58,26 +57,6 @@ public abstract class AbstractController extends BaseController {
 
     protected SysSite getSite(HttpServletRequest request) {
         return siteComponent.getSite(request.getServerName());
-    }
-
-    protected static MappingJacksonValue getMappingJacksonValue(Object object, String callback) {
-        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(object);
-        if (notEmpty(callback)) {
-            Matcher m = FUNCTIONNAME_PATTERN.matcher(callback);
-            if (m.matches()) {
-                mappingJacksonValue.setJsonpFunction(callback);
-            }
-        }
-        return mappingJacksonValue;
-    }
-
-    /**
-     * @param request
-     * @return
-     * @throws IllegalStateException
-     */
-    protected static DeviceType getDeviceType(HttpServletRequest request) {
-        return UserAgent.parseUserAgentString(getUserAgent(request)).getOperatingSystem().getDeviceType();
     }
 
     /**

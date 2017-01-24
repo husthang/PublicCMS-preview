@@ -1,6 +1,6 @@
 package com.publiccms.controller.admin.cms;
 
-// Generated 2016-3-1 17:24:24 by com.sanluan.common.source.SourceMaker
+// Generated 2016-3-1 17:24:24 by com.sanluan.common.source.SourceGenerator
 
 import static com.sanluan.common.tools.RequestUtils.getIpAddress;
 import static com.sanluan.common.tools.JsonUtils.getString;

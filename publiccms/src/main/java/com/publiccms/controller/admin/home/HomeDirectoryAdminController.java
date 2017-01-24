@@ -3,7 +3,7 @@ package com.publiccms.controller.admin.home;
 import static com.sanluan.common.tools.JsonUtils.getString;
 import static com.sanluan.common.tools.RequestUtils.getIpAddress;
 
-// Generated 2016-11-13 11:38:13 by com.sanluan.common.source.SourceMaker
+// Generated 2016-11-13 11:38:13 by com.sanluan.common.source.SourceGenerator
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

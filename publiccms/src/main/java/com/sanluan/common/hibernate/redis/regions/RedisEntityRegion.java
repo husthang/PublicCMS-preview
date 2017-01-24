@@ -14,8 +14,9 @@ import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**
- * @author zhangxdr
  *
+ * RedisEntityRegion
+ * 
  */
 public class RedisEntityRegion extends RedisTransactionalDataRegion implements EntityRegion {
 

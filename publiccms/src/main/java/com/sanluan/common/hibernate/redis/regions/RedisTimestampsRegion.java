@@ -9,8 +9,9 @@ import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**
- * @author zhangxdr
  *
+ * RedisTimestampsRegion
+ * 
  */
 public class RedisTimestampsRegion extends RedisGeneralDataRegion implements TimestampsRegion {
 

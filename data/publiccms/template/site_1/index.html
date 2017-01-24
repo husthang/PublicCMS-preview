@@ -1,4 +1,3 @@
-<@compress single_line=true>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,9 +8,6 @@
 </head>
 <body>
 <@_includePlace path="/index.html/2ecdebcc-c087-4ed3-aecd-80f85ce6a6c6.html"/> <#-- 导航 -->
-<script>
-	$("header nav ul li a:contains('首页')").parent().addClass('selected');
-</script>
 <main>
 	<div class="container">
 		<@_includePlace path="/index.html/94fe86e5-45b3-4896-823a-37c6d7d6c578.html"/> <#-- 焦点图 -->
@@ -49,6 +45,8 @@
 	<div class="clearfix-before"></div>
 </main>
 <@_includePlace path="/index.html/6369e868-50b9-4245-9d39-fd440384a685.html"/> <#-- 尾部Footer -->
+<script>
+	$("header nav ul li a:contains('首页')").parent().addClass('selected');
+</script>
 </body>
 </html>
-</@compress>

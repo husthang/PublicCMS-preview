@@ -9,8 +9,9 @@ import org.hibernate.boot.spi.SessionFactoryOptions;
 import org.hibernate.cache.CacheException;
 
 /**
- * @author zhangxdr
  *
+ * RedisRegionFactory
+ * 
  */
 public class RedisRegionFactory extends AbstractRedisRegionFactory {
 

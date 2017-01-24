@@ -39,12 +39,12 @@ public class TransactionalRedisNaturalIdRegionAccessStrategy extends AbstractRed
 
     @Override
     public Object generateCacheKey(Object[] naturalIdValues, EntityPersister persister, SessionImplementor session) {
-        return DefaultCacheKeysFactory.createNaturalIdKey(naturalIdValues, persister, session);
+        return DefaultCacheKeysFactory.staticCreateNaturalIdKey(naturalIdValues, persister, session);
     }
 
     @Override
     public Object[] getNaturalIdValues(Object cacheKey) {
-        return DefaultCacheKeysFactory.getNaturalIdValues(cacheKey);
+        return DefaultCacheKeysFactory.staticGetNaturalIdValues(cacheKey);
     }
 
     @Override

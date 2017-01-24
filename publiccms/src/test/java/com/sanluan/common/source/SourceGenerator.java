@@ -1,4 +1,4 @@
-package com.sanluan.common;
+package com.sanluan.common.source;
 
 import static com.sanluan.common.tools.FreeMarkerUtils.makeFileByFile;
 import static com.sanluan.common.tools.ScanClassUtils.getClasses;

@@ -2,7 +2,7 @@ package com.publiccms.logic.service.sys;
 
 import java.io.Serializable;
 
-// Generated 2016-7-16 11:56:50 by com.sanluan.common.source.SourceMaker
+// Generated 2016-7-16 11:56:50 by com.sanluan.common.source.SourceGenerator
 
 import java.util.Date;
 

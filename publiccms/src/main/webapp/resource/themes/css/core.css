@@ -482,4 +482,4 @@ a.btnAttach{ background-position:-183px 0}
 .dialogContent .viewInfo,.dialogContent .pageContent{ background-color:#fff}
 
 .sortDragPlaceholder{ border:1px dashed #ccc;}
-#printBox{ display:none}
+#printBox,.hidden{ display:none}

@@ -34,7 +34,7 @@ public abstract class BaseHandler extends Base implements RenderHandler {
     protected boolean regristerParamters;
     protected boolean renderd = false;
 
-    public void regristerParamters() throws Exception {
+    public void regristerParamters() {
         this.regristerParamters = getBooleanWithoutRegrister(PARAMETERS_CONTROLLER, false);
         if (regristerParamters) {
             parameterList = new ArrayList<Map<String, Object>>();
@@ -99,9 +99,13 @@ public abstract class BaseHandler extends Base implements RenderHandler {
      */
     @Override
     public String getString(String name, String defaultValue) throws Exception {
-        String result = getString(name);
-        regristerParamter(PARAMETER_TYPE_STRING, name, defaultValue);
-        return notEmpty(result) ? result : defaultValue;
+        try {
+            String result = getString(name);
+            regristerParamter(PARAMETER_TYPE_STRING, name, defaultValue);
+            return notEmpty(result) ? result : defaultValue;
+        } catch (Exception e) {
+            return defaultValue;
+        }
     }
 
     /*
@@ -140,10 +144,14 @@ public abstract class BaseHandler extends Base implements RenderHandler {
      * int)
      */
     @Override
-    public int getInteger(String name, int defaultValue) throws Exception {
-        regristerParamter(PARAMETER_TYPE_INTEGER, name, defaultValue);
-        Integer result = getIntegerWithoutRegrister(name);
-        return notEmpty(result) ? result : defaultValue;
+    public int getInteger(String name, int defaultValue) {
+        try {
+            regristerParamter(PARAMETER_TYPE_INTEGER, name, defaultValue);
+            Integer result = getIntegerWithoutRegrister(name);
+            return notEmpty(result) ? result : defaultValue;
+        } catch (Exception e) {
+            return defaultValue;
+        }
     }
 
     /*
@@ -204,9 +212,13 @@ public abstract class BaseHandler extends Base implements RenderHandler {
      * com.sanluan.common.handler.RenderHandler#getBoolean(java.lang.String,
      * java.lang.Boolean)
      */
-    protected boolean getBooleanWithoutRegrister(String name, boolean defaultValue) throws Exception {
-        Boolean result = getBooleanWithoutRegrister(name);
-        return notEmpty(result) ? result : defaultValue;
+    protected boolean getBooleanWithoutRegrister(String name, boolean defaultValue) {
+        try {
+            Boolean result = getBooleanWithoutRegrister(name);
+            return notEmpty(result) ? result : defaultValue;
+        } catch (Exception e) {
+            return defaultValue;
+        }
     }
 
     /*
@@ -241,7 +253,7 @@ public abstract class BaseHandler extends Base implements RenderHandler {
      * com.sanluan.common.handler.RenderHandler#getStringArray(java.lang.String)
      */
     @Override
-    public String[] getStringArray(String name) throws Exception{
+    public String[] getStringArray(String name) throws Exception {
         regristerParamter(PARAMETER_TYPE_STRINGARRAY, name);
         return getStringArrayWithoutRegrister(name);
     }

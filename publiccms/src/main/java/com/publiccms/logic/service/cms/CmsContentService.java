@@ -1,6 +1,6 @@
 package com.publiccms.logic.service.cms;
 
-// Generated 2015-5-8 16:50:23 by com.sanluan.common.source.SourceMaker
+// Generated 2015-5-8 16:50:23 by com.sanluan.common.source.SourceGenerator
 
 import static org.apache.commons.lang3.ArrayUtils.add;
 import static org.apache.commons.lang3.StringUtils.splitByWholeSeparator;

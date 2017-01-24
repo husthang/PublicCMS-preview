@@ -2,7 +2,7 @@ package com.publiccms.logic.service.home;
 
 import java.io.Serializable;
 
-// Generated 2016-11-13 11:38:13 by com.sanluan.common.source.SourceMaker
+// Generated 2016-11-13 11:38:13 by com.sanluan.common.source.SourceGenerator
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -38,7 +38,7 @@ public abstract class AbstractAppDirective extends BaseHttpDirective {
         return null;
     }
 
-    private SysUser getUser(RenderHandler handler) throws Exception {
+    protected SysUser getUser(RenderHandler handler) throws Exception {
         String authToken = handler.getString("authToken");
         Long authUserId = handler.getLong("authUserId");
         if (notEmpty(authToken) && null != authUserId) {

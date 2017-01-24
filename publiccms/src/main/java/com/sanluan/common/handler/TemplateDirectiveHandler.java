@@ -15,14 +15,18 @@ import java.io.IOException;
 import java.io.Writer;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sanluan.common.api.Json;
 import com.sanluan.common.base.BaseHandler;
 
 import freemarker.core.Environment;
@@ -35,7 +39,7 @@ import freemarker.template.TemplateHashModelEx;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
 
-public class TemplateDirectiveHandler extends BaseHandler {
+public class TemplateDirectiveHandler extends BaseHandler implements Json {
     private Map<String, TemplateModel> parameters;
     private TemplateModel[] loopVars;
     private TemplateDirectiveBody templateDirectiveBody;
@@ -76,6 +80,17 @@ public class TemplateDirectiveHandler extends BaseHandler {
     @Override
     public synchronized void print(String value) throws IOException {
         environment.getOut().write(value);
+    }
+
+    @Override
+    public void dump() throws TemplateModelException, JsonProcessingException, IOException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        @SuppressWarnings("unchecked")
+        Set<String> set = (Set<String>) environment.getKnownVariableNames();
+        for (String key : set) {
+            map.put(key, environment.getVariable(key));
+        }
+        print(objectMapper.writeValueAsString(map));
     }
 
     @Override

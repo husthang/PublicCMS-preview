@@ -2,7 +2,7 @@ package com.publiccms.controller.admin.cms;
 
 import static com.sanluan.common.tools.JsonUtils.getString;
 
-// Generated 2016-2-26 15:57:04 by com.sanluan.common.source.SourceMaker
+// Generated 2016-2-26 15:57:04 by com.sanluan.common.source.SourceGenerator
 
 import static com.sanluan.common.tools.RequestUtils.getIpAddress;
 

@@ -478,7 +478,6 @@ UPDATE `sys_moudle` SET name = '模板文件管理',attached = '<i class="icon-c
 UPDATE `sys_moudle` SET authorized_url = 'cmsTemplate/placeMetadata,cmsTemplate/placeContent,cmsTemplate/placeForm,cmsTemplate/saveMetadata,cmsTemplate/createPlace' WHERE id = 42;
 UPDATE `sys_moudle` SET url = null WHERE id = 53;
 UPDATE `sys_moudle` SET name = '文件管理',attached='<i class="icon-folder-close-alt icon-large"></i>' WHERE id = 38;
-UPDATE `sys_moudle` SET authorized_url='cmsTemplate/save,cmsTemplate/chipLookup,cmsResource/lookup,cmsWebFile/lookup,cmsTemplate/upload,cmsTemplate/doUpload' WHERE id = 41;
 
 -- 20161206 --
 UPDATE `sys_moudle` SET parent_id = 38 WHERE id = 81;
@@ -509,18 +508,15 @@ INSERT INTO `sys_moudle` VALUES ('133', '上传文件', 'cmsWebFile/upload', 'cm
 INSERT INTO `sys_moudle` VALUES ('134', '压缩', null, 'cmsWebFile/zip', null, '131', '0');
 INSERT INTO `sys_moudle` VALUES ('135', '解压缩', null, 'cmsWebFile/unzip,cmsWebFile/unzipHere', null, '131', '0');
 INSERT INTO `sys_moudle` VALUES ('136', '节点管理', 'sysCluster/list', NULL, '<i class=\"icon-code-fork icon-large\"></i>', '62', '0');
-INSERT INTO `sys_moudle` VALUES ('137', '配置项列表', 'sysConfigData/itemList', null, null, '101', '0');
-INSERT INTO `sys_moudle` VALUES ('138', '修改配置', 'sysConfigData/addItem', 'sysConfigData/save', null, '101', '0');
+INSERT INTO `sys_moudle` VALUES ('138', '修改配置', 'sysConfigData/edit', 'sysConfigData/save', null, '101', '0');
 INSERT INTO `sys_moudle` VALUES ('139', '清空配置', null, 'sysConfigData/delete', null, '101', '0');
 INSERT INTO `sys_moudle` VALUES ('140', '站点配置管理', 'sysConfig/list', null, '<i class=\"icon-cogs icon-large\"></i>', '38', '0');
-INSERT INTO `sys_moudle` VALUES ('141', '配置项列表', 'sysConfig/itemList', null, null, '140', '0');
-INSERT INTO `sys_moudle` VALUES ('142', '保存配置', null, 'sysConfig/save,sysConfig/saveItem', null, '140', '0');
+INSERT INTO `sys_moudle` VALUES ('142', '保存配置', null, 'sysConfig/save', null, '140', '0');
 INSERT INTO `sys_moudle` VALUES ('143', '修改配置', 'sysConfig/add', null, null, '140', '0');
-INSERT INTO `sys_moudle` VALUES ('144', '删除配置', null, 'sysConfig/delete,sysConfig/deleteItem', null, '140', '0');
+INSERT INTO `sys_moudle` VALUES ('144', '删除配置', null, 'sysConfig/delete', null, '140', '0');
 DROP TABLE IF EXISTS `sys_ftp_user`;
 ALTER TABLE `sys_app_client`  DROP COLUMN `allow_push`, DROP COLUMN `push_token` ,DROP COLUMN `id`, DROP PRIMARY KEY, ADD PRIMARY KEY (`site_id`, `channel`, `uuid`),DROP INDEX `site_id`,DROP INDEX `disabled`,DROP INDEX `create_date`,DROP INDEX `channel`, DROP INDEX `user_id` ,ADD INDEX `user_id` (`user_id`, `disabled`, `create_date`),MODIFY COLUMN `client_version` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '版本' AFTER `user_id`;
-ALTER TABLE `sys_app`
-ADD COLUMN `authorized_apis`  text NULL COMMENT '授权API' AFTER `app_secret`;
+ALTER TABLE `sys_app` ADD COLUMN `authorized_apis`  text NULL COMMENT '授权API' AFTER `app_secret`;
 UPDATE `sys_moudle` SET name = '运营' WHERE id = 45;
 UPDATE `sys_moudle` SET parent_id = 5 WHERE id = 61;
 DELETE FROM `sys_moudle` where `id` = 83;
@@ -548,3 +544,7 @@ INSERT INTO `sys_moudle` VALUES ('152', '删除', NULL, 'cmsVote/delete', NULL, 
 INSERT INTO `sys_moudle` VALUES ('153', '查看', 'cmsVote/view', NULL, NULL, '1013', '0');
 INSERT INTO `sys_moudle` VALUES ('154', '投票用户', 'cmsVoteUser/list', 'sysUser/lookup', NULL, '1013', '0');
 ALTER TABLE `sys_moudle` ORDER BY  `id`;
+UPDATE `sys_moudle` SET name = '我的登陆授权' where id = 11;
+UPDATE `sys_moudle` SET authorized_url='cmsTemplate/save,cmsTemplate/chipLookup,cmsResource/lookup,cmsWebFile/lookup,cmsTemplate/demo,cmsTemplate/help,cmsTemplate/upload,cmsTemplate/doUpload' WHERE id = 41;
+UPDATE `sys_moudle` SET authorized_url='cmsContent/lookup,cmsPage/lookup,cmsPage/lookup_content_list,file/doUpload,cmsPlace/save' WHERE id = 49;
+ALTER TABLE `sys_config_data` DROP COLUMN `item_code`;

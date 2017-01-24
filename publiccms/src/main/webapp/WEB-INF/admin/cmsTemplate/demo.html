@@ -1,10 +1,9 @@
-<div style="display:none">
+<div class="hidden">
 	<textarea name="index"><@html_escape><#include "demo/index.html" parse=false/></@html_escape></textarea>
 	<textarea name="content"><@html_escape><#include "demo/content.html" parse=false/></@html_escape></textarea>
 	<textarea name="category"><@html_escape><#include "demo/category.html" parse=false/></@html_escape></textarea>
 	<textarea name="search"><@html_escape><#include "demo/search.html" parse=false/></@html_escape></textarea>
 	<#if site.useStatic>
-		<textarea name="staticIndex"><@html_escape><#include "demo/staticIndex.html" parse=false/></@html_escape></textarea>
 		<textarea name="staticContent"><@html_escape><#include "demo/staticContent.html" parse=false/></@html_escape></textarea>
 		<textarea name="staticCategory"><@html_escape><#include "demo/staticCategory.html" parse=false/></@html_escape></textarea>
 	</#if>
@@ -16,6 +15,10 @@ function templateDefaultConfig(type){
 		$('input[name=useDynamic]',navTab.getCurrentPanel()).click();
 		$('input[name=path]',navTab.getCurrentPanel()).val('/index.html');
 		$('input[name=alias]',navTab.getCurrentPanel()).val('首页');
+	<#if site.useStatic>
+		$('input[name=useStatic]',navTab.getCurrentPanel()).click();
+		$('input[name=publishPath]',navTab.getCurrentPanel()).val('index.html');
+	</#if>
 		break;
 	case 'content':
 		$('input[name=useDynamic]',navTab.getCurrentPanel()).click();
@@ -36,18 +39,12 @@ function templateDefaultConfig(type){
 		$('input[name=acceptParamters]',navTab.getCurrentPanel()).val('word,pageIndex,tagId');
 		break;
 <#if site.useStatic>
-	case 'staticIndex':
-		$('input[name=useStatic]',navTab.getCurrentPanel()).click();
-		$('input[name=path]',navTab.getCurrentPanel()).val('/demo/index.html');
-		$('input[name=alias]',navTab.getCurrentPanel()).val('首页');
-		$('input[name=publishPath]',navTab.getCurrentPanel()).val('index.html');
-		break;
 	case 'staticContent':
 		$('input[name=path]',navTab.getCurrentPanel()).val('/demo/staticContent.html');
 		$('input[name=alias]',navTab.getCurrentPanel()).val('静态化内容页');
 		break;
 	case 'staticCategory':
-		$('input[name=path]',navTab.getCurrentPanel()).val('/demo/staticCategoryategory.html');
+		$('input[name=path]',navTab.getCurrentPanel()).val('/demo/staticCategory.html');
 		$('input[name=alias]',navTab.getCurrentPanel()).val('静态化分类页');
 		break;
 </#if>
@@ -63,7 +60,6 @@ function templateDefaultConfig(type){
 		<li><a href="javascript:;" onclick="templateDefaultConfig('category');">分类页</a></li>
 		<li><a href="javascript:;" onclick="templateDefaultConfig('search');">搜索页面</a></li>
 	<#if site.useStatic>
-		<li><a href="javascript:;" onclick="templateDefaultConfig('staticIndex');">静态化首页</a></li>
 		<li><a href="javascript:;" onclick="templateDefaultConfig('staticContent');">静态化内容页</a></li>
 		<li><a href="javascript:;" onclick="templateDefaultConfig('staticCategory');">静态化分类页</a></li>
 	</#if>

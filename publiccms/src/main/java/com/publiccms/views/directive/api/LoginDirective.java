@@ -2,7 +2,7 @@ package com.publiccms.views.directive.api;
 
 import static com.sanluan.common.tools.RequestUtils.getIpAddress;
 
-//Generated 2015-5-10 17:54:56 by com.sanluan.common.source.SourceMaker
+//Generated 2015-5-10 17:54:56 by com.sanluan.common.source.SourceGenerator
 
 import static com.sanluan.common.tools.VerificationUtils.encode;
 import static org.apache.commons.lang3.StringUtils.trim;

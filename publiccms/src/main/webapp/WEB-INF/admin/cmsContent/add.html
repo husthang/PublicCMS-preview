@@ -51,14 +51,14 @@ function clickAddTag(){
 						<dt>分类:</dt>
 						<dd>
 							<input name="categoryId" type="hidden" value="${categoryId!}"/>
-							${(category.name)!}
+							${categoryId!}:${(category.name)!}
 						</dd>
 					</dl>
 					<dl>
 						<dt>模型:</dt>
 						<dd>
 							<input name="modelId" type="hidden" value="${modelId!}"/>
-							${(model.name)!}
+							${modelId!}:${(model.name)!}
 						</dd>
 					</dl>
 					<dl class="nowrap">
@@ -68,11 +68,11 @@ function clickAddTag(){
 							<#if !model?has_content||!model.onlyUrl><label><input name="copied" type="checkbox" onclick="if($(this).is(':checked')){$('.copied').show();}else{$('.copied').hide();$('.copied input[type=text]',navTab.getCurrentPanel()).val('');}"/>转载</label></#if>
 						</dd>
 					</dl>
-					<dl class="copied" style="display:none">
+					<dl class="copied hidden">
 						<dt>来源:</dt>
 						<dd><input name="source" type="text" maxlength="50" size="20" value="${(attribute.source)!}"/></dd>
 					</dl>
-					<dl class="copied" style="display:none">
+					<dl class="copied hidden">
 						<dt>来源网址:</dt>
 						<dd><input class="url" name="sourceUrl" type="text" maxlength="255" size="20" value="${(attribute.sourceUrl)!}"/></dd>
 					</dl>
@@ -115,7 +115,7 @@ function clickAddTag(){
 							<input name="timing" type="checkbox" onclick="if($(this).is(':checked')){$('#publishDate',navTab.getCurrentPanel()).show();$('input[name=publishDate]',navTab.getCurrentPanel()).addClass('required').addClass('valid')}else{$('#publishDate',navTab.getCurrentPanel()).hide();$('input[name=publishDate]',navTab.getCurrentPanel()).removeClass('required').removeClass('valid')}"/>
 						</dd>
 					</dl>
-					<dl id="publishDate" style="display:none">
+					<dl id="publishDate" class="hidden">
 						<dt>发布日期:</dt>
 						<dd>
 							<input class="date" name="publishDate" type="text" size="20" dateFmt="yyyy-MM-dd HH:mm:ss" value="${(a.publishDate)!}"/>

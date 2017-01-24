@@ -11,10 +11,9 @@ import org.springframework.web.servlet.view.AbstractCachingViewResolver;
 
 import com.publiccms.common.spi.Cache;
 import com.publiccms.logic.service.tools.HqlService;
-import com.sanluan.common.base.Base;
 
 @Component
-public class CacheComponent extends Base {
+public class CacheComponent {
     @Autowired
     private List<Cache> cacheableList;
     private List<AbstractCachingViewResolver> cachingViewResolverList = new ArrayList<AbstractCachingViewResolver>();

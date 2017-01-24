@@ -15,9 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,10 +37,6 @@ import com.sanluan.common.handler.HttpParameterHandler;
 public class DirectiveController extends AbstractController {
     private Map<String, BaseTemplateDirective> actionMap = new HashMap<String, BaseTemplateDirective>();
     private List<Map<String, String>> actionList = new ArrayList<Map<String, String>>();
-    @Autowired
-    private MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter;
-
-    private MediaType mediaType = new MediaType("application", "json", MappingJackson2HttpMessageConverter.DEFAULT_CHARSET);
 
     /**
      * 接口指令统一分发
@@ -60,10 +53,10 @@ public class DirectiveController extends AbstractController {
             HttpDirective directive = actionMap.get(action);
             if (null != directive) {
                 request.setAttribute(CONTEXT_SITE, getSite(request));
-                directive.execute(mappingJackson2HttpMessageConverter, mediaType, request, callback, response);
+                directive.execute(mappingJackson2HttpMessageConverter, jsonMediaType, request, callback, response);
             } else {
-                HttpParameterHandler handler = new HttpParameterHandler(mappingJackson2HttpMessageConverter, mediaType, request,
-                        callback, response);
+                HttpParameterHandler handler = new HttpParameterHandler(mappingJackson2HttpMessageConverter, jsonMediaType,
+                        request, callback, response);
                 handler.put(ERROR, INTERFACE_NOT_FOUND);
             }
         } catch (IOException e) {
@@ -81,8 +74,8 @@ public class DirectiveController extends AbstractController {
      */
     @RequestMapping("directives")
     @ResponseBody
-    public MappingJacksonValue directives(String callback) {
-        return getMappingJacksonValue(actionList, callback);
+    public List<Map<String, String>> directives() {
+        return actionList;
     }
 
     /**

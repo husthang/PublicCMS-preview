@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +33,6 @@ import com.sanluan.common.handler.HttpParameterHandler;
 public class ApiController extends AbstractController {
     private Map<String, AbstractAppDirective> appMap = new LinkedHashMap<String, AbstractAppDirective>();
     private List<Map<String, String>> appList = new ArrayList<Map<String, String>>();
-    private MediaType mediaType = new MediaType("application", "json", MappingJackson2HttpMessageConverter.DEFAULT_CHARSET);
     public final static String INTERFACE_NOT_FOUND = "interfaceNotFound";
     public static final Map<String, String> NOT_FOUND_MAP = new HashMap<String, String>() {
         private static final long serialVersionUID = 1L;
@@ -53,8 +49,8 @@ public class ApiController extends AbstractController {
      */
     @RequestMapping({ SEPARATOR, "/**" })
     @ResponseBody
-    public MappingJacksonValue api(String callback) {
-        return getMappingJacksonValue(NOT_FOUND_MAP, callback);
+    public Map<String, String> api() {
+        return NOT_FOUND_MAP;
     }
 
     /**
@@ -70,11 +66,11 @@ public class ApiController extends AbstractController {
         try {
             AbstractAppDirective directive = appMap.get(api);
             if (null != directive) {
-                directive.execute(mappingJackson2HttpMessageConverter, mediaType, request, callback, response);
+                directive.execute(mappingJackson2HttpMessageConverter, jsonMediaType, request, callback, response);
             } else {
-                HttpParameterHandler handler = new HttpParameterHandler(mappingJackson2HttpMessageConverter, mediaType, request,
-                        callback, response);
-                handler.put(ERROR, INTERFACE_NOT_FOUND);
+                HttpParameterHandler handler = new HttpParameterHandler(mappingJackson2HttpMessageConverter, jsonMediaType,
+                        request, callback, response);
+                handler.put(ERROR, INTERFACE_NOT_FOUND).render();
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -91,8 +87,8 @@ public class ApiController extends AbstractController {
      */
     @RequestMapping("apis")
     @ResponseBody
-    public MappingJacksonValue apis(String callback) {
-        return getMappingJacksonValue(appList, callback);
+    public List<Map<String, String>> apis() {
+        return appList;
     }
 
     /**
@@ -120,8 +116,6 @@ public class ApiController extends AbstractController {
         log.info(new StringBuilder().append(size).append(" app directives created:[").append(directives).append("];").toString());
     }
 
-    @Autowired
-    private MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter;
     @Autowired
     private TemplateComponent templateComponent;
 }

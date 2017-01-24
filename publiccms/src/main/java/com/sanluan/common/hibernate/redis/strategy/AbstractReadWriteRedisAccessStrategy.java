@@ -8,9 +8,9 @@ import org.hibernate.engine.spi.SessionImplementor;
 import com.sanluan.common.hibernate.redis.regions.RedisTransactionalDataRegion;
 
 /**
- * @author zhangxdr
  *
- * @param <T>
+ * AbstractReadWriteRedisAccessStrategy
+ * 
  */
 public abstract class AbstractReadWriteRedisAccessStrategy<T extends RedisTransactionalDataRegion>
         extends AbstractRedisAccessStrategy<T> {

@@ -11,8 +11,9 @@ import org.hibernate.persister.entity.EntityPersister;
 import com.sanluan.common.hibernate.redis.regions.RedisNaturalIdRegion;
 
 /**
- * @author zhangxdr
  *
+ * ReadWriteRedisNaturalIdRegionAccessStrategy
+ * 
  */
 public class ReadWriteRedisNaturalIdRegionAccessStrategy extends AbstractReadWriteRedisAccessStrategy<RedisNaturalIdRegion>
         implements NaturalIdRegionAccessStrategy {
@@ -35,7 +36,7 @@ public class ReadWriteRedisNaturalIdRegionAccessStrategy extends AbstractReadWri
      */
     @Override
     public Object generateCacheKey(Object[] naturalIdValues, EntityPersister persister, SessionImplementor session) {
-        return DefaultCacheKeysFactory.createNaturalIdKey(naturalIdValues, persister, session);
+        return DefaultCacheKeysFactory.staticCreateNaturalIdKey(naturalIdValues, persister, session);
     }
 
     /*
@@ -46,7 +47,7 @@ public class ReadWriteRedisNaturalIdRegionAccessStrategy extends AbstractReadWri
      */
     @Override
     public Object[] getNaturalIdValues(Object cacheKey) {
-        return DefaultCacheKeysFactory.getNaturalIdValues(cacheKey);
+        return DefaultCacheKeysFactory.staticGetNaturalIdValues(cacheKey);
     }
 
     @Override
