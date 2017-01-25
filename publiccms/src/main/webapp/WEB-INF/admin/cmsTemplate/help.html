@@ -8,6 +8,7 @@
 				<li><a href="javascript:;">常用指令</a></li>
 				<li><a href="javascript:;">常用方法</a></li>
 				<li><a href="javascript:;">配置参数</a></li>
+				<li><a href="javascript:;">模板片段</a></li>
 			</ul>
 		</div>
 	</div>
@@ -77,26 +78,25 @@
 						<li><a href="javascript:;" <@getAction r'<@_placeList path=path orderField=orderField orderType=orderType pageIndex=pageIndex count=count><#list page.list as a><a href="${a.url!}">${a.title}</a></#list></@_placeList>'/>>推荐位内容</a></li>
 						<li><a href="javascript:;" <@getAction r'<@_search word=word tagId=tagId pageIndex=pageIndex count=count><#list page.list as a><a href="${a.url!}">${a.title}</a></#list></@_search>'/>>搜索</a></li>
 						<li><a href="javascript:;" <@getAction r'<@_facetSearch word=word tagId=tagId categoryId=categoryId modelId=modelId pageIndex=pageIndex count=count><#list page.list as a><a href="${a.url!}">${a.title}</a></#list></@_facetSearch>'/>>高级搜索</a></li>
-						<li><a href="javascript:;" <@getAction r'<@_modelList parentId=parentId hasChild=hasChild onlyUrl=onlyUrl hasImages=hasImages hasFiles=hasFiles><#list page.list as a>${a.id}:${a.name}<#if a?has_next>,</#if></#list></@_modelList>'/>>模型</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_modelList parentId=parentId hasChild=hasChild onlyUrl=onlyUrl hasImages=hasImages hasFiles=hasFiles><#list page.list as a>${a.id}:${a.name}<#sep>,</#list></@_modelList>'/>>模型</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="javascript:;">获取单条/多条数据</a>
 					<ul>
 						<li><a href="javascript:;" <@getAction r'<@_content id=id><a href="${object.url!}">${object.title}</a></@_content>'/>>内容</a></li>
-						<li><a href="javascript:;" <@getAction r'<@_content ids=ids><#list map?keys as k><a href="${map[k].url!}">${map[k].title}</a><#if k?has_next>,</#if></#list></@_content>'/>>多条内容</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_content ids=ids><#list map?keys as k><a href="${map[k].url!}">${map[k].title}</a><#sep>,</#list></@_content>'/>>多条内容</a></li>
 						<li><a href="javascript:;" <@getAction r'<@_category id=id><a href="${object.url!}">${object.name}</a></@_category>'/>>分类</a></li>
-						<li><a href="javascript:;" <@getAction r'<@_category ids=ids><#list map?keys as k><a href="${map[k].url!}">${map[k].name}</a><#if k?has_next>,</#if></#list></@_category>'/>>多个分类</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_category ids=ids><#list map?keys as k><a href="${map[k].url!}">${map[k].name}</a><#sep>,</#list></@_category>'/>>多个分类</a></li>
 						<li><a href="javascript:;" <@getAction r'<@_tag id=id>${object.name}</@_tag>'/>>标签</a></li>
-						<li><a href="javascript:;" <@getAction r'<@_tag ids=ids><#list map?keys as k>${map[k].name}<#if k?has_next>,</#if></#list></@_tag>'/>>多个标签</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_tag ids=ids><#list map?keys as k>${map[k].name}<#sep>,</#list></@_tag>'/>>多个标签</a></li>
 						<li><a href="javascript:;" <@getAction r'<@_sysUser id=id>${object.nickName}</@_sysUser>'/>>用户</a></li>
-						<li><a href="javascript:;" <@getAction r'<@_sysUser ids=ids><#list map?keys as k>${map[k].nickName}<#if k?has_next>,</#if></#list></@_sysUser>'/>>多个用户</a></li>
+						<li><a href="javascript:;" <@getAction r'<@_sysUser ids=ids><#list map?keys as k>${map[k].nickName}<#sep>,</#list></@_sysUser>'/>>多个用户</a></li>
 					</ul>
 				</li>
 				<li>
 					<a href="javascript:;">工具指令</a>
 					<ul>
-						<li><a href="javascript:;" <@getAction r'<@_dump/>'/>>打印全部数据对象</a></li>
 					<#if site.useStatic>
 						<li><a href="javascript:;" <@getAction r'<@_createCategoryFile id=id templatePath=templatePath filePath=filePath pageIndex=pageIndex>${url}<@_createCategoryFile>'/>>生成静态化分类页面</a></li>
 						<li><a href="javascript:;" <@getAction r'<@_createContentFile id=id templatePath=templatePath filePath=filePath pageIndex=pageIndex>${url}<@_createContentFile>'/>>生成静态化内容页面</a></li>
@@ -139,7 +139,6 @@
 						<li><a href="javascript:;" <@getAction r'${getTextFromHtml(html)}' '输出HTML中的文本(参数1为html格式字符串)'/>>输出HTML中的文本</a></li>
 						<li><a href="javascript:;" <@getAction r'${getUUID()}' '输出UUID'/>>输出UUID</a></li>
 						<li><a href="javascript:;" <@getAction r'getXml(xml)' '获取xml节点(参数1为xml格式字符串)'/>>获取xml节点</a></li>
-						<li><a href="javascript:;" <@getAction r'${dump(value)!}' '打印对象(参数为1到多个对象)'/>>打印对象</a></li>
 						<li><a href="javascript:;" <@getAction r'parseUserAgent(value)' '解析UserAgent(参数为1到UserAgent字符串)'/>>解析UserAgent</a></li>
 					</ul>
 				</li>
@@ -150,13 +149,19 @@
 <@_sysConfigList>
 	<#list list as a>
 				<li>
-<#assign field><@_sysConfigFieldList code=a.code><#list list as extend>object.${extend.id.code}:${extend.name}<#if extend?has_next>,</#if><#else>没有字段</#list></@_sysConfigFieldList></#assign>
+<#assign field><@_sysConfigFieldList code=a.code><#list list as extend>object.${extend.id.code}:${extend.name}<#sep>,<#else>没有字段</#list></@_sysConfigFieldList></#assign>
 					<a href="javascript:;" <@getAction r'<@_sysConfigData code="'+a.code+r'"></@_sysConfigData>' field/>>${a.code}:${a.description!}</a>
 				</li>
 	<#else>
 				<li><a href="javascript:;">没有配置项</a></li>
 	</#list>
 </@_sysConfigList>
+			</ul>
+		</div>
+		<div class="pageFormContent" layoutH="37">
+			<ul class="tree treeFolder">
+				<li><a href="javascript:;" <@getAction r'<#list .dataModel?keys as k>${k}<#sep>,</#list>' '打印数据模型变量'/>>打印数据模型变量</a></li>
+				<li><a href="javascript:;" <@getAction r'<#list .namespace?keys as k>${k}<#sep>,</#list>' '打印当前数据模型变量'/>>打印当前数据模型变量</a></li>
 			</ul>
 		</div>
 	</div>

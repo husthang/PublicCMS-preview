@@ -26,7 +26,6 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sanluan.common.api.Json;
 import com.sanluan.common.base.BaseHandler;
 
@@ -164,9 +163,5 @@ public class HttpParameterHandler extends BaseHandler implements Json {
     public Locale getLocale() throws Exception {
         return RequestContextUtils.getLocale(request);
     }
-
-    @Override
-    public void dump() throws JsonProcessingException, IOException {
-        print(objectMapper.writeValueAsString(request.getParameterMap()));
-    }
+    
 }

@@ -15,17 +15,14 @@ import java.io.IOException;
 import java.io.Writer;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sanluan.common.api.Json;
 import com.sanluan.common.base.BaseHandler;
 
@@ -83,17 +80,6 @@ public class TemplateDirectiveHandler extends BaseHandler implements Json {
     }
 
     @Override
-    public void dump() throws TemplateModelException, JsonProcessingException, IOException {
-        Map<String, Object> map = new HashMap<String, Object>();
-        @SuppressWarnings("unchecked")
-        Set<String> set = (Set<String>) environment.getKnownVariableNames();
-        for (String key : set) {
-            map.put(key, environment.getVariable(key));
-        }
-        print(objectMapper.writeValueAsString(map));
-    }
-
-    @Override
     public Writer getWriter() {
         return environment.getOut();
     }
@@ -102,37 +88,30 @@ public class TemplateDirectiveHandler extends BaseHandler implements Json {
         Map<String, TemplateModel> reduceMap = new LinkedHashMap<String, TemplateModel>();
         ObjectWrapper objectWrapper = environment.getObjectWrapper();
         Namespace namespace = environment.getCurrentNamespace();
-        if (loopVars.length >= getSize()) {
-            Iterator<Object> iterator = map.values().iterator();
-            for (int i = 0; iterator.hasNext(); i++) {
-                loopVars[i] = objectWrapper.wrap(iterator.next());
-            }
-        } else {
-            Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
-            int i = 0;
-            while (iterator.hasNext()) {
-                Entry<String, Object> entry = iterator.next();
-                if (i < loopVars.length) {
-                    loopVars[i] = objectWrapper.wrap(entry.getValue());
-                } else {
-                    String key = entry.getKey();
-                    if (namespace.containsKey(key)) {
-                        reduceMap.put(key, namespace.get(key));
-                    }
-                    namespace.put(key, objectWrapper.wrap(map.get(key)));
+        Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();
+        for (int i = 0; iterator.hasNext(); i++) {
+            Entry<String, Object> entry = iterator.next();
+            if (i < loopVars.length) {
+                loopVars[i] = objectWrapper.wrap(entry.getValue());
+            } else {
+                String key = entry.getKey();
+                if (namespace.containsKey(key)) {
+                    reduceMap.put(key, namespace.get(key));
                 }
-                i++;
+                namespace.put(key, objectWrapper.wrap(entry.getValue()));
             }
         }
         return reduceMap;
     }
 
     private void reduce(Map<String, TemplateModel> reduceMap) {
-        Namespace namespace = environment.getCurrentNamespace();
-        for (String key : map.keySet()) {
-            namespace.remove(key);
+        if (notEmpty(reduceMap)) {
+            Namespace namespace = environment.getCurrentNamespace();
+            for (String key : map.keySet()) {
+                namespace.remove(key);
+            }
+            namespace.putAll(reduceMap);
         }
-        namespace.putAll(reduceMap);
     }
 
     private TemplateModel getModel(String name) {

@@ -97,7 +97,7 @@
 			<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-search -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-search</artifactId>
+				<artifactId>hibernate-search-orm</artifactId>
 				<version>5.5.6.Final</version>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-smartcn -->
@@ -276,9 +276,6 @@
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.10</version>
 				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-					<wtpmanifest>true</wtpmanifest>
 					<wtpapplicationxml>true</wtpapplicationxml>
 					<wtpversion>2.0</wtpversion>
 				</configuration>
@@ -288,10 +285,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-idea-plugin</artifactId>
 				<version>2.2.1</version>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
