@@ -32,10 +32,11 @@ BUG修复:
 1. 推荐位前台提交表单匿名提交空指针错误修复
 1. 分类管理点击修改时提示需要选择信息bug修复
 1. 管理后台新增用户、修改用户提示密码不一致bug修复
+1. 推荐位内容翻页bug修复
 
 框架升级:
 
-1. Spring Framework升级到4.3.5
+1. Spring Framework升级到4.3.6
 1. Hibernate Search升级到5.5.6
 1. Hibernate升级到5.1.3
 1. Jackson升级到2.8.6
