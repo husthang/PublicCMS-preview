@@ -35,8 +35,7 @@ public abstract class AbstractController extends BaseController {
     protected static final String ERROR = "error";
     protected static final String ERROR_PAGE = "error.html";
     protected static MediaType jsonMediaType = new MediaType("application", "json", DEFAULT_CHARSET);
-
-    public static final Pattern MOBILE_PATTERN = Pattern.compile("^(13|14|15|17|18|)\\d{9}$");
+    public static final Pattern TELPHONE_PATTERN = Pattern.compile("^\\+?\\d+([- ]?\\d+)?$");
     public static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
     public static final Pattern USERNAME_PATTERN = Pattern.compile("^[A-Za-z_]{1}[0-9A-Za-z_]{3,40}$");
     public static final Pattern NICKNAME_PATTERN = Pattern.compile("^[0-9A-Za-z_\u4E00-\uFA29\uE7C7-\uE7F3]{2,45}$");
@@ -144,8 +143,8 @@ public abstract class AbstractController extends BaseController {
      * @param value
      * @return
      */
-    protected static boolean verifyNotMobile(String value) {
-        Matcher m = MOBILE_PATTERN.matcher(value);
+    protected static boolean verifyNotTelphone(String value) {
+        Matcher m = TELPHONE_PATTERN.matcher(value);
         if (!m.matches()) {
             return true;
         }
@@ -200,9 +199,9 @@ public abstract class AbstractController extends BaseController {
      * @param model
      * @return
      */
-    protected static boolean verifyNotMobile(String field, String value, Map<String, Object> model) {
-        if (verifyNotMobile(value)) {
-            model.put(ERROR, "verify.notMobile." + field);
+    protected static boolean verifyNotTelphone(String field, String value, Map<String, Object> model) {
+        if (verifyNotTelphone(value)) {
+            model.put(ERROR, "verify.notTelphone." + field);
             return true;
         }
         return false;
@@ -239,8 +238,8 @@ public abstract class AbstractController extends BaseController {
      * @return
      */
     protected static boolean verifyNotEMailAndMobile(String field, String value, Map<String, Object> model) {
-        if (verifyNotEMail(value) && verifyNotMobile(value)) {
-            model.put(ERROR, "verify.notEmailAndMobile." + field);
+        if (verifyNotEMail(value) && verifyNotTelphone(value)) {
+            model.put(ERROR, "verify.notEmailAndTelphone." + field);
             return true;
         }
         return false;

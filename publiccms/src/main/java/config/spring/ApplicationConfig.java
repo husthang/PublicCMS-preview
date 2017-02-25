@@ -1,6 +1,6 @@
 package config.spring;
 
-import static config.initializer.InstallationInitializer.CMS_CONFIG_FILE;
+import static config.initializer.InitializationInitializer.CMS_CONFIG_FILE;
 import static java.lang.Integer.parseInt;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
 import static org.springframework.scheduling.quartz.SchedulerFactoryBean.PROP_THREAD_COUNT;
@@ -32,16 +32,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import com.publiccms.common.analyzer.MultiTokenizerFactory;
+import com.publiccms.common.base.AbstractFreemarkerView;
 import com.publiccms.common.datasource.CmsDataSource;
-import com.publiccms.common.servlet.MultiSiteWebHttpRequestHandler;
-import com.publiccms.common.view.InitializeFreeMarkerView;
 import com.publiccms.logic.component.site.SiteComponent;
 import com.publiccms.logic.component.template.TemplateComponent;
 import com.sanluan.common.base.Base;
@@ -67,38 +64,6 @@ public class ApplicationConfig extends Base {
     @Autowired
     private Environment env;
     public static WebApplicationContext webApplicationContext;
-
-    /**
-     * <p>
-     * 资源处理器
-     * </p>
-     * <p>
-     * DefaultServletHttpRequestHandler
-     * </p>
-     * 
-     * @return
-     */
-    @Bean
-    public HttpRequestHandler defaultServlet() {
-        DefaultServletHttpRequestHandler bean = new DefaultServletHttpRequestHandler();
-        return bean;
-    }
-
-    /**
-     * <p>
-     * 站点静态页面处理器
-     * </p>
-     * <p>
-     * DefaultServletHttpRequestHandler
-     * </p>
-     * 
-     * @return
-     */
-    @Bean
-    public HttpRequestHandler webfileServlet(SiteComponent siteComponent) {
-        MultiSiteWebHttpRequestHandler bean = new MultiSiteWebHttpRequestHandler(siteComponent);
-        return bean;
-    }
 
     /**
      * <p>
@@ -257,7 +222,7 @@ public class ApplicationConfig extends Base {
         bean.setRootPath(getDirPath(""));
         bean.setSiteMasters(env.getProperty("cms.masterSiteIds"));
         bean.setDefaultSiteId(parseInt(env.getProperty("cms.defaultSiteId")));
-        return InitializeFreeMarkerView.siteComponent = bean;
+        return AbstractFreemarkerView.siteComponent = bean;
     }
 
     /**
@@ -274,7 +239,7 @@ public class ApplicationConfig extends Base {
     @Bean
     public FreeMarkerConfigurer freeMarkerConfigurer() throws IOException {
         FreeMarkerConfigurer bean = new FreeMarkerConfigurer();
-        bean.setTemplateLoaderPath("/WEB-INF/");
+        bean.setTemplateLoaderPath("classpath:/templates/");
         Properties properties = loadAllProperties(env.getProperty("cms.freemarker.configFilePath"));
         bean.setFreemarkerSettings(properties);
         return bean;

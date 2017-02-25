@@ -1,8 +1,8 @@
 package com.publiccms.logic.component.task;
 
-import static com.publiccms.logic.component.site.SiteComponent.expose;
+import static com.publiccms.common.base.AbstractFreemarkerView.exposeSite;
 import static com.publiccms.logic.component.site.SiteComponent.getFullFileName;
-import static com.sanluan.common.tools.FreeMarkerUtils.makeStringByFile;
+import static com.sanluan.common.tools.FreeMarkerUtils.generateStringByFile;
 
 import java.io.IOException;
 import java.util.Date;
@@ -57,9 +57,9 @@ public class ScheduledJob extends QuartzJobBean {
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put("task", task);
                     SysSite site = siteService.getEntity(task.getSiteId());
-                    expose(map, site);
-                    result = makeStringByFile(getFullFileName(site, task.getFilePath()), templateComponent.getTaskConfiguration(),
-                            map);
+                    exposeSite(map, site);
+                    result = generateStringByFile(getFullFileName(site, task.getFilePath()),
+                            templateComponent.getTaskConfiguration(), map);
                 } catch (IOException | TemplateException e) {
                     result = e.getMessage();
                 }

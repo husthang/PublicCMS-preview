@@ -226,7 +226,9 @@ public class TemplateModelUtils extends Base {
                 return !(0 == ((TemplateNumberModel) model).getAsNumber().intValue());
             } else if (model instanceof TemplateScalarModel) {
                 String temp = ((TemplateScalarModel) model).getAsString();
-                return Boolean.valueOf(temp);
+                if (notEmpty(temp)) {
+                    return Boolean.valueOf(temp);
+                }
             }
         }
         return null;

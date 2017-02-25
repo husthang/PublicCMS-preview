@@ -95,9 +95,7 @@ public class TemplateDirectiveHandler extends BaseHandler implements Json {
                 loopVars[i] = objectWrapper.wrap(entry.getValue());
             } else {
                 String key = entry.getKey();
-                if (namespace.containsKey(key)) {
-                    reduceMap.put(key, namespace.get(key));
-                }
+                reduceMap.put(key, namespace.get(key));
                 namespace.put(key, objectWrapper.wrap(entry.getValue()));
             }
         }
@@ -107,9 +105,6 @@ public class TemplateDirectiveHandler extends BaseHandler implements Json {
     private void reduce(Map<String, TemplateModel> reduceMap) {
         if (notEmpty(reduceMap)) {
             Namespace namespace = environment.getCurrentNamespace();
-            for (String key : map.keySet()) {
-                namespace.remove(key);
-            }
             namespace.putAll(reduceMap);
         }
     }

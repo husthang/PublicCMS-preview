@@ -23,7 +23,7 @@ public class ThumbDirective extends AbstractTemplateDirective {
         Integer height = handler.getInteger("height");
         SysSite site = getSite(handler);
         if (notEmpty(path) && notEmpty(width) && notEmpty(height)) {
-            String thumbPath = path.substring(0, path.lastIndexOf(".")) + "_" + width + "_" + height
+            String thumbPath = path.substring(0, path.lastIndexOf(DOT)) + "_" + width + "_" + height
                     + fileComponent.getSuffix(path);
             String fulleThumbPath = siteComponent.getWebFilePath(site, thumbPath);
             thumbPath = site.getSitePath() + thumbPath;

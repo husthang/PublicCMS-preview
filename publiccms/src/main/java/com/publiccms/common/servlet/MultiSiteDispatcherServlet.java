@@ -1,7 +1,5 @@
 package com.publiccms.common.servlet;
 
-import static com.publiccms.logic.component.template.TemplateCacheComponent.CACHE_URL_PREFIX;
-import static org.springframework.web.servlet.view.UrlBasedViewResolver.FORWARD_URL_PREFIX;
 import static org.springframework.web.servlet.view.UrlBasedViewResolver.REDIRECT_URL_PREFIX;
 
 import java.util.Locale;
@@ -25,7 +23,8 @@ import com.sanluan.common.servlet.ErrorToNotFoundDispatcherServlet;
  */
 public class MultiSiteDispatcherServlet extends ErrorToNotFoundDispatcherServlet {
     private SiteComponent siteComponent;
-    private static final int CACHE_URL_PREFIX_LENGTH = CACHE_URL_PREFIX.length();
+    public static final String GLOBLE_URL_PREFIX = "globle:";
+    private static final int GLOBLE_URL_PREFIX_LENGTH = GLOBLE_URL_PREFIX.length();
     private DefaultServletHttpRequestHandler installHandler;
     /**
      * 
@@ -51,10 +50,10 @@ public class MultiSiteDispatcherServlet extends ErrorToNotFoundDispatcherServlet
     protected View resolveViewName(String viewName, Map<String, Object> model, Locale locale, HttpServletRequest request)
             throws Exception {
         String multiSiteViewName;
-        if (viewName.startsWith(REDIRECT_URL_PREFIX) || viewName.startsWith(FORWARD_URL_PREFIX)) {
+        if (viewName.startsWith(REDIRECT_URL_PREFIX) || viewName.startsWith(REDIRECT_URL_PREFIX)) {
             multiSiteViewName = viewName;
-        } else if (viewName.startsWith(CACHE_URL_PREFIX)) {
-            multiSiteViewName = viewName.substring(CACHE_URL_PREFIX_LENGTH);
+        } else if (viewName.startsWith(GLOBLE_URL_PREFIX)) {
+            multiSiteViewName = viewName.substring(GLOBLE_URL_PREFIX_LENGTH);
         } else {
             multiSiteViewName = getSiteComponent().getViewNamePreffix(request.getServerName()) + viewName;
         }

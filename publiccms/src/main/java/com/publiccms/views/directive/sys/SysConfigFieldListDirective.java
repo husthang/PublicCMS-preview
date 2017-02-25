@@ -18,7 +18,9 @@ public class SysConfigFieldListDirective extends AbstractTemplateDirective {
     public void execute(RenderHandler handler) throws IOException, Exception {
         String code = handler.getString("code");
         if (notEmpty(code)) {
-            handler.put("list", configComponent.getFieldList(getSite(handler), code, handler.getLocale())).render();
+            handler.put("list",
+                    configComponent.getFieldList(getSite(handler), code, handler.getBoolean("customed"), handler.getLocale()))
+                    .render();
         }
     }
 

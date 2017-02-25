@@ -4,6 +4,8 @@ import static com.publiccms.common.base.AbstractController.getAdminFromSession;
 import static com.publiccms.common.base.AbstractController.setAdminToSession;
 import static com.publiccms.common.constants.CmsVersion.getVersion;
 import static com.publiccms.common.constants.CommonConstants.getXPowered;
+import static com.sanluan.common.base.Base.DOT;
+import static com.sanluan.common.base.Base.SEPARATOR;
 import static com.sanluan.common.tools.RequestUtils.getEncodePath;
 import static org.apache.commons.lang3.StringUtils.split;
 
@@ -24,8 +26,6 @@ import com.sanluan.common.base.BaseInterceptor;
 import config.initializer.AdminInitializer;
 
 public class AdminContextInterceptor extends BaseInterceptor {
-    private static final String SEPARATOR = "/";
-
     private String[] needNotLoginUrls;
     private String[] needNotAuthorizedUrls;
     private String loginUrl;
@@ -70,7 +70,7 @@ public class AdminContextInterceptor extends BaseInterceptor {
                 }
             } else if (verifyNeedAuthorized(path)) {
                 if (!SEPARATOR.equals(path)) {
-                    int index = path.lastIndexOf(".");
+                    int index = path.lastIndexOf(DOT);
                     path = path.substring(path.indexOf(SEPARATOR) > 0 ? 0 : 1, index > -1 ? index : path.length());
                     if (0 == roleAuthorizedService.count(entity.getRoles(), path) && !ownsAllRight(entity.getRoles())) {
                         try {

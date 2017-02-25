@@ -6,9 +6,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.publiccms.common.view.InitializeFreeMarkerView;
+import com.publiccms.common.base.AbstractFreemarkerView;
 
-public class AdminFreeMarkerView extends InitializeFreeMarkerView {
+public class AdminFreeMarkerView extends AbstractFreemarkerView {
     @Override
     protected void exposeHelpers(Map<String, Object> model, HttpServletRequest request) throws Exception {
         exposeParamters(model,request);

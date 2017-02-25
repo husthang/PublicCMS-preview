@@ -1,7 +1,7 @@
 package com.publiccms.controller.api;
 
 import static com.publiccms.controller.api.ApiController.INTERFACE_NOT_FOUND;
-import static com.publiccms.logic.component.site.SiteComponent.CONTEXT_SITE;
+import static com.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
 import static org.springframework.util.StringUtils.uncapitalize;
 
 import java.io.IOException;

@@ -32,7 +32,7 @@ public class IndexAdminController extends AbstractController {
             if (SEPARATOR.equals(path) || path.endsWith(SEPARATOR)) {
                 path += getDefaultPage();
             }
-            int index = path.lastIndexOf(".");
+            int index = path.lastIndexOf(DOT);
             path = path.substring(path.indexOf(SEPARATOR) > 0 ? 0 : 1, index > -1 ? index : path.length());
         }
         return path;

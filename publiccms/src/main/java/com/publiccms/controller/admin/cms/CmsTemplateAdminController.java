@@ -198,7 +198,7 @@ public class CmsTemplateAdminController extends AbstractController {
             HttpServletRequest request, HttpSession session, ModelMap model) {
         if (notEmpty(path)) {
             SysSite site = getSite(request);
-            String filePath = siteComponent.getWebTemplateFilePath(site, path);
+            String filePath = siteComponent.getWebTemplateFilePath(site, INCLUDE_DIRECTORY + path);
             try {
                 File templateFile = new File(filePath);
                 if (empty(templateFile)) {

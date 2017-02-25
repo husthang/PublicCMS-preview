@@ -4,44 +4,48 @@ buildscript {
 	    mavenCentral()
 	}
     dependencies {
-        // https://mvnrepository.com/artifact/org.akhikhl.gretty/gretty-runner-jetty
-		classpath 'org.akhikhl.gretty:gretty:+'
+        // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-gradle-plugin
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
     }
 }
-project(':publiccms') {
+subprojects{
 	apply plugin: "java"
-	apply plugin: "war"
-	apply plugin: "eclipse-wtp"
-	apply plugin: 'idea'
-	apply plugin: 'org.akhikhl.gretty'
-
-	version = "V2016.0828"
+	apply plugin: "eclipse"
+	
+	group = 'com.publiccms'
+	version = "V2017.0215"
+	
 	sourceCompatibility = 1.7
 	targetCompatibility = 1.7
 	
-	war{ baseName ="cms" }
-
+	[compileJava]*.options*.encoding = "UTF-8"
+	[compileTestJava]*.options*.encoding = "UTF-8"
+	
 	repositories {
 		mavenLocal()
 		jcenter()
 	    mavenCentral()
 	}
+}
+project(':publiccms') {
+	apply plugin: "war"
+	apply plugin: "eclipse-wtp"
+	apply plugin: 'idea'
+	/** delete this line for spring boot
+	apply plugin: 'org.springframework.boot'
+	delete this line for spring boot */
 	
 	ext {
 	    // http://mvnrepository.com/artifact/org.springframework/spring-core
-	    springVersion = "4.3.5.RELEASE"
+	    springVersion = "4.3.6.RELEASE"
 	    // http://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
-	    httpclientVersion = "4.5.2"
+	    httpclientVersion = "4.5.3"
 	    // http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
 	    jacksonVersion = "2.8.6"
 	}
-	[compileJava]*.options*.encoding = "UTF-8"
-	[compileTestJava]*.options*.encoding = "UTF-8"
 
 	dependencies {
 	    compile (
-	        // http://mvnrepository.com/artifact/commons-logging/commons-logging
-	        "commons-logging:commons-logging:1.2",
 	        // http://mvnrepository.com/artifact/commons-io/commons-io
 	        "commons-io:commons-io:2.5",
 	        // http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
@@ -84,9 +88,9 @@ project(':publiccms') {
 
 	        "org.apache.httpcomponents:httpmime:${httpclientVersion}",
 	        "org.apache.httpcomponents:httpclient-cache:${httpclientVersion}",
-
-	        // http://mvnrepository.com/artifact/javax.activation/activation
-	        "javax.activation:activation:1.1.1",
+			
+			// http://mvnrepository.com/artifact/org.slf4j/slf4j-api
+			'org.slf4j:slf4j-api:1.7.12',
 	        // http://mvnrepository.com/artifact/javax.transaction/jta
 	        "javax.transaction:jta:1.1",
 	        // http://mvnrepository.com/artifact/javax.mail/mail
@@ -100,36 +104,31 @@ project(':publiccms') {
 	        "cglib:cglib-nodep:3.2.4",
 
 	        // http://mvnrepository.com/artifact/org.apache.ant/ant
-	        "org.apache.ant:ant:1.10.0",
+	        "org.apache.ant:ant:1.10.1",
 
 	        // http://mvnrepository.com/artifact/org.quartz-scheduler/quartz
 	        "org.quartz-scheduler:quartz:2.2.3"
 	    )
-	    compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
 	    providedCompile(
 		    // http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
-		    "javax.servlet:javax.servlet-api:3.1.0"
+		    "javax.servlet:javax.servlet-api:3.1.0",
+		    // http://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core
+		    "org.mybatis.generator:mybatis-generator-core:1.3.5"
 	    )
+	    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+	    providedCompile(/** delete this line for spring boot
+	    compile(
+	    delete this line for spring boot */
+	    "org.springframework.boot:spring-boot-starter-web:1.5.1.RELEASE") {
+	    	exclude group:"org.springframework.boot", module: 'spring-boot-starter-logging'
+	    }
 	    testCompile(
 	    	// http://mvnrepository.com/artifact/junit/junit
 		    "junit:junit:4.12",
-		    "org.springframework:spring-test:${springVersion}",
-		    // http://mvnrepository.com/artifact/org.dom4j/dom4j
-		    "org.dom4j:dom4j:2.0.0",
-		    // http://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core
-		    "org.mybatis.generator:mybatis-generator-core:1.3.5"
+		    "org.springframework:spring-test:${springVersion}"
 		)
-		// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-	    testCompile("org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE") {
-	    	exclude group:"org.springframework.boot", module: 'spring-boot-starter-logging'
-	    }
+		compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
 	}
-	
-    gretty {
-    	port = 8080
-  		contextPath = '/cms'
-  		servletContainer = 'tomcat7'
-    }
 
 	eclipse {
 	    wtp {
@@ -140,10 +139,10 @@ project(':publiccms') {
 	        }
 	    }
 	    classpath {
-		    defaultOutputDir = file('build/classes')
+		    defaultOutputDir = file('build/classes/main')
 		    file.withXml { n ->
 		        n.asNode().classpathentry.findAll { it.@path.startsWith('src/test') }
-		                .each { it.@output = 'build/test-classes' }
+		                .each { it.@output = 'build/classes/test' }
 		    }
 		}
 	}

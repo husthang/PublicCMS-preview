@@ -141,7 +141,7 @@ public class FileComponent extends Base {
      * @return
      */
     public String getSuffix(String originalFilename) {
-        return originalFilename.substring(originalFilename.lastIndexOf("."), originalFilename.length());
+        return originalFilename.substring(originalFilename.lastIndexOf(DOT), originalFilename.length());
     }
 
     /**

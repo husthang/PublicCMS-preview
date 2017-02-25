@@ -3,14 +3,11 @@ package com.publiccms.logic.component.site;
 import static org.apache.commons.lang3.StringUtils.split;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.publiccms.common.spi.Cache;
-import com.publiccms.common.view.MultiSiteImportDirective;
-import com.publiccms.common.view.MultiSiteIncludeDirective;
 import com.publiccms.entities.sys.SysDomain;
 import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.sys.SysDomainService;
@@ -28,9 +25,6 @@ public class SiteComponent extends Base implements Cache {
     private CacheEntity<String, SysDomain> domainCache;
 
     public static final String SITE_PATH_PREFIX = "/site_";
-    public static final String CONTEXT_SITE = "site";
-    public static final String CONTEXT_INCLUDE = "include";
-    public static final String CONTEXT_IMPORT = "import";
     public static final String MODEL_FILE = "model.data";
     public static final String CONFIG_FILE = "config.data";
 
@@ -57,20 +51,14 @@ public class SiteComponent extends Base implements Cache {
         return SITE_PATH_PREFIX + site.getId() + SEPARATOR + path;
     }
 
-    public static void expose(Map<String, Object> map, SysSite site) {
-        map.put(CONTEXT_SITE, site);
-        map.put(CONTEXT_INCLUDE, new MultiSiteIncludeDirective(site));
-        map.put(CONTEXT_IMPORT, new MultiSiteImportDirective(site));
-    }
-
     public String getViewNamePreffix(String serverName) {
-        SysSite site = getSite(serverName);
         SysDomain sysDomain = getDomain(serverName);
+        SysSite site = getSite(serverName);
         return getViewNamePreffix(site, sysDomain);
     }
 
     public String getViewNamePreffix(SysSite site, SysDomain sysDomain) {
-        return getFullFileName(site, null == sysDomain || empty(sysDomain.getPath()) ? BLANK : sysDomain.getPath() + SEPARATOR);
+        return getFullFileName(site, empty(sysDomain.getPath()) ? BLANK : sysDomain.getPath() + SEPARATOR);
     }
 
     public SysDomain getDomain(String serverName) {
@@ -78,7 +66,19 @@ public class SiteComponent extends Base implements Cache {
         if (null == sysDomain) {
             sysDomain = sysDomainService.getEntity(serverName);
             if (null == sysDomain) {
-                sysDomain = new SysDomain();
+                int index;
+                if (null != serverName && 0 < (index = serverName.indexOf(DOT)) && index != serverName.lastIndexOf(DOT)) {
+                    sysDomain = getDomain(serverName.substring(index + 1));
+                    if (null != sysDomain.getName()) {
+                        if (!sysDomain.isWild()) {
+                            sysDomain = new SysDomain();
+                            sysDomain.setSiteId(defaultSiteId);
+                        }
+                    }
+                } else {
+                    sysDomain = new SysDomain();
+                    sysDomain.setSiteId(defaultSiteId);
+                }
             } else {
                 domainCache.put(serverName, sysDomain);
             }
@@ -89,12 +89,7 @@ public class SiteComponent extends Base implements Cache {
     public SysSite getSite(String serverName) {
         SysSite site = siteCache.get(serverName);
         if (null == site) {
-            SysDomain sysDomain = getDomain(serverName);
-            if (notEmpty(sysDomain.getName())) {
-                site = sysSiteService.getEntity(sysDomain.getSiteId());
-            } else {
-                site = sysSiteService.getEntity(defaultSiteId);
-            }
+            site = sysSiteService.getEntity(getDomain(serverName).getSiteId());
             siteCache.put(serverName, site);
         }
         return site;

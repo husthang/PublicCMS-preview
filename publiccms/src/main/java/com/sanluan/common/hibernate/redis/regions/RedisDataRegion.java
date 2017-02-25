@@ -43,7 +43,7 @@ public abstract class RedisDataRegion extends Base implements Region {
         this.redisClient = redisClient;
         this.regionName = regionName;
         this.expireInSeconds = Integer
-                .valueOf(props.getProperty(EXPIRE_IN_SECONDS + "." + regionName, getDefaultExpireInSeconds(props)));
+                .valueOf(props.getProperty(EXPIRE_IN_SECONDS + DOT + regionName, getDefaultExpireInSeconds(props)));
         this.cacheTimestamper = configurableRedisRegionFactory.createCacheTimestamper(redisClient, regionName);
         log.debug("redisClient region=" + regionName);
     }

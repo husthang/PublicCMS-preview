@@ -37,35 +37,6 @@ public class HomeCommentController extends AbstractController {
     private String[] ignoreProperties = new String[] { "id" };
 
     /**
-     * 查询文章对应的评论
-     * 
-     * @param id
-     * @param request
-     * @param session
-     * @param orderType
-     * @param pageIndex
-     * @param pageSize
-     * @return
-     * @author wangyadong
-     */
-    @RequestMapping("getCommentListByAid")
-    @ResponseBody
-    public Object getCommentListByAid(Long id, HttpServletRequest request, HttpSession session, String orderType,
-            Integer pageIndex, Integer pageSize, String flag) {
-        if (null == flag || "".equals(flag))// 查询评论状态 1 = 正常 0=禁用
-            return "";
-        boolean b = true;
-        if ("0".equals(flag))
-            b = false;
-        SysSite site = getSite(request);
-        if (notEmpty(id)) {
-            // 文章id ,站点id,是否禁用
-            return service.getPage(site.getId(), null, null, id, b, orderType, pageIndex, pageSize);
-        }
-        return "";
-    }
-
-    /**
      * 
      * @param entity
      * @param request
@@ -76,12 +47,13 @@ public class HomeCommentController extends AbstractController {
     @RequestMapping("save")
     @ResponseBody
     public String save(HomeComment entity, HttpServletRequest request, HttpSession session, String content) {
-        // 等于null则返回
-        if (null == getUserFromSession(session))
-            return "";
-        if (null == content)
-            return "content";
         SysUser sysuser = getUserFromSession(session);// 取得当前用户
+        if (null == sysuser) {
+            return "";
+        }
+        if (null == content) {
+            return "content";
+        }
         SysSite site = getSite(request);// 取得当前站点
         try {// 理論上不會報錯 以防萬一
             if (null != entity.getId()) {
@@ -106,7 +78,6 @@ public class HomeCommentController extends AbstractController {
             }
         } catch (Exception e) {
             // 日誌
-            e.printStackTrace();
             return ERROR;
         }
 

@@ -11,10 +11,13 @@ import com.sanluan.common.handler.QueryHandler;
 
 @Repository
 public class SysDomainDao extends BaseDao<SysDomain> {
-    public PageHandler getPage(Integer siteId, Integer pageIndex, Integer pageSize) {
+    public PageHandler getPage(Integer siteId, Boolean wild, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysDomain bean");
         if (notEmpty(siteId)) {
             queryHandler.condition("bean.siteId = :siteId").setParameter("siteId", siteId);
+        }
+        if (notEmpty(wild)) {
+            queryHandler.condition("bean.wild = :wild").setParameter("wild", wild);
         }
         queryHandler.order("bean.id desc");
         return getPage(queryHandler, pageIndex, pageSize);

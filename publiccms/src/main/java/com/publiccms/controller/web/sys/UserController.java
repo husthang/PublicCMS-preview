@@ -5,8 +5,8 @@ import static com.publiccms.common.constants.CommonConstants.getCookiesUserSplit
 import static com.publiccms.logic.component.config.EmailTemplateConfigComponent.CONFIG_EMAIL_PATH;
 import static com.publiccms.logic.component.config.EmailTemplateConfigComponent.CONFIG_EMAIL_TITLE;
 import static com.publiccms.logic.component.site.EmailComponent.CONFIG_CODE;
-import static com.sanluan.common.tools.FreeMarkerUtils.makeStringByFile;
-import static com.sanluan.common.tools.FreeMarkerUtils.makeStringByString;
+import static com.sanluan.common.tools.FreeMarkerUtils.generateStringByFile;
+import static com.sanluan.common.tools.FreeMarkerUtils.generateStringByString;
 import static com.sanluan.common.tools.RequestUtils.getCookie;
 import static com.sanluan.common.tools.RequestUtils.getIpAddress;
 import static com.sanluan.common.tools.VerificationUtils.encode;
@@ -143,8 +143,8 @@ public class UserController extends AbstractController {
             emailModel.put("email", email);
             emailModel.put("authToken", sysEmailToken.getAuthToken());
             if (emailComponent.sendHtml(site.getId(), email,
-                    makeStringByString(emailTitle, templateComponent.getWebConfiguration(), emailModel),
-                    makeStringByFile(emailPath, templateComponent.getWebConfiguration(), emailModel))) {
+                    generateStringByString(emailTitle, templateComponent.getWebConfiguration(), emailModel),
+                    generateStringByFile(emailPath, templateComponent.getWebConfiguration(), emailModel))) {
                 model.addAttribute(MESSAGE, "sendEmail.success");
             } else {
                 model.addAttribute(MESSAGE, "sendEmail.error");

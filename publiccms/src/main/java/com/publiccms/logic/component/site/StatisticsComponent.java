@@ -85,14 +85,13 @@ public class StatisticsComponent extends Base implements Cache {
                 entity.setHidden(true);
                 wordService.save(entity);
             }
-            long id = entity.getId();
-            CmsWordStatistics wordStatistics = wordCache.get(id);
+            CmsWordStatistics wordStatistics = wordCache.get(entity.getId());
             if (null == wordStatistics) {
                 wordStatistics = new CmsWordStatistics(entity.getId(), 1, entity);
             } else {
                 wordStatistics.setSearchCounts(wordStatistics.getSearchCounts() + 1);
             }
-            List<CmsWordStatistics> list = wordCache.put(id, wordStatistics);
+            List<CmsWordStatistics> list = wordCache.put(entity.getId(), wordStatistics);
             if (notEmpty(list)) {
                 wordService.updateStatistics(list);
             }

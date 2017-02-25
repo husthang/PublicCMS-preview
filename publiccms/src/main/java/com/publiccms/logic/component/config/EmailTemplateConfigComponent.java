@@ -46,9 +46,9 @@ public class EmailTemplateConfigComponent extends Base implements Config {
         Map<String, String> config = configComponent.getConfigData(site.getId(), CONFIG_CODE);
         if (notEmpty(config)) {
             extendFieldList.add(new ExtendField(CONFIG_EMAIL_TITLE, INPUTTYPE_TEXT, false,
-                    getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_TITLE), null, null));
+                    getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_TITLE), null, null));
             extendFieldList.add(new ExtendField(CONFIG_EMAIL_PATH, INPUTTYPE_TEMPLATE, false,
-                    getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_PATH), null, null));
+                    getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_PATH), null, null));
         }
         return extendFieldList;
     }

@@ -32,7 +32,7 @@ public class AdminConfig extends WebMvcConfigurerAdapter {
     private AdminContextInterceptor adminInitializingInterceptor;
 
     /**
-     * 视图层解析器
+     * 视图层解析器,SpringBoot不支持jsp的加载路径
      * 
      * @return
      */
@@ -40,7 +40,7 @@ public class AdminConfig extends WebMvcConfigurerAdapter {
     public ViewResolver jspViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
         bean.setOrder(1);
-        bean.setPrefix("/WEB-INF/admin/");
+        bean.setPrefix("/WEB-INF/jsp/");
         bean.setSuffix(".jsp");
         bean.setContentType("text/html;charset=UTF-8");
         cacheComponent.registerCachingViewResolverList(bean);

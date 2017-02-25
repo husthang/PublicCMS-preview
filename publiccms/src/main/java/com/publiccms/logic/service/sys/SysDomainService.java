@@ -18,8 +18,8 @@ import com.sanluan.common.handler.PageHandler;
 public class SysDomainService extends BaseService<SysDomain> {
 
     @Transactional(readOnly = true)
-    public PageHandler getPage(Integer siteId, Integer pageIndex, Integer pageSize) {
-        return dao.getPage(siteId, pageIndex, pageSize);
+    public PageHandler getPage(Integer siteId, Boolean wild, Integer pageIndex, Integer pageSize) {
+        return dao.getPage(siteId, wild, pageIndex, pageSize);
     }
 
     public SysDomain update(Serializable id, SysDomain newEntity) {

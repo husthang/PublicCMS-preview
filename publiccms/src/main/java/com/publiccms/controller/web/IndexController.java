@@ -49,19 +49,19 @@ public class IndexController extends AbstractController {
      * @param response
      * @param model
      * @return
-     * @throws PageNotFoundException 
+     * @throws PageNotFoundException
      */
     @RequestMapping({ SEPARATOR, "/**" })
-    public String page(@RequestBody(required = false) String body, HttpServletRequest request, ModelMap model) throws PageNotFoundException
-             {
+    public String page(@RequestBody(required = false) String body, HttpServletRequest request, ModelMap model)
+            throws PageNotFoundException {
         String requestPath = urlPathHelper.getLookupPathForRequest(request);
         if (requestPath.endsWith(SEPARATOR)) {
             requestPath += getDefaultPage();
         }
         SysDomain domain = getDomain(request);
         SysSite site = getSite(request);
-        String realRequestPath = siteComponent.getViewNamePreffix(site, domain) + requestPath;
-        String templatePath = siteComponent.getWebTemplateFilePath() + realRequestPath;
+        String fullRequestPath = siteComponent.getViewNamePreffix(site, domain) + requestPath;
+        String templatePath = siteComponent.getWebTemplateFilePath() + fullRequestPath;
         CmsPageMetadata metadata = metadataComponent.getTemplateMetadata(templatePath, true);
         if (null != metadata) {
             if (metadata.isUseDynamic()) {
@@ -73,7 +73,7 @@ public class IndexController extends AbstractController {
                         return sb.append(loginPath).append("?returnUrl=")
                                 .append(getEncodePath(requestPath, request.getQueryString())).toString();
                     } else {
-                        return sb.append(site.getSitePath()).toString();
+                        return sb.append(site.getDynamicPath()).toString();
                     }
                 }
                 model.put("metadata", metadata);
@@ -83,7 +83,7 @@ public class IndexController extends AbstractController {
                 if (notEmpty(metadata.getAcceptParamters())) {
                     billingRequestParamtersToModel(request, metadata.getAcceptParamters(), model);
                 }
-                if (notEmpty(metadata.getCacheTime()) && 10 <= metadata.getCacheTime()) {
+                if (notEmpty(metadata.getCacheTime()) && 0 < metadata.getCacheTime()) {
                     int cacheMillisTime = metadata.getCacheTime() * 1000;
                     String cacheControl = request.getHeader("Cache-Control");
                     String pragma = request.getHeader("Pragma");
@@ -91,8 +91,8 @@ public class IndexController extends AbstractController {
                             || notEmpty(pragma) && "no-cache".equalsIgnoreCase(pragma)) {
                         cacheMillisTime = 0;
                     }
-                    return templateCacheComponent.getCachedPath(requestPath, realRequestPath, cacheMillisTime,
-                            metadata.getAcceptParamters(), site, request, model);
+                    return templateCacheComponent.getCachedPath(requestPath, fullRequestPath, cacheMillisTime,
+                            metadata.getAcceptParamters(), request, model);
                 }
             } else {
                 throw new PageNotFoundException(requestPath);

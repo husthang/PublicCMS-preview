@@ -24,6 +24,11 @@ public abstract class BaseController extends Base {
         response.setHeader("Location", url);
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
     }
+    
+    protected static void redirect(HttpServletResponse response, String url) {
+        response.setHeader("Location", url);
+        response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+    }
 
     /**
      * @param field

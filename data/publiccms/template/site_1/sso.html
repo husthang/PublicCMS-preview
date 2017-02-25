@@ -6,18 +6,49 @@
 	<script src="${site.sitePath!}js/jquery.cookie.js"></script>
 </head>
 <body>
+	<a href="${site.sitePath}">返回首页</a>
 <script type="text/javascript">
-function getQueryString(name) { 
+function getQueryString(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
 	var r = window.location.search.substr(1).match(reg); 
 	if (r != null) return unescape(r[2]); return null; 
+}
+var ssoCount=0;
+function sso(url){
+	ssoCount++;
+	$('<iframe src="'+url+'" style="display:none"></iframe>').on("load",function(){
+			if(0==--ssoCount){
+				var returnUrl = getQueryString('returnUrl');
+				if(returnUrl){
+					window.location.href=returnUrl;
+				}else{
+					window.location.href='${site.sitePath}';
+				}
+			}
+	}).appendTo($('body'));
 }
 var token=getQueryString('token');
 $.cookie.raw = true;
 if(token){
 	$.cookie('PUBLICCMS_USER',token,{expires: 10800});
 }else{
-	$.removeCookie('PUBLICCMS_USER');
+	var logout=getQueryString('logout');
+	if(logout){
+		sso('${site.sitePath}sso.html');
+		sso('${site.dynamicPath}sso.html');
+		<@_sysConfigData code="site">
+			sso('${(object.searchPath)!}sso.html');
+		</@_sysConfigData>
+	}else if($.cookie('PUBLICCMS_USER')){
+		var token=encodeURIComponent($.cookie('PUBLICCMS_USER'));
+		sso('${site.sitePath}sso.html?token='+token);
+		sso('${site.dynamicPath}sso.html?token='+token);
+		<@_sysConfigData code="site">
+			sso('${(object.searchPath)!}sso.html?token='+token);
+		</@_sysConfigData>
+	}else{
+		$.removeCookie('PUBLICCMS_USER');
+	}
 }
 </script>
 </body>

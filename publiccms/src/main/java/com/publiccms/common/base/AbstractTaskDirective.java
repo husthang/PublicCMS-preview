@@ -1,6 +1,6 @@
 package com.publiccms.common.base;
 
-import static com.publiccms.logic.component.site.SiteComponent.CONTEXT_SITE;
+import static com.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
 
 import java.io.IOException;
 

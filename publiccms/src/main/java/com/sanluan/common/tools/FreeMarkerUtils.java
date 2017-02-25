@@ -37,9 +37,9 @@ public class FreeMarkerUtils extends Base {
      * @throws IOException
      * @throws TemplateException
      */
-    public static void makeFileByFile(String templateFilePath, String destFilePath, Configuration configuration,
+    public static void generateFileByFile(String templateFilePath, String destFilePath, Configuration configuration,
             Map<String, Object> model) throws IOException, TemplateException {
-        makeFileByFile(templateFilePath, destFilePath, configuration, model, true, false);
+        generateFileByFile(templateFilePath, destFilePath, configuration, model, true, false);
     }
 
     /**
@@ -51,9 +51,9 @@ public class FreeMarkerUtils extends Base {
      * @throws IOException
      * @throws TemplateException
      */
-    public static void makeFileByFile(String templateFilePath, String destFilePath, Configuration configuration,
+    public static void generateFileByFile(String templateFilePath, String destFilePath, Configuration configuration,
             Map<String, Object> model, boolean override) throws IOException, TemplateException {
-        makeFileByFile(templateFilePath, destFilePath, configuration, model, override, false);
+        generateFileByFile(templateFilePath, destFilePath, configuration, model, override, false);
     }
 
     /**
@@ -68,7 +68,7 @@ public class FreeMarkerUtils extends Base {
      * @throws IOException
      * @throws TemplateException
      */
-    public static void makeFileByFile(String templateFilePath, String destFilePath, Configuration configuration,
+    public static void generateFileByFile(String templateFilePath, String destFilePath, Configuration configuration,
             Map<String, Object> model, boolean override, boolean append)
             throws MalformedTemplateNameException, ParseException, IOException, TemplateException {
         Template t = configuration.getTemplate(templateFilePath);
@@ -95,8 +95,8 @@ public class FreeMarkerUtils extends Base {
      * @throws TemplateException
      * @throws IOException
      */
-    public static String makeStringByFile(String template, Configuration configuration) throws IOException, TemplateException {
-        return makeStringByFile(template, configuration, new HashMap<String, Object>());
+    public static String generateStringByFile(String template, Configuration configuration) throws IOException, TemplateException {
+        return generateStringByFile(template, configuration, new HashMap<String, Object>());
     }
 
     /**
@@ -107,10 +107,10 @@ public class FreeMarkerUtils extends Base {
      * @throws IOException
      * @throws TemplateException
      */
-    public static String makeStringByFile(String template, Configuration configuration, Map<String, Object> model)
+    public static String generateStringByFile(String template, Configuration configuration, Map<String, Object> model)
             throws IOException, TemplateException {
         StringWriter writer = new StringWriter();
-        makeStringByFile(writer, template, configuration, model);
+        generateStringByFile(writer, template, configuration, model);
         return writer.toString();
     }
 
@@ -125,7 +125,7 @@ public class FreeMarkerUtils extends Base {
      * @throws IOException
      * @throws TemplateException
      */
-    public static void makeStringByFile(Writer writer, String template, Configuration configuration, Map<String, Object> model)
+    public static void generateStringByFile(Writer writer, String template, Configuration configuration, Map<String, Object> model)
             throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
         Template tpl = configuration.getTemplate(template);
         tpl.process(model, writer);
@@ -139,7 +139,7 @@ public class FreeMarkerUtils extends Base {
      * @throws IOException
      * @throws TemplateException
      */
-    public static String makeStringByString(String templateContent, Configuration configuration, Map<String, Object> model)
+    public static String generateStringByString(String templateContent, Configuration configuration, Map<String, Object> model)
             throws IOException, TemplateException {
         Template tpl = new Template(String.valueOf(templateContent.hashCode()), templateContent, configuration);
         StringWriter writer = new StringWriter();

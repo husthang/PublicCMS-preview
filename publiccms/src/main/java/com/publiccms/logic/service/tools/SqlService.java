@@ -34,6 +34,10 @@ public class SqlService {
         MultiDataSource.setDataSourceName(dataSourceName);
     }
 
+    public void resetDataSourceName() {
+        MultiDataSource.resetDataSourceName();
+    }
+
     @Autowired
     private SqlMapper mapper;
 }

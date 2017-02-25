@@ -32,7 +32,7 @@
 					<p>
 						热门搜索词：
 						<#list page.list as a>
-							<a href="?word=${a.name}">${a.name}</a>
+							<a href="?word=${a.name?url}">${a.name}</a>
 						</#list>
 					</p>
 				</@_wordList>

@@ -23,7 +23,8 @@ public class SysDomainListDirective extends AbstractTemplateDirective {
         } else {
             siteId = getSite(handler).getId();
         }
-        PageHandler page = service.getPage(siteId, handler.getInteger("pageIndex", 1), handler.getInteger("count", 30));
+        PageHandler page = service.getPage(siteId, handler.getBoolean("wild"), handler.getInteger("pageIndex", 1),
+                handler.getInteger("count", 30));
         handler.put("page", page).render();
     }
 

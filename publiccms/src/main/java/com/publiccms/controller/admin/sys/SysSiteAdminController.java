@@ -77,7 +77,7 @@ public class SysSiteAdminController extends AbstractController {
                 return TEMPLATE_ERROR;
             }
             service.save(entity);
-            SysDomain domain = new SysDomain(domainName, entity.getId());
+            SysDomain domain = new SysDomain(domainName, entity.getId(), false);
             domainService.save(domain);
             SysDept dept = new SysDept(entity.getId(), deptName, null, null, null, true, true);
             deptService.save(dept);// 初始化部门
@@ -107,7 +107,7 @@ public class SysSiteAdminController extends AbstractController {
             Long userId = getAdminFromSession(session).getId();
             Date now = getDate();
             String ip = getIpAddress(request);
-            for (SysDomain domain : (List<SysDomain>) domainService.getPage(entity.getId(), null, null).getList()) {
+            for (SysDomain domain : (List<SysDomain>) domainService.getPage(entity.getId(), null, null, null).getList()) {
                 domainService.delete(domain.getName());
                 logOperateService.save(new LogOperate(site.getId(), userId, LogLoginService.CHANNEL_WEB_MANAGER, "delete.domain",
                         ip, now, getString(entity)));

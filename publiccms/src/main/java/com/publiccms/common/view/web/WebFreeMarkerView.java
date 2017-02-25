@@ -6,14 +6,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.publiccms.common.view.InitializeFreeMarkerView;
+import com.publiccms.common.base.AbstractFreemarkerView;
 
 /**
  * 
  * WebFreeMarkerView 视图类
  *
  */
-public class WebFreeMarkerView extends InitializeFreeMarkerView {
+public class WebFreeMarkerView extends AbstractFreemarkerView {
     @Override
     protected void exposeHelpers(Map<String, Object> model, HttpServletRequest request) throws Exception {
         model.put(CONTEXT_USER, getUserFromSession(request.getSession()));

@@ -1,10 +1,9 @@
 package com.publiccms.logic.component.template;
 
-import static com.publiccms.common.view.InitializeFreeMarkerView.CONTEXT_BASE;
-import static com.publiccms.common.view.InitializeFreeMarkerView.getBasePath;
-import static com.publiccms.logic.component.site.SiteComponent.expose;
+import static com.publiccms.common.base.AbstractFreemarkerView.exposeAttribute;
+import static com.publiccms.common.servlet.MultiSiteDispatcherServlet.GLOBLE_URL_PREFIX;
 import static com.publiccms.logic.component.template.TemplateCacheComponent.CACHE_VAR;
-import static com.sanluan.common.tools.FreeMarkerUtils.makeFileByFile;
+import static com.sanluan.common.tools.FreeMarkerUtils.generateFileByFile;
 import static org.apache.commons.io.FileUtils.deleteQuietly;
 import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.split;
@@ -22,7 +21,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 
 import com.publiccms.common.spi.Cache;
-import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.component.site.SiteComponent;
 import com.sanluan.common.base.Base;
 
@@ -48,7 +46,6 @@ public class TemplateCacheComponent extends Base implements Cache {
     @Autowired
     private TemplateComponent templateComponent;
     public static final String CACHE_FILE_DIRECTORY = "/cache";
-    public static final String CACHE_URL_PREFIX = "cache:";
 
     /**
      * 返回缓存模板路径或者模板原路径
@@ -60,11 +57,9 @@ public class TemplateCacheComponent extends Base implements Cache {
      * @return
      */
     public String getCachedPath(String requestPath, String fullTemplatePath, int cacheMillisTime, String acceptParamters,
-            SysSite site, HttpServletRequest request, ModelMap modelMap) {
+            HttpServletRequest request, ModelMap modelMap) {
         ModelMap model = (ModelMap) modelMap.clone();
-        model.put(CONTEXT_BASE,
-                getBasePath(request.getScheme(), request.getServerName(), request.getServerPort(), request.getContextPath()));
-        expose(model, site);
+        exposeAttribute(model, request.getScheme(), request.getServerName(), request.getServerPort(), request.getContextPath());
         model.put(CACHE_VAR, true);
         return createCache(requestPath, fullTemplatePath, fullTemplatePath + getRequestParamtersString(request, acceptParamters),
                 cacheMillisTime, model);
@@ -105,12 +100,12 @@ public class TemplateCacheComponent extends Base implements Cache {
             ModelMap model) {
         String cachedFilePath = getCachedFilePath(cachePath);
         String cachedtemplatePath = CACHE_FILE_DIRECTORY + cachePath;
-        String cachedPath = CACHE_URL_PREFIX + cachedtemplatePath;
+        String cachedPath = GLOBLE_URL_PREFIX + cachedtemplatePath;
         if (checkCacheFile(cachedFilePath, cacheMillisTime)) {
             return cachedPath;
         }
         try {
-            makeFileByFile(fullTemplatePath, cachedFilePath, templateComponent.getWebConfiguration(), model);
+            generateFileByFile(fullTemplatePath, cachedFilePath, templateComponent.getWebConfiguration(), model);
             templateComponent.getWebConfiguration().removeTemplateFromCache(cachedtemplatePath);
             return cachedPath;
         } catch (Exception e) {

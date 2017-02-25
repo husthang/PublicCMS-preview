@@ -16,6 +16,7 @@ import com.sanluan.common.servlet.ErrorToNotFoundDispatcherServlet;
 
 import config.spring.AdminConfig;
 import config.spring.ApplicationConfig;
+import config.spring.CmsRootConfig;
 
 /**
  * 
@@ -68,7 +69,7 @@ public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletI
         if (inited) {
             return null;
         } else {
-            return new Class[] { ApplicationConfig.class };
+            return new Class[] { CmsRootConfig.class };
         }
     }
 

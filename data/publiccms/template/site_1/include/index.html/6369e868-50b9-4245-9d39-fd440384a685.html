@@ -25,4 +25,4 @@
 <!-- 百度编辑器 -->
 <script src="${site.sitePath!}ueditor/ueditor.parse.min.js"></script>
 <script src="${site.sitePath!}js/main.js"></script>
-<@_sysConfigData code="site">${object.statistics?no_esc}</@_sysConfigData>
+<@_sysConfigData code="site">${(object.statistics?no_esc)!}</@_sysConfigData>

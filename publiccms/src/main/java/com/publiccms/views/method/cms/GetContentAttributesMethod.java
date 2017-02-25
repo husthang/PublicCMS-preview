@@ -29,9 +29,8 @@ public class GetContentAttributesMethod extends BaseMethod {
         Long[] ids = getLongArray(0, arguments);
         if (notEmpty(ids)) {
             Map<String, Map<String, String>> resultMap = new HashMap<String, Map<String, String>>();
-            for (CmsContentAttribute entity : service.getEntitys(ids)) {
+            for (CmsContentAttribute entity : service.getEntitysWithoutText(ids)) {
                 Map<String, String> map = getExtendMap(entity.getData());
-                map.put("text", entity.getText());
                 map.put("source", entity.getSource());
                 map.put("sourceUrl", entity.getSourceUrl());
                 map.put("wordCount", String.valueOf(entity.getWordCount()));

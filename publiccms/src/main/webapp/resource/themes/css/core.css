@@ -352,14 +352,14 @@ button.button,button.buttonActive{ height:26px;}
 /* Pages default */
 .page{ display:block;overflow:hidden;float:left;width:100%;height:100%;}
 .pageHeader{ display:block;overflow:hidden;padding:5px;position:relative;}
-.searchBar ul.searchContent{ display:block;overflow:hidden;height:25px;margin-right:50px}
-.searchBar ul.searchContent:hover,.searchBar ul.searchContentHover{ height:auto;background: url(../default/images/order_up.gif) no-repeat top right;}
+.searchBar ul.searchContent{ display:block;overflow:hidden;height:25px;padding-right:80px;background: url(../default/images/order_down.gif) no-repeat top right;}
+.searchBar ul.searchContentHover{ height:auto;background: url(../default/images/order_up.gif) no-repeat top right;}
 .searchBar input,.searchBar span{ float:left;}
 .searchBar span{ line-height:20px;}
 .searchBar ul.searchContent li{ float:left;white-space:nowrap;display:block;overflow:hidden;width:230px;height:21px;padding:2px 0;}
 .searchBar ul.searchContent li.colspan{ width:460px;}
 .searchBar label{ float:left;width:65px;padding:0 5px;line-height:23px;}
-.searchBar .subBar{ height:30px;position:absolute;bottom:2px;right:2px;}
+.searchBar .subBar{ height:30px;position:absolute;top:4px;right:20px;}
 .searchBar .subBar ul{ float:right;}
 .searchBar .subBar li{ float:left;margin-left:5px;}
 .pageContent{ display:block;overflow:auto;position:relative;}

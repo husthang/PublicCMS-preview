@@ -45,7 +45,7 @@ public class SysConfigDataAdminController extends AbstractController {
                 return TEMPLATE_ERROR;
             }
             Map<String, String> map = getExtentDataMap(sysConfigParamters.getExtendDataList(),
-                    configComponent.getFieldList(site, entity.getId().getCode(), getLocale(request)));
+                    configComponent.getFieldList(site, entity.getId().getCode(), null, getLocale(request)));
             entity.setData(getExtendString(map));
             if (null != oldEntity) {
                 entity = service.update(oldEntity.getId(), entity, ignoreProperties);

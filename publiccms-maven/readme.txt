@@ -6,3 +6,4 @@
 清空myeclipse配置 ：eclipse:myeclipse-clean
 配置idea工程 ：idea:idea
 清空idea配置 ：idea:clean
+运行工程：jetty:run

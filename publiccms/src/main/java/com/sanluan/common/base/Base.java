@@ -19,6 +19,7 @@ public abstract class Base {
     public static final Charset DEFAULT_CHARSET = Charset.forName(DEFAULT_CHARSET_NAME);
     public static final String SEPARATOR = "/";
     public static final String BLANK = "";
+    public static final String DOT = ".";
     public static final String BLANK_SPACE = " ";
     public static final String COMMA_DELIMITED = ",";
     protected final Log log = getLog(getClass());

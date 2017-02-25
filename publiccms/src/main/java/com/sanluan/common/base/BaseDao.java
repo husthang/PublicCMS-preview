@@ -102,6 +102,7 @@ public abstract class BaseDao<E> extends Base {
         if (notEmpty(ids)) {
             QueryHandler queryHandler = getQueryHandler("from").append(getEntityClass().getSimpleName()).append("bean");
             queryHandler.condition("bean." + pk).append("in (:ids)").setParameter("ids", ids);
+            queryHandler.setCacheable(false);
             return (List<E>) getList(queryHandler);
         }
         return new ArrayList<E>();

@@ -49,7 +49,8 @@ public class ConfigComponent extends Base implements SiteCache, Json {
         if (null != entity) {
             configInfo = new ConfigInfo(entity.getCode(), entity.getDescription());
             configInfo.setCustomed(true);
-        } else if (notEmpty(configPluginList)) {
+        } 
+        if (notEmpty(configPluginList)) {
             for (Config configPlugin : configPluginList) {
                 if (configPlugin.getCode(site).equals(code)) {
                     configInfo = new ConfigInfo(code, configPlugin.getCodeDescription(site, locale));
@@ -82,18 +83,20 @@ public class ConfigComponent extends Base implements SiteCache, Json {
         return configList;
     }
 
-    public List<ExtendField> getFieldList(SysSite site, String code, Locale locale) {
+    public List<ExtendField> getFieldList(SysSite site, String code, Boolean customed, Locale locale) {
         List<ExtendField> fieldList = new ArrayList<ExtendField>();
-        if (notEmpty(configPluginList)) {
+        if ((empty(customed) || !customed) && notEmpty(configPluginList)) {
             for (Config config : configPluginList) {
                 if (config.getCode(site).equals(code)) {
                     fieldList.addAll(config.getExtendFieldList(site, locale));
                 }
             }
         }
-        SysConfig sysConfig = getMap(site).get(code);
-        if (null != sysConfig && notEmpty(sysConfig.getExtendList())) {
-            fieldList.addAll(sysConfig.getExtendList());
+        if ((empty(customed) || customed)) {
+            SysConfig sysConfig = getMap(site).get(code);
+            if (null != sysConfig && notEmpty(sysConfig.getExtendList())) {
+                fieldList.addAll(sysConfig.getExtendList());
+            }
         }
         return fieldList;
     }

@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>publiccms</groupId>
-	<artifactId>maven</artifactId>
+	<groupId>com.publiccms</groupId>
+	<artifactId>publiccms-maven</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0</version>
 	<modules>
@@ -10,21 +10,15 @@
 	</modules>
 	<properties>
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
-		<springVersion>4.3.5.RELEASE</springVersion>
+		<version.spring>4.3.6.RELEASE</version.spring>
 		<!-- http://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-		<httpclientVersion>4.5.2</httpclientVersion>
+		<version.httpclient>4.5.3</version.httpclient>
 		<!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-		<jacksonVersion>2.8.6</jacksonVersion>
+		<version.jackson>2.8.6</version.jackson>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
-			<!-- http://mvnrepository.com/artifact/commons-logging/commons-logging -->
-			<dependency>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-				<version>1.2</version>
-			</dependency>
 			<!-- http://mvnrepository.com/artifact/commons-io/commons-io -->
 			<dependency>
 				<groupId>commons-io</groupId>
@@ -64,17 +58,17 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
-				<version>${springVersion}</version>
+				<version>${version.spring}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-orm</artifactId>
-				<version>${springVersion}</version>
+				<version>${version.spring}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>${springVersion}</version>
+				<version>${version.spring}</version>
 			</dependency>
 			<!-- http://mvnrepository.com/artifact/org.mybatis/mybatis -->
 			<dependency>
@@ -127,28 +121,33 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
-				<version>${jacksonVersion}</version>
+				<version>${version.jackson}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-annotations</artifactId>
-				<version>${jacksonVersion}</version>
+				<version>${version.jackson}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpmime</artifactId>
-				<version>${httpclientVersion}</version>
+				<version>${version.httpclient}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient-cache</artifactId>
-				<version>${httpclientVersion}</version>
+				<version>${version.httpclient}</version>
 			</dependency>
-			<!-- http://mvnrepository.com/artifact/javax.activation/activation -->
+			<!-- http://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 			<dependency>
-				<groupId>javax.activation</groupId>
-				<artifactId>activation</artifactId>
-				<version>1.1.1</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.12</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-nop</artifactId>
+				<version>1.7.12</version>
 			</dependency>
 			<!-- http://mvnrepository.com/artifact/javax.transaction/jta -->
 			<dependency>
@@ -184,7 +183,7 @@
 			<dependency>
 				<groupId>org.apache.ant</groupId>
 				<artifactId>ant</artifactId>
-				<version>1.10.0</version>
+				<version>1.10.1</version>
 			</dependency>
 			<!-- http://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
 			<dependency>
@@ -197,47 +196,35 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>3.1.0</version>
-				<scope>provided</scope>
 			</dependency>
 			<!-- http://mvnrepository.com/artifact/junit/junit -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.12</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
-				<version>${springVersion}</version>
-				<scope>test</scope>
-			</dependency>
-			<!-- http://mvnrepository.com/artifact/org.dom4j/dom4j -->
-			<dependency>
-				<groupId>org.dom4j</groupId>
-				<artifactId>dom4j</artifactId>
-				<version>2.0.0</version>
-				<scope>test</scope>
+				<version>${version.spring}</version>
 			</dependency>
 			<!-- http://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
 			<dependency>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-core</artifactId>
 				<version>1.3.5</version>
-				<scope>test</scope>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
-				<version>1.4.3.RELEASE</version>
+				<version>1.5.1.RELEASE</version>
 				<exclusions>
 					<exclusion>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-starter-logging</artifactId>
 					</exclusion>
 				</exclusions>
-				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -256,6 +243,18 @@
 	<build>
 		<defaultGoal>compile</defaultGoal>
 		<plugins>
+			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
+			<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.1.RELEASE</version>
+            </plugin>
+            <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-maven-plugin -->
+            <plugin>
+			  <groupId>org.eclipse.jetty</groupId>
+			  <artifactId>jetty-maven-plugin</artifactId>
+			  <version>9.4.0.v20161208</version>
+			</plugin>
 			<!-- http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

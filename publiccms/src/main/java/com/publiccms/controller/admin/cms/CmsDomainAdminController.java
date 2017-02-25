@@ -30,7 +30,7 @@ import com.publiccms.logic.service.sys.SysDomainService;
 public class CmsDomainAdminController extends AbstractController {
     @Autowired
     private SysDomainService service;
-    private String[] ignoreProperties = new String[] { "siteId", "name" };
+    private String[] ignoreProperties = new String[] { "siteId", "name", "wild" };
 
     /**
      * @param entity

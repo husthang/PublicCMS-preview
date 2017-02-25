@@ -89,8 +89,3 @@ BUG修复:
 1. 需要以HTML输出的字段需要加 ?no_esc
 1. 取消所有?html内置函数调用
 1. 将数据目录中resource目录下所有文件移动到web目录下，将所有site.resourcePath改为site.sitePath
-
-数据库升级所需修改：
-
-1. 根据data/mysql-change-log.sql时间轴执行最新修改脚本
-1. 执行MyTest类中UpdateTo2017方法

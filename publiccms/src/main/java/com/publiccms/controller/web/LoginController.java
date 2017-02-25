@@ -2,6 +2,8 @@ package com.publiccms.controller.web;
 
 import static com.publiccms.common.constants.CommonConstants.getCookiesUser;
 import static com.publiccms.common.constants.CommonConstants.getCookiesUserSplit;
+import static com.publiccms.common.spi.Config.CONFIG_CODE_SITE;
+import static com.publiccms.logic.component.config.LoginConfigComponent.CONFIG_LOGIN_PATH;
 import static com.publiccms.logic.service.log.LogLoginService.CHANNEL_WEB;
 import static com.sanluan.common.tools.RequestUtils.addCookie;
 import static com.sanluan.common.tools.RequestUtils.getCookie;
@@ -11,6 +13,7 @@ import static org.apache.commons.lang3.StringUtils.trim;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -22,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.publiccms.common.base.AbstractController;
@@ -29,6 +33,7 @@ import com.publiccms.entities.log.LogLogin;
 import com.publiccms.entities.sys.SysSite;
 import com.publiccms.entities.sys.SysUser;
 import com.publiccms.entities.sys.SysUserToken;
+import com.publiccms.logic.component.config.ConfigComponent;
 import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysUserService;
 import com.publiccms.logic.service.sys.SysUserTokenService;
@@ -46,11 +51,13 @@ public class LoginController extends AbstractController {
     private SysUserTokenService sysUserTokenService;
     @Autowired
     private LogLoginService logLoginService;
+    @Autowired
+    private ConfigComponent configComponent;
 
     /**
      * @param username
      * @param password
-     * @param callback
+     * @param returnUrl
      * @param request
      * @param session
      * @param response
@@ -64,10 +71,15 @@ public class LoginController extends AbstractController {
         if (empty(returnUrl)) {
             returnUrl = site.getDynamicPath();
         }
+        Map<String, String> config = configComponent.getConfigData(site.getId(), CONFIG_CODE_SITE);
+        String loginPath = config.get(CONFIG_LOGIN_PATH);
+        if (empty(loginPath)) {
+            loginPath = site.getDynamicPath();
+        }
         username = trim(username);
         password = trim(password);
         if (verifyNotEmpty("username", username, model) || verifyNotEmpty("password", password, model)) {
-            return REDIRECT + returnUrl;
+            return REDIRECT + loginPath;
         }
         SysUser user;
         if (verifyNotEMail(username)) {
@@ -83,7 +95,7 @@ public class LoginController extends AbstractController {
                 userId = user.getId();
             }
             logLoginService.save(new LogLogin(site.getId(), username, userId, ip, CHANNEL_WEB, false, getDate(), password));
-            return REDIRECT + returnUrl;
+            return REDIRECT + loginPath;
         }
         user.setPassword(null);
         setUserToSession(request.getSession(), user);
@@ -104,7 +116,6 @@ public class LoginController extends AbstractController {
     }
 
     /**
-     * @param callback
      * @param request
      * @param session
      * @param response
@@ -113,8 +124,8 @@ public class LoginController extends AbstractController {
      */
     @RequestMapping(value = "loginStatus")
     @ResponseBody
-    public ModelMap loginStatus(String callback, HttpServletRequest request, HttpSession session,
-            HttpServletResponse response, ModelMap model) {
+    public ModelMap loginStatus(HttpServletRequest request, HttpSession session, HttpServletResponse response,
+            ModelMap model) {
         SysUser user = getUserFromSession(session);
         if (null != user) {
             model.addAttribute("id", user.getId());
@@ -130,7 +141,7 @@ public class LoginController extends AbstractController {
     /**
      * @param entity
      * @param repassword
-     * @param callback
+     * @param returnUrl
      * @param request
      * @param session
      * @param response
@@ -174,18 +185,13 @@ public class LoginController extends AbstractController {
     }
 
     /**
-     * @param callback
      * @param request
      * @param response
      * @param model
      * @return
      */
-    @RequestMapping(value = "logout")
-    public String logout(String returnUrl, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-        SysSite site = getSite(request);
-        if (empty(returnUrl)) {
-            returnUrl = site.getDynamicPath();
-        }
+    @RequestMapping(value = "doLogout", method = RequestMethod.POST)
+    public void logout(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         Cookie userCookie = getCookie(request.getCookies(), getCookiesUser());
         if (null != userCookie && notEmpty(userCookie.getValue())) {
             String value = userCookie.getValue();
@@ -197,7 +203,6 @@ public class LoginController extends AbstractController {
             }
         }
         clearUserToSession(request.getContextPath(), request.getSession(), response);
-        return REDIRECT + returnUrl;
     }
 
     protected boolean verifyNotEnablie(SysUser user, ModelMap model) {

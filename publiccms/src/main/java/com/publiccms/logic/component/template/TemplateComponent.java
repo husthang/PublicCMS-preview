@@ -2,13 +2,13 @@ package com.publiccms.logic.component.template;
 
 import static com.publiccms.common.constants.CommonConstants.getDefaultPageBreakTag;
 import static com.publiccms.common.tools.ExtendUtils.getExtendMap;
-import static com.publiccms.logic.component.site.SiteComponent.CONTEXT_SITE;
-import static com.publiccms.logic.component.site.SiteComponent.expose;
+import static com.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
+import static com.publiccms.common.base.AbstractFreemarkerView.exposeSite;
 import static com.publiccms.logic.component.site.SiteComponent.getFullFileName;
 import static com.publiccms.logic.component.template.TemplateCacheComponent.CONTENT_CACHE;
-import static com.sanluan.common.tools.FreeMarkerUtils.makeFileByFile;
-import static com.sanluan.common.tools.FreeMarkerUtils.makeStringByFile;
-import static com.sanluan.common.tools.FreeMarkerUtils.makeStringByString;
+import static com.sanluan.common.tools.FreeMarkerUtils.generateFileByFile;
+import static com.sanluan.common.tools.FreeMarkerUtils.generateStringByFile;
+import static com.sanluan.common.tools.FreeMarkerUtils.generateStringByString;
 import static org.apache.commons.lang3.StringUtils.splitByWholeSeparator;
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
@@ -103,14 +103,14 @@ public class TemplateComponent extends Base implements Cache {
                 metadata = metadataComponent.getTemplateMetadata(siteComponent.getWebTemplateFilePath() + templatePath);
             }
             model.put("metadata", metadata);
-            expose(model, site);
-            filePath = makeStringByString(filePath, webConfiguration, model);
+            exposeSite(model, site);
+            filePath = generateStringByString(filePath, webConfiguration, model);
             model.put("url", site.getSitePath() + filePath);
             if (notEmpty(pageIndex) && 1 < pageIndex) {
                 int index = filePath.lastIndexOf('.');
                 filePath = filePath.substring(0, index) + '_' + pageIndex + filePath.substring(index, filePath.length());
             }
-            makeFileByFile(templatePath, siteComponent.getWebFilePath(site, filePath), webConfiguration, model);
+            generateFileByFile(templatePath, siteComponent.getWebFilePath(site, filePath), webConfiguration, model);
         }
         return filePath;
     }
@@ -146,7 +146,7 @@ public class TemplateComponent extends Base implements Cache {
                         model.put("category", category);
                         model.put(CONTEXT_SITE, site);
                         String url = site.getDynamicPath()
-                                + makeStringByString(category.getContentPath(), webConfiguration, model);
+                                + generateStringByString(category.getContentPath(), webConfiguration, model);
                         contentService.updateUrl(entity.getId(), url, false);
                     }
                     return true;
@@ -237,7 +237,7 @@ public class TemplateComponent extends Base implements Cache {
                     Map<String, Object> model = new HashMap<String, Object>();
                     model.put("category", entity);
                     model.put(CONTEXT_SITE, site);
-                    String url = site.getDynamicPath() + makeStringByString(entity.getPath(), webConfiguration, model);
+                    String url = site.getDynamicPath() + generateStringByString(entity.getPath(), webConfiguration, model);
                     categoryService.updateUrl(entity.getId(), url, false);
                 }
             } catch (IOException | TemplateException e) {
@@ -300,7 +300,7 @@ public class TemplateComponent extends Base implements Cache {
                     CmsPlaceService.STATUS_NORMAL, false, null, null, 1, pageSize));
         }
         model.put("metadata", metadata);
-        expose(model, site);
+        exposeSite(model, site);
     }
 
     /**
@@ -316,7 +316,7 @@ public class TemplateComponent extends Base implements Cache {
             Map<String, Object> model = new HashMap<String, Object>();
             exposePlace(site, templatePath, metadata, model);
             String placeTemplatePath = INCLUDE_DIRECTORY + templatePath;
-            makeFileByFile(getFullFileName(site, placeTemplatePath), siteComponent.getWebFilePath(site, placeTemplatePath),
+            generateFileByFile(getFullFileName(site, placeTemplatePath), siteComponent.getWebFilePath(site, placeTemplatePath),
                     webConfiguration, model);
         }
     }
@@ -348,7 +348,7 @@ public class TemplateComponent extends Base implements Cache {
         if (notEmpty(templatePath)) {
             Map<String, Object> model = new HashMap<String, Object>();
             exposePlace(site, templatePath, metadata, model);
-            makeStringByFile(writer, getFullFileName(site, INCLUDE_DIRECTORY + templatePath), webConfiguration, model);
+            generateStringByFile(writer, getFullFileName(site, INCLUDE_DIRECTORY + templatePath), webConfiguration, model);
         }
     }
 
@@ -376,8 +376,8 @@ public class TemplateComponent extends Base implements Cache {
             methods.setLength(methods.length() - 1);
         }
         adminConfiguration.setAllSharedVariables(new SimpleHash(freemarkerVariables, adminConfiguration.getObjectWrapper()));
-        log.info(new StringBuilder().append(methodMap.size()).append(" methods created:[").append(methods).append("]")
-                .toString());
+        log.info(
+                new StringBuilder().append(methodMap.size()).append(" methods created:[").append(methods).append("]").toString());
 
         webConfiguration = new Configuration(Configuration.getVersion());
         File webFile = new File(siteComponent.getWebTemplateFilePath());

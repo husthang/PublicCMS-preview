@@ -118,7 +118,7 @@ public class ZipUtils extends Base {
      * @throws IOException
      */
     public static void unzip(String zipFilePath) throws IOException {
-        unzip(zipFilePath, zipFilePath.substring(0, zipFilePath.lastIndexOf(".")), true);
+        unzip(zipFilePath, zipFilePath.substring(0, zipFilePath.lastIndexOf(DOT)), true);
     }
 
     /**

@@ -134,22 +134,22 @@ public class EmailComponent extends Base implements SiteCache, Config {
     public List<ExtendField> getExtendFieldList(SysSite site, Locale locale) {
         List<ExtendField> extendFieldList = new ArrayList<ExtendField>();
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_DEFAULTENCODING, INPUTTYPE_TEXT, true,
-                getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_SMTP_DEFAULTENCODING), null,
+                getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_DEFAULTENCODING), null,
                 DEFAULT_CHARSET_NAME));
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_HOST, INPUTTYPE_TEXT, true,
-                getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_SMTP_HOST), null, null));
+                getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_HOST), null, null));
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_PORT, INPUTTYPE_NUMBER, true,
-                getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_SMTP_PORT), null, String.valueOf(25)));
+                getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_PORT), null, String.valueOf(25)));
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_USERNAME, INPUTTYPE_TEXT, true,
-                getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_SMTP_USERNAME), null, null));
+                getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_USERNAME), null, null));
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_PASSWORD, INPUTTYPE_PASSWORD, true,
-                getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_SMTP_PASSWORD), null, null));
+                getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_PASSWORD), null, null));
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_TIMEOUT, INPUTTYPE_NUMBER, true,
-                getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_SMTP_TIMEOUT), null, String.valueOf(3000)));
+                getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_TIMEOUT), null, String.valueOf(3000)));
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_AUTH, INPUTTYPE_BOOLEAN, true,
-                getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_SMTP_AUTH), null, null));
+                getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_AUTH), null, null));
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_FROMADDRESS, INPUTTYPE_EMAIL, true,
-                getMessage(locale, CONFIG_CODE_DESCRIPTION + "." + CONFIG_EMAIL_SMTP_FROMADDRESS), null, null));
+                getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_FROMADDRESS), null, null));
         return extendFieldList;
     }
 

@@ -1,6 +1,6 @@
 package com.publiccms.views.method.tools;
 
-import static com.sanluan.common.tools.FreeMarkerUtils.makeStringByString;
+import static com.sanluan.common.tools.FreeMarkerUtils.generateStringByString;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class GetTemplateResultMethod extends BaseMethod {
         if (notEmpty(template)) {
             template = "<#attempt>" + template + "<#recover><pre>${.error!}</pre></#attempt>";
             try {
-                return makeStringByString(template, configuration, null);
+                return generateStringByString(template, configuration, null);
             } catch (Exception e) {
                 return e.getMessage();
             }
