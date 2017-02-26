@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Import;
 
 import config.initializer.AdminInitializer;
 import config.initializer.ApiInitializer;
+import config.initializer.InitializationInitializer;
 import config.initializer.ResourceInitializer;
 import config.initializer.WebInitializer;
 import config.spring.CmsRootConfig;
@@ -37,7 +38,6 @@ public class SprintBootApplication {
         TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
         factory.setPort(8080);// 设置端口
         factory.setDisplayName("PublicCMS");// 设置显示名称
-        factory.setContextPath("/publiccms");// 设置上下文路径
         factory.setSessionTimeout(20, TimeUnit.MINUTES);// 设置session超时时间
         return factory;
     }
@@ -70,6 +70,16 @@ public class SprintBootApplication {
             @Override
             public void onStartup(ServletContext servletContext) throws ServletException {
                 new ApiInitializer().onStartup(servletContext);
+            }
+        };
+    }
+
+    @Bean
+    public ServletContextInitializer installationInitializer() {
+        return new ServletContextInitializer() {
+            @Override
+            public void onStartup(ServletContext servletContext) throws ServletException {
+                new InitializationInitializer().onStartup(servletContext);
             }
         };
     }
