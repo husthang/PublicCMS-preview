@@ -12,6 +12,10 @@
 			<#assign parent=object/>
 		</@_content>
 	</#if>
+<@_contentList advanced=true status=status categoryId=categoryId containChild=containChild
+			modelId=modelId parentId=parentId emptyParent=true title=title userId=userId
+			startPublishDate=startPublishDate endPublishDate=endPublishDate
+			orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -95,10 +99,6 @@
 		</#if>
 		</ul>
 	</div>
-<@_contentList advanced=true status=status categoryId=categoryId containChild=containChild
-			modelId=modelId parentId=parentId emptyParent=true title=title userId=userId
-			startPublishDate=startPublishDate endPublishDate=endPublishDate
-			orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -184,6 +184,6 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_contentList>
 </div>
+</@_contentList>
 </#if>

@@ -1,3 +1,4 @@
+<@_contentList categoryId=categoryId modelId=modelId containChild=true title=title userId=userId startPublishDate=startPublishDate orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" action="cmsContent/push_content_list.html?contentId=${contentId}" onsubmit="return divSearch(this, 'push_content_list');" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -29,7 +30,6 @@
 	</form>
 </div>
 <div>
-<@_contentList categoryId=categoryId modelId=modelId containChild=true title=title userId=userId startPublishDate=startPublishDate orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="66" targetType="dialog" rel="push_content_list">
 		<thead>
 			<tr>
@@ -55,12 +55,12 @@
 				<@t.merge 'categoryIds' a.categoryId!/>
 				<@t.merge 'modelIds' a.modelId!/>
 			</#list>
-			
+
 			<@_sysUser ids=t.userIds!><#assign userMap=map!/></@_sysUser>
 			<@_sysUser ids=t.checkUserIds!><#assign checkUserMap=map!/></@_sysUser>
 			<@_category ids=t.categoryIds!><#assign categoryMap=map!/></@_category>
 			<@_model ids=t.modelIds!><#assign modelMap=map!/></@_model>
-			
+
 			<#list page.list as a>
 			<tr target="sid" rel="${a.id}">
 				<td>
@@ -106,5 +106,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/pageDialog.html"/>
-</@_contentList>
 </div>
+</@_contentList>

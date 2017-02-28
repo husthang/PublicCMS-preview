@@ -1,3 +1,5 @@
+<@_lotteryList startStartDate=startStartDate endStartDate=endStartDate startEndDate=startEndDate endEndDate=endEndDate
+            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -34,8 +36,6 @@
 			<li><a href="cmsLottery/delete.do?id={sid}" title="确定要删除该条记录吗?" target="ajaxTodo"><i class="icon-trash icon-large"></i> 删除</a></li>
 		</ul>
 	</div>
-<@_lotteryList startStartDate=startStartDate endStartDate=endStartDate startEndDate=startEndDate endEndDate=endEndDate 
-            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -69,5 +69,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_lotteryList>
 </div>
+</@_lotteryList>

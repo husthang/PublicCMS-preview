@@ -4,6 +4,7 @@
 	</@_sysMoudle>
 </#if>
 <#if !deep?has_content><#assign deep=0/><#else><#assign deep=deep?number/></#if>
+<@_sysMoudleList parentId=parentId	pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -33,7 +34,6 @@
 			<li><a href="sysMoudle/delete.do?id={sid}" title="确定要删除这条记录吗?" target="ajaxTodo"><i class="icon-trash icon-large"></i> 删除</a></li>
 		</ul>
 	</div>
-<@_sysMoudleList parentId=parentId	pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -50,7 +50,7 @@
 				<@t.merge 'moudleIds' a.parentId!/>
 			</#list>
 			<@_sysMoudle ids=t.moudleIds!><#assign moudleMap=map!/></@_sysMoudle>
-			
+
 			<#list page.list as a>
 			<tr target="sid" rel="${a.id}">
 				<td>${a.id!}</td>
@@ -68,5 +68,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_sysMoudleList>
 </div>
+</@_sysMoudleList>

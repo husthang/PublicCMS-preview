@@ -1,3 +1,4 @@
+<@_categoryList advanced=true parentId=categoryId pageIndex=pageNum count=numPerPage>
 <form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
 </form>
@@ -30,7 +31,6 @@
 		</#if>
 		</ul>
 	</div>
-<@_categoryList advanced=true parentId=categoryId pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="57">
 		<thead>
 			<tr>
@@ -78,5 +78,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_categoryList>
 </div>
+</@_categoryList>

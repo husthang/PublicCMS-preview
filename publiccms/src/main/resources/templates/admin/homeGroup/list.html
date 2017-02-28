@@ -1,3 +1,5 @@
+<@_homeGroupList siteId=siteId userId=userId
+            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -29,8 +31,6 @@
 		</#if>
 		</ul>
 	</div>
-<@_homeGroupList siteId=siteId userId=userId 
-            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -66,5 +66,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_homeGroupList>
 </div>
+</@_homeGroupList>

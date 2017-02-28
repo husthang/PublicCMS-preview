@@ -3,6 +3,9 @@
 		<#assign parent=object/>
 	</@_content>
 </#if>
+<@_contentList advanced=true status=status modelId=modelId parentId=parentId emptyParent=true title=title userId=admin.id
+			startPublishDate=startPublishDate endPublishDate=endPublishDate
+			orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -49,9 +52,6 @@
 			<li><a href="cmsContent/publish.do" title="确定要生成这些记录么?" target="selectedTodo" rel="ids"><i class="icon-file-text-alt icon-large"></i> 批量生成</a></li>
 		</ul>
 	</div>
-<@_contentList advanced=true status=status modelId=modelId parentId=parentId emptyParent=true title=title userId=admin.id 
-			startPublishDate=startPublishDate endPublishDate=endPublishDate 
-			orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -75,11 +75,11 @@
 				<@t.merge 'categoryIds' a.categoryId!/>
 				<@t.merge 'modelIds' a.modelId!/>
 			</#list>
-			
+
 			<@_sysUser ids=t.checkUserIds!><#assign checkUserMap=map!/></@_sysUser>
 			<@_category ids=t.categoryIds!><#assign categoryMap=map!/></@_category>
 			<@_model ids=t.modelIds!><#assign modelMap=map!/></@_model>
-			
+
 			<#list page.list as a>
 			<tr target="sid" rel="${a.id}">
 				<td><input name="ids" value="${a.id}" type="checkbox"></td>
@@ -117,5 +117,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_contentList>
 </div>
+</@_contentList>

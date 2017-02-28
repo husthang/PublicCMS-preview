@@ -1,3 +1,5 @@
+<@_wordList name=name advanced=true hidden=hidden startCreateDate=startCreateDate endCreateDate=endCreateDate
+            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -41,8 +43,6 @@
 			<li><a href="cmsWord/delete.do?id={sid}" title="确定要删除该条记录吗?" target="ajaxTodo"><i class="icon-trash icon-large"></i> 删除</a></li>
 		</ul>
 	</div>
-<@_wordList name=name advanced=true hidden=hidden startCreateDate=startCreateDate endCreateDate=endCreateDate 
-            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -74,5 +74,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_wordList>
 </div>
+</@_wordList>

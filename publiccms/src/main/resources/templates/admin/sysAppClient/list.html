@@ -1,3 +1,7 @@
+<@_sysAppClientList channel=channel advanced=true
+            userId=userId allowPush=allowPush startLastLoginDate=startLastLoginDate endLastLoginDate=endLastLoginDate
+            startCreateDate=startCreateDate endCreateDate=endCreateDate disabled=disabled
+            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -42,10 +46,6 @@
 			<li><a href="sysAppClient/disable.do?id={sid}" title="确定要禁用该客户端吗?" target="ajaxTodo"><i class="icon-ban-circle icon-large"></i> 禁用</a></li>
 		</ul>
 	</div>
-<@_sysAppClientList channel=channel advanced=true 
-            userId=userId allowPush=allowPush startLastLoginDate=startLastLoginDate endLastLoginDate=endLastLoginDate 
-            startCreateDate=startCreateDate endCreateDate=endCreateDate disabled=disabled 
-            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -83,5 +83,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_sysAppClientList>
 </div>
+</@_sysAppClientList>

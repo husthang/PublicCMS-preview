@@ -1,4 +1,6 @@
 <@_placeMetadata path=path><#assign a=object/></@_placeMetadata>
+<@_placeList path=path advanced=true status=status userId=userId startPublishDate=startPublishDate endPublishDate=endPublishDate
+	orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -53,8 +55,6 @@
 			<li><a href="cmsPlace/clear.do?path=${(path?url!)}" title="确定要清空这些记录么?" target="ajaxTodo"><i class="icon-wrench icon-large"></i> 全部清空</a></li>
 		</ul>
 	</div>
-<@_placeList path=path advanced=true status=status userId=userId startPublishDate=startPublishDate endPublishDate=endPublishDate 
-	orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -73,7 +73,7 @@
 	<#list page.list as a>
 		<@t.merge 'userIds' a.userId!/>
 	</#list>
-	
+
 	<@_sysUser ids=t.userIds!><#assign userMap=map!/></@_sysUser>
 	<#list page.list as a>
 			<tr target="sid" rel="${a.id}">
@@ -97,5 +97,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_placeList>
 </div>
+</@_placeList>

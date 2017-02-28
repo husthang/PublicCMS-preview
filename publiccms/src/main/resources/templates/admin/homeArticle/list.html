@@ -1,3 +1,6 @@
+<@_homeArticleList directoryId=directoryId
+            userId=userId disabled=disabled
+            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -29,9 +32,6 @@
 		</#if>
 		</ul>
 	</div>
-<@_homeArticleList directoryId=directoryId 
-            userId=userId disabled=disabled 
-            orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -53,7 +53,7 @@
 			</#list>
 			<@_sysUser ids=t.userIds!><#assign userMap=map!/></@_sysUser>
 			<@_homeDirectory ids=t.directoryIds!><#assign directoryMap=map!/></@_homeDirectory>
-			
+
 			<#list page.list as a>
 			<tr target="sid" rel="${a.id}">
 				<td>${a.id!}</td>
@@ -71,5 +71,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_homeArticleList>
 </div>
+</@_homeArticleList>

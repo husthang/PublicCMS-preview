@@ -1,3 +1,4 @@
+<@_logTaskList taskId=taskId startCreateDate=startCreateDate endCreateDate=endCreateDate success=success pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -40,7 +41,6 @@
 			<li><a href="logTask/delete.do" title="确定要删除这些记录么?" target="selectedTodo" rel="ids"><i class="icon-trash icon-large"></i> 批量删除</a></li>
 		</ul>
 	</div>
-<@_logTaskList taskId=taskId startCreateDate=startCreateDate endCreateDate=endCreateDate success=success pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -78,5 +78,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_logTaskList>
 </div>
+</@_logTaskList>

@@ -1,3 +1,7 @@
+<@_sysUserList startRegisteredDate=startRegisteredDate endRegisteredDate=endRegisteredDate startLastLoginDate=startLastLoginDate endLastLoginDate=endLastLoginDate
+			superuserAccess=superuserAccess emailChecked=emailChecked name=name
+			advanced=true disabled=disabled
+			orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -54,10 +58,6 @@
 			<li><a href="sysUser/disable.do?id={sid}" title="确定要禁用该用户吗?" target="ajaxTodo"><i class="icon-ban-circle icon-large"></i> 禁用</a></li>
 		</ul>
 	</div>
-<@_sysUserList startRegisteredDate=startRegisteredDate endRegisteredDate=endRegisteredDate startLastLoginDate=startLastLoginDate endLastLoginDate=endLastLoginDate 
-			superuserAccess=superuserAccess emailChecked=emailChecked name=name 
-			advanced=true disabled=disabled  
-			orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -105,5 +105,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_sysUserList>
 </div>
+</@_sysUserList>

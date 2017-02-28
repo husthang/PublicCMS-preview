@@ -3,6 +3,8 @@
 		<#assign parent=object/>
 	</@_sysDept>
 </#if>
+<@_sysDeptList parentId=parentId userId=userId name=name
+			pageIndex=pageNum count=numPerPage>
 <div class="pageHeader">
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<#include "../include_page/paramters.html"/>
@@ -45,8 +47,6 @@
 			<li><a href="sysDept/delete.do?id={sid}" title="确定要删除该条记录吗?" target="ajaxTodo"><i class="icon-trash icon-large"></i> 删除</a></li>
 		</ul>
 	</div>
-<@_sysDeptList parentId=parentId userId=userId name=name 
-			pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
@@ -65,7 +65,7 @@
 				<@t.merge 'userIds' a.userId!/>
 			</#list>
 			<@_sysUser ids=t.userIds!><#assign userMap=map!/></@_sysUser>
-			
+
 			<#list page.list as a>
 			<tr target="sid" rel="${a.id}">
 				<td>${a.id!}</td>
@@ -83,5 +83,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_sysDeptList>
 </div>
+</@_sysDeptList>

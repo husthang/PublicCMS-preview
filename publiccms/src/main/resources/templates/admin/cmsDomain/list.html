@@ -1,3 +1,4 @@
+<@_sysDomainList pageIndex=pageNum count=numPerPage>
 <form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 	<#include "../include_page/paramters.html"/>
 </form>
@@ -7,7 +8,6 @@
 			<li><a href="cmsDomain/add.html?id={sid}" target="navTab" rel="cmsDomain/edit"><i class="icon-edit icon-large"></i> 修改动态域名</a></li>
 		</ul>
 	</div>
-<@_sysDomainList pageIndex=pageNum count=numPerPage>
 	<table class="list" width="100%" layoutH="57">
 		<thead>
 			<tr>
@@ -25,5 +25,5 @@
 		</tbody>
 	</table>
 	<#include "../include_page/page.html"/>
-</@_sysDomainList>
 </div>
+</@_sysDomainList>
