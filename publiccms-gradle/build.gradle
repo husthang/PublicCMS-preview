@@ -106,7 +106,7 @@ project(':publiccms') {
 	        "cglib:cglib-nodep:3.2.4",
 
 	        // http://mvnrepository.com/artifact/org.apache.ant/ant
-	        "org.apache.ant:ant:1.10.1",
+	        "org.apache.ant:ant:1.9.9",
 
 	        // http://mvnrepository.com/artifact/org.quartz-scheduler/quartz
 	        "org.quartz-scheduler:quartz:2.2.3"
@@ -130,7 +130,8 @@ project(':publiccms') {
 		)
 		compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
 	}
-	
+	/**
+	 delete this line for spring boot */
 	war {
 		copy{
 			from 'src/main/java/config/boot'
@@ -145,7 +146,8 @@ project(':publiccms') {
 	    	}
 	    }
 	}
-
+	/** delete this line for spring boot
+	 */
 	eclipse {
 	    wtp {
 	        facet {
