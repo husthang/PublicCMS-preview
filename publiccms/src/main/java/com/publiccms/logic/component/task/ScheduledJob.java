@@ -31,11 +31,11 @@ import freemarker.template.TemplateException;
 public class ScheduledJob extends QuartzJobBean {
     private static String[] ignoreProperties = new String[] { "id", "begintime", "taskId", "siteId" };
 
-    private SysTaskService sysTaskService;
-    private LogTaskService logTaskService;
-    private SysSiteService siteService;
-    private ScheduledTask scheduledTask;
-    private TemplateComponent templateComponent;
+    private static SysTaskService sysTaskService;
+    private static LogTaskService logTaskService;
+    private static SysSiteService siteService;
+    private static ScheduledTask scheduledTask;
+    private static TemplateComponent templateComponent;
 
     /*
      * (non-Javadoc)
@@ -75,24 +75,24 @@ public class ScheduledJob extends QuartzJobBean {
         }
     }
 
-    public void setSysTaskService(SysTaskService sysTaskService) {
-        this.sysTaskService = sysTaskService;
+    public static void setSysTaskService(SysTaskService sysTaskService) {
+        ScheduledJob.sysTaskService = sysTaskService;
     }
 
-    public void setLogTaskService(LogTaskService logTaskService) {
-        this.logTaskService = logTaskService;
+    public static void setLogTaskService(LogTaskService logTaskService) {
+        ScheduledJob.logTaskService = logTaskService;
     }
 
-    public void setSiteService(SysSiteService siteService) {
-        this.siteService = siteService;
+    public static void setSiteService(SysSiteService siteService) {
+        ScheduledJob.siteService = siteService;
     }
 
-    public void setScheduledTask(ScheduledTask scheduledTask) {
-        this.scheduledTask = scheduledTask;
+    public static void setScheduledTask(ScheduledTask scheduledTask) {
+        ScheduledJob.scheduledTask = scheduledTask;
     }
 
-    public void setTemplateComponent(TemplateComponent templateComponent) {
-        this.templateComponent = templateComponent;
+    public static void setTemplateComponent(TemplateComponent templateComponent) {
+        ScheduledJob.templateComponent = templateComponent;
     }
 
 }

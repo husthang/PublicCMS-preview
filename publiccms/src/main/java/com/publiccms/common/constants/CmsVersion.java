@@ -11,6 +11,10 @@ public class CmsVersion {
         return "V2016.0828";
     }
 
+    public static boolean isPreview() {
+        return true;
+    }
+
     public static final String getClusterId() {
         return clusterId;
     }

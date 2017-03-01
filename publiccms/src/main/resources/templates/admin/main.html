@@ -108,9 +108,12 @@
 	</@_sysAuthorized>
 	<@_masterSite>
 		<script>
-			$.getJSON('http://cms.publiccms.com/api/directive/version?callback=?',function(data){
+			$.getJSON('//cms.publiccms.com/api/directive/version?callback=?',function(data){
 				if($('#cmsVersion a').eq(0).text()!==data.cms){
+					<#if preview>$('#cmsVersion a').eq(0).append('-preview');</#if>
 					$('#cmsVersion a').eq(0).append('[<em style="color:red">有新版本</em>]');
+				}else{
+					<#if preview>$('#cmsVersion a').eq(0).append('-preview');</#if>
 				}
 			});
 		</script>
