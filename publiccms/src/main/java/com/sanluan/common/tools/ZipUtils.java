@@ -127,7 +127,7 @@ public class ZipUtils extends Base {
      * @throws IOException
      */
     public static void unzip(String zipFilePath, String targetPath, boolean overwrite) throws IOException {
-        ZipFile zipFile = new ZipFile(zipFilePath);
+        ZipFile zipFile = new ZipFile(zipFilePath, DEFAULT_CHARSET_NAME);
         Enumeration<ZipEntry> entryEnum = zipFile.getEntries();
         if (null != entryEnum) {
             while (entryEnum.hasMoreElements()) {
