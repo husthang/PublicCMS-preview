@@ -90,3 +90,7 @@ BUG修复:
 1. 需要以HTML输出的字段需要加 ?no_esc
 1. 取消所有?html内置函数调用
 1. 将数据目录中resource目录下所有文件移动到web目录下，将所有site.resourcePath改为site.sitePath
+
+鸣谢：
+
+感谢 Alex.MAO 提供的BUG：添加域名bug，分类修改页面选择内容路径bug
