@@ -1,7 +1,7 @@
 package config.initializer;
 
+import static com.publiccms.common.initialization.InstallServlet.STEP_CHECKDATABASE;
 import static com.publiccms.common.tools.DatabaseUtils.getDataSource;
-import static com.publiccms.initialization.InstallServlet.STEP_CHECKDATABASE;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
 
 import java.beans.PropertyVetoException;
@@ -18,7 +18,7 @@ import org.springframework.web.WebApplicationInitializer;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.publiccms.common.constants.CmsVersion;
-import com.publiccms.initialization.InstallServlet;
+import com.publiccms.common.initialization.InstallServlet;
 import com.sanluan.common.proxy.UsernamePasswordAuthenticator;
 
 /**

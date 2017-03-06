@@ -1,4 +1,4 @@
-package com.publiccms.initialization.upgrade;
+package com.publiccms.common.initialization.upgrade;
 
 import static com.publiccms.logic.component.site.SiteComponent.MODEL_FILE;
 import static com.publiccms.logic.component.site.SiteComponent.SITE_PATH_PREFIX;
@@ -63,8 +63,9 @@ public class CmsUpgrader extends Base implements Json {
     }
 
     private void updateModelToFile() throws SQLException {
-        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement();) {
-            ResultSet rs = statement.executeQuery("select * from cms_model");
+        try (Connection connection = dataSource.getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery("select * from cms_model");) {
             while (rs.next()) {
                 CmsModel entity = new CmsModel();
                 String filePath = properties.getProperty("cms.filePath") + SITE_PATH_PREFIX + rs.getString("site_id") + SEPARATOR
@@ -98,6 +99,7 @@ public class CmsUpgrader extends Base implements Json {
                                 extendFieldRs.getString("description"), extendFieldRs.getString("default_value"));
                         extendList.add(e);
                     }
+                    extendFieldRs.close();
                     entity.setExtendList(extendList);
                 }
                 modelMap.put(entity.getId(), entity);

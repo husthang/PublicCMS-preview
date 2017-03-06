@@ -1,4 +1,4 @@
-package com.publiccms.initialization;
+package com.publiccms.common.initialization;
 
 import static com.publiccms.common.tools.DatabaseUtils.getDataSource;
 import static config.initializer.InitializationInitializer.CMS_CONFIG_FILE;
@@ -27,7 +27,7 @@ import org.apache.ibatis.jdbc.ScriptRunner;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.publiccms.common.constants.CmsVersion;
 import com.publiccms.common.datasource.CmsDataSource;
-import com.publiccms.initialization.upgrade.CmsUpgrader;
+import com.publiccms.common.initialization.upgrade.CmsUpgrader;
 import com.sanluan.common.base.Base;
 
 import freemarker.template.Template;
