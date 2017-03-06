@@ -1,6 +1,8 @@
 package com.publiccms.common.base;
 
 import static com.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
+import static org.apache.commons.lang3.ArrayUtils.contains;
+import static org.apache.commons.lang3.StringUtils.split;
 
 import java.io.IOException;
 
@@ -40,18 +42,16 @@ public abstract class AbstractTemplateDirective extends BaseTemplateDirective {
             String callback, HttpServletResponse response) throws IOException, Exception {
         HttpParameterHandler handler = new HttpParameterHandler(httpMessageConverter, mediaType, request, callback, response);
         SysApp app = null;
-        SysUser user = null;
-        if (needAppToken() && null == (app = getApp(handler))) {
-            handler.put("error", "needAppToken").render();
-        } else if (needUserToken() && null == (user = getUser(handler))) {
+        if (needAppToken() && (null == (app = getApp(handler)) || empty(app.getAuthorizedApis())
+                || !contains(split(app.getAuthorizedApis(), COMMA_DELIMITED), getName()))) {
+            if (null == app) {
+                handler.put("error", "needAppToken").render();
+            } else {
+                handler.put("error", "unAuthorized").render();
+            }
+        } else if (needUserToken() && null == getUser(handler)) {
             handler.put("error", "needLogin").render();
         } else {
-            if (null != app) {
-                request.getParameterMap().put("appId", new String[] { String.valueOf(app.getId()) });
-            }
-            if (null != user) {
-                request.getParameterMap().put("userId", new String[] { String.valueOf(user.getId()) });
-            }
             execute(handler);
             handler.render();
         }

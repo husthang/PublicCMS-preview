@@ -1,6 +1,8 @@
 package com.publiccms.common.base;
 
 import static com.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
+import static org.apache.commons.lang3.ArrayUtils.contains;
+import static org.apache.commons.lang3.StringUtils.split;
 
 import java.io.IOException;
 
@@ -38,8 +40,9 @@ public abstract class AbstractTaskDirective extends BaseTemplateDirective {
         SysApp app = null;
         if (null == (app = getApp(handler))) {
             handler.put("error", "needAppToken").render();
+        } else if (empty(app.getAuthorizedApis()) || !contains(split(app.getAuthorizedApis(), COMMA_DELIMITED), getName())) {
+            handler.put("error", "unAuthorized").render();
         } else {
-            request.getParameterMap().put("appId", new String[] { String.valueOf(app.getId()) });
             execute(handler);
             handler.render();
         }

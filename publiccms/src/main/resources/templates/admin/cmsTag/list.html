@@ -42,7 +42,6 @@
 				<th>名称</th>
 				<th>标签分类</th>
 				<th orderField="searchCount" class="<#if orderField??&&'searchCount'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">热度</th>
-				<th>内容数</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -59,7 +58,6 @@
 				<td>${(a.name)!}</td>
 				<td>${(typeMap[a.typeId?string].name)!}</td>
 				<td>${a.searchCount!}</td>
-				<td><@_contentTagList tagId=a.id>${page.totalCount}</@_contentTagList></td>
 				<td>
 					<a href="cmsTag/add.html?id=${a.id}" target="navTab" rel="cmsTag/edit">修改</a>
 					<a href="cmsTag/delete.do?ids=${a.id}" title="确定要删除这条记录吗?" target="ajaxTodo">删除</a>

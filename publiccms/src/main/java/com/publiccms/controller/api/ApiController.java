@@ -1,11 +1,8 @@
 package com.publiccms.controller.api;
 
-import static org.springframework.util.StringUtils.uncapitalize;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -21,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.publiccms.common.base.AbstractAppDirective;
 import com.publiccms.common.base.AbstractController;
-import com.publiccms.logic.component.template.TemplateComponent;
+import com.publiccms.logic.component.site.DirectiveComponent;
 import com.sanluan.common.handler.HttpParameterHandler;
 
 /**
@@ -31,7 +28,7 @@ import com.sanluan.common.handler.HttpParameterHandler;
  */
 @Controller
 public class ApiController extends AbstractController {
-    private Map<String, AbstractAppDirective> appMap = new LinkedHashMap<String, AbstractAppDirective>();
+    private Map<String, AbstractAppDirective> appDirectiveMap;
     private List<Map<String, String>> appList = new ArrayList<Map<String, String>>();
     public final static String INTERFACE_NOT_FOUND = "interfaceNotFound";
     public static final Map<String, String> NOT_FOUND_MAP = new HashMap<String, String>() {
@@ -64,7 +61,7 @@ public class ApiController extends AbstractController {
     @RequestMapping("{api}")
     public void api(@PathVariable String api, String callback, HttpServletRequest request, HttpServletResponse response) {
         try {
-            AbstractAppDirective directive = appMap.get(api);
+            AbstractAppDirective directive = directiveComponent.getAppDirectiveMap().get(api);
             if (null != directive) {
                 directive.execute(mappingJackson2HttpMessageConverter, jsonMediaType, request, callback, response);
             } else {
@@ -96,26 +93,17 @@ public class ApiController extends AbstractController {
      *            接口初始化
      */
     @Autowired(required = false)
-    public void setAppMap(Map<String, AbstractAppDirective> directiveMap) {
-        StringBuilder directives = new StringBuilder();
-        int size = 0;
-        for (Entry<String, AbstractAppDirective> entry : directiveMap.entrySet()) {
-            String directiveName = uncapitalize(entry.getKey().replaceAll(templateComponent.getDirectiveRemoveRegex(), BLANK));
+    public void init(Map<String, AbstractAppDirective> directiveMap) {
+        appDirectiveMap = directiveComponent.getAppDirectiveMap();
+        for (Entry<String, AbstractAppDirective> entry : appDirectiveMap.entrySet()) {
             Map<String, String> map = new HashMap<String, String>();
-            map.put("name", directiveName);
+            map.put("name", entry.getKey());
             map.put("needAppToken", String.valueOf(entry.getValue().needAppToken()));
             map.put("needUserToken", String.valueOf(entry.getValue().needUserToken()));
             appList.add(map);
-            appMap.put(directiveName, entry.getValue());
-            directives.append(directiveName).append(BLANK_SPACE).append(COMMA_DELIMITED);
-            size++;
         }
-        if (directives.length() > 0) {
-            directives.setLength(directives.length() - 1);
-        }
-        log.info(new StringBuilder().append(size).append(" app directives created:[").append(directives).append("];").toString());
     }
 
     @Autowired
-    private TemplateComponent templateComponent;
+    private DirectiveComponent directiveComponent;
 }

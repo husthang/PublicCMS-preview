@@ -1,8 +1,7 @@
 package com.publiccms.controller.api;
 
-import static com.publiccms.controller.api.ApiController.INTERFACE_NOT_FOUND;
 import static com.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
-import static org.springframework.util.StringUtils.uncapitalize;
+import static com.publiccms.controller.api.ApiController.INTERFACE_NOT_FOUND;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.publiccms.common.base.AbstractController;
 import com.publiccms.common.base.AbstractTaskDirective;
 import com.publiccms.common.base.AbstractTemplateDirective;
-import com.publiccms.logic.component.template.TemplateComponent;
+import com.publiccms.logic.component.site.DirectiveComponent;
 import com.sanluan.common.directive.BaseTemplateDirective;
 import com.sanluan.common.directive.HttpDirective;
 import com.sanluan.common.handler.HttpParameterHandler;
@@ -83,28 +82,22 @@ public class DirectiveController extends AbstractController {
      *            接口初始化
      */
     @Autowired
-    public void setActionMap(Map<String, AbstractTemplateDirective> directiveMap,
-            Map<String, AbstractTaskDirective> taskDirectiveMap) {
-        for (Entry<String, AbstractTemplateDirective> entry : directiveMap.entrySet()) {
-            String directiveName = uncapitalize(entry.getKey().replaceAll(templateComponent.getDirectiveRemoveRegex(), BLANK));
-            actionMap.put(directiveName, entry.getValue());
+    public void init(DirectiveComponent directiveComponent) {
+        actionMap.putAll(directiveComponent.getTemplateDirectiveMap());
+        for (Entry<String, AbstractTemplateDirective> entry : directiveComponent.getTemplateDirectiveMap().entrySet()) {
             Map<String, String> map = new HashMap<String, String>();
-            map.put("name", directiveName);
+            map.put("name", entry.getKey());
             map.put("needAppToken", String.valueOf(entry.getValue().needAppToken()));
             map.put("needUserToken", String.valueOf(entry.getValue().needUserToken()));
             actionList.add(map);
         }
-        for (Entry<String, AbstractTaskDirective> entry : taskDirectiveMap.entrySet()) {
-            String directiveName = uncapitalize(entry.getKey().replaceAll(templateComponent.getDirectiveRemoveRegex(), BLANK));
-            actionMap.put(directiveName, entry.getValue());
+        actionMap.putAll(directiveComponent.getTaskDirectiveMap());
+        for (Entry<String, AbstractTaskDirective> entry : directiveComponent.getTaskDirectiveMap().entrySet()) {
             Map<String, String> map = new HashMap<String, String>();
-            map.put("name", directiveName);
+            map.put("name", entry.getKey());
             map.put("needAppToken", String.valueOf(true));
             map.put("needUserToken", String.valueOf(false));
             actionList.add(map);
         }
     }
-
-    @Autowired
-    private TemplateComponent templateComponent;
 }

@@ -28,9 +28,9 @@
 				<li class="line">line</li>
 			</#if>
 			<#if deep lte 3>
-				<li><a href="sysMoudle/add.html?parentId=${parentId!}&deep=${deep}" target="navTab" rel="sysMoudle/add"><i class="icon-plus-sign-alt icon-large"></i> 添加<@t.m 'button.moudle.add.'+deep/></a></li>
+				<li><a href="sysMoudle/add.html?parentId=${parentId!}&deep=${deep}" target="navTab" rel="sysMoudle/add"><i class="icon-plus-sign-alt icon-large"></i> 添加模块</a></li>
 			</#if>
-			<li><a href="sysMoudle/add.html?id={sid}&deep=${deep}" target="navTab" rel="sysMoudle/edit"><i class="icon-edit icon-large"></i> 修改<@t.m 'button.moudle.add.'+deep/></a></li>
+			<li><a href="sysMoudle/add.html?id={sid}&deep=${deep}" target="navTab" rel="sysMoudle/edit"><i class="icon-edit icon-large"></i> 修改模块</a></li>
 			<li><a href="sysMoudle/delete.do?id={sid}" title="确定要删除这条记录吗?" target="ajaxTodo"><i class="icon-trash icon-large"></i> 删除</a></li>
 		</ul>
 	</div>
@@ -39,6 +39,7 @@
 			<tr>
 				<th width="30">ID</th>
 				<th>名称</th>
+				<th>是否菜单</th>
 				<th>地址</th>
 				<th>父模块</th>
 				<th orderField="sort" class="<#if orderField??&&'sort'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">排序</th>
@@ -54,7 +55,8 @@
 			<#list page.list as a>
 			<tr target="sid" rel="${a.id}">
 				<td>${a.id!}</td>
-				<td>${(a.name)!}</td>
+				<td>${a.name!}</td>
+				<td>${a.menu?then('菜单','仅权限')}</td>
 				<td>${a.url!}</td>
 				<td>${(moudleMap[a.parentId?string].name)!}</td>
 				<td>${a.sort!}</td>

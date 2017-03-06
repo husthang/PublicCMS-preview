@@ -1,4 +1,4 @@
-package com.publiccms.logic.component.file;
+package com.publiccms.logic.component.site;
 
 import static com.publiccms.logic.component.template.TemplateComponent.INCLUDE_DIRECTORY;
 import static org.apache.commons.io.FileUtils.deleteQuietly;

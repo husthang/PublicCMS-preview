@@ -11,12 +11,15 @@ import com.sanluan.common.handler.QueryHandler;
 
 @Repository
 public class SysMoudleDao extends BaseDao<SysMoudle> {
-    public PageHandler getPage(Integer parentId, Integer pageIndex, Integer pageSize) {
+    public PageHandler getPage(Integer parentId, Boolean menu, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysMoudle bean");
         if (notEmpty(parentId)) {
             queryHandler.condition("bean.parentId = :parentId").setParameter("parentId", parentId);
         } else {
             queryHandler.condition("bean.parentId is null");
+        }
+        if (notEmpty(menu)) {
+            queryHandler.condition("bean.menu = :menu").setParameter("menu", menu);
         }
         queryHandler.order("bean.sort asc,bean.id asc");
         return getPage(queryHandler, pageIndex, pageSize);

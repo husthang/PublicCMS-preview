@@ -33,7 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.publiccms.common.base.AbstractController;
 import com.publiccms.entities.log.LogUpload;
 import com.publiccms.entities.sys.SysSite;
-import com.publiccms.logic.component.file.FileComponent;
+import com.publiccms.logic.component.site.FileComponent;
 import com.publiccms.logic.service.log.LogUploadService;
 import com.publiccms.views.pojo.UeditorConfig;
 import com.sanluan.common.handler.PageHandler;

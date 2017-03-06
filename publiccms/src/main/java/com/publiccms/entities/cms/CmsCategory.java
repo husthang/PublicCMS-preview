@@ -54,6 +54,8 @@ public class CmsCategory implements java.io.Serializable, Static {
     private String url;
     @GeneratorColumn(title = "内容路径")
     private String contentPath;
+    @GeneratorColumn(title = "包含子分类内容")
+    private boolean containChild;
     @GeneratorColumn(title = "每页数据")
     private Integer pageSize;
     @GeneratorColumn(title = "允许投稿", condition = true)
@@ -72,13 +74,14 @@ public class CmsCategory implements java.io.Serializable, Static {
     public CmsCategory() {
     }
 
-    public CmsCategory(int siteId, String name, String path, boolean onlyUrl, boolean hasStatic, 
+    public CmsCategory(int siteId, String name, String path, boolean onlyUrl, boolean hasStatic, boolean containChild,
             boolean allowContribute, int sort, boolean hidden, boolean disabled, int contents) {
         this.siteId = siteId;
         this.name = name;
         this.path = path;
         this.onlyUrl = onlyUrl;
         this.hasStatic = hasStatic;
+        this.containChild = containChild;
         this.allowContribute = allowContribute;
         this.sort = sort;
         this.hidden = hidden;
@@ -87,7 +90,7 @@ public class CmsCategory implements java.io.Serializable, Static {
     }
 
     public CmsCategory(int siteId, String name, Integer parentId, Integer typeId, String childIds, String tagTypeIds,
-            String code, String templatePath, String path, boolean onlyUrl, boolean hasStatic, String url, String contentPath,
+            String code, String templatePath, String path, boolean onlyUrl, boolean hasStatic, String url, String contentPath, boolean containChild,
             Integer pageSize, boolean allowContribute, int sort, boolean hidden, boolean disabled, int contents, Integer extendId) {
         this.siteId = siteId;
         this.name = name;
@@ -102,6 +105,7 @@ public class CmsCategory implements java.io.Serializable, Static {
         this.hasStatic = hasStatic;
         this.url = url;
         this.contentPath = contentPath;
+        this.containChild = containChild;
         this.pageSize = pageSize;
         this.allowContribute = allowContribute;
         this.sort = sort;
@@ -238,6 +242,15 @@ public class CmsCategory implements java.io.Serializable, Static {
 
     public void setContentPath(String contentPath) {
         this.contentPath = contentPath;
+    }
+
+    @Column(name = "contain_child", nullable = false)
+    public boolean isContainChild() {
+        return this.containChild;
+    }
+
+    public void setContainChild(boolean containChild) {
+        this.containChild = containChild;
     }
 
     @Column(name = "page_size")

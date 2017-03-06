@@ -17,7 +17,7 @@ public class SysMoudleListDirective extends AbstractTemplateDirective {
 
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
-        PageHandler page = service.getPage(handler.getInteger("parentId"), 
+        PageHandler page = service.getPage(handler.getInteger("parentId"), handler.getBoolean("menu", true),
                 handler.getInteger("pageIndex", 1), handler.getInteger("count", 20));
         handler.put("page", page).render();
     }

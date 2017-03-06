@@ -1,5 +1,8 @@
 package com.publiccms.common.base;
 
+import static org.apache.commons.lang3.ArrayUtils.contains;
+import static org.apache.commons.lang3.StringUtils.split;
+
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +33,25 @@ public abstract class AbstractAppDirective extends BaseHttpDirective {
         return siteComponent.getSite(request.getServerName());
     }
 
+    @Override
+    public void execute(RenderHandler handler) throws IOException, Exception {
+        SysApp app = null;
+        SysUser user = null;
+        if (needAppToken() && (null == (app = getApp(handler)) || empty(app.getAuthorizedApis())
+                || !contains(split(app.getAuthorizedApis(), COMMA_DELIMITED), getName()))) {
+            if (null == app) {
+                handler.put("error", "needAppToken").render();
+            } else {
+                handler.put("error", "unAuthorized").render();
+            }
+        } else if (needUserToken() && null == (user = getUser(handler))) {
+            handler.put("error", "needLogin").render();
+        } else {
+            execute(handler, app, user);
+            handler.render();
+        }
+    }
+
     protected SysApp getApp(RenderHandler handler) throws Exception {
         SysAppToken appToken = appTokenService.getEntity(handler.getString("appToken"));
         if (null != appToken) {
@@ -48,20 +70,6 @@ public abstract class AbstractAppDirective extends BaseHttpDirective {
             }
         }
         return null;
-    }
-
-    @Override
-    public void execute(RenderHandler handler) throws IOException, Exception {
-        SysApp app = null;
-        SysUser user = null;
-        if (needAppToken() && null == (app = getApp(handler))) {
-            handler.put("error", "needAppToken").render();
-        } else if (needUserToken() && null == (user = getUser(handler))) {
-            handler.put("error", "needLogin").render();
-        } else {
-            execute(handler, app, user);
-            handler.render();
-        }
     }
 
     public abstract void execute(RenderHandler handler, SysApp app, SysUser user) throws IOException, Exception;

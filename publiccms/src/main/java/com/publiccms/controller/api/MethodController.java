@@ -1,7 +1,6 @@
 package com.publiccms.controller.api;
 
 import static com.publiccms.controller.api.ApiController.NOT_FOUND_MAP;
-import static org.springframework.util.StringUtils.uncapitalize;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.publiccms.common.base.AbstractController;
 import com.publiccms.entities.sys.SysApp;
 import com.publiccms.entities.sys.SysAppToken;
+import com.publiccms.logic.component.site.DirectiveComponent;
 import com.publiccms.logic.component.template.TemplateComponent;
 import com.publiccms.logic.service.sys.SysAppService;
 import com.publiccms.logic.service.sys.SysAppTokenService;
@@ -36,7 +36,7 @@ import freemarker.template.TemplateModelException;
  */
 @RestController
 public class MethodController extends AbstractController {
-    private Map<String, BaseMethod> methodMap = new HashMap<String, BaseMethod>();
+    private Map<String, BaseMethod> methodMap;
     private List<Map<String, String>> methodList = new ArrayList<Map<String, String>>();
     private ObjectWrapper objectWrapper;
 
@@ -50,8 +50,7 @@ public class MethodController extends AbstractController {
      * @return
      */
     @RequestMapping("method/{name}")
-    public Object method(@PathVariable String name, String appToken, HttpServletRequest request,
-            HttpServletResponse response) {
+    public Object method(@PathVariable String name, String appToken, HttpServletRequest request, HttpServletResponse response) {
         BaseMethod method = methodMap.get(name);
         if (null != method) {
             try {
@@ -106,13 +105,12 @@ public class MethodController extends AbstractController {
      *            接口初始化
      */
     @Autowired
-    public void setActionMap(Map<String, BaseMethod> map) {
-        for (Entry<String, BaseMethod> entry : map.entrySet()) {
+    public void init(DirectiveComponent directiveComponent) {
+        methodMap = directiveComponent.getMethodMap();
+        for (Entry<String, BaseMethod> entry : methodMap.entrySet()) {
             if (entry.getValue().httpEnabled()) {
-                String methodName = uncapitalize(entry.getKey().replaceAll(templateComponent.getMethodRemoveRegex(), BLANK));
-                methodMap.put(methodName, entry.getValue());
                 Map<String, String> resultMap = new HashMap<String, String>();
-                resultMap.put("name", methodName);
+                resultMap.put("name", entry.getKey());
                 resultMap.put("minParamters", String.valueOf(entry.getValue().minParamtersNumber()));
                 resultMap.put("needAppToken", String.valueOf(entry.getValue().needAppToken()));
                 resultMap.put("needUserToken", String.valueOf(false));

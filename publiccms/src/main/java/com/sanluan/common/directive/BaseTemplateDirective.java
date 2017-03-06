@@ -18,6 +18,8 @@ import freemarker.template.TemplateModel;
  *
  */
 public abstract class BaseTemplateDirective extends Base implements TemplateDirectiveModel, Directive , HttpDirective {
+    private String name;
+    
     @SuppressWarnings("unchecked")
     @Override
     public void execute(Environment environment, @SuppressWarnings("rawtypes") Map parameters, TemplateModel[] loopVars,
@@ -29,5 +31,13 @@ public abstract class BaseTemplateDirective extends Base implements TemplateDire
         } catch (Exception e) {
             throw new TemplateException(e, environment);
         }
+    }
+    
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

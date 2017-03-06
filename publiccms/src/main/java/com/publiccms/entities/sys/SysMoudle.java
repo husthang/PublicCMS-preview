@@ -35,23 +35,27 @@ public class SysMoudle implements java.io.Serializable {
 	private String attached;
 	@GeneratorColumn(title = "父模块", condition = true)
 	private Integer parentId;
+	@GeneratorColumn(title = "是否菜单", condition = true)
+    private boolean menu;
 	@GeneratorColumn(title = "排序")
 	private int sort;
 
 	public SysMoudle() {
 	}
 
-	public SysMoudle(String name, int sort) {
+	public SysMoudle(String name, boolean menu, int sort) {
 		this.name = name;
+		this.menu = menu;
 		this.sort = sort;
 	}
 
-	public SysMoudle(String name, String url, String authorizedUrl, String attached, Integer parentId, int sort) {
+	public SysMoudle(String name, String url, String authorizedUrl, String attached, Integer parentId, boolean menu, int sort) {
 		this.name = name;
 		this.url = url;
 		this.authorizedUrl = authorizedUrl;
 		this.attached = attached;
 		this.parentId = parentId;
+		this.menu = menu;
 		this.sort = sort;
 	}
 
@@ -111,13 +115,22 @@ public class SysMoudle implements java.io.Serializable {
 		this.parentId = parentId;
 	}
 
-	@Column(name = "sort", nullable = false)
-	public int getSort() {
-		return this.sort;
+	@Column(name = "menu", nullable = false)
+	public boolean isMenu() {
+		return this.menu;
 	}
 
+	public void setMenu(boolean menu) {
+		this.menu = menu;
+	}
+	
+	@Column(name = "sort", nullable = false)
+	public int getSort() {
+	    return this.sort;
+	}
+	
 	public void setSort(int sort) {
-		this.sort = sort;
+	    this.sort = sort;
 	}
 
 }

@@ -20,14 +20,14 @@ import com.sanluan.common.handler.PageHandler;
 public class SysMoudleService extends BaseService<SysMoudle> {
 
     @Transactional(readOnly = true)
-    public PageHandler getPage(Integer parentId, Integer pageIndex, Integer pageSize) {
-        return dao.getPage(parentId, pageIndex, pageSize);
+    public PageHandler getPage(Integer parentId, Boolean menu, Integer pageIndex, Integer pageSize) {
+        return dao.getPage(parentId, menu, pageIndex, pageSize);
     }
 
     @SuppressWarnings("unchecked")
     public Set<String> getPageUrl(Integer parentId) {
         Set<String> urls = new HashSet<String>();
-        for (SysMoudle entity : (List<SysMoudle>) getPage(parentId, null, null).getList()) {
+        for (SysMoudle entity : (List<SysMoudle>) getPage(parentId, null, null, null).getList()) {
             if (notEmpty(entity.getUrl())) {
                 int index = entity.getUrl().indexOf("?");
                 urls.add(entity.getUrl().substring(0, index > 0 ? index : entity.getUrl().length()));
@@ -36,7 +36,7 @@ public class SysMoudleService extends BaseService<SysMoudle> {
         }
         return urls;
     }
-    
+
     @Autowired
     private SysMoudleDao dao;
 }

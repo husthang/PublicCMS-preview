@@ -40,7 +40,11 @@
 <script>
 var apisArray=['/api/directives','/api/methods','/api/apis'];
 var authorizedApis = '${(a.authorizedApis)!}'.split(",");
+var i=0;
 for (api in apisArray){
+	getApi(api);
+}
+function getApi(api){
 	$.ajax({
 		url:'${base}'+apisArray[api],
 		type: 'GET',
@@ -50,16 +54,17 @@ for (api in apisArray){
 			$(dataList).each(function(index,data){
 				var style='';
 				if('true'==data.needAppToken){
-					if(authorizedApis.indexOf(data.name)){
-						$('#authorizedApis a[data-id='+api+']',navTab.getCurrentPanel()).next().append('<a tname="authorizedApis" tvalue="'+data.name+'" checked="true">'+data.name+'</a>');
-					}else{
-						$('#authorizedApis a[data-id='+api+']',navTab.getCurrentPanel()).next().append('<a tname="authorizedApis" tvalue="'+data.name+'">'+data.name+'</a>');
-					}
+					$('#authorizedApis a[data-id='+api+']',navTab.getCurrentPanel()).next().append('<li><a tname="apis" tvalue="'+data.name+'">'+data.name+'</a></li>');
 				}
 			});
+			if(++i==apisArray.length){
+				$("#authorizedApis", navTab.getCurrentPanel()).addClass('tree').jTree();
+				for(authorizedApi in authorizedApis){
+					$("input[type=checkbox][value="+authorizedApis[authorizedApi]+"]", navTab.getCurrentPanel()).click();
+				}
+			}
 		}
 	});
 }
-$("#authorizedApis", navTab.getCurrentPanel()).addClass('tree').jTree();
 </script>
 </form>

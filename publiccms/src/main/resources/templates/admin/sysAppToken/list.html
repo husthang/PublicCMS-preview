@@ -5,17 +5,10 @@
 		<div class="searchBar">
 			<ul class="searchContent">
 				<li>
-					<label>用户:</label>
-					<input type="text" name="appId" value="${appId!}" />
+					<label>AppID:</label>
+					${appId!}
 				</li>
 			</ul>
-			<div class="subBar">
-				<ul>
-					<li>
-						<button type="submit" class="buttonActive">搜索</button>
-					</li>
-				</ul>
-			</div>
 		</div>
 	</form>
 </div>
@@ -28,22 +21,14 @@
 	<table class="list" width="100%" layoutH="92">
 		<thead>
 			<tr>
-				<th>AppID</th>
-				<th>渠道</th>
 				<th>授权码</th>
 				<th>授权日期</th>
 			</tr>
 		</thead>
 		<tbody>
 			<#list page.list as a>
-				<@t.merge 'appIds' a.appId!/>
-			</#list>
-			<@_sysApp ids=t.appIds!><#assign appMap=map!/></@_sysApp>
-
-			<#list page.list as a>
-			<tr target="sid" rel="${a.appId}">
-				<td>${a.appId!}</td>
-				<td>${(appMap[a.userId?string].channel)!}</td>
+			<tr target="sid" rel="${a.authToken}">
+				<td>${a.authToken!}</td>
 				<td>${a.createDate!}</td>
 			</tr>
 			</#list>

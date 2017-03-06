@@ -1,16 +1,15 @@
 package com.publiccms.logic.component.template;
 
-import static com.publiccms.common.constants.CommonConstants.getDefaultPageBreakTag;
-import static com.publiccms.common.tools.ExtendUtils.getExtendMap;
 import static com.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
 import static com.publiccms.common.base.AbstractFreemarkerView.exposeSite;
+import static com.publiccms.common.constants.CommonConstants.getDefaultPageBreakTag;
+import static com.publiccms.common.tools.ExtendUtils.getExtendMap;
 import static com.publiccms.logic.component.site.SiteComponent.getFullFileName;
 import static com.publiccms.logic.component.template.TemplateCacheComponent.CONTENT_CACHE;
 import static com.sanluan.common.tools.FreeMarkerUtils.generateFileByFile;
 import static com.sanluan.common.tools.FreeMarkerUtils.generateStringByFile;
 import static com.sanluan.common.tools.FreeMarkerUtils.generateStringByString;
 import static org.apache.commons.lang3.StringUtils.splitByWholeSeparator;
-import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +32,7 @@ import com.publiccms.entities.cms.CmsCategoryModelId;
 import com.publiccms.entities.cms.CmsContent;
 import com.publiccms.entities.cms.CmsContentAttribute;
 import com.publiccms.entities.sys.SysSite;
+import com.publiccms.logic.component.site.DirectiveComponent;
 import com.publiccms.logic.component.site.SiteComponent;
 import com.publiccms.logic.service.cms.CmsCategoryAttributeService;
 import com.publiccms.logic.service.cms.CmsCategoryModelService;
@@ -48,7 +48,6 @@ import com.sanluan.common.handler.PageHandler;
 import freemarker.template.Configuration;
 import freemarker.template.SimpleHash;
 import freemarker.template.TemplateException;
-import freemarker.template.TemplateMethodModelEx;
 import freemarker.template.TemplateModelException;
 
 /**
@@ -60,8 +59,7 @@ public class TemplateComponent extends Base implements Cache {
     public static String INCLUDE_DIRECTORY = "include";
 
     private String directivePrefix;
-    private String directiveRemoveRegex;
-    private String methodRemoveRegex;
+
     private Configuration adminConfiguration;
     private Configuration webConfiguration;
     private Configuration taskConfiguration;
@@ -352,32 +350,16 @@ public class TemplateComponent extends Base implements Cache {
         }
     }
 
-    @Autowired(required = false)
-    private void setFreeMarkerConfigurer(FreeMarkerConfigurer freeMarkerConfigurer,
-            Map<String, AbstractTaskDirective> taskDirectiveMap, Map<String, AbstractTemplateDirective> templateDirectiveMap,
-            Map<String, TemplateMethodModelEx> methodMap) throws IOException, TemplateModelException {
+    @Autowired
+    private void init(FreeMarkerConfigurer freeMarkerConfigurer, DirectiveComponent directiveComponent)
+            throws IOException, TemplateModelException {
         Map<String, Object> freemarkerVariables = new HashMap<String, Object>();
         adminConfiguration = freeMarkerConfigurer.getConfiguration();
-        log.info("Freemarker directives and methods Handler started");
-
-        for (Entry<String, AbstractTemplateDirective> entry : templateDirectiveMap.entrySet()) {
-            String directiveName = directivePrefix + uncapitalize(entry.getKey().replaceAll(directiveRemoveRegex, BLANK));
-            freemarkerVariables.put(directiveName, entry.getValue());
+        for (Entry<String, AbstractTemplateDirective> entry : directiveComponent.getTemplateDirectiveMap().entrySet()) {
+            freemarkerVariables.put(directivePrefix + entry.getKey(), entry.getValue());
         }
-        log.info(new StringBuilder().append(templateDirectiveMap.size()).append(" template directives created:")
-                .append(freemarkerVariables.keySet()).toString());
-        StringBuilder methods = new StringBuilder();
-        for (Entry<String, TemplateMethodModelEx> entry : methodMap.entrySet()) {
-            String methodName = uncapitalize(entry.getKey().replaceAll(methodRemoveRegex, BLANK));
-            freemarkerVariables.put(methodName, entry.getValue());
-            methods.append(methodName).append(COMMA_DELIMITED);
-        }
-        if (methods.length() > 0) {
-            methods.setLength(methods.length() - 1);
-        }
+        freemarkerVariables.putAll(directiveComponent.getMethodMap());
         adminConfiguration.setAllSharedVariables(new SimpleHash(freemarkerVariables, adminConfiguration.getObjectWrapper()));
-        log.info(
-                new StringBuilder().append(methodMap.size()).append(" methods created:[").append(methods).append("]").toString());
 
         webConfiguration = new Configuration(Configuration.getVersion());
         File webFile = new File(siteComponent.getWebTemplateFilePath());
@@ -393,20 +375,10 @@ public class TemplateComponent extends Base implements Cache {
         taskFile.mkdirs();
         taskConfiguration.setDirectoryForTemplateLoading(taskFile);
         copyConfig(adminConfiguration, taskConfiguration);
-
-        StringBuilder taskDirectives = new StringBuilder();
-        for (Entry<String, AbstractTaskDirective> entry : taskDirectiveMap.entrySet()) {
-            String directiveName = directivePrefix + uncapitalize(entry.getKey().replaceAll(directiveRemoveRegex, BLANK));
-            freemarkerVariables.put(directiveName, entry.getValue());
-            taskDirectives.append(directiveName).append(COMMA_DELIMITED);
+        for (Entry<String, AbstractTaskDirective> entry : directiveComponent.getTaskDirectiveMap().entrySet()) {
+            freemarkerVariables.put(directivePrefix + entry.getKey(), entry.getValue());
         }
-        if (taskDirectives.length() > 0) {
-            taskDirectives.setLength(taskDirectives.length() - 1);
-        }
-
         taskConfiguration.setAllSharedVariables(new SimpleHash(freemarkerVariables, taskConfiguration.getObjectWrapper()));
-        log.info(new StringBuilder().append(taskDirectiveMap.size()).append(" task directives created:[").append(taskDirectives)
-                .append("]").toString());
     }
 
     private void copyConfig(Configuration source, Configuration target) {
@@ -436,22 +408,6 @@ public class TemplateComponent extends Base implements Cache {
         taskConfiguration.clearTemplateCache();
     }
 
-    public void setDirectivePrefix(String directivePrefix) {
-        this.directivePrefix = directivePrefix;
-    }
-
-    public void setDirectiveRemoveRegex(String directiveRemoveRegex) {
-        this.directiveRemoveRegex = directiveRemoveRegex;
-    }
-
-    public void setMethodRemoveRegex(String methodRemoveRegex) {
-        this.methodRemoveRegex = methodRemoveRegex;
-    }
-
-    public String getDirectiveRemoveRegex() {
-        return directiveRemoveRegex;
-    }
-
     public Configuration getWebConfiguration() {
         return webConfiguration;
     }
@@ -460,7 +416,11 @@ public class TemplateComponent extends Base implements Cache {
         return taskConfiguration;
     }
 
-    public String getMethodRemoveRegex() {
-        return methodRemoveRegex;
+    public Configuration getAdminConfiguration() {
+        return adminConfiguration;
+    }
+
+    public void setDirectivePrefix(String directivePrefix) {
+        this.directivePrefix = directivePrefix;
     }
 }

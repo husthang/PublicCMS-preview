@@ -79,13 +79,16 @@ function clickAddTagType(){
 					<dt>分类页面访问路径:</dt>
 					<dd>
 						<input class="required" name="path" type="text" maxlength="500" size="50" value="${(a.path)!(category.path)!}"/>
-						<a class="btnLook" href="cmsCategory/categoryPath.html" width="920" lookupGroup="">选择路径</a>
+						<a class="btnLook onlyUrl" href="cmsCategory/categoryPath.html" width="920" lookupGroup="">选择路径</a>
 					</dd>
 				</dl>
 				<div class="divider"></div>
-				<dl class="onlyUrl">
+				<dl class="nowrap onlyUrl">
 					<dt>每页数据:</dt>
-					<dd><input class="required digits" name="pageSize" type="number" size="4" value="${(a.pageSize)!(category.pageSize)!20}"/></dd>
+					<dd>
+						<input class="required digits" name="pageSize" type="number" size="4" value="${(a.pageSize)!(category.pageSize)!20}"/>
+						<label><input name="containChild" type="checkbox"${(a?has_content&&a.containChild)?then(' checked="checked"','')?no_esc}/>包含子分类内容</label>
+					</dd>
 				</dl>
 				<dl>
 					<dt>排序:</dt>

@@ -39,6 +39,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import com.publiccms.common.analyzer.MultiTokenizerFactory;
 import com.publiccms.common.base.AbstractFreemarkerView;
 import com.publiccms.common.datasource.CmsDataSource;
+import com.publiccms.logic.component.site.DirectiveComponent;
 import com.publiccms.logic.component.site.SiteComponent;
 import com.publiccms.logic.component.template.TemplateComponent;
 import com.sanluan.common.base.Base;
@@ -181,12 +182,29 @@ public class ApplicationConfig extends Base {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource bean = new ResourceBundleMessageSource();
-        bean.setBasenames(new String[] { "config.language.message", "config.language.config", "config.language.operate" });
+        bean.setBasenames(new String[] { "language.message", "language.config", "language.operate" });
         bean.setCacheSeconds(300);
         bean.setUseCodeAsDefaultMessage(true);
         return bean;
     }
 
+    /**
+     * <p>
+     * 指令组件
+     * </p>
+     * <p>
+     * Directive Component
+     * </p>
+     *
+     * @return
+     */
+    @Bean
+    public DirectiveComponent directiveComponent() {
+        DirectiveComponent bean = new DirectiveComponent();
+        bean.setDirectiveRemoveRegex(env.getProperty("cms.directiveRemoveRegex"));
+        bean.setMethodRemoveRegex(env.getProperty("cms.methodRemoveRegex"));
+        return bean;
+    }
     /**
      * <p>
      * 模板组件
@@ -201,8 +219,6 @@ public class ApplicationConfig extends Base {
     public TemplateComponent templateComponent() {
         TemplateComponent bean = new TemplateComponent();
         bean.setDirectivePrefix(env.getProperty("cms.directivePrefix"));
-        bean.setDirectiveRemoveRegex(env.getProperty("cms.directiveRemoveRegex"));
-        bean.setMethodRemoveRegex(env.getProperty("cms.methodRemoveRegex"));
         return bean;
     }
 

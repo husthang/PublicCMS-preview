@@ -23,7 +23,7 @@
 			</dd>
 		</dl>
 <#macro moudleTree parentId>
-	<@_sysMoudleList parentId=parentId>
+	<@_sysMoudleList parentId=parentId menu=false>
 		<#if page.totalCount gt 0>
 			<ul>
 				<#list page.list as a>

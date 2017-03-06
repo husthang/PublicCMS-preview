@@ -25,7 +25,8 @@ import freemarker.template.TemplateModelException;
  *
  */
 public abstract class BaseMethod extends Base implements TemplateMethodModelEx {
-
+    private String name;
+    
     private static TemplateModel getModel(int index, List<TemplateModel> arguments) {
         if (notEmpty(arguments) && index < arguments.size()) {
             return arguments.get(index);
@@ -102,4 +103,12 @@ public abstract class BaseMethod extends Base implements TemplateMethodModelEx {
     public abstract int minParamtersNumber();
 
     public abstract boolean needAppToken();
+    
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

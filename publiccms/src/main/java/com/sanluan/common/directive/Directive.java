@@ -10,11 +10,15 @@ import com.sanluan.common.handler.RenderHandler;
  *
  */
 public interface Directive {
+    /**
+     * @return
+     */
+    public String getName();
 
     /**
      * @param handler
      * @throws IOException
      * @throws Exception
      */
-    public abstract void execute(RenderHandler handler) throws IOException, Exception;
+    public void execute(RenderHandler handler) throws IOException, Exception;
 }
