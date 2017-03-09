@@ -120,9 +120,10 @@ project(':publiccms') {
 	    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
 	    /** delete this line for spring boot 
 	    compile("org.springframework.boot:spring-boot-starter-web:1.5.1.RELEASE") {
+	    delete this line for spring boot */
+	    providedCompile("org.springframework.boot:spring-boot-starter-web:1.5.1.RELEASE") { // delete this line for spring boot
 	    	exclude group:"org.springframework.boot", module: 'spring-boot-starter-logging'
 	    }
-	    delete this line for spring boot */
 	    testCompile(
 	    	// http://mvnrepository.com/artifact/junit/junit
 		    "junit:junit:4.12",

@@ -36,7 +36,7 @@ public class ScheduledTask extends Base {
 
     @Autowired
     private SysTaskService sysTaskService;
-    @Autowired
+    @Autowired(required = false)
     private Scheduler scheduler;
     @Autowired
     private LogTaskService logTaskService;
@@ -46,23 +46,25 @@ public class ScheduledTask extends Base {
     private TemplateComponent templateComponent;
 
     public void init(Date startDate) {
-        @SuppressWarnings("unchecked")
-        List<SysTask> sysTaskList = (List<SysTask>) sysTaskService.getPage(null, null, startDate, null, null).getList();
-        for (SysTask sysTask : sysTaskList) {
-            SysSite site = siteService.getEntity(sysTask.getSiteId());
-            if (TASK_STATUS_ERROR == sysTask.getStatus()) {
-                sysTaskService.updateStatus(sysTask.getId(), TASK_STATUS_READY);
+        if (null != scheduler) {
+            @SuppressWarnings("unchecked")
+            List<SysTask> sysTaskList = (List<SysTask>) sysTaskService.getPage(null, null, startDate, null, null).getList();
+            for (SysTask sysTask : sysTaskList) {
+                SysSite site = siteService.getEntity(sysTask.getSiteId());
+                if (TASK_STATUS_ERROR == sysTask.getStatus()) {
+                    sysTaskService.updateStatus(sysTask.getId(), TASK_STATUS_READY);
+                }
+                create(site, sysTask.getId(), sysTask.getCronExpression());
+                if (TASK_STATUS_PAUSE == sysTask.getStatus()) {
+                    pause(site, sysTask.getId());
+                }
             }
-            create(site, sysTask.getId(), sysTask.getCronExpression());
-            if (TASK_STATUS_PAUSE == sysTask.getStatus()) {
-                pause(site, sysTask.getId());
-            }
+            ScheduledJob.setSysTaskService(sysTaskService);
+            ScheduledJob.setLogTaskService(logTaskService);
+            ScheduledJob.setSiteService(siteService);
+            ScheduledJob.setScheduledTask(this);
+            ScheduledJob.setTemplateComponent(templateComponent);
         }
-        ScheduledJob.setSysTaskService(sysTaskService);
-        ScheduledJob.setLogTaskService(logTaskService);
-        ScheduledJob.setSiteService(siteService);
-        ScheduledJob.setScheduledTask(this);
-        ScheduledJob.setTemplateComponent(templateComponent);
     }
 
     /**

@@ -29,11 +29,9 @@ public class CacheEntityFactory extends Base {
         }
     }
 
-    public JedisPool initJedisPool() {
-        synchronized (jedisPool) {
-            if (null == jedisPool) {
-                jedisPool = createJedisPool(properties);
-            }
+    public synchronized JedisPool initJedisPool() {
+        if (null == jedisPool) {
+            jedisPool = createJedisPool(properties);
         }
         return jedisPool;
     }
@@ -58,11 +56,9 @@ public class CacheEntityFactory extends Base {
         return createCacheEntity(name, getDefaultCacheEntity());
     }
 
-    public String getDefaultCacheEntity() {
-        synchronized (defaultCacheEntity) {
-            if (null == defaultCacheEntity) {
-                defaultCacheEntity = properties.getProperty("cache.type");
-            }
+    public synchronized String getDefaultCacheEntity() {
+        if (null == defaultCacheEntity) {
+            defaultCacheEntity = properties.getProperty("cache.type");
         }
         return defaultCacheEntity;
     }
