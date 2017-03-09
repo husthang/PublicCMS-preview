@@ -36,7 +36,7 @@ BUG修复:
 
 框架升级:
 
-1. Spring Framework升级到4.3.6
+1. Spring Framework升级到4.3.7
 1. Hibernate Search升级到5.5.6
 1. Hibernate升级到5.1.3
 1. Jackson升级到2.8.6
@@ -102,4 +102,5 @@ BUG修复:
 
 鸣谢：
 
-感谢 Alex.MAO 提供的BUG：添加域名bug，分类修改页面选择内容路径bug
+感谢 Alex.MAO 提交的BUG：添加域名bug，分类修改页面选择内容路径bug
+感谢 JARVIS 提交的BUG：分类页面内容模板路径赋值bug

@@ -10,7 +10,6 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import java.io.IOException;
 import java.io.Writer;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -48,7 +47,7 @@ public class HttpParameterHandler extends BaseHandler implements Json {
     }
 
     @Override
-    public synchronized void render() throws HttpMessageNotWritableException, IOException {
+    public void render() throws HttpMessageNotWritableException, IOException {
         if (!renderd) {
             MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(map);
             if (notEmpty(callback)) {
@@ -141,9 +140,13 @@ public class HttpParameterHandler extends BaseHandler implements Json {
         if (notEmpty(result)) {
             String temp = trimToEmpty(result);
             if (FULL_DATE_LENGTH == temp.length()) {
-                return new SimpleDateFormat(FULL_DATE_FORMAT).parse(temp);
+                synchronized (FULL_DATE_FORMAT) {
+                    return FULL_DATE_FORMAT.parse(temp);
+                }
             } else if (SHORT_DATE_LENGTH == temp.length()) {
-                return new SimpleDateFormat(SHORT_DATE_FORMAT).parse(temp);
+                synchronized (SHORT_DATE_FORMAT) {
+                    return SHORT_DATE_FORMAT.parse(temp);
+                }
             }
         }
         return null;
@@ -163,5 +166,5 @@ public class HttpParameterHandler extends BaseHandler implements Json {
     public Locale getLocale() throws Exception {
         return RequestContextUtils.getLocale(request);
     }
-    
+
 }

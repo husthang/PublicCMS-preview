@@ -30,13 +30,15 @@ public class CacheEntityFactory extends Base {
     }
 
     public JedisPool initJedisPool() {
-        if (null == jedisPool) {
-            jedisPool = createJedisPool(properties);
+        synchronized (jedisPool) {
+            if (null == jedisPool) {
+                jedisPool = createJedisPool(properties);
+            }
         }
         return jedisPool;
     }
 
-    public synchronized <K, V> CacheEntity<K, V> createCacheEntity(String name, String type) {
+    public <K, V> CacheEntity<K, V> createCacheEntity(String name, String type) {
         int size = defaultSize;
         try {
             size = Integer.valueOf(properties.getProperty("cache.size." + name));
@@ -57,8 +59,10 @@ public class CacheEntityFactory extends Base {
     }
 
     public String getDefaultCacheEntity() {
-        if (null == defaultCacheEntity) {
-            defaultCacheEntity = properties.getProperty("cache.type");
+        synchronized (defaultCacheEntity) {
+            if (null == defaultCacheEntity) {
+                defaultCacheEntity = properties.getProperty("cache.type");
+            }
         }
         return defaultCacheEntity;
     }

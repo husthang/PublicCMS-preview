@@ -72,13 +72,15 @@ public class RedisClient extends Base {
         jedis.close();
     }
 
-    public synchronized CacheEntity<Object, Object> getCache(String region) {
-        CacheEntity<Object, Object> cache = regionMap.get(region);
-        if (null == cache) {
-            cache = new RedisCacheEntity<Object, Object>(region, jedisPool);
-            regionMap.put(region, cache);
+    public CacheEntity<Object, Object> getCache(String region) {
+        synchronized (regionMap) {
+            CacheEntity<Object, Object> cache = regionMap.get(region);
+            if (null == cache) {
+                cache = new RedisCacheEntity<Object, Object>(region, jedisPool);
+                regionMap.put(region, cache);
+            }
+            return cache;
         }
-        return cache;
     }
 
     public boolean isShutdown() {

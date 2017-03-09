@@ -1,11 +1,11 @@
-<@_category id=id>
+<@_category id=id!copyId>
 	<#assign a=object/>
 	<#assign parentId=object.parentId!/>
 	<#assign typeId=object.typeId!/>
 	<#assign attribute=getCategoryAttribute(a.id)!/>
 </@_category>
-<@_category id=parentId!><#assign category=object/></@_category>
-<@_categoryType id=typeId!><#assign categoryType=object/></@_categoryType>
+<@_category id=parentId><#assign category=object/></@_category>
+<@_categoryType id=typeId><#assign categoryType=object/></@_categoryType>
 <script>
 function clickAddTagType(){
 	$('.tagTypes .button',navTab.getCurrentPanel()).click();
@@ -53,7 +53,7 @@ function clickAddTagType(){
 				<dl class="nowrap">
 					<dt>名称:</dt>
 					<dd>
-						<input class="required" name="name" type="text" maxlength="50" size="20" value="${(a.name)!}"/>
+						<input class="required" name="name" type="text" maxlength="50" size="20" value="<#if id?has_content>${(a.name)!}</#if>"/>
 						<label><input name="onlyUrl" type="checkbox" onclick="if($(this).is(':checked')){$('.onlyUrl',navTab.getCurrentPanel()).hide();$('.onlyUrl input[type=text]',navTab.getCurrentPanel()).val('');}else{$('.onlyUrl').show();}"/>外链</label>
 						<label><input name="allowContribute" type="checkbox"${(a?has_content&&a.allowContribute)?then(' checked="checked"','')?no_esc}/>允许投稿</label>
 						<label><input name="hidden" type="checkbox"${(a?has_content&&a.hidden)?then(' checked="checked"','')?no_esc}/>前台隐藏</label>
@@ -61,7 +61,7 @@ function clickAddTagType(){
 				</dl>
 				<dl class="nowrap">
 					<dt>编码:</dt>
-					<dd><input class="required" name="code" type="text" maxlength="50" size="20" value="${(a.code)!}"/></dd>
+					<dd><input class="required" name="code" type="text" maxlength="50" size="20" value="<#if id?has_content>${(a.code)!}</#if>"/></dd>
 				</dl>
 <#include "../include_page/tagTypes.html"/>
 <@tagTypes ((a.tagTypeIds)!'')/>
@@ -176,6 +176,7 @@ function clickAddTagType(){
 					<dd>
 						<input name="contentPath" type="text" maxlength="500" size="80" value="${(a.contentPath)!(category.contentPath)!}"/>
 						<a class="btnLook" href="cmsCategory/contentPath.html" width="920" lookupGroup="">选择路径</a>
+						<#if id?has_content><span class="info">此配置只会影响该分类下新增的内容，想修改旧的内容，请重新生成这些内容</span></#if>
 					</dd>
 				</dl>
 <script>
@@ -194,10 +195,10 @@ function checkCategoryModel(){
 	});
 }
 checkCategoryModel();
-<#if id?has_content||parentId?has_content>
-	<@_categoryModelList categoryId=id!parentId>
+<#if id?has_content||copyId?has_content>
+	<@_categoryModelList categoryId=id!copyId>
 		<#list page.list as a>
-			$('input[name$=\\.categoryModel\\.id\\.modelId][value=${a.id.modelId}]',navTab.getCurrentPanel()).parent().find('input[type=checkbox]').click().parent().find('input[name$=\\.categoryModel\\.templatePath]').val('${(a.templatePath)!}');
+			$('input[name$=\\.categoryModel\\.id\\.modelId][value=${a.id.modelId}]',navTab.getCurrentPanel()).parent().find('input[type=checkbox]').click().parent().parent().find('input[name$=\\.categoryModel\\.templatePath]').val('${(a.templatePath)!}');
 		</#list>
 	</@_categoryModelList>
 </#if>

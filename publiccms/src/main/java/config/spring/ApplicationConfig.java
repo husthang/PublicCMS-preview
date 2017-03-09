@@ -3,7 +3,6 @@ package config.spring;
 import static config.initializer.InitializationInitializer.CMS_CONFIG_FILE;
 import static java.lang.Integer.parseInt;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
-import static org.springframework.scheduling.quartz.SchedulerFactoryBean.PROP_THREAD_COUNT;
 
 import java.beans.PropertyVetoException;
 import java.io.File;
@@ -29,7 +28,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.WebApplicationContext;
@@ -276,25 +274,6 @@ public class ApplicationConfig extends Base {
         CommonsMultipartResolver bean = new CommonsMultipartResolver();
         bean.setDefaultEncoding(DEFAULT_CHARSET_NAME);
         bean.setMaxUploadSize(Long.parseLong(env.getProperty("cms.multipart.maxUploadSize")));
-        return bean;
-    }
-
-    /**
-     * <p>
-     * 任务计划工厂
-     * </p>
-     * <p>
-     * Task Scheduler Factory
-     * </p>
-     * 
-     * @return
-     */
-    @Bean
-    public SchedulerFactoryBean scheduler() {
-        SchedulerFactoryBean bean = new SchedulerFactoryBean();
-        Properties properties = new Properties();
-        properties.setProperty(PROP_THREAD_COUNT, env.getProperty("cms.task.threadCount"));
-        bean.setQuartzProperties(properties);
         return bean;
     }
 

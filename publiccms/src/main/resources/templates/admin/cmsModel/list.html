@@ -7,12 +7,9 @@
 	<form id="pagerForm" onsubmit="return navTabSearch(this);" method="post">
 		<div class="searchBar">
 			<ul class="searchContent">
-			<#if parent?has_content>
 				<li>
-					<label>父模型:</label>${parent.name}
+					<label>父模型:</label>${(parent.name)!}
 				</li>
-			</#if>
-				<li></li>
 			</ul>
 		</div>
 	</form>

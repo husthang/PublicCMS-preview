@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.sanluan.common.cache.CacheEntity;
 
@@ -17,6 +18,7 @@ public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Seria
     private static final long serialVersionUID = 1L;
     private int size;
     private LinkedHashMap<K, V> cachedMap = new LinkedHashMap<K, V>(16, 0.75f, true);
+    private ReentrantReadWriteLock  lock = new ReentrantReadWriteLock ();
 
     public MemoryCacheEntity(int size) {
         this.size = size;
@@ -24,37 +26,62 @@ public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Seria
 
     @Override
     public List<V> put(K key, V value) {
-        cachedMap.put(key, value);
-        return clearCache();
-    }
-
-    @Override
-    public synchronized void put(K key, V value, Integer expiry) {
-        cachedMap.put(key, value);
-    }
-
-    @Override
-    public synchronized V get(K key) {
-        return cachedMap.get(key);
-    }
-
-    @Override
-    public synchronized List<V> clear() {
-        Collection<V> values = cachedMap.values();
-        List<V> list = new ArrayList<V>();
-        if(!values.isEmpty()){
-            list.addAll(values);
+        lock.writeLock().lock();
+        try {
+            cachedMap.put(key, value);
+            return clearCache();
+        } finally {
+            lock.writeLock().unlock();
         }
-        cachedMap.clear();
-        return list;
     }
 
     @Override
-    public synchronized V remove(K key) {
-        return cachedMap.remove(key);
+    public void put(K key, V value, Integer expiry) {
+        lock.writeLock().lock();
+        try {
+            cachedMap.put(key, value);
+        } finally {
+            lock.writeLock().unlock();
+        }
     }
 
-    private synchronized List<V> clearCache() {
+    @Override
+    public V get(K key) {
+        lock.readLock().lock();
+        try {
+            return cachedMap.get(key);
+        } finally {
+            lock.readLock().unlock();
+        }
+    }
+
+    @Override
+    public List<V> clear() {
+        lock.writeLock().lock();
+        try {
+            Collection<V> values = cachedMap.values();
+            List<V> list = new ArrayList<V>();
+            if(!values.isEmpty()){
+                list.addAll(values);
+            }
+            cachedMap.clear();
+            return list;
+        } finally {
+            lock.writeLock().unlock();
+        }
+    }
+
+    @Override
+    public V remove(K key) {
+        lock.writeLock().lock();
+        try {
+            return cachedMap.remove(key);
+        } finally {
+            lock.writeLock().unlock();
+        }
+    }
+
+    private List<V> clearCache() {
         List<V> list = null;
         if (size < cachedMap.size()) {
             Iterator<K> iterator = cachedMap.keySet().iterator();
@@ -90,6 +117,11 @@ public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Seria
 
     @Override
     public boolean contains(K key) {
-        return cachedMap.containsKey(key);
+        lock.readLock().lock();
+        try {
+            return cachedMap.containsKey(key);
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 }

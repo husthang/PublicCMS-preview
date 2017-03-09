@@ -324,29 +324,26 @@ public abstract class BaseDao<E> extends Base {
         if (notEmpty(pageSize)) {
             fullTextQuery.setFirstResult(page.getFirstResult()).setMaxResults(page.getPageSize());
         }
-        if (0 < page.getTotalCount()) {
-            if (notEmpty(facetFields)) {
-                FacetManager facetManager = fullTextQuery.getFacetManager();
-                for (String facetField : facetFields) {
-                    List<Facet> facets = facetManager.getFacets(facetField + FACET_NAME_SUFFIX);
-                    Map<String, Integer> facetMap = new LinkedHashMap<String, Integer>();
-                    for (Facet facet : facets) {
-                        facetMap.put(facet.getValue(), facet.getCount());
-                        if (facet.getValue().equalsIgnoreCase(valueMap.get(facetField))) {
-                            facetManager.getFacetGroup(facetField + FACET_NAME_SUFFIX).selectFacets(facet);
-                        }
+        if (0 < page.getTotalCount() && notEmpty(facetFields)) {
+            FacetManager facetManager = fullTextQuery.getFacetManager();
+            for (String facetField : facetFields) {
+                List<Facet> facets = facetManager.getFacets(facetField + FACET_NAME_SUFFIX);
+                Map<String, Integer> facetMap = new LinkedHashMap<String, Integer>();
+                for (Facet facet : facets) {
+                    facetMap.put(facet.getValue(), facet.getCount());
+                    if (facet.getValue().equalsIgnoreCase(valueMap.get(facetField))) {
+                        facetManager.getFacetGroup(facetField + FACET_NAME_SUFFIX).selectFacets(facet);
                     }
-                    page.getMap().put(facetField, facetMap);
                 }
-                page.setTotalCount(fullTextQuery.getResultSize(), maxResults);
-                page.init();
-                if (notEmpty(pageSize)) {
-                    fullTextQuery.setFirstResult(page.getFirstResult()).setMaxResults(page.getPageSize());
-                }
-
+                page.getMap().put(facetField, facetMap);
             }
-            page.setList(fullTextQuery.list());
+            page.setTotalCount(fullTextQuery.getResultSize(), maxResults);
+            page.init();
+            if (notEmpty(pageSize)) {
+                fullTextQuery.setFirstResult(page.getFirstResult()).setMaxResults(page.getPageSize());
+            }
         }
+        page.setList(fullTextQuery.list());
         return page;
     }
     

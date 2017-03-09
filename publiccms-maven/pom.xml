@@ -10,7 +10,7 @@
 	</modules>
 	<properties>
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
-		<version.spring>4.3.6.RELEASE</version.spring>
+		<version.spring>4.3.7.RELEASE</version.spring>
 		<!-- http://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<version.httpclient>4.5.3</version.httpclient>
 		<!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->

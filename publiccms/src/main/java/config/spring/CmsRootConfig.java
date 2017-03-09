@@ -1,7 +1,14 @@
 package config.spring;
 
+import static org.springframework.scheduling.quartz.SchedulerFactoryBean.PROP_THREAD_COUNT;
+
+import java.util.Properties;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.env.Environment;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
 
@@ -20,6 +27,8 @@ import com.publiccms.logic.component.site.SiteComponent;
  */
 @Import(ApplicationConfig.class)
 public class CmsRootConfig {
+    @Autowired
+    private Environment env;
 
     /**
      * <p>
@@ -50,6 +59,25 @@ public class CmsRootConfig {
     @Bean
     public HttpRequestHandler webfileServlet(SiteComponent siteComponent) {
         MultiSiteWebHttpRequestHandler bean = new MultiSiteWebHttpRequestHandler(siteComponent);
+        return bean;
+    }
+
+    /**
+     * <p>
+     * 任务计划工厂
+     * </p>
+     * <p>
+     * Task Scheduler Factory
+     * </p>
+     * 
+     * @return
+     */
+    @Bean
+    public SchedulerFactoryBean scheduler() {
+        SchedulerFactoryBean bean = new SchedulerFactoryBean();
+        Properties properties = new Properties();
+        properties.setProperty(PROP_THREAD_COUNT, env.getProperty("cms.task.threadCount"));
+        bean.setQuartzProperties(properties);
         return bean;
     }
 }

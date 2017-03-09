@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +30,7 @@ import com.sanluan.common.base.Base;
  */
 @Component
 public class FileComponent extends Base {
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM-dd/HH-mm-ssSSSS");
 
     /**
      * 获取目录下文件列表
@@ -130,8 +132,10 @@ public class FileComponent extends Base {
      */
     public String getUploadFileName(String suffix) {
         StringBuilder sb = new StringBuilder("upload/");
-        return sb.append(new SimpleDateFormat("yyyy/MM-dd/HH-mm-ssSSSS").format(getDate())).append(r.nextInt()).append(suffix)
-                .toString();
+        synchronized (dateFormat) {
+            sb.append(dateFormat.format(getDate()));
+        }
+        return sb.append(r.nextInt()).append(suffix).toString();
     }
 
     /**

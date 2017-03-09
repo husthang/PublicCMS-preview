@@ -73,41 +73,7 @@ public class PageHandler implements java.io.Serializable {
     public int getPageSize() {
         return pageSize;
     }
-
-    /**
-     * @return
-     */
-    public boolean isFirstPage() {
-        return pageIndex <= 1;
-    }
-
-    /**
-     * @return
-     */
-    public boolean isLastPage() {
-        return pageIndex >= getTotalPage();
-    }
-
-    /**
-     * @return
-     */
-    public int getNextPage() {
-        if (isLastPage()) {
-            return pageIndex;
-        }
-        return pageIndex + 1;
-    }
-
-    /**
-     * @return
-     */
-    public int getPrePage() {
-        if (isFirstPage()) {
-            return pageIndex;
-        }
-        return pageIndex - 1;
-    }
-
+    
     /**
      * @param pageSize
      *            the pageSize to set
@@ -148,4 +114,39 @@ public class PageHandler implements java.io.Serializable {
         }
         this.list = list;
     }
+
+    /**
+     * @return
+     */
+    public boolean isFirstPage() {
+        return pageIndex <= 1;
+    }
+
+    /**
+     * @return
+     */
+    public boolean isLastPage() {
+        return pageIndex >= getTotalPage();
+    }
+
+    /**
+     * @return
+     */
+    public int getNextPage() {
+        if (isLastPage()) {
+            return pageIndex;
+        }
+        return pageIndex + 1;
+    }
+
+    /**
+     * @return
+     */
+    public int getPrePage() {
+        if (isFirstPage()) {
+            return pageIndex;
+        }
+        return pageIndex - 1;
+    }
+
 }

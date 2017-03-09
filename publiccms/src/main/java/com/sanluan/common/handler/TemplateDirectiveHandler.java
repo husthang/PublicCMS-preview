@@ -63,7 +63,7 @@ public class TemplateDirectiveHandler extends BaseHandler implements Json {
     }
 
     @Override
-    public synchronized void render() throws TemplateException, IOException {
+    public void render() throws TemplateException, IOException {
         if (!renderd) {
             Map<String, TemplateModel> reduceMap = reduce();
             if (null != templateDirectiveBody) {
@@ -75,7 +75,7 @@ public class TemplateDirectiveHandler extends BaseHandler implements Json {
     }
 
     @Override
-    public synchronized void print(String value) throws IOException {
+    public void print(String value) throws IOException {
         environment.getOut().write(value);
     }
 

@@ -50,7 +50,7 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     }
 
     @Override
-    public synchronized void put(K key, V value, Integer expiry) {
+    public void put(K key, V value, Integer expiry) {
         Jedis jedis = jedisPool.getResource();
         byte[] fullKey = getKey(key);
         if (null == expiry) {
@@ -64,7 +64,7 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     }
 
     @Override
-    public synchronized V get(K key) {
+    public V get(K key) {
         Jedis jedis = jedisPool.getResource();
         byte[] fullKey = getKey(key);
         V value = valueSerializer.deserialize(jedis.get(fullKey));
@@ -74,7 +74,7 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     }
 
     @Override
-    public synchronized List<V> clear() {
+    public List<V> clear() {
         Jedis jedis = jedisPool.getResource();
         Set<byte[]> keyList = jedis.zrange(name, 0, -1);
         List<V> list = new ArrayList<V>();
@@ -88,7 +88,7 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     }
 
     @Override
-    public synchronized V remove(K key) {
+    public V remove(K key) {
         Jedis jedis = jedisPool.getResource();
         byte[] keybyte = getKey(key);
         if (jedis.exists(keybyte)) {
@@ -109,7 +109,7 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
         return size;
     }
 
-    private synchronized List<V> clearCache(Jedis jedis) {
+    private List<V> clearCache(Jedis jedis) {
         List<V> list = null;
         if (size < jedis.incr(count)) {
             int helf = size / 2;

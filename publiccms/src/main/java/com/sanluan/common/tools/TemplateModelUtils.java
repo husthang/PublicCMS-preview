@@ -3,6 +3,7 @@ package com.sanluan.common.tools;
 import static org.apache.commons.lang3.StringUtils.split;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,11 +26,13 @@ import freemarker.template.TemplateSequenceModel;
  *
  */
 public class TemplateModelUtils extends Base {
-    public static final String FULL_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    public static final int FULL_DATE_LENGTH = FULL_DATE_FORMAT.length();
+    public static final String FULL_DATE_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss";
+    public static final DateFormat FULL_DATE_FORMAT = new SimpleDateFormat(FULL_DATE_FORMAT_STRING);
+    public static final int FULL_DATE_LENGTH = FULL_DATE_FORMAT_STRING.length();
 
-    public static final String SHORT_DATE_FORMAT = "yyyy-MM-dd";
-    public static final int SHORT_DATE_LENGTH = SHORT_DATE_FORMAT.length();
+    public static final String SHORT_DATE_FORMAT_STRING = "yyyy-MM-dd";
+    public static final DateFormat SHORT_DATE_FORMAT = new SimpleDateFormat(SHORT_DATE_FORMAT_STRING);
+    public static final int SHORT_DATE_LENGTH = SHORT_DATE_FORMAT_STRING.length();
 
     /**
      * @param model
@@ -250,9 +253,13 @@ public class TemplateModelUtils extends Base {
             } else if (model instanceof TemplateScalarModel) {
                 String temp = trimToEmpty(((TemplateScalarModel) model).getAsString());
                 if (FULL_DATE_LENGTH == temp.length()) {
-                    return new SimpleDateFormat(FULL_DATE_FORMAT).parse(temp);
+                    synchronized (FULL_DATE_FORMAT) {
+                        return FULL_DATE_FORMAT.parse(temp);
+                    }
                 } else if (SHORT_DATE_LENGTH == temp.length()) {
-                    return new SimpleDateFormat(SHORT_DATE_FORMAT).parse(temp);
+                    synchronized (SHORT_DATE_FORMAT) {
+                        return SHORT_DATE_FORMAT.parse(temp);
+                    }
                 }
             }
         }

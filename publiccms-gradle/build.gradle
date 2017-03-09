@@ -37,7 +37,7 @@ project(':publiccms') {
 	
 	ext {
 	    // http://mvnrepository.com/artifact/org.springframework/spring-core
-	    springVersion = "4.3.6.RELEASE"
+	    springVersion = "4.3.7.RELEASE"
 	    // http://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
 	    httpclientVersion = "4.5.3"
 	    // http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
