@@ -9,7 +9,7 @@
 		<h1>${(site.name)!}</h1>
 	</header>
 	<nav>
-		<a href="${site.useStatic?then(site.sitePath,base)}</#if>">首页</a>
+		<a href="${site.useStatic?then(site.sitePath,base)}">首页</a>
 <@_categoryList>
 	<#list page.list as a>
 		<a href="${a.url!}" target="_blank">${a.name}</a>

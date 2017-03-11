@@ -23,7 +23,7 @@
 			</dd>
 		</dl>
 <#macro moudleTree parentId>
-	<@_sysMoudleList parentId=parentId menu=false>
+	<@_sysMoudleList parentId=parentId menu=true>
 		<#if page.totalCount gt 0>
 			<ul>
 				<#list page.list as a>
@@ -48,7 +48,7 @@
 				<li>
 					<a href="javascript:;" onclick="return false;">所有模块</a>
 					<ul>
-				<@_sysMoudleList>
+				<@_sysMoudleList menu=true>
 					<#list page.list as a>
 						<li>
 							<a tname="moudleIds" tvalue="${a.id}">${a.name}</a>

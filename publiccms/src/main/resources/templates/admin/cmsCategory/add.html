@@ -198,7 +198,8 @@ checkCategoryModel();
 <#if id?has_content||copyId?has_content>
 	<@_categoryModelList categoryId=id!copyId>
 		<#list page.list as a>
-			$('input[name$=\\.categoryModel\\.id\\.modelId][value=${a.id.modelId}]',navTab.getCurrentPanel()).parent().find('input[type=checkbox]').click().parent().parent().find('input[name$=\\.categoryModel\\.templatePath]').val('${(a.templatePath)!}');
+			$('input[name$=\\.categoryModel\\.id\\.modelId][value=${a.id.modelId}]',navTab.getCurrentPanel()).parent().find('input[type=checkbox]').click();
+			$('input[name$=\\.categoryModel\\.id\\.modelId][value=${a.id.modelId}]',navTab.getCurrentPanel()).parent().parent().find('input[name$=\\[${a.id.modelId}\\]\\.categoryModel\\.templatePath]').val('${(a.templatePath)!}');
 		</#list>
 	</@_categoryModelList>
 </#if>
