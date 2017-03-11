@@ -118,7 +118,7 @@ public class CmsContentAdminController extends AbstractController {
      */
     @RequestMapping("save")
     public String save(CmsContent entity, CmsContentAttribute attribute, @ModelAttribute CmsContentParamters contentParamters,
-            Boolean timing, Boolean draft, HttpServletRequest request, HttpSession session, ModelMap model) {
+            Boolean timing, Boolean draft, Boolean checked, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
         SysUser user = getAdminFromSession(session);
         SysDept dept = sysDeptService.getEntity(user.getDeptId());
@@ -146,7 +146,9 @@ public class CmsContentAdminController extends AbstractController {
         }
         entity.setHasFiles(cmsModel.isHasFiles());
         entity.setHasImages(cmsModel.isHasImages());
-        if (notEmpty(draft) && draft) {
+        if (null != checked && checked) {
+            entity.setStatus(CmsContentService.STATUS_NORMAL);
+        } else if (null != draft && draft) {
             entity.setStatus(CmsContentService.STATUS_DRAFT);
         } else {
             entity.setStatus(CmsContentService.STATUS_PEND);

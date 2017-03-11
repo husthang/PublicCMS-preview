@@ -61,16 +61,12 @@
 			<tr target="sid" rel="${a.id}">
 				<td><input name="ids" value="${a.id}" type="checkbox"></td>
 				<td>
-					<a href="log/task.html?taskId=${a.taskId}" target="navTab" rel="log/task">
-						${(taskMap[a.taskId?string].name)!}
-					</a>
+					${(taskMap[a.taskId?string].name)!}
 				</td>
 				<td>${a.begintime!}</td>
 				<td>${a.endtime!}</td>
 				<td>
-					<a href="log/task.html?success=${a.success?string}" target="navTab" rel="log/task">
-						${a.success?string('成功','失败')}
-					</a>
+					${a.success?string('成功','失败')}
 				</td>
 				<td><a href="log/taskView.html?id=${a.id}" target="dialog" rel="viewTask">结果详情</a></td>
 			</tr>

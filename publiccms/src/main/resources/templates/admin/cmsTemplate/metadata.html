@@ -36,7 +36,7 @@
 		</dl>
 	<#if !path?starts_with('/ftl/')>
 		<#if site.useStatic>
-		<fieldset class="useStatic hidden">
+		<fieldset class="useStatic" style="display:none">
 			<legend>静态化配置</legend>
 			<dl class="nowrap">
 				<dt>发布路径:</dt>
@@ -46,7 +46,7 @@
 			</dl>
 		</fieldset>
 		</#if>
-		<fieldset class="useDynamic hidden">
+		<fieldset class="useDynamic" style="display:none">
 			<legend>动态访问配置</legend>
 			<dl class="nowrap">
 				<dt>需要登录:</dt>
@@ -98,6 +98,6 @@
 			<@extends 'extendList' extendList/>
 		</fieldset>
 	</#if>
-		<textarea name="content" class="hidden">New PublicCMS Template</textarea>
+		<textarea name="content" style="display:none">New PublicCMS Template</textarea>
 	</div>
 </form>

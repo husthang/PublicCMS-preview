@@ -72,20 +72,14 @@
 				<td><input name="ids" value="${a.id}" type="checkbox"></td>
 				<td>${(a.name)!}</td>
 				<td>
-					<a href="log/login.html?userId=${a.userId!}" target="navTab" rel="log/login">
-						${a.userId!}
-					</a>
+					${a.userId!}
 				</td>
 				<td>
-					<a href="log/login.html?channel=${a.channel!}" target="navTab" rel="log/login">
-						${a.channel!}
-					</a>
+					${a.channel!}
 				</td>
 				<td>${a.ip!}</td>
 				<td>
-					<a href="log/login.html?result=${a.result?string}" target="navTab" rel="log/login">
-						${a.result?then('成功','失败')}
-					</a>
+					${a.result?then('成功','失败')}
 				</td>
 				<td>${a.createDate!}</td>
 				<td>${(a.errorPassword)!}</td>

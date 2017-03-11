@@ -64,7 +64,7 @@ $(function(){
 					<input name="allowContribute" type="checkbox" onclick="if($(this).is(':checked')){$('.allowContribute',navTab.getCurrentPanel()).show()}else{$('.allowContribute',navTab.getCurrentPanel()).hide()}"/>
 					允许投稿
 				</label>
-				<label class="allowContribute hidden">
+				<label class="allowContribute" style="display:none">
 					<input name="allowAnonymous" type="checkbox"${((a.allowAnonymous)?has_content&&a.allowAnonymous)?then(' checked="checked"','')?no_esc}/>
 					允许匿名提交
 				</label>
@@ -98,8 +98,8 @@ $(function(){
 			<#assign extendList=(a.extendList)![]/>
 			<@extends 'extendList' extendList/>
 		</fieldset>
-		<textarea name="content" class="hidden"></textarea>
-		<textarea id="content" class="hidden"><#noparse>
+		<textarea name="content" style="display:none"></textarea>
+		<textarea id="content" style="display:none"><#noparse>
 <#list page.list>
 	<ul>
 	<#items as a>

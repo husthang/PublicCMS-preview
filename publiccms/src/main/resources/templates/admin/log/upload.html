@@ -64,19 +64,13 @@
 				<td><input name="ids" value="${a.id}" type="checkbox"></td>
 				<td>${a.userId!}</td>
 				<td>
-					<a href="log/upload.html?userId=${a.userId!}" target="navTab" rel="log/upload">
-						${(userMap[a.userId?string].nickName)!}
-					</a>
+					${(userMap[a.userId?string].nickName)!}
 				</td>
 				<td>
-					<a href="log/upload.html?userId=${a.channel!}" target="navTab" rel="log/upload">
-						${a.channel!}
-					</a>
+					${a.channel!}
 				</td>
 				<td>
-					<a href="log/upload.html?image=${a.image?string}" target="navTab" rel="log/upload">
-						${a.image?then('是','否')}
-					</a>
+					${a.image?then('是','否')}
 				</td>
 				<td><@t.fileSize a.fileSize/></td>
 				<td>${a.ip!}</td>

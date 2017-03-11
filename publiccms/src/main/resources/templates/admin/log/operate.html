@@ -1,4 +1,3 @@
-<#assign operates=['changepassword','static','static.content','static.category','delete.category','save.category','update.category','move.category','delete.categoryType','save.categoryType','update.categoryType','delete.content','save.content','update.content','check.content','refresh.content','related.content','move.content','delete.model','save.model','update.model','save.web.template','update.web.template','delete.web.template','save.task.template','update.task.template','delete.task.template','update.template.meta','update.template.data','clear.pageCache','clear.place','delete.place','save.place','check.place','update.place','refresh.place','enable.user','disable.user','save.user','update.user','delete.task','save.task','update.task','runOnce.task','pause.task','resume.task','delete.role','save.role','update.role','delete.dept','save.dept','update.dept','delete.ftpuser','save.ftpuser','update.ftpuser','delete.moudle','save.moudle','update.moudle','delete.domain','save.domain','update.domain','delete.site','save.site','update.site','delete.logEmailCheck','delete.logLogin','delete.log','delete.logTask','update.tag','save.tag','delete.tag','update.word','save.word','delete.word','hidden.word','show.word','delete.app','update.app','save.app','enable.appclient','disable.appclient','delete.config','update.config','save.config']/>
 <@_logOperateList content=content operate=operate channel=channel
 			userId=userId startCreateDate=startCreateDate endCreateDate=endCreateDate
 			orderField=orderField orderType=orderType pageIndex=pageNum count=numPerPage>
@@ -16,13 +15,8 @@
 					<input type="text" name="channel" value="${channel!}" />
 				</li>
 				<li>
-					<label>操作:</label>
-					<select class="combox" name="operate">
-						<option value="">所有</option>
-					<#list operates as a>
-						<option value="${a}"<#if operate?has_content&&operate=a> selected="selected"</#if>><@t.m 'operate.'+a/></option>
-					</#list>
-					</select>
+					<label>操作编码:</label>
+					<input type="text" name="operate" value="${operate!}" />
 				</li>
 				<li>
 					<label>内容:</label>
@@ -58,7 +52,7 @@
 				<th>用户ID</th>
 				<th>用户昵称</th>
 				<th>渠道</th>
-				<th>操作</th>
+				<th>操作/编码</th>
 				<th orderField="createDate" class="<#if orderField??&&'createDate'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">操作日期</th>
 				<th>内容</th>
 			</tr>
@@ -74,19 +68,15 @@
 				<td><input name="ids" value="${a.id}" type="checkbox"></td>
 				<td>${a.userId!}</td>
 				<td>
-					<a href="log/operate.html?userId=${a.userId!}" target="navTab" rel="log/operate">
-						${(userMap[a.userId?string].nickName)!}
-					</a>
+					${(userMap[a.userId?string].nickName)!}
 				</td>
 				<td>
-					<a href="log/operate.html?channel=${a.channel!}" target="navTab" rel="log/operate">
-						${a.channel!}
-					</a>
+					${a.channel!}
 				</td>
 				<td>
-					<a href="log/operate.html?operate=${a.operate!}" target="navTab" rel="log/operate">
-						<@t.m 'operate.'+a.operate/>
-					</a>
+					<@t.m 'operate.'+a.operate/>
+					/
+					${a.operate}
 				</td>
 				<td>${a.createDate!}</td>
 				<td><@t.cut a.content 80 '...<a href="log/operateView.html?id=${a.id}" target="dialog" rel="operateTask">查看更多</a>'?no_esc/></td>

@@ -136,19 +136,13 @@
 				<td>${a.id}</td>
 				<td>${(a.copied?then('[转载]',''))!}<a href="${a.url!}" target="_blank">${(a.title)!}</a></td>
 				<td>
-					<a href="cmsContent/list.html?userId=${a.userId}" target="navTab" rel="cmsContent/list">
-						${(userMap[a.userId?string].nickName)!}
-					</a>
+					${(userMap[a.userId?string].nickName)!}
 				</td>
 				<td>
-					<a href="cmsContent/list.html?categoryId=${a.categoryId}&parentId=${(parent.parentId)!}" target="navTab" rel="cmsContent/list">
-						${(categoryMap[a.categoryId?string].name)!}
-					</a>
+					${(categoryMap[a.categoryId?string].name)!}
 				</td>
 				<td>
-					<a href="cmsContent/list.html?modelId=${a.modelId}&categoryId=${categoryId!}&parentId=${(parent.parentId)!}" target="navTab" rel="cmsContent/list">
-						${(modelMap[a.modelId].name)!}
-					</a>
+					${(modelMap[a.modelId].name)!}
 				</td>
 				<td>${a.scores!}</td>
 				<td>${a.comments!}</td>

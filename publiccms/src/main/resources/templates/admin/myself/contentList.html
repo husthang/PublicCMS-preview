@@ -86,14 +86,10 @@
 				<td>${a.id}</td>
 				<td>${(a.copied?then('[转载]',''))!}<a href="${a.url!}" target="_blank">${(a.title)!}</a></td>
 				<td>
-					<a href="myself/contentList.html?categoryId=${a.categoryId}&navTabId=myself/contentList" target="navTab" rel="myself/contentList" title="我的内容">
-						${(categoryMap[a.categoryId?string].name)!}
-					</a>
+					${(categoryMap[a.categoryId?string].name)!}
 				</td>
 				<td>
-					<a href="myself/contentList.html?modelId=${a.modelId}&navTabId=myself/contentList" target="navTab" rel="myself/contentList" title="我的内容">
-						${(modelMap[a.modelId].name)!}
-					</a>
+					${(modelMap[a.modelId].name)!}
 				</td>
 				<td>${a.scores!}</td>
 				<td>${a.comments!}</td>
@@ -102,7 +98,7 @@
 				<td>${a.createDate!}</td>
 				<td>
 					<@t.m 'status.content.'+a.status/>
-					<#if 2==a.status>/${(checkUserMap[a.checkUserId?string].nickName)!}</#if>
+					<#if 1==a.status>/${(checkUserMap[a.checkUserId?string].nickName)!}</#if>
 				</td>
 				<td>
 					<#if modelMap[a.modelId]?has_content&&modelMap[a.modelId].hasChild>

@@ -53,7 +53,7 @@ function clickAddTagType(){
 				<dl class="nowrap">
 					<dt>名称:</dt>
 					<dd>
-						<input class="required" name="name" type="text" maxlength="50" size="20" value="<#if id?has_content>${(a.name)!}</#if>"/>
+						<input class="required" name="name" type="text" maxlength="50" size="20" value="${(a.name)!}"/>
 						<label><input name="onlyUrl" type="checkbox" onclick="if($(this).is(':checked')){$('.onlyUrl',navTab.getCurrentPanel()).hide();$('.onlyUrl input[type=text]',navTab.getCurrentPanel()).val('');}else{$('.onlyUrl').show();}"/>外链</label>
 						<label><input name="allowContribute" type="checkbox"${(a?has_content&&a.allowContribute)?then(' checked="checked"','')?no_esc}/>允许投稿</label>
 						<label><input name="hidden" type="checkbox"${(a?has_content&&a.hidden)?then(' checked="checked"','')?no_esc}/>前台隐藏</label>
@@ -153,7 +153,7 @@ function clickAddTagType(){
 						<input name="categoryModelList[${modelIndex}].categoryModel.id.modelId" type="hidden" value="${a.id}"/>
 					</dt>
 		<#if site.useStatic>
-					<dd <#if a.onlyUrl> class="hidden"</#if>>
+					<dd <#if a.onlyUrl> style="display:none"</#if>>
 						<label>静态化模板路径:</label><input name="categoryModelList[${modelIndex}].categoryModel.templatePath" type="text" maxlength="200" size="30" value="${(a.templatePath)!}"/>
 						<a class="btnLook" href="cmsTemplate/lookup.html?field=categoryModelList[${modelIndex}].categoryModel.templatePath" lookupGroup="">选择</a>
 						<@childModel a/>

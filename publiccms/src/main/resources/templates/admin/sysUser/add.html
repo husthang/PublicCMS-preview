@@ -19,7 +19,7 @@
 				<label><input name="superuserAccess" type="checkbox" onclick="if($(this).is(':checked')){$('.superuserAccess',navTab.getCurrentPanel()).show();}else{$('.superuserAccess',navTab.getCurrentPanel()).hide();}"/>管理员</label>
 			</dd>
 		</dl>
-		<dl class="nowrap superuserAccess hidden">
+		<dl class="nowrap superuserAccess" style="display:none">
 			<dt>所属部门:</dt>
 			<dd>
 				<input name="deptId" type="hidden" value="${(dept.id)!}"/>
@@ -46,7 +46,7 @@
 			<dt>邮箱:</dt>
 			<dd><input name="email" type="text" size="30" maxlength="50" value="${(a.email)!}"/></dd>
 		</dl>
-		<fieldset class="superuserAccess hidden">
+		<fieldset class="superuserAccess" style="display:none">
 			<legend><i class="icon-user-md icon-large"></i> 角色</legend>
 			<ul class="tree treeCheck expand">
 		<@_sysRoleList parentId=parentId>
