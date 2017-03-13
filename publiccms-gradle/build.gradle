@@ -133,17 +133,9 @@ project(':publiccms') {
 	/**
 	 delete this line for spring boot */
 	war {
-		copy{
-			from 'src/main/java/config/boot'
-	    	into 'build/skip'
-    	}
-    	File file = new File(projectDir.getAbsolutePath()+'/src/main/java/config/boot');
-		file.deleteDir();
+		file("src/main/java/config/boot/SprintBootApplication.java").renameTo(file("src/main/java/config/boot/SprintBootApplication.java.txt"))
 		doLast {
-	        copy{
-		        from 'build/skip'
-	    		into 'src/main/java/config/boot'
-	    	}
+	        file("src/main/java/config/boot/SprintBootApplication.java.txt").renameTo(file("src/main/java/config/boot/SprintBootApplication.java"))
 	    }
 	}
 	/** delete this line for spring boot
