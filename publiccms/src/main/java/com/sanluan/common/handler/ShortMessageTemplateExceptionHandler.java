@@ -22,8 +22,8 @@ public class ShortMessageTemplateExceptionHandler extends Base implements Templa
     public void handleTemplateException(TemplateException templateexception, Environment environment, Writer writer)
             throws TemplateException {
         try {
-            String code = templateexception.getMessage();
-            if (code.indexOf("Failed at:") > 0 && code.indexOf("[in") > 0) {
+            String code = templateexception.getFTLInstructionStack();
+            if (null != code && code.indexOf("Failed at:") > 0 && code.indexOf("[in") > 0) {
                 code = code.substring(code.indexOf("Failed at:") + 10, code.length());
                 code = code.substring(0, code.indexOf("[in"));
                 writer.write(code);

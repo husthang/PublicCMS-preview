@@ -26,6 +26,7 @@ public class GetTemplateResultMethod extends BaseMethod {
         configuration.setTemplateUpdateDelayMilliseconds(0);
         configuration.setAPIBuiltinEnabled(false);
         configuration.setNewBuiltinClassResolver(TemplateClassResolver.ALLOWS_NOTHING_RESOLVER);
+        configuration.setLogTemplateExceptions(false);
     }
 
     /*
@@ -47,7 +48,7 @@ public class GetTemplateResultMethod extends BaseMethod {
         }
         return null;
     }
-    
+
     @Override
     public boolean needAppToken() {
         return false;
