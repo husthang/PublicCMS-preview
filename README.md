@@ -2,17 +2,18 @@
 
 ##获取可运行程序
 
-http://git.oschina.net/sanluan/PublicCMS-war
+https://git.oschina.net/sanluan/PublicCMS-war
 https://github.com/sanluan/PublicCMS-war
 
 ##获取稳定版源码
 
-http://git.oschina.net/sanluan/PublicCMS
+https://git.oschina.net/sanluan/PublicCMS
 https://github.com/sanluan/PublicCMS
+https://code.csdn.net/zyyy358/publiccms
 
 ##参与研发(预览版)
 
-http://git.oschina.net/sanluan/PublicCMS-preview
+https://git.oschina.net/sanluan/PublicCMS-preview
 https://github.com/sanluan/PublicCMS-preview
 
 ##相关下载及文档(知识库)
