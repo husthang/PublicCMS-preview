@@ -9,7 +9,7 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.persister.entity.EntityPersister;
 
-import com.sanluan.common.hibernate.redis.RedisClient;
+import com.sanluan.common.cache.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.regions.RedisEntityRegion;
 
 public class TransactionalRedisEntityRegionAccessStrategy extends AbstractRedisAccessStrategy<RedisEntityRegion>

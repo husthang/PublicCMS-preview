@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.sanluan.common.base.Base;
 import com.sanluan.common.cache.CacheEntity;
 import com.sanluan.common.cache.redis.serializer.BinarySerializer;
 import com.sanluan.common.cache.redis.serializer.StringSerializer;
@@ -15,7 +16,7 @@ import com.sanluan.common.cache.redis.serializer.StringSerializer;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serializable {
+public class RedisCacheEntity<K, V> extends Base implements CacheEntity<K, V>, java.io.Serializable {
 
     /**
      * 
@@ -23,15 +24,15 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     private static final long serialVersionUID = 1L;
     private int size = 100;
     private JedisPool jedisPool;
-    private byte[] name;
-    private byte[] count;
+    private byte[] bytePrefix;
+    private byte[] byteCount;
     private final static StringSerializer regionSerializer = new StringSerializer();
     private final BinarySerializer<K> keySerializer = new BinarySerializer<K>();
     private final BinarySerializer<V> valueSerializer = new BinarySerializer<V>();
 
     public RedisCacheEntity(String name, JedisPool jedisPool) {
-        this.name = regionSerializer.serialize(name);
-        this.count = regionSerializer.serialize(name + "_count");
+        this.bytePrefix = regionSerializer.serialize(name + DOT);
+        this.byteCount = regionSerializer.serialize(name + DOT + "_count_");
         this.jedisPool = jedisPool;
     }
 
@@ -43,23 +44,23 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     @Override
     public List<V> put(K key, V value) {
         Jedis jedis = jedisPool.getResource();
-        byte[] fullKey = getKey(key);
-        jedis.set(fullKey, valueSerializer.serialize(value));
-        jedis.zadd(name, System.currentTimeMillis(), fullKey);
+        byte[] byteKey = getKey(key);
+        jedis.set(byteKey, valueSerializer.serialize(value));
+        jedis.zadd(bytePrefix, System.currentTimeMillis(), byteKey);
         return clearCache(jedis);
     }
 
     @Override
     public void put(K key, V value, Integer expiry) {
         Jedis jedis = jedisPool.getResource();
-        byte[] fullKey = getKey(key);
+        byte[] byteKey = getKey(key);
         if (null == expiry) {
-            jedis.set(fullKey, valueSerializer.serialize(value));
+            jedis.set(byteKey, valueSerializer.serialize(value));
         } else {
-            jedis.setex(fullKey, expiry, valueSerializer.serialize(value));
+            jedis.setex(byteKey, expiry, valueSerializer.serialize(value));
         }
-        jedis.zadd(name, System.currentTimeMillis(), fullKey);
-        jedis.incr(count);
+        jedis.zadd(bytePrefix, System.currentTimeMillis(), byteKey);
+        jedis.incr(byteCount);
         jedis.close();
     }
 
@@ -68,7 +69,7 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
         Jedis jedis = jedisPool.getResource();
         byte[] fullKey = getKey(key);
         V value = valueSerializer.deserialize(jedis.get(fullKey));
-        jedis.zadd(name, System.currentTimeMillis(), fullKey);
+        jedis.zadd(bytePrefix, System.currentTimeMillis(), fullKey);
         jedis.close();
         return value;
     }
@@ -76,13 +77,13 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     @Override
     public List<V> clear() {
         Jedis jedis = jedisPool.getResource();
-        Set<byte[]> keyList = jedis.zrange(name, 0, -1);
+        Set<byte[]> keyList = jedis.zrange(bytePrefix, 0, -1);
         List<V> list = new ArrayList<V>();
         for (byte[] key : keyList) {
             list.add(valueSerializer.deserialize(key));
             jedis.del(key);
         }
-        jedis.del(name);
+        jedis.del(bytePrefix);
         jedis.close();
         return list;
     }
@@ -90,11 +91,11 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     @Override
     public V remove(K key) {
         Jedis jedis = jedisPool.getResource();
-        byte[] keybyte = getKey(key);
-        if (jedis.exists(keybyte)) {
-            V value = valueSerializer.deserialize(jedis.get(keybyte));
-            jedis.del(keybyte);
-            jedis.zrem(name, keybyte);
+        byte[] byteKey = getKey(key);
+        if (jedis.exists(byteKey)) {
+            V value = valueSerializer.deserialize(jedis.get(byteKey));
+            jedis.del(byteKey);
+            jedis.zrem(bytePrefix, byteKey);
             jedis.close();
             return value;
         }
@@ -104,21 +105,21 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     @Override
     public long getDataSize() {
         Jedis jedis = jedisPool.getResource();
-        long size = jedis.zrevrange(name, 0, -1).size();
+        long size = jedis.zrevrange(bytePrefix, 0, -1).size();
         jedis.close();
         return size;
     }
 
     private List<V> clearCache(Jedis jedis) {
         List<V> list = null;
-        if (size < jedis.incr(count)) {
+        if (size < jedis.incr(byteCount)) {
             int helf = size / 2;
-            jedis.decrBy(count, helf);
-            Set<byte[]> keys = jedis.zrange(name, 0, helf);
+            jedis.decrBy(byteCount, helf);
+            Set<byte[]> keys = jedis.zrange(bytePrefix, 0, helf);
             list = new ArrayList<V>();
             for (byte[] key : keys) {
                 list.add(valueSerializer.deserialize(jedis.get(key)));
-                jedis.zrem(name, key);
+                jedis.zrem(bytePrefix, key);
                 jedis.del(key);
             }
         }
@@ -137,7 +138,7 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     @Override
     public Map<K, V> getAll() {
         Jedis jedis = jedisPool.getResource();
-        Set<byte[]> keySet = jedis.zrange(name, 0, -1);
+        Set<byte[]> keySet = jedis.zrange(bytePrefix, 0, -1);
         Map<K, V> map = new HashMap<K, V>();
         for (byte[] key : keySet) {
             map.put(keySerializer.deserialize(key), valueSerializer.deserialize(jedis.get(key)));
@@ -155,6 +156,6 @@ public class RedisCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serial
     }
 
     private byte[] getKey(K key) {
-        return addAll(name, keySerializer.serialize(key));
+        return addAll(bytePrefix, keySerializer.serialize(key));
     }
 }

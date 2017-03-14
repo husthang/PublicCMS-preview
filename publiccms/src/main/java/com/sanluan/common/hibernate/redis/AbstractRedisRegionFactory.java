@@ -14,6 +14,7 @@ import org.hibernate.cache.spi.TimestampsRegion;
 import org.hibernate.cache.spi.access.AccessType;
 
 import com.sanluan.common.base.Base;
+import com.sanluan.common.cache.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.regions.RedisCollectionRegion;
 import com.sanluan.common.hibernate.redis.regions.RedisEntityRegion;
 import com.sanluan.common.hibernate.redis.regions.RedisNaturalIdRegion;

@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.hibernate.boot.spi.SessionFactoryOptions;
 import org.hibernate.cache.CacheException;
 
+import com.sanluan.common.cache.redis.RedisClient;
+
 /**
  *
  * SingletonRedisRegionFactory

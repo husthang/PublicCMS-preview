@@ -50,9 +50,9 @@ public class ScheduledTaskComponent extends Base {
     }
 
     /**
-     * 每天凌晨清理缓存
+     * 每6个小时清理缓存
      */
-    @Scheduled(cron = "0 0 0  * * ?")
+    @Scheduled(cron = "0 30 0/6 * * ?")
     public void clearCache() {
         if (CmsVersion.isInitialized()) {
             cacheComponent.clear();

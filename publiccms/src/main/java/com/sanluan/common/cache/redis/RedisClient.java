@@ -1,11 +1,10 @@
-package com.sanluan.common.hibernate.redis;
+package com.sanluan.common.cache.redis;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.sanluan.common.base.Base;
 import com.sanluan.common.cache.CacheEntity;
-import com.sanluan.common.cache.redis.RedisCacheEntity;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;

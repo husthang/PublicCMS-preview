@@ -7,8 +7,8 @@ import org.hibernate.cache.CacheException;
 import org.hibernate.cache.spi.CacheDataDescription;
 import org.hibernate.cache.spi.TransactionalDataRegion;
 
+import com.sanluan.common.cache.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.ConfigurableRedisRegionFactory;
-import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**

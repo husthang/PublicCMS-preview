@@ -8,6 +8,8 @@ import java.util.Properties;
 import org.hibernate.boot.spi.SessionFactoryOptions;
 import org.hibernate.cache.CacheException;
 
+import com.sanluan.common.cache.redis.RedisClient;
+
 /**
  *
  * RedisRegionFactory

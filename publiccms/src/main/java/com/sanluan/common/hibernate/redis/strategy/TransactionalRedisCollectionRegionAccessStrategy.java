@@ -9,7 +9,7 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.persister.collection.CollectionPersister;
 
-import com.sanluan.common.hibernate.redis.RedisClient;
+import com.sanluan.common.cache.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.regions.RedisCollectionRegion;
 
 /**

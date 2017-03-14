@@ -4,8 +4,8 @@ import java.util.Properties;
 
 import org.hibernate.cache.spi.QueryResultsRegion;
 
+import com.sanluan.common.cache.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.ConfigurableRedisRegionFactory;
-import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**

@@ -12,7 +12,7 @@ import com.sanluan.common.base.Base;
  * BinarySerializer
  * 
  */
-public class BinarySerializer<T> extends Base implements RedisSerializer<T> {
+public class BinarySerializer<T> extends Base implements Serializer<T> {
     public byte[] serialize(String str) {
         return null == str ? EMPTY_BYTES : str.getBytes(DEFAULT_CHARSET);
     }

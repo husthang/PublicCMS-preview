@@ -9,8 +9,8 @@ import org.hibernate.cache.spi.EntityRegion;
 import org.hibernate.cache.spi.access.AccessType;
 import org.hibernate.cache.spi.access.EntityRegionAccessStrategy;
 
+import com.sanluan.common.cache.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.ConfigurableRedisRegionFactory;
-import com.sanluan.common.hibernate.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.strategy.RedisAccessStrategyFactory;
 
 /**
