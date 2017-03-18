@@ -13,7 +13,7 @@ subprojects{
 	apply plugin: "eclipse"
 	
 	group = 'com.publiccms'
-	version = "V2017.0215"
+	version = "V2017.0318"
 	
 	sourceCompatibility = 1.7
 	targetCompatibility = 1.7
@@ -63,6 +63,7 @@ project(':publiccms') {
 	        "org.springframework:spring-context-support:${springVersion}",
 	        "org.springframework:spring-orm:${springVersion}",
 	        "org.springframework:spring-webmvc:${springVersion}",
+	        "org.springframework:spring-websocket:${springVersion}",
 
 	        // http://mvnrepository.com/artifact/org.mybatis/mybatis
 	        "org.mybatis:mybatis:3.4.2",

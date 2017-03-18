@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.publiccms.common.spi.Config;
-import com.publiccms.common.spi.SiteCache;
+import com.publiccms.common.api.Config;
+import com.publiccms.common.api.SiteCache;
 import com.publiccms.entities.sys.SysConfigData;
 import com.publiccms.entities.sys.SysConfigDataId;
 import com.publiccms.entities.sys.SysSite;

@@ -1,8 +1,8 @@
 package com.publiccms.controller.web;
 
+import static com.publiccms.common.api.Config.CONFIG_CODE_SITE;
 import static com.publiccms.common.constants.CommonConstants.getCookiesUser;
 import static com.publiccms.common.constants.CommonConstants.getCookiesUserSplit;
-import static com.publiccms.common.spi.Config.CONFIG_CODE_SITE;
 import static com.publiccms.logic.component.config.LoginConfigComponent.CONFIG_LOGIN_PATH;
 import static com.publiccms.logic.service.log.LogLoginService.CHANNEL_WEB;
 import static com.sanluan.common.tools.RequestUtils.addCookie;

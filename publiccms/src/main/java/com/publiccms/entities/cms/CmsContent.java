@@ -33,11 +33,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.publiccms.common.analyzer.MultiTokenizerFactory;
+import com.publiccms.common.api.Static;
 import com.publiccms.common.index.CmsContentBridge;
 import com.publiccms.common.index.CmsContentInterceptor;
 import com.publiccms.common.index.PublishDateFilterFactory;
 import com.publiccms.common.index.SiteIdFilterFactory;
-import com.publiccms.common.spi.Static;
 import com.sanluan.common.generator.annotation.GeneratorColumn;
 
 /**

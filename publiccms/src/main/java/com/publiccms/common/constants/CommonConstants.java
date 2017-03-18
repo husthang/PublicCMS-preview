@@ -1,14 +1,14 @@
 package com.publiccms.common.constants;
 
 public class CommonConstants {
-    public static String getDefaultPage() {
+    public static final String getDefaultPage() {
         return "index.html";
     }
-    public static String getSessionUser() {
+    public static final String getSessionUser() {
         return "PUBLICCMS_USER";
     }
     
-    public static String getSessionUserTime() {
+    public static final String getSessionUserTime() {
         return "PUBLICCMS_USER_TIME";
     }
 

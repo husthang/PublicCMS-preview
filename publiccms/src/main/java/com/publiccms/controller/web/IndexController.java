@@ -1,7 +1,7 @@
 package com.publiccms.controller.web;
 
+import static com.publiccms.common.api.Config.CONFIG_CODE_SITE;
 import static com.publiccms.common.constants.CommonConstants.getDefaultPage;
-import static com.publiccms.common.spi.Config.CONFIG_CODE_SITE;
 import static com.publiccms.logic.component.config.LoginConfigComponent.CONFIG_LOGIN_PATH;
 import static com.sanluan.common.tools.RequestUtils.getEncodePath;
 import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;

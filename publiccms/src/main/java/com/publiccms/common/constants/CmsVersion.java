@@ -8,11 +8,11 @@ public class CmsVersion {
     private static boolean initialized = false;
 
     public static final String getVersion() {
-        return "V2016.0828";
+        return "V2017.0318";
     }
 
     public static boolean isPreview() {
-        return true;
+        return false;
     }
 
     public static final String getClusterId() {

@@ -16,7 +16,6 @@ import static org.apache.commons.lang3.time.DateUtils.addSeconds;
 
 import java.util.Date;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +41,7 @@ public class WebContextInterceptor extends BaseInterceptor {
     private SysUserTokenService sysUserTokenService;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         response.addHeader(getXPowered(), getVersion());
         HttpSession session = request.getSession();
         String contextPath = request.getContextPath();

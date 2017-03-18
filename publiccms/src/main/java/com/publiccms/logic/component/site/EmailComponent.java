@@ -21,8 +21,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.publiccms.common.spi.Config;
-import com.publiccms.common.spi.SiteCache;
+import com.publiccms.common.api.Config;
+import com.publiccms.common.api.SiteCache;
 import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.component.config.ConfigComponent;
 import com.publiccms.views.pojo.ExtendField;

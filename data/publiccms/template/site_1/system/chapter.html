@@ -29,7 +29,7 @@
 </main>
 <@_includePlace path="/index.html/6369e868-50b9-4245-9d39-fd440384a685.html"/> <#-- 尾部Footer -->
 <script>
-	uParse('#content',{rootPath: '${site.sitePath!}ueditor'});
+	uParse('#content',{rootPath: '${site.sitePath!}assets/ueditor'});
 	$.getJSON('${site.dynamicPath!}api/contentClick?id=${content.id}&callback=?', function(data){});
 <@_content id=content.parentId>
 	$.getJSON('${site.dynamicPath!}api/contentClick?id=${object.parentId}&callback=?', function(data){});

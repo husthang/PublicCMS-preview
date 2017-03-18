@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.AbstractCachingViewResolver;
 
-import com.publiccms.common.spi.Cache;
+import com.publiccms.common.api.Cache;
 import com.publiccms.logic.service.tools.HqlService;
 
 @Component

@@ -20,19 +20,9 @@
 			<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["renren","bdxc","kaixin001","tqf","tieba","douban","sqq","fx","mail","isohu","ty","copy"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","weixin"],"viewText":"分享到：","viewSize":"24"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 			<div id="content">${text?no_esc!}</div>
-			<#if content.tags?has_content>
-				<div class="tags">
-					标签：
-					<@_tag ids=content.tags>
-						<#list map?keys as key>
-							<a href="${site.dynamicPath!}tags.html?id=${map[key].id}" target="_blank"><em>${map[key].name}</em></a>
-						</#list>
-					</@_tag>
-				</div>
-			</#if>
 			<@include path="/ftl/content_page.ftl"/>
 			<div id="SOHUCS" class="comment" sid="${content.id}"></div>
-			<script charset="utf-8"src="http://changyan.sohu.com/upload/changyan.js"></script>
+			<script charset="utf-8"src="//changyan.sohu.com/upload/changyan.js"></script>
 			<script type="text/javascript">
 				window.changyan.api.config({
 					appid: 'cyrUsl0PT',
@@ -64,7 +54,7 @@
 	<div class="clearfix-before"></div>
 </main>
 <@_includePlace path="/index.html/6369e868-50b9-4245-9d39-fd440384a685.html"/> <#-- 尾部Footer -->
-<script>uParse('#content',{rootPath: '${site.sitePath!}ueditor'});</script>
+<script>uParse('#content',{rootPath: '${site.sitePath!}assets/ueditor'});</script>
 <script>
 	var link=$('article .page a:last').attr('href');
 	if("undefined" != typeof link && "" != link ){

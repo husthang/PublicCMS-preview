@@ -1,138 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
 <head>
 	<title>${(metadata.extendData.title)!}</title>
-	<meta name="keywords" content="${(metadata.extendData.keywords)!}"/>
-	<meta name="description" content="${(metadata.extendData.description)!}">
-	<@_includePlace path="/index.html/7b6a73cb-e3dc-4476-8c3c-29cb14b95b20.html"/> <#-- 页头 -->
+	<meta name="keywords" content="${(metadata.extendData.keywords)!}" />
+	<meta name="description" content="${(metadata.extendData.description)!}" />
+<@_includePlace path="/index.html/885f27db-b93d-4642-9b95-9dcf2a418844.html"/> <#-- Head Meta -->
 </head>
+<body>
+<div id="fh5co-page">
+	<@_includePlace path="/index.html/3fa1a038-e006-459b-a94d-65ec19a6df16.html"/> <#-- 导航 -->
+	
+	<aside id="fh5co-hero" clsas="js-fullheight">
+		<div class="flexslider js-fullheight">
+			<@_includePlace path="/index.html/0a05d34a-d102-4604-9ba8-86c9536c4222.html"/> <#-- 焦点图 -->
+	  	</div>
+	</aside>
 
-<body data-spy="scroll" data-offset="0" data-target="#navbar-main">
-	<@_includePlace path="/index.html/2279038b-4e89-47c1-9066-d4bbbc4c4004.html"/> <#-- 导航 -->
-	<!-- ==== HEADERWRAP ==== -->
-	<div id="headerwrap" id="home" name="home" style="background:url('${site.sitePath}${(metadata.extendData.image)!}') no-repeat center top; background-size: cover;">
-		<header class="clearfix">
-			<h1><span class="icon icon-shield"></span></h1>
-			<p>${(metadata.extendData.text1)!}</p>
-			<p>${(metadata.extendData.text2)!}</p>
-		</header>
-	</div><!-- /headerwrap -->
-
-	<!-- ==== GREYWRAP ==== -->
-	<div id="greywrap">
-		<div class="row">
-			<div class="col-lg-4 callout">
-				<span class="icon icon-stack"></span>
-				<h2>Bootstrap 3</h2>
-				<p>Shield Theme is powered by Bootstrap 3. The incredible Mobile First Framework is the best option to run your website. </p>
-			</div><!-- col-lg-4 -->
-
-			<div class="col-lg-4 callout">
-				<span class="icon icon-eye"></span>
-				<h2>Retina Ready</h2>
-				<p>You can use this theme with your iPhone, iPad or MacBook Pro. This theme is retina ready and that is awesome. </p>
-			</div><!-- col-lg-4 -->
-
-			<div class="col-lg-4 callout">
-				<span class="icon icon-heart"></span>
-				<h2>Crafted with Love</h2>
-				<p>We don't make sites, we craft themes with love & passion. That is our most valued secret. We only do thing that we love.   </p>
-			</div><!-- col-lg-4 -->
-		</div><!-- row -->
-	</div><!-- greywrap -->
-
-	<!-- ==== PORTFOLIO ==== -->
-	<div class="container">
-		<br/>
-		<div class="row">
-				<h1 class="centered">最新文章</h1>
-				<hr>
-		</div><!-- /row -->
-		<div class="row">
-			<@_contentList count=12>
-			<#list page.list as a>
-			<div class="col-md-4 ">
-				<div class="grid mask">
-					<figure>
-						<a href="${a.url!}" target="_blank"><img class="img-responsive" src="${(site.sitePath+a.cover)!}" alt="${a.title}"></a>
-						<figcaption>
-							<h5>${a.title}</h5>
-
-						</figcaption><!-- /figcaption -->
-					</figure><!-- /figure -->
-				</div><!-- /grid-mask -->
-			</div>
-			</#list>
-			</@_contentList>
-		</div><!-- /row -->
-	</div><!-- /container -->
-
-	<!-- ==== SECTION DIVIDER2 -->
-	<section class="section-divider textdivider divider2" style="background:url('${site.sitePath}images/bg/divider2.jpg');">
-		<div class="container">
-			<h1>DESIGN IS AN INTERACTION</h1>
-			<hr>
-			<p>To develop a deeper and more meaningful connection with consumers, we believe design must invite them to take part in the conversation.</p>
-		</div><!-- container -->
-	</section><!-- section -->
-	<!-- ==== TEAM MEMBERS ==== -->
-	<div class="container">
-		<br>
-		<div class="row white centered">
-			<h1 class="centered">我们的团队</h1>
-			<hr>
-			<br>
-			<br>
-			<@_includePlace path="/index.html/f48b5957-297d-443d-8bdf-a19d6464065b.html"/> <#-- Our Team -->
-		</div><!-- row -->
-	</div><!-- container -->
-
-	<!-- ==== SECTION DIVIDER4 ==== -->
-	<section class="section-divider textdivider divider4" style="background:url('${site.sitePath}images/bg/divider4.jpg');">
-		<div class="container">
-			<h1>DESIGN CREATES EMOTIONAL CONNECTION</h1>
-			<hr>
-			<p>There’s more to design than meets the eye. It’s when it meets the heart that design creates a meaningful, lasting connection with the audience.</p>
-		</div><!-- container -->
-	</section><!-- section -->
-
-	<!-- ==== BLOG ==== -->
-	<div class="container" id="blog" name="blog">
-		<br/>
-		<div class="row">
-				<h1 class="centered">我们的故事</h1>
-				<hr>
-		</div><!-- /row -->
-		<br/>
-		<@_includePlace path="/index.html/8fc338cc-16e8-4bb6-a1b2-34e2c97bb602.html"/> <#-- WE ARE STORYTELLERS -->
-	</div><!-- /container -->
-
-	<section class="section-divider textdivider divider1" style="background:url('//resource.oldhunter.com/images/bg/divider1.jpg');">
-			<div class="container">
-				<h1>DESIGN EXPAND BOUNDARIES</h1>
-				<hr>
-				<p>To achieve real change, we have to expand boundaries. Because the Wild West of what-could-be is unexplored but rife with opportunity.</p>
-			</div><!-- container -->
-	</section>
-
-	<!-- ==== GREYWRAP ==== -->
-	<div id="greywrap">
+<@_categoryList>
+	<#list page.list as category>
+	<div id="best-deal">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 centered">
-					<img class="img-responsive" src="${site.sitePath}images/macbook.png" align="">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box fadeIn animated-fast" data-animate-effect="fadeIn">
+					<#assign attribute=getCategoryAttribute(category.id)/>
+					<h2>${attribute.title!}</h2>
+					<p>${attribute.description!}</p>
 				</div>
-				<div class="col-lg-4">
-					<h2>We Are Hiring!</h2>
-					<p>Do you want to be one of use? Sure you want, because we are an awesome team!. Here we work hard every day to craft pixel perfect sites.</p>
-					<p><a class="btn btn-success">Contact Us</a></p>
-				</div>
-			</div><!-- row -->
-		</div>
-		<br>
-		<br>
-	</div><!-- greywrap -->
 
-	<@_includePlace path="/index.html/c74c4abb-a8fe-419a-94c8-59a1e5745318.html"/> <#-- 页尾 -->
+		<@_contentList categoryId=category.id  count=3>
+			<#list page.list as a>
+				<#assign attribute=getContentAttribute(a.id)/>
+				<div class="col-md-4 item-block animate-box fadeIn animated-fast" data-animate-effect="fadeIn">
+					<div class="fh5co-property">
+						<figure>
+							<img src="${site.sitePath+a.cover!}" alt="${a.title}" class="img-responsive">
+							<a class="tag">${attribute.place!}</a>
+						</figure>
+						<div class="fh5co-property-innter">
+							<h3><a href="${a.url!}">${a.title}</a></h3>
+							<div class="price-status">
+		                 		<span class="price">${attribute.price!}</span>
+							</div>
+							<p>${a.description!}</p>
+						</div>
+					</div>
+				</div>
+			</#list>
+		</@_contentList>
+
+			</div>
+		</div>
+	</div>
+	</#list>
+</@_categoryList>
+	
+	<div class="fh5co-section-with-image">
+		<img src="${site.sitePath}assets/images/image_1.jpg" alt="" class="img-responsive">
+		<div class="fh5co-box animate-box fadeInUp animated-fast" style="margin-top: -183px;">
+			<h2>Healthy，comfort &amp; happiness</h2>
+			<p>没有人能阻止一颗追求幸福的心。喧嚣的人潮、拥挤的城市、被污染的空气，不，这都不是我们想要的，追寻吧，寻找那片蔚蓝清爽的天空。过健康舒适的生活。</p>
+			<p><a href="#" class="btn btn-primary btn-outline with-arrow">联系我们 <i class="icon-arrow-right"></i></a></p>
+		</div>
+	</div>	
+		
+	<div class="fh5co-cta" style="background-image: url(${site.sitePath}assets/images/slide_4.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
+				<h3>我们每一天都在让自己进步，欢迎一起寻找属于自己的天空</h3>
+				<p><a href="#" class="btn btn-primary btn-outline with-arrow">联系我们<i class="icon-arrow-right"></i></a></p>
+			</div>
+		</div>
+	</div>
+	
+	<@_includePlace path="/index.html/1edfb072-0c53-4062-b457-034b6cad77ab.html"/> <#-- Footer -->
+</div>
 </body>
 </html>
+

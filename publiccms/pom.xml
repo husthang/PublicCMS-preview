@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>publiccms</artifactId>
 	<packaging>war</packaging>
-	<version>V2017.0215</version>
+	<version>V2017.0318</version>
 	<parent>
 		<groupId>com.publiccms</groupId>
 		<artifactId>publiccms-maven</artifactId>
@@ -47,6 +47,10 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>

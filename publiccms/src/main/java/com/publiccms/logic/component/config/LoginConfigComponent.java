@@ -8,7 +8,7 @@ import java.util.Locale;
 
 import org.springframework.stereotype.Component;
 
-import com.publiccms.common.spi.Config;
+import com.publiccms.common.api.Config;
 import com.publiccms.entities.sys.SysSite;
 import com.publiccms.views.pojo.ExtendField;
 import com.sanluan.common.base.Base;

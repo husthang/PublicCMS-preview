@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 
-import com.publiccms.common.spi.Cache;
+import com.publiccms.common.api.Cache;
 import com.publiccms.logic.component.site.SiteComponent;
 import com.sanluan.common.base.Base;
 

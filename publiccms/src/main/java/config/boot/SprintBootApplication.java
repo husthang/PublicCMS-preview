@@ -18,7 +18,7 @@ import config.initializer.ApiInitializer;
 import config.initializer.InitializationInitializer;
 import config.initializer.ResourceInitializer;
 import config.initializer.WebInitializer;
-import config.spring.CmsRootConfig;
+import config.spring.CmsConfig;
 
 /**
  *
@@ -26,7 +26,7 @@ import config.spring.CmsRootConfig;
  * 
  */
 @Configuration
-@Import(CmsRootConfig.class)
+@Import(CmsConfig.class)
 public class SprintBootApplication {
 
     public static void main(String[] args) {

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.publiccms.common.spi.Static;
+import com.publiccms.common.api.Static;
 import com.sanluan.common.generator.annotation.GeneratorColumn;
 
 /**

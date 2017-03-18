@@ -163,7 +163,7 @@ header .nav li{ float:left;padding:0 5px;line-height:37px;}
 /* Tree */
 .tree li{ clear:both;display:block;line-height:24px;cursor:pointer;}
 .tree div, .tree a, .tree span{ display:inherit;height:24px;line-height:24px;}
-.tree div{ display:block;overflow:hidden;}
+.tree div{ overflow:hidden;}
 .tree div div{ float:left;display:block;overflow:hidden;width:22px;height:24px;border:none;background-position:0 -100px;}
 .tree a, .tree a:hover{ text-decoration:none;}
 .tree .collapsable{ background-position:0 -300px;}
