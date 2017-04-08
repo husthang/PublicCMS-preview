@@ -94,7 +94,7 @@ public class CmsContentDao extends BaseDao<CmsContent> {
             queryHandler.condition("bean.disabled = :disabled").setParameter("disabled", disabled);
         }
         if (notEmpty(modelIds)) {
-            queryHandler.condition("bean.modelIds in (:modelIds)").setParameter("modelIds", modelIds);
+            queryHandler.condition("bean.modelId in (:modelIds)").setParameter("modelIds", modelIds);
         }
         if (notEmpty(parentId)) {
             queryHandler.condition("bean.parentId = :parentId").setParameter("parentId", parentId);
