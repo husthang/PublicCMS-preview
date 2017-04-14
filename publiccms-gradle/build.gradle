@@ -13,7 +13,7 @@ subprojects{
 	apply plugin: "eclipse"
 	
 	group = 'com.publiccms'
-	version = "V2017.0318"
+	version = "V2017.0412"
 	
 	sourceCompatibility = 1.7
 	targetCompatibility = 1.7
@@ -37,11 +37,13 @@ project(':publiccms') {
 	
 	ext {
 	    // http://mvnrepository.com/artifact/org.springframework/spring-core
+	    // http://projects.spring.io/spring-framework/
 	    springVersion = "4.3.7.RELEASE"
 	    // http://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+	    // http://hc.apache.org/downloads.cgi
 	    httpclientVersion = "4.5.3"
 	    // http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
-	    jacksonVersion = "2.8.6"
+	    jacksonVersion = "2.8.8"
 	}
 
 	dependencies {
@@ -58,7 +60,7 @@ project(':publiccms') {
 	        "org.apache.commons:commons-lang3:3.5",
 
 	        // http://mvnrepository.com/artifact/org.freemarker/freemarker
-	        "org.freemarker:freemarker:2.3.25-incubating",
+	        "org.freemarker:freemarker:2.3.26-incubating",
 
 	        "org.springframework:spring-context-support:${springVersion}",
 	        "org.springframework:spring-orm:${springVersion}",
