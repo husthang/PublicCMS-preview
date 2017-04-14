@@ -182,16 +182,6 @@ CREATE TABLE `cms_content_related` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='推荐推荐';
 
 -- ----------------------------
--- Table structure for cms_content_tag
--- ----------------------------
-DROP TABLE IF EXISTS `cms_content_tag`;
-CREATE TABLE `cms_content_tag` (
-  `tag_id` bigint(20) NOT NULL COMMENT '标签ID',
-  `content_id` bigint(20) NOT NULL COMMENT '内容ID',
-  PRIMARY KEY  (`tag_id`,`content_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容标签';
-
--- ----------------------------
 -- Table structure for cms_dictionary
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_dictionary`;

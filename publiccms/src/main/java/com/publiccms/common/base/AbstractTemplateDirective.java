@@ -1,6 +1,9 @@
 package com.publiccms.common.base;
 
 import static com.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
+import static com.publiccms.controller.api.ApiController.NEED_APP_TOKEN;
+import static com.publiccms.controller.api.ApiController.NEED_LOGIN;
+import static com.publiccms.controller.api.ApiController.UN_AUTHORIZED;
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.apache.commons.lang3.StringUtils.split;
 
@@ -45,12 +48,12 @@ public abstract class AbstractTemplateDirective extends BaseTemplateDirective {
         if (needAppToken() && (null == (app = getApp(handler)) || empty(app.getAuthorizedApis())
                 || !contains(split(app.getAuthorizedApis(), COMMA_DELIMITED), getName()))) {
             if (null == app) {
-                handler.put("error", "needAppToken").render();
+                handler.put("error", NEED_APP_TOKEN).render();
             } else {
-                handler.put("error", "unAuthorized").render();
+                handler.put("error", UN_AUTHORIZED).render();
             }
         } else if (needUserToken() && null == getUser(handler)) {
-            handler.put("error", "needLogin").render();
+            handler.put("error", NEED_LOGIN).render();
         } else {
             execute(handler);
             handler.render();

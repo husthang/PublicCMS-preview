@@ -1,6 +1,7 @@
 package com.publiccms.controller.api;
 
 import static com.publiccms.controller.api.ApiController.NOT_FOUND_MAP;
+import static com.publiccms.controller.api.ApiController.NEED_APP_TOKEN_MAP;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,11 +58,11 @@ public class MethodController extends AbstractController {
                 if (method.needAppToken()) {
                     SysAppToken token = appTokenService.getEntity(appToken);
                     if (null == token) {
-                        return NOT_FOUND_MAP;
+                        return NEED_APP_TOKEN_MAP;
                     }
                     SysApp app = appService.getEntity(token.getAppId());
                     if (null == app) {
-                        return NOT_FOUND_MAP;
+                        return NEED_APP_TOKEN_MAP;
                     }
                 }
                 String[] paramters = request.getParameterValues("paramters");

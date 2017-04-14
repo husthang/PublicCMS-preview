@@ -119,12 +119,6 @@ INSERT INTO `cms_content_attribute` VALUES ('4', NULL, NULL, '{\"price\":\"均�
 INSERT INTO `cms_content_attribute` VALUES ('5', NULL, NULL, '{\"price\":\"均价：20000元/平米\",\"place\":\"海口市\"}', '<p style=\"text-align: center;\"><img src=\"http://site2.dev.publiccms.com:8080/publiccms/webfile/upload/2017/02-25/08-48-030837-298550298.png\"/>&nbsp; &nbsp;&nbsp;<br/></p><p>世贸国贸双核心商圈绝佳的黄金地段，总建筑面11万平方米，占地16亩，绿化率高达40%以上，项目758个车位，群楼高度23.9米，建筑高度260米，地上48层地下3层。</p>', '102');
 
 -- ----------------------------
--- Records of cms_content_tag
--- ----------------------------
-INSERT INTO `cms_content_tag` VALUES ('1', '1');
-INSERT INTO `cms_content_tag` VALUES ('1', '2');
-
--- ----------------------------
 -- Records of cms_place
 -- ----------------------------
 INSERT INTO `cms_place` VALUES ('1', '1', '/index.html/94fe86e5-45b3-4896-823a-37c6d7d6c578.html', '1', 'content', '142', 'PublicCMS后台截图', '//www.publiccms.com/introduction/2015/08-11/142.html', 'upload/2017/01-15/17-35-240834-18490682.jpg', '2016-03-21 21:25:19', '2016-03-21 21:24:54', '1', '6', '0');

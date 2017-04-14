@@ -16,7 +16,6 @@ import com.publiccms.common.base.AbstractController;
 import com.publiccms.entities.cms.CmsTag;
 import com.publiccms.entities.log.LogOperate;
 import com.publiccms.entities.sys.SysSite;
-import com.publiccms.logic.service.cms.CmsContentTagService;
 import com.publiccms.logic.service.cms.CmsTagService;
 import com.publiccms.logic.service.log.LogLoginService;
 
@@ -30,8 +29,6 @@ import com.publiccms.logic.service.log.LogLoginService;
 public class CmsTagAdminController extends AbstractController {
     @Autowired
     private CmsTagService service;
-    @Autowired
-    private CmsContentTagService contentTagService;
 
     private String[] ignoreProperties = new String[] { "id", "siteId", "searchCount" };
 
@@ -76,7 +73,6 @@ public class CmsTagAdminController extends AbstractController {
         if (notEmpty(ids)) {
             SysSite site = getSite(request);
             service.delete(site.getId(), ids);
-            contentTagService.delete(ids, null);
             logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
                     LogLoginService.CHANNEL_WEB_MANAGER, "delete.tag", getIpAddress(request), getDate(), join(ids, ',')));
         }

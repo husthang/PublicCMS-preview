@@ -8,7 +8,7 @@ public class CmsVersion {
     private static boolean initialized = false;
 
     public static final String getVersion() {
-        return "V2017.0318";
+        return "V2017.0412";
     }
 
     public static boolean isPreview() {

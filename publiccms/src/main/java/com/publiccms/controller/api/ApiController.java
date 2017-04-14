@@ -31,6 +31,15 @@ public class ApiController extends AbstractController {
     private Map<String, AbstractAppDirective> appDirectiveMap;
     private List<Map<String, String>> appList = new ArrayList<Map<String, String>>();
     public final static String INTERFACE_NOT_FOUND = "interfaceNotFound";
+    public final static String NEED_APP_TOKEN = "needAppToken";
+    public final static String UN_AUTHORIZED = "unAuthorized";
+    public final static String NEED_LOGIN = "needLogin";
+    public static final Map<String, String> NEED_APP_TOKEN_MAP = new HashMap<String, String>() {
+        private static final long serialVersionUID = 1L;
+        {
+            put(ERROR, NEED_APP_TOKEN);
+        }
+    };
     public static final Map<String, String> NOT_FOUND_MAP = new HashMap<String, String>() {
         private static final long serialVersionUID = 1L;
         {

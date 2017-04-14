@@ -36,8 +36,9 @@ public class CmsUpgrader extends Base implements Json {
     public final static String VERSION_20160423 = "V2016.0423";
     public final static String VERSION_20160510 = "V2016.0510";
     public final static String VERSION_20160828 = "V2016.0828";
+    public final static String VERSION_20170318 = "V2017.0318";
     public final static List<String> VERSION_LIST = Arrays
-            .asList(new String[] { VERSION_20160423, VERSION_20160510, VERSION_20160828 });
+            .asList(new String[] { VERSION_20160423, VERSION_20160510, VERSION_20160828, VERSION_20170318 });
     private DataSource dataSource;
     private String databaseType;
     private String version;
@@ -58,7 +59,9 @@ public class CmsUpgrader extends Base implements Json {
             runScript(VERSION_20160510, VERSION_20160828);
         case VERSION_20160828:
             updateModelToFile();
-            runScript(VERSION_20160828, CmsVersion.getVersion());
+            runScript(VERSION_20160828, VERSION_20170318);
+        case VERSION_20170318:
+            runScript(VERSION_20170318, CmsVersion.getVersion());
             break;
         }
     }

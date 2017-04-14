@@ -49,7 +49,6 @@ import com.publiccms.logic.service.cms.CmsContentAttributeService;
 import com.publiccms.logic.service.cms.CmsContentFileService;
 import com.publiccms.logic.service.cms.CmsContentRelatedService;
 import com.publiccms.logic.service.cms.CmsContentService;
-import com.publiccms.logic.service.cms.CmsContentTagService;
 import com.publiccms.logic.service.cms.CmsTagService;
 import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysDeptCategoryService;
@@ -78,8 +77,6 @@ public class CmsContentAdminController extends AbstractController {
     private CmsContentRelatedService cmsContentRelatedService;
     @Autowired
     private CmsTagService tagService;
-    @Autowired
-    private CmsContentTagService contentTagService;
     @Autowired
     private CmsContentFileService contentFileService;
     @Autowired
@@ -168,7 +165,6 @@ public class CmsContentAdminController extends AbstractController {
                 logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB_MANAGER,
                         "update.content", getIpAddress(request), now, getString(entity)));
             }
-            contentTagService.delete(null, new Long[] { entity.getId() });
         } else {
             entity.setSiteId(site.getId());
             entity.setUserId(user.getId());
@@ -215,7 +211,7 @@ public class CmsContentAdminController extends AbstractController {
         cmsContentRelatedService.update(entity.getId(), user.getId(), contentParamters.getContentRelateds());// 更新保存推荐内容
         templateComponent.createContentFile(site, entity, category, categoryModel);// 静态化
         if (null != checked && checked) {
-            contentTagService.update(entity.getId(), entity.getTagIds());
+            service.check(site.getId(), user.getId(), new Long[] { entity.getId() });
             if (notEmpty(entity.getParentId())) {
                 publish(new Long[] { entity.getParentId() }, request, session, model);
             }
@@ -240,7 +236,6 @@ public class CmsContentAdminController extends AbstractController {
             Set<Integer> categoryIdSet = new HashSet<Integer>();
             for (CmsContent entity : entityList) {
                 if (null != entity && site.getId() == entity.getSiteId()) {
-                    contentTagService.update(entity.getId(), entity.getTagIds());
                     if (notEmpty(entity.getParentId())) {
                         publish(new Long[] { entity.getParentId() }, request, session, model);
                     }
@@ -403,7 +398,6 @@ public class CmsContentAdminController extends AbstractController {
                 }
             }
             service.delete(site.getId(), ids);
-            contentTagService.delete(null, ids);
             logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
                     LogLoginService.CHANNEL_WEB_MANAGER, "delete.content", getIpAddress(request), getDate(), join(ids, ',')));
         }
