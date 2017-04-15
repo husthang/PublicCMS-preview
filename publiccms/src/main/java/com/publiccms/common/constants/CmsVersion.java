@@ -23,7 +23,7 @@ public class CmsVersion {
      * @return
      */
     public static boolean isPreview() {
-        return false;
+        return true;
     }
 
     /**
