@@ -20,8 +20,14 @@ import com.publiccms.logic.service.sys.SysEmailTokenService;
 import com.publiccms.logic.service.sys.SysUserTokenService;
 import com.sanluan.common.base.Base;
 
+/**
+ *
+ * ScheduledTaskComponent
+ * 
+ */
 @Component
 public class ScheduledTaskComponent extends Base {
+    
     @Autowired
     private SysAppTokenService appTokenService;
     @Autowired

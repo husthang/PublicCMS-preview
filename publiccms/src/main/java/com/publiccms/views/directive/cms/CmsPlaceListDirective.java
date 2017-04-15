@@ -13,6 +13,11 @@ import com.publiccms.logic.service.cms.CmsPlaceService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsPlaceListDirective
+ * 
+ */
 @Component
 public class CmsPlaceListDirective extends AbstractTemplateDirective {
 

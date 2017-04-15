@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 import com.publiccms.entities.cms.CmsCategoryAttribute;
 import com.sanluan.common.base.BaseDao;
 
+/**
+ *
+ * CmsCategoryAttributeDao
+ * 
+ */
 @Repository
 public class CmsCategoryAttributeDao extends BaseDao<CmsCategoryAttribute> {
 

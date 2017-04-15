@@ -6,6 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.publiccms.entities.sys.SysConfigData;
 import com.sanluan.common.base.BaseService;
 
+/**
+ *
+ * SysConfigDataService
+ * 
+ */
 @Service
 @Transactional
 public class SysConfigDataService extends BaseService<SysConfigData> {

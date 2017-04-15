@@ -21,10 +21,22 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.home.HomeBroadcastService;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * HomeBroadcastAdminController
+ * 
+ */
 @Controller
 @RequestMapping("homeBroadcast")
 public class HomeBroadcastAdminController extends AbstractController {
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "enable", method = RequestMethod.POST)
     public String enable(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (verifyEquals("admin.operate", getAdminFromSession(session).getId(), id, model)) {
@@ -44,6 +56,13 @@ public class HomeBroadcastAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "disable", method = RequestMethod.POST)
     public String disable(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (verifyEquals("admin.operate", getAdminFromSession(session).getId(), id, model)) {

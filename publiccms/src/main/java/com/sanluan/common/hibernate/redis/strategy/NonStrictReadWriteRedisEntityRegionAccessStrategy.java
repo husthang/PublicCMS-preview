@@ -28,27 +28,12 @@ public class NonStrictReadWriteRedisEntityRegionAccessStrategy extends AbstractR
         super(region, options);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.access.EntityRegionAccessStrategy#
-     * generateCacheKey(java.lang.Object,
-     * org.hibernate.persister.entity.EntityPersister,
-     * org.hibernate.engine.spi.SessionFactoryImplementor, java.lang.String)
-     */
     @Override
     public Object generateCacheKey(Object id, EntityPersister persister, SessionFactoryImplementor factory,
             String tenantIdentifier) {
         return DefaultCacheKeysFactory.staticCreateEntityKey(id, persister, factory, tenantIdentifier);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.hibernate.cache.spi.access.EntityRegionAccessStrategy#getCacheKeyId(
-     * java.lang.Object)
-     */
     @Override
     public Object getCacheKeyId(Object cacheKey) {
         return DefaultCacheKeysFactory.staticGetEntityId(cacheKey);
@@ -64,14 +49,6 @@ public class NonStrictReadWriteRedisEntityRegionAccessStrategy extends AbstractR
         return region.get(key);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.hibernate.redis.strategy.AbstractRedisAccessStrategy#
-     * putFromLoad(org.hibernate.engine.spi.SessionImplementor,
-     * java.lang.Object, java.lang.Object, long, java.lang.Object, boolean)
-     */
     @Override
     public boolean putFromLoad(SessionImplementor session, Object key, Object value, long txTimestamp, Object version,
             boolean minimalPutOverride) {

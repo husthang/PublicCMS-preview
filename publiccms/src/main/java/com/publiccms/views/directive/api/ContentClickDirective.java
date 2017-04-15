@@ -14,8 +14,14 @@ import com.publiccms.logic.component.site.StatisticsComponent;
 import com.publiccms.views.pojo.CmsContentStatistics;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * ContentClickDirective
+ * 
+ */
 @Component
 public class ContentClickDirective extends AbstractAppDirective {
+    
     @Autowired
     private StatisticsComponent statisticsComponent;
 

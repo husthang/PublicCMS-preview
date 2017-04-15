@@ -26,6 +26,11 @@ import com.publiccms.logic.component.site.SiteComponent;
 import com.publiccms.logic.service.log.LogOperateService;
 import com.sanluan.common.base.BaseController;
 
+/**
+ *
+ * AbstractController
+ * 
+ */
 public abstract class AbstractController extends BaseController {
     protected static final String TEMPLATE_INDEX = "index";
     protected static final String TEMPLATE_DONE = "common/ajaxDone";
@@ -35,11 +40,26 @@ public abstract class AbstractController extends BaseController {
     protected static final String ERROR = "error";
     protected static final String ERROR_PAGE = "error.html";
     protected static MediaType jsonMediaType = new MediaType("application", "json", DEFAULT_CHARSET);
+    /**
+     * Telephone Pattern
+     */
     public static final Pattern TELPHONE_PATTERN = Pattern.compile("^\\+?\\d+([- ]?\\d+)?$");
+    /**
+     * Number Pattern
+     */
     public static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
+    /**
+     * UserName Pattern
+     */
     public static final Pattern USERNAME_PATTERN = Pattern.compile("^[A-Za-z_]{1}[0-9A-Za-z_]{3,40}$");
+    /**
+     * NickName Pattern
+     */
     public static final Pattern NICKNAME_PATTERN = Pattern.compile("^[0-9A-Za-z_\u4E00-\uFA29\uE7C7-\uE7F3]{2,45}$");
     private static final String VALID_CHARS = "[^\\s\\(\\)<>@,;:\\\\\\\"\\.\\[\\]+]+";
+    /**
+     * Email Pattern
+     */
     public static final Pattern EMAIL_PATTERN = Pattern
             .compile("(" + VALID_CHARS + "(\\." + VALID_CHARS + ")*@" + VALID_CHARS + "(\\." + VALID_CHARS + ")*)");
 
@@ -60,7 +80,7 @@ public abstract class AbstractController extends BaseController {
 
     /**
      * @param session
-     * @return
+     * @return SysUser
      */
     public static SysUser getUserFromSession(HttpSession session) {
         return (SysUser) session.getAttribute(getSessionUser());
@@ -68,7 +88,7 @@ public abstract class AbstractController extends BaseController {
 
     /**
      * @param session
-     * @return
+     * @return Date
      */
     public static Date getUserTimeFromSession(HttpSession session) {
         return (Date) session.getAttribute(getSessionUserTime());
@@ -84,7 +104,8 @@ public abstract class AbstractController extends BaseController {
     }
 
     /**
-     * @param request
+     * @param contextPath
+     * @param session
      * @param response
      */
     public static void clearUserToSession(String contextPath, HttpSession session, HttpServletResponse response) {
@@ -101,7 +122,7 @@ public abstract class AbstractController extends BaseController {
 
     /**
      * @param session
-     * @return
+     * @return SysUser
      */
     public static SysUser getAdminFromSession(HttpSession session) {
         return (SysUser) session.getAttribute(getSessionAdmin());
@@ -117,7 +138,7 @@ public abstract class AbstractController extends BaseController {
 
     /**
      * @param value
-     * @return
+     * @return boolean
      */
     public static boolean verifyNotUserName(String value) {
         Matcher m = USERNAME_PATTERN.matcher(value);
@@ -129,7 +150,7 @@ public abstract class AbstractController extends BaseController {
 
     /**
      * @param value
-     * @return
+     * @return boolean
      */
     public static boolean verifyNotNickName(String value) {
         Matcher m = NICKNAME_PATTERN.matcher(value);
@@ -141,7 +162,7 @@ public abstract class AbstractController extends BaseController {
 
     /**
      * @param value
-     * @return
+     * @return boolean
      */
     protected static boolean verifyNotTelphone(String value) {
         Matcher m = TELPHONE_PATTERN.matcher(value);
@@ -209,7 +230,7 @@ public abstract class AbstractController extends BaseController {
 
     /**
      * @param value
-     * @return
+     * @return boolean
      */
     public static boolean verifyNotEMail(String value) {
         Matcher m = EMAIL_PATTERN.matcher(value);
@@ -221,7 +242,7 @@ public abstract class AbstractController extends BaseController {
 
     /**
      * @param value
-     * @return
+     * @return boolean
      */
     public static boolean verifyNotNumber(String value) {
         Matcher m = NUMBER_PATTERN.matcher(value);

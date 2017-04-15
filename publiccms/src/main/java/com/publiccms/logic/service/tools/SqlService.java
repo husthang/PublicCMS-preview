@@ -10,30 +10,58 @@ import org.springframework.transaction.annotation.Transactional;
 import com.publiccms.logic.mapper.tools.SqlMapper;
 import com.sanluan.common.datasource.MultiDataSource;
 
+/**
+ *
+ * SqlService
+ * 
+ */
 @Service
 @Transactional
 public class SqlService {
+    
+    /**
+     * @param hql
+     * @return
+     */
     public int insert(String hql) {
         return mapper.insert(hql);
     }
 
+    /**
+     * @param hql
+     * @return
+     */
     public int update(String hql) {
         return mapper.update(hql);
     }
 
+    /**
+     * @param hql
+     * @return
+     */
     public int delete(String hql) {
         return mapper.delete(hql);
     }
 
+    /**
+     * @param sql
+     * @return
+     */
     @Transactional(readOnly = true)
     public List<Map<String, Object>> select(String sql) {
         return mapper.select(sql);
     }
     
+    /**
+     * @param dataSourceName
+     */
     public void setDataSourceName(String dataSourceName){
         MultiDataSource.setDataSourceName(dataSourceName);
     }
 
+    /**
+     * 
+     */
     public void resetDataSourceName() {
         MultiDataSource.resetDataSourceName();
     }

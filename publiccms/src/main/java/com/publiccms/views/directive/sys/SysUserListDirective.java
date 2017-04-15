@@ -10,6 +10,11 @@ import com.publiccms.logic.service.sys.SysUserService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysUserListDirective
+ * 
+ */
 @Component
 public class SysUserListDirective extends AbstractTemplateDirective {
 

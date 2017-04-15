@@ -39,21 +39,33 @@ import freemarker.template.TemplateModel;
  */
 @Component
 public class TemplateCacheComponent extends Base implements Cache {
+    
+    /**
+     * 
+     */
     public static final String CACHE_VAR = "useCache";
+    /**
+     * 
+     */
     public static final String CONTENT_CACHE = "noCache";
+    /**
+     * 
+     */
+    public static final String CACHE_FILE_DIRECTORY = "/cache";
     @Autowired
     private SiteComponent siteComponent;
     @Autowired
     private TemplateComponent templateComponent;
-    public static final String CACHE_FILE_DIRECTORY = "/cache";
 
     /**
      * 返回缓存模板路径或者模板原路径
      * 
-     * @param path
+     * @param requestPath
+     * @param fullTemplatePath
+     * @param cacheMillisTime
+     * @param acceptParamters
      * @param request
-     * @param response
-     * @param model
+     * @param modelMap
      * @return
      */
     public String getCachedPath(String requestPath, String fullTemplatePath, int cacheMillisTime, String acceptParamters,
@@ -134,13 +146,6 @@ public class TemplateCacheComponent extends Base implements Cache {
 class NoCacheDirective extends Base implements TemplateDirectiveModel {
     protected final Log log = getLog(getClass());
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateDirectiveModel#execute(freemarker.core.
-     * Environment, java.util.Map, freemarker.template.TemplateModel[],
-     * freemarker.template.TemplateDirectiveBody)
-     */
     @Override
     public void execute(Environment environment, @SuppressWarnings("rawtypes") Map parameters, TemplateModel[] templateModel,
             TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {

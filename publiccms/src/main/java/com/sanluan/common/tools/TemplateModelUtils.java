@@ -21,17 +21,30 @@ import freemarker.template.TemplateScalarModel;
 import freemarker.template.TemplateSequenceModel;
 
 /**
+ * 模板数据模型工具类
  * 
- * TemplateModelUtils 模板数据模型工具类
+ * TemplateModelUtils 
  *
  */
 public class TemplateModelUtils extends Base {
-    public static final String FULL_DATE_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss";
+    
+    private static final String FULL_DATE_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss";
+    private static final String SHORT_DATE_FORMAT_STRING = "yyyy-MM-dd";
+    /**
+     * 
+     */
     public static final DateFormat FULL_DATE_FORMAT = new SimpleDateFormat(FULL_DATE_FORMAT_STRING);
+    /**
+     * 
+     */
     public static final int FULL_DATE_LENGTH = FULL_DATE_FORMAT_STRING.length();
-
-    public static final String SHORT_DATE_FORMAT_STRING = "yyyy-MM-dd";
+    /**
+     * 
+     */
     public static final DateFormat SHORT_DATE_FORMAT = new SimpleDateFormat(SHORT_DATE_FORMAT_STRING);
+    /**
+     * 
+     */
     public static final int SHORT_DATE_LENGTH = SHORT_DATE_FORMAT_STRING.length();
 
     /**

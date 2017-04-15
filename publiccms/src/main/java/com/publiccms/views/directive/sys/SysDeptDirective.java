@@ -16,6 +16,11 @@ import com.publiccms.logic.service.sys.SysDeptService;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysDeptDirective
+ * 
+ */
 @Component
 public class SysDeptDirective extends AbstractTemplateDirective {
 

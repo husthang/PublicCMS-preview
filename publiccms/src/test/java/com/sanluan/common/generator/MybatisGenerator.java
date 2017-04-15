@@ -12,6 +12,11 @@ import org.mybatis.generator.internal.DefaultShellCallback;
  * Created by xinlu on 2017/1/8.
  */
 public class MybatisGenerator {
+    
+    /**
+     * @param arg
+     * @throws Throwable
+     */
     public static void main(String[] arg) throws Throwable {
         List<String> warnings = new ArrayList<String>();
         ConfigurationParser cp = new ConfigurationParser(warnings);

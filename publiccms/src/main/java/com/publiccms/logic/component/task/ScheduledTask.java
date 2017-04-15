@@ -31,8 +31,26 @@ import com.sanluan.common.base.Base;
  */
 @Component
 public class ScheduledTask extends Base {
+    /**
+     * 
+     */
     public static final String ID = "id";
-    public static final int TASK_STATUS_READY = 0, TASK_STATUS_RUNNING = 1, TASK_STATUS_PAUSE = 2, TASK_STATUS_ERROR = 3;
+    /**
+     * 
+     */
+    public static final int TASK_STATUS_READY = 0;
+    /**
+     * 
+     */
+    public static final int TASK_STATUS_RUNNING = 1;
+    /**
+     * 
+     */
+    public static final int TASK_STATUS_PAUSE = 2;
+    /**
+     * 
+     */
+    public static final int TASK_STATUS_ERROR = 3;
 
     @Autowired
     private SysTaskService sysTaskService;
@@ -45,6 +63,9 @@ public class ScheduledTask extends Base {
     @Autowired
     private TemplateComponent templateComponent;
 
+    /**
+     * @param startDate
+     */
     public void init(Date startDate) {
         if (null != scheduler) {
             @SuppressWarnings("unchecked")
@@ -70,6 +91,7 @@ public class ScheduledTask extends Base {
     /**
      * 创建任务计划
      * 
+     * @param site
      * @param id
      * @param cronExpression
      */
@@ -103,6 +125,7 @@ public class ScheduledTask extends Base {
     /**
      * 执行任务计划
      * 
+     * @param site
      * @param id
      */
     public void runOnce(SysSite site, Integer id) {
@@ -120,6 +143,7 @@ public class ScheduledTask extends Base {
     /**
      * 暂停任务计划
      * 
+     * @param site
      * @param id
      */
     public void pause(SysSite site, Integer id) {
@@ -137,6 +161,7 @@ public class ScheduledTask extends Base {
     /**
      * 恢复任务计划
      * 
+     * @param site
      * @param id
      */
     public void resume(SysSite site, Integer id) {

@@ -12,6 +12,11 @@ import com.publiccms.logic.service.home.HomeGroupService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeGroupListDirective
+ * 
+ */
 @Component
 public class HomeGroupListDirective extends AbstractTemplateDirective {
 

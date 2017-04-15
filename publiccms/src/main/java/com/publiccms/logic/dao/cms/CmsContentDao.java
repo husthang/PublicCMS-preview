@@ -17,12 +17,25 @@ import com.sanluan.common.handler.FacetPageHandler;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsContentDao
+ * 
+ */
 @Repository
 public class CmsContentDao extends BaseDao<CmsContent> {
     private static final String[] textFields = new String[] { "title", "author", "editor", "description" };
     private static final String[] tagFields = new String[] { "tagIds" };
     private static final String[] facetFields = new String[] { "categoryId", "modelId" };
 
+    /**
+     * @param siteId
+     * @param text
+     * @param tagId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler query(Integer siteId, String text, String tagId, Integer pageIndex, Integer pageSize) {
         FullTextQuery query;
         if (notEmpty(tagId)) {
@@ -35,6 +48,16 @@ public class CmsContentDao extends BaseDao<CmsContent> {
         return getPage(query, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param categoryId
+     * @param modelId
+     * @param text
+     * @param tagId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public FacetPageHandler facetQuery(Integer siteId, String categoryId, String modelId, String text, String tagId,
             Integer pageIndex, Integer pageSize) {
         FullTextQuery query;
@@ -55,6 +78,11 @@ public class CmsContentDao extends BaseDao<CmsContent> {
         return getFacetPage(query, facetFields, valueMap, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param categoryIds
+     * @return
+     */
     public int deleteByCategoryIds(int siteId, Integer[] categoryIds) {
         if (notEmpty(categoryIds)) {
             QueryHandler queryHandler = getQueryHandler("update CmsContent bean set bean.disabled = :disabled");
@@ -66,6 +94,10 @@ public class CmsContentDao extends BaseDao<CmsContent> {
         return 0;
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void index(int siteId, Serializable[] ids) {
         for (CmsContent entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId()) {
@@ -74,6 +106,29 @@ public class CmsContentDao extends BaseDao<CmsContent> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param status
+     * @param categoryId
+     * @param categoryIds
+     * @param disabled
+     * @param modelIds
+     * @param parentId
+     * @param emptyParent
+     * @param onlyUrl
+     * @param hasImages
+     * @param hasFiles
+     * @param title
+     * @param userId
+     * @param checkUserId
+     * @param startPublishDate
+     * @param endPublishDate
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Integer[] status, Integer categoryId, Integer[] categoryIds, Boolean disabled,
             String[] modelIds, Long parentId, Boolean emptyParent, Boolean onlyUrl, Boolean hasImages, Boolean hasFiles,
             String title, Long userId, Long checkUserId, Date startPublishDate, Date endPublishDate, String orderField,

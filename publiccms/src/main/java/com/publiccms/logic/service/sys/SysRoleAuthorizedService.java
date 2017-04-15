@@ -19,19 +19,41 @@ import com.publiccms.logic.dao.sys.SysRoleAuthorizedDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysRoleAuthorizedService
+ * 
+ */
 @Service
 @Transactional
 public class SysRoleAuthorizedService extends BaseService<SysRoleAuthorized> {
 
+    /**
+     * @param roleId
+     * @param url
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer roleId, String url, Integer pageIndex, Integer pageSize) {
         return dao.getPage(roleId, url, pageIndex, pageSize);
     }
 
+    /**
+     * @param roleId
+     * @return
+     */
     public int deleteByRoleId(Integer roleId) {
         return dao.deleteByRoleId(roleId);
     }
 
+    /**
+     * @param roleId
+     * @param showAllMoudle
+     * @param moudles
+     * @param pageUrls
+     */
     public void dealRoleMoudles(Integer roleId, boolean showAllMoudle, List<SysMoudle> moudles, Set<String> pageUrls) {
         if (notEmpty(roleId)) {
             Set<String> urls = new HashSet<String>();
@@ -70,6 +92,11 @@ public class SysRoleAuthorizedService extends BaseService<SysRoleAuthorized> {
         }
     }
 
+    /**
+     * @param roleIds
+     * @param url
+     * @return
+     */
     @Transactional(readOnly = true)
     public int count(String roleIds, String url) {
         String[] roleIdArray = split(roleIds, ',');
@@ -85,4 +112,5 @@ public class SysRoleAuthorizedService extends BaseService<SysRoleAuthorized> {
 
     @Autowired
     private SysRoleAuthorizedDao dao;
+    
 }

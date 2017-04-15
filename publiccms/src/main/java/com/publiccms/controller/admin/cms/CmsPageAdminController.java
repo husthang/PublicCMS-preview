@@ -36,7 +36,6 @@ public class CmsPageAdminController extends AbstractController {
 
     /**
      * @param path
-     * @param type
      * @param placeParamters
      * @param request
      * @param session
@@ -60,7 +59,6 @@ public class CmsPageAdminController extends AbstractController {
 
     /**
      * @param path
-     * @param type
      * @param request
      * @param session
      * @param model

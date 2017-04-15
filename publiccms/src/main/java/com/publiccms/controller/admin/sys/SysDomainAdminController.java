@@ -22,12 +22,25 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysDomainService;
 
+/**
+ *
+ * SysDomainAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysDomain")
 public class SysDomainAdminController extends AbstractController {
     @Autowired
     private SysDomainService service;
 
+    /**
+     * @param entity
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysDomain entity, String id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -59,6 +72,13 @@ public class SysDomainAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param name
+     * @param domainName
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("virify")
     @ResponseBody
     public boolean virify(String name, String domainName, String id, ModelMap model) {
@@ -79,6 +99,13 @@ public class SysDomainAdminController extends AbstractController {
         return true;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(String id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);

@@ -35,9 +35,6 @@ public class RedisEntityRegion extends RedisTransactionalDataRegion implements E
         super(accessStrategyFactory, redis, configurableRedisRegionFactory, regionName, options, metadata, props);
     }
 
-    /* (non-Javadoc)
-     * @see org.hibernate.cache.spi.EntityRegion#buildAccessStrategy(org.hibernate.cache.spi.access.AccessType)
-     */
     @Override
     public EntityRegionAccessStrategy buildAccessStrategy(AccessType accessType) throws CacheException {
         return accessStrategyFactory.createEntityRegionAccessStrategy(this, accessType);

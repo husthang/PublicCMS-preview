@@ -15,6 +15,11 @@ import com.publiccms.logic.component.template.ModelComponent;
 import com.publiccms.views.pojo.CmsModel;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsModelDirective
+ * 
+ */
 @Component
 public class CmsModelDirective extends AbstractTemplateDirective {
 

@@ -13,16 +13,37 @@ import com.publiccms.logic.dao.home.HomeArticleDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeArticleService
+ * 
+ */
 @Service
 @Transactional
 public class HomeArticleService extends BaseService<HomeArticle> {
 
+    /**
+     * @param siteId
+     * @param directoryId
+     * @param userId
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Long directoryId, Long userId, Boolean disabled, String orderField,
             String orderType, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, directoryId, userId, disabled, orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param id
+     * @param status
+     * @return
+     */
     public HomeArticle updateStatus(Serializable id, boolean status) {
         HomeArticle entity = getEntity(id);
         if (null != entity) {
@@ -33,4 +54,5 @@ public class HomeArticleService extends BaseService<HomeArticle> {
 
     @Autowired
     private HomeArticleDao dao;
+
 }

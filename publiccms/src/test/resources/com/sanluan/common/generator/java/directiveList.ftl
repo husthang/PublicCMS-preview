@@ -13,6 +13,11 @@ import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * ${entityName}List${directiveSuffix}
+ * 
+ */
 @Component
 public class ${entityName}List${directiveSuffix} extends AbstractTemplateDirective {
 

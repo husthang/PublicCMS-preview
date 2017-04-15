@@ -15,6 +15,11 @@ import com.publiccms.entities.home.HomeDialog;
 import com.publiccms.logic.service.home.HomeDialogService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * HomeDialogDirective
+ * 
+ */
 @Component
 public class HomeDialogDirective extends AbstractTemplateDirective {
 

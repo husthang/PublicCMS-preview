@@ -27,18 +27,12 @@ public class ReadWriteRedisEntityRegionAccessStrategy extends AbstractReadWriteR
         super(region, options);
     }
 
-    /* (non-Javadoc)
-     * @see org.hibernate.cache.spi.access.EntityRegionAccessStrategy#generateCacheKey(java.lang.Object, org.hibernate.persister.entity.EntityPersister, org.hibernate.engine.spi.SessionFactoryImplementor, java.lang.String)
-     */
     @Override
     public Object generateCacheKey(Object id, EntityPersister persister, SessionFactoryImplementor factory,
             String tenantIdentifier) {
         return DefaultCacheKeysFactory.staticCreateEntityKey(id, persister, factory, tenantIdentifier);
     }
 
-    /* (non-Javadoc)
-     * @see org.hibernate.cache.spi.access.EntityRegionAccessStrategy#getCacheKeyId(java.lang.Object)
-     */
     @Override
     public Object getCacheKeyId(Object cacheKey) {
         return DefaultCacheKeysFactory.staticGetEntityId(cacheKey);

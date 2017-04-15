@@ -7,6 +7,11 @@ import org.springframework.stereotype.Component;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * MasterSiteDirective
+ * 
+ */
 @Component
 public class MasterSiteDirective extends AbstractTemplateDirective {
 

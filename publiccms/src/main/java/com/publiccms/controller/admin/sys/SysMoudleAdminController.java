@@ -27,6 +27,11 @@ import com.publiccms.logic.service.sys.SysRoleAuthorizedService;
 import com.publiccms.logic.service.sys.SysRoleMoudleService;
 import com.publiccms.logic.service.sys.SysRoleService;
 
+/**
+ *
+ * SysMoudleAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysMoudle")
 public class SysMoudleAdminController extends AbstractController {
@@ -43,6 +48,13 @@ public class SysMoudleAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id" };
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysMoudle entity, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -68,6 +80,13 @@ public class SysMoudleAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @SuppressWarnings("unchecked")
     @RequestMapping("delete")
     public String delete(Integer id, HttpServletRequest request, HttpSession session, ModelMap model) {

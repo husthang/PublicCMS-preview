@@ -22,11 +22,29 @@ import com.publiccms.logic.component.site.SiteComponent;
 public class AbstractFreemarkerView extends FreeMarkerView {
     protected static final String CONTEXT_ADMIN = "admin";
     protected static final String CONTEXT_USER = "user";
+    /**
+     * Domain Context
+     */
     public static final String CONTEXT_DOMAIN = "domain";
+    /**
+     * Site Context
+     */
     public static final String CONTEXT_SITE = "site";
+    /**
+     * Base Context
+     */
     public static final String CONTEXT_BASE = "base";
+    /**
+     * Include Context
+     */
     public static final String CONTEXT_INCLUDE = "include";
+    /**
+     * Import Context
+     */
     public static final String CONTEXT_IMPORT = "import";
+    /**
+     * Site Component
+     */
     public static SiteComponent siteComponent;
 
     @Override
@@ -35,6 +53,13 @@ public class AbstractFreemarkerView extends FreeMarkerView {
         super.exposeHelpers(model, request);
     }
 
+    /**
+     * @param model
+     * @param scheme
+     * @param serverName
+     * @param serverPort
+     * @param contextPath
+     */
     public static void exposeAttribute(Map<String, Object> model, String scheme, String serverName, int serverPort,
             String contextPath) {
         if (80 == serverPort && "http".equals(scheme) || 443 == serverPort && "https".equals(scheme)) {
@@ -48,6 +73,10 @@ public class AbstractFreemarkerView extends FreeMarkerView {
         exposeSite(model, siteComponent.getSite(serverName));
     }
 
+    /**
+     * @param model
+     * @param site
+     */
     public static void exposeSite(Map<String, Object> model, SysSite site) {
         model.put(CONTEXT_SITE, site);
         model.put(CONTEXT_INCLUDE, new MultiSiteIncludeDirective(site));

@@ -21,8 +21,14 @@ import com.sanluan.common.base.Base;
 import com.sanluan.common.cache.CacheEntity;
 import com.sanluan.common.cache.CacheEntityFactory;
 
+/**
+ *
+ * StatisticsComponent
+ * 
+ */
 @Component
 public class StatisticsComponent extends Base implements Cache {
+    
     private CacheEntity<Long, CmsContentStatistics> contentCache;
     private CacheEntity<Long, CmsPlaceStatistics> placeCache;
     private CacheEntity<Long, CmsContentRelatedStatistics> relatedCache;
@@ -39,6 +45,10 @@ public class StatisticsComponent extends Base implements Cache {
     @Autowired
     private CmsTagService tagService;
 
+    /**
+     * @param id
+     * @return
+     */
     public CmsContentRelatedStatistics relatedClicks(Long id) {
         if (notEmpty(id)) {
             CmsContentRelatedStatistics contentRelatedStatistics = relatedCache.get(id);
@@ -57,6 +67,10 @@ public class StatisticsComponent extends Base implements Cache {
         }
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public CmsTagStatistics searchTag(Long id) {
         if (notEmpty(id)) {
             CmsTagStatistics tagStatistics = tagCache.get(id);
@@ -75,6 +89,11 @@ public class StatisticsComponent extends Base implements Cache {
         }
     }
 
+    /**
+     * @param siteId
+     * @param word
+     * @return
+     */
     public CmsWordStatistics search(int siteId, String word) {
         if (notEmpty(word)) {
             CmsWord entity = wordService.getEntity(siteId, word);
@@ -101,6 +120,10 @@ public class StatisticsComponent extends Base implements Cache {
         }
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public CmsPlaceStatistics placeClicks(Long id) {
         if (notEmpty(id)) {
             CmsPlaceStatistics placeStatistics = placeCache.get(id);
@@ -119,6 +142,10 @@ public class StatisticsComponent extends Base implements Cache {
         }
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public CmsContentStatistics clicks(Long id) {
         if (notEmpty(id)) {
             CmsContentStatistics contentStatistics = contentCache.get(id);
@@ -146,6 +173,9 @@ public class StatisticsComponent extends Base implements Cache {
         contentService.updateStatistics(contentCache.clear());
     }
 
+    /**
+     * @param cacheEntityFactory
+     */
     @Autowired
     public void initCache(CacheEntityFactory cacheEntityFactory) {
         contentCache = cacheEntityFactory.createCacheEntity("content");

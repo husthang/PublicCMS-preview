@@ -13,10 +13,22 @@ import com.publiccms.logic.dao.sys.SysDomainDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysDomainService
+ * 
+ */
 @Service
 @Transactional
 public class SysDomainService extends BaseService<SysDomain> {
 
+    /**
+     * @param siteId
+     * @param wild
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Boolean wild, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, wild, pageIndex, pageSize);
@@ -30,4 +42,5 @@ public class SysDomainService extends BaseService<SysDomain> {
 
     @Autowired
     private SysDomainDao dao;
+    
 }

@@ -9,8 +9,21 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysSiteDao
+ * 
+ */
 @Repository
 public class SysSiteDao extends BaseDao<SysSite> {
+    
+    /**
+     * @param disabled
+     * @param name
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Boolean disabled,String name, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysSite bean");
         if (notEmpty(disabled)) {

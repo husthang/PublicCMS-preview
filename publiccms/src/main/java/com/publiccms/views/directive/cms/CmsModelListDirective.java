@@ -12,6 +12,11 @@ import com.publiccms.logic.component.template.ModelComponent;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsModelListDirective
+ * 
+ */
 @Component
 public class CmsModelListDirective extends AbstractTemplateDirective {
 

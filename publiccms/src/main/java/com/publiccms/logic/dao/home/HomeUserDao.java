@@ -9,8 +9,23 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * HomeUserDao
+ * 
+ */
 @Repository
 public class HomeUserDao extends BaseDao<HomeUser> {
+
+    /**
+     * @param siteId
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Boolean disabled, String orderField, String orderType, Integer pageIndex,
             Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from HomeUser bean");

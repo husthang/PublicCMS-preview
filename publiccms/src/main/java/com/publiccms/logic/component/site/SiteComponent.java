@@ -16,18 +16,42 @@ import com.sanluan.common.base.Base;
 import com.sanluan.common.cache.CacheEntity;
 import com.sanluan.common.cache.CacheEntityFactory;
 
+/**
+ *
+ * SiteComponent
+ * 
+ */
 public class SiteComponent extends Base implements Cache {
+    
+    /**
+     * 
+     */
     public static final String TEMPLATE_PATH = "template";
+    /**
+     * 
+     */
     public static final String TASK_FILE_PATH = "task";
+    /**
+     * 
+     */
     public static final String STATIC_FILE_PATH_WEB = "web";
+
+    /**
+     * 
+     */
+    public static final String SITE_PATH_PREFIX = "/site_";
+    /**
+     * 
+     */
+    public static final String MODEL_FILE = "model.data";
+    /**
+     * 
+     */
+    public static final String CONFIG_FILE = "config.data";
+
 
     private CacheEntity<String, SysSite> siteCache;
     private CacheEntity<String, SysDomain> domainCache;
-
-    public static final String SITE_PATH_PREFIX = "/site_";
-    public static final String MODEL_FILE = "model.data";
-    public static final String CONFIG_FILE = "config.data";
-
     private String rootPath;
     private String webFilePath;
     private String taskTemplateFilePath;
@@ -41,6 +65,7 @@ public class SiteComponent extends Base implements Cache {
     private SysSiteService sysSiteService;
 
     /**
+     * @param site
      * @param path
      * @return
      */
@@ -51,16 +76,29 @@ public class SiteComponent extends Base implements Cache {
         return SITE_PATH_PREFIX + site.getId() + SEPARATOR + path;
     }
 
+    /**
+     * @param serverName
+     * @return
+     */
     public String getViewNamePreffix(String serverName) {
         SysDomain sysDomain = getDomain(serverName);
         SysSite site = getSite(serverName);
         return getViewNamePreffix(site, sysDomain);
     }
 
+    /**
+     * @param site
+     * @param sysDomain
+     * @return
+     */
     public String getViewNamePreffix(SysSite site, SysDomain sysDomain) {
         return getFullFileName(site, empty(sysDomain.getPath()) ? BLANK : sysDomain.getPath() + SEPARATOR);
     }
 
+    /**
+     * @param serverName
+     * @return
+     */
     public SysDomain getDomain(String serverName) {
         SysDomain sysDomain = domainCache.get(serverName);
         if (null == sysDomain) {
@@ -86,6 +124,10 @@ public class SiteComponent extends Base implements Cache {
         return sysDomain;
     }
 
+    /**
+     * @param serverName
+     * @return
+     */
     public SysSite getSite(String serverName) {
         SysSite site = siteCache.get(serverName);
         if (null == site) {
@@ -95,11 +137,16 @@ public class SiteComponent extends Base implements Cache {
         return site;
     }
 
+    /**
+     * @param siteId
+     * @return
+     */
     public boolean isMaster(int siteId) {
         return null != idSet && idSet.contains(siteId);
     }
 
     /**
+     * @param site
      * @param filePath
      * @return
      */
@@ -108,6 +155,7 @@ public class SiteComponent extends Base implements Cache {
     }
 
     /**
+     * @param site
      * @param templatePath
      * @return
      */
@@ -116,6 +164,7 @@ public class SiteComponent extends Base implements Cache {
     }
 
     /**
+     * @param site
      * @param templatePath
      * @return
      */
@@ -124,7 +173,7 @@ public class SiteComponent extends Base implements Cache {
     }
 
     /**
-     * @param templatePath
+     * @param site
      * @return
      */
     public String getModelFilePath(SysSite site) {
@@ -132,17 +181,23 @@ public class SiteComponent extends Base implements Cache {
     }
 
     /**
-     * @param templatePath
+     * @param site
      * @return
      */
     public String getConfigFilePath(SysSite site) {
         return getWebTemplateFilePath() + getFullFileName(site, CONFIG_FILE);
     }
 
+    /**
+     * @param defaultSiteId
+     */
     public void setDefaultSiteId(int defaultSiteId) {
         this.defaultSiteId = defaultSiteId;
     }
 
+    /**
+     * @param siteMasters
+     */
     public void setSiteMasters(String siteMasters) {
         String[] masters = split(siteMasters, COMMA_DELIMITED);
         for (String master : masters) {
@@ -179,28 +234,46 @@ public class SiteComponent extends Base implements Cache {
         domainCache.clear();
     }
 
+    /**
+     * @param cacheEntityFactory
+     */
     @Autowired
     public void initCache(CacheEntityFactory cacheEntityFactory) {
         domainCache = cacheEntityFactory.createCacheEntity("domain");
         siteCache = cacheEntityFactory.createCacheEntity("site");
     }
 
+    /**
+     * @return
+     */
     public String getRootPath() {
         return rootPath;
     }
 
+    /**
+     * @param taskTemplateFilePath
+     */
     public void setTaskTemplateFilePath(String taskTemplateFilePath) {
         this.taskTemplateFilePath = taskTemplateFilePath;
     }
 
+    /**
+     * @param webTemplateFilePath
+     */
     public void setWebTemplateFilePath(String webTemplateFilePath) {
         this.webTemplateFilePath = webTemplateFilePath;
     }
 
+    /**
+     * @return
+     */
     public String getTaskTemplateFilePath() {
         return taskTemplateFilePath;
     }
 
+    /**
+     * @return
+     */
     public String getWebTemplateFilePath() {
         return webTemplateFilePath;
     }

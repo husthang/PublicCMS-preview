@@ -13,6 +13,11 @@ import com.publiccms.entities.sys.SysAppClientId;
 import com.publiccms.logic.service.sys.SysAppClientService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CreateAppClientDirective
+ * 
+ */
 @Component
 public class CreateAppClientDirective extends AbstractTemplateDirective {
 

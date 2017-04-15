@@ -11,8 +11,22 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysTaskDao
+ * 
+ */
 @Repository
 public class SysTaskDao extends BaseDao<SysTask> {
+    
+	/**
+	 * @param siteId
+	 * @param status
+	 * @param beginUpdateDate
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
 	public PageHandler getPage(Integer siteId, Integer status, Date beginUpdateDate, Integer pageIndex, Integer pageSize) {
 		QueryHandler queryHandler = getQueryHandler("from SysTask bean");
 		if (notEmpty(siteId)) {
@@ -28,6 +42,10 @@ public class SysTaskDao extends BaseDao<SysTask> {
 		return getPage(queryHandler, pageIndex, pageSize);
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public int updateStatusToRunning(Integer id) {
 		if (notEmpty(id)) {
 			QueryHandler queryHandler = getQueryHandler("update SysTask bean set bean.status = 1");

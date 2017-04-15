@@ -11,6 +11,11 @@ import com.publiccms.common.base.AbstractTemplateDirective;
 import com.publiccms.logic.service.sys.SysExtendFieldService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysExtendFieldListDirective
+ * 
+ */
 @Component
 public class SysExtendFieldListDirective extends AbstractTemplateDirective {
 

@@ -15,20 +15,45 @@ import com.publiccms.logic.dao.log.LogTaskDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * LogTaskService
+ * 
+ */
 @Service
 @Transactional
 public class LogTaskService extends BaseService<LogTask> {
 
+    /**
+     * @param siteId
+     * @param taskId
+     * @param startBegintime
+     * @param endBegintime
+     * @param success
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Integer taskId, Date startBegintime, Date endBegintime, Boolean success,
             String orderType, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, taskId, startBegintime, endBegintime, success, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param begintime
+     * @return
+     */
     public int delete(Integer siteId, Date begintime) {
         return dao.delete(siteId, begintime);
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void delete(int siteId, Serializable[] ids) {
         for (LogTask entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId()) {
@@ -39,4 +64,5 @@ public class LogTaskService extends BaseService<LogTask> {
 
     @Autowired
     private LogTaskDao dao;
+
 }

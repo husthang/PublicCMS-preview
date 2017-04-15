@@ -15,12 +15,20 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.publiccms.common.constants.CmsVersion;
 import com.sanluan.common.datasource.MultiDataSource;
 
+/**
+ *
+ * CmsDataSource
+ * 
+ */
 public class CmsDataSource extends MultiDataSource {
     private static CmsDataSource cmsDataSource;
     private String dbconfigFilePath;
 
     private Map<Object, Object> dataSources = new HashMap<Object, Object>();
 
+    /**
+     * @param filePath
+     */
     public CmsDataSource(String filePath) {
         dbconfigFilePath = filePath;
         cmsDataSource = this;
@@ -33,6 +41,12 @@ public class CmsDataSource extends MultiDataSource {
         }
     }
 
+    /**
+     * @param configFilePath
+     * @return
+     * @throws IOException
+     * @throws PropertyVetoException
+     */
     public static DataSource initDataSource(String configFilePath) throws IOException, PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         Properties properties = loadAllProperties(configFilePath);
@@ -51,6 +65,10 @@ public class CmsDataSource extends MultiDataSource {
         return dataSource;
     }
 
+    /**
+     * @throws IOException
+     * @throws PropertyVetoException
+     */
     public static void initDefautlDataSource() throws IOException, PropertyVetoException {
         DataSource dataSource = initDataSource(cmsDataSource.dbconfigFilePath);
         cmsDataSource.getDataSources().put("default", dataSource);
@@ -63,14 +81,24 @@ public class CmsDataSource extends MultiDataSource {
 
     }
 
+    /**
+     * 
+     */
     public void init() {
         super.afterPropertiesSet();
     }
 
+    /**
+     * @param name
+     * @param dataSource
+     */
     public void put(Object name, Object dataSource) {
         dataSources.put(name, dataSource);
     }
 
+    /**
+     * @return
+     */
     public Map<Object, Object> getDataSources() {
         return dataSources;
     }

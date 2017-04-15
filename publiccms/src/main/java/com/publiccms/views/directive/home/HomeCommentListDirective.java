@@ -12,6 +12,11 @@ import com.publiccms.logic.service.home.HomeCommentService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeCommentListDirective
+ * 
+ */
 @Component
 public class HomeCommentListDirective extends AbstractTemplateDirective {
 

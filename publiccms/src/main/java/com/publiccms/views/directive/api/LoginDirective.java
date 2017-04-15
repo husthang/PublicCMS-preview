@@ -25,6 +25,11 @@ import com.publiccms.logic.service.sys.SysUserService;
 import com.publiccms.logic.service.sys.SysUserTokenService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * LoginDirective
+ * 
+ */
 @Component
 public class LoginDirective extends AbstractAppDirective {
 

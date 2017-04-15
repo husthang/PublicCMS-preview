@@ -8,10 +8,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.publiccms.entities.cms.CmsPlaceAttribute;
 import com.sanluan.common.base.BaseService;
 
+/**
+ *
+ * CmsPlaceAttributeService
+ * 
+ */
 @Service
 @Transactional
 public class CmsPlaceAttributeService extends BaseService<CmsPlaceAttribute> {
 
+    /**
+     * @param placeId
+     * @param data
+     */
     public void updateAttribute(Long placeId, String data) {
         CmsPlaceAttribute attribute = getEntity(placeId);
         if (null != attribute) {

@@ -14,14 +14,14 @@ import com.sanluan.common.base.BaseMethod;
 
 import freemarker.template.TemplateModelException;
 
+/**
+ *
+ * GetCategoryAttributeMethod
+ * 
+ */
 @Component
 public class GetCategoryAttributeMethod extends BaseMethod {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateMethodModelEx#exec(java.util.List)
-     */
     @SuppressWarnings("unchecked")
     @Override
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {

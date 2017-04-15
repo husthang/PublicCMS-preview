@@ -14,15 +14,33 @@ import com.publiccms.logic.dao.sys.SysDeptDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysDeptService
+ * 
+ */
 @Service
 @Transactional
 public class SysDeptService extends BaseService<SysDept> {
 
+    /**
+     * @param siteId
+     * @param parentId
+     * @param userId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Integer parentId, Long userId, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, parentId, userId, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param id
+     * @return
+     */
     public List<Integer> delete(int siteId, Integer id) {
         SysDept entity = getEntity(id);
         List<Integer> idList = new ArrayList<Integer>();
@@ -41,4 +59,5 @@ public class SysDeptService extends BaseService<SysDept> {
 
     @Autowired
     private SysDeptDao dao;
+    
 }

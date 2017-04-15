@@ -15,6 +15,11 @@ import com.publiccms.logic.service.sys.SysMoudleService;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysMoudleDirective
+ * 
+ */
 @Component
 public class SysMoudleDirective extends AbstractTemplateDirective {
 

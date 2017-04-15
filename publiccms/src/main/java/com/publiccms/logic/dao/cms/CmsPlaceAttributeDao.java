@@ -7,8 +7,14 @@ import org.springframework.stereotype.Repository;
 import com.publiccms.entities.cms.CmsPlaceAttribute;
 import com.sanluan.common.base.BaseDao;
 
+/**
+ *
+ * CmsPlaceAttributeDao
+ * 
+ */
 @Repository
 public class CmsPlaceAttributeDao extends BaseDao<CmsPlaceAttribute> {
+    
     @Override
     protected CmsPlaceAttribute init(CmsPlaceAttribute entity) {
         return entity;

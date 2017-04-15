@@ -12,6 +12,11 @@ import com.publiccms.logic.service.sys.SysAppTokenService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysAppTokenListDirective
+ * 
+ */
 @Component
 public class SysAppTokenListDirective extends AbstractTemplateDirective {
 

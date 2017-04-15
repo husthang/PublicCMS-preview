@@ -21,12 +21,23 @@ import com.publiccms.logic.service.cms.CmsDictionaryDataService;
 import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.entities.log.LogOperate;
 
+/**
+ *
+ * CmsDictionaryDataAdminController
+ * 
+ */
 @Controller
 @RequestMapping("cmsDictionaryData")
 public class CmsDictionaryDataAdminController extends AbstractController {
 
 	private String[] ignoreProperties = new String[]{"id"};
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("save")
     public String save(CmsDictionaryData entity, HttpServletRequest request, HttpSession session) {
     	SysSite site = getSite(request);
@@ -44,6 +55,12 @@ public class CmsDictionaryDataAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer[] ids, HttpServletRequest request, HttpSession session) {
     	SysSite site = getSite(request);

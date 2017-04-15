@@ -16,23 +16,47 @@ import com.publiccms.logic.dao.tools.HqlDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HqlService
+ * 
+ */
 @Service
 @Transactional
 public class HqlService extends BaseService<Object> {
 
+    /**
+     * @param hql
+     * @return
+     */
     public int update(String hql) {
         return dao.update(hql);
     }
 
+    /**
+     * @param hql
+     * @return
+     */
     public int delete(String hql) {
         return dao.delete(hql);
     }
 
+    /**
+     * @param hql
+     * @param paramters
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(String hql, Map<String, Object> paramters, Integer pageIndex, Integer pageSize) {
         return dao.getPage(hql, paramters, pageIndex, pageSize);
     }
 
+    /**
+     * @param text
+     * @return
+     */
     public List<String> getToken(String text) {
         List<String> list = new ArrayList<String>();
         if (notEmpty(text)) {
@@ -52,10 +76,14 @@ public class HqlService extends BaseService<Object> {
         return list;
     }
 
+    /**
+     * 
+     */
     public void clear() {
         dao.clear();
     }
 
     @Autowired
     private HqlDao dao;
+    
 }

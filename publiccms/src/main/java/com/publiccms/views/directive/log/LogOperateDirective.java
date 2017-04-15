@@ -16,6 +16,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.log.LogOperateService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * LogOperateDirective
+ * 
+ */
 @Component
 public class LogOperateDirective extends AbstractTemplateDirective {
 

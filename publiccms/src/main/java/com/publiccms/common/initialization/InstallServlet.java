@@ -34,21 +34,45 @@ import com.sanluan.common.base.Base;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
+/**
+ *
+ * InstallServlet
+ * 
+ */
 public class InstallServlet extends HttpServlet {
+    
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 
+     */
     public static final String STEP_CHECKDATABASE = "checkDataBase";
+    /**
+     * 
+     */
     public static final String STEP_DATABASECONFIG = "dataBaseConfig";
+    /**
+     * 
+     */
     public static final String STEP_INITDATABASE = "initDatabase";
+    /**
+     * 
+     */
     public static final String STEP_UPDATE = "update";
+    /**
+     * 
+     */
     public static final String STEP_START = "start";
     private ComboPooledDataSource dataSource;
     private freemarker.template.Configuration freemarkerConfiguration;
     private String startStep;
 
+    /**
+     * @param startStep
+     */
     public InstallServlet(String startStep) {
         this.startStep = startStep;
         this.freemarkerConfiguration = new freemarker.template.Configuration(freemarker.template.Configuration.getVersion());

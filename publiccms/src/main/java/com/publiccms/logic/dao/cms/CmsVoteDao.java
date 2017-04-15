@@ -11,8 +11,27 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsVoteDao
+ * 
+ */
 @Repository
 public class CmsVoteDao extends BaseDao<CmsVote> {
+    
+    /**
+     * @param siteId
+     * @param startStartDate
+     * @param endStartDate
+     * @param startEndDate
+     * @param endEndDate
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Date startStartDate, Date endStartDate, 
                 Date startEndDate, Date endEndDate, Boolean disabled, 
                 String orderField, String orderType, Integer pageIndex, Integer pageSize) {

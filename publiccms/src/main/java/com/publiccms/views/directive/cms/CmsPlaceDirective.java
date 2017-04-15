@@ -16,6 +16,11 @@ import com.publiccms.logic.service.cms.CmsPlaceService;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsPlaceDirective
+ * 
+ */
 @Component
 public class CmsPlaceDirective extends AbstractTemplateDirective {
 

@@ -24,8 +24,14 @@ import com.publiccms.logic.component.cache.CacheComponent;
 import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysUserService;
 
+/**
+ *
+ * LoginAdminController
+ * 
+ */
 @Controller
 public class LoginAdminController extends AbstractController {
+    
     @Autowired
     private SysUserService service;
     @Autowired
@@ -33,6 +39,15 @@ public class LoginAdminController extends AbstractController {
     @Autowired
     private CacheComponent cacheComponent;
 
+    /**
+     * @param username
+     * @param password
+     * @param returnUrl
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(String username, String password, String returnUrl, HttpServletRequest request, HttpSession session,
             ModelMap model) {
@@ -69,6 +84,14 @@ public class LoginAdminController extends AbstractController {
         return REDIRECT + getDefaultPage();
     }
 
+    /**
+     * @param username
+     * @param password
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "loginDialog", method = RequestMethod.POST)
     public String loginDialog(String username, String password, HttpServletRequest request, HttpSession session, ModelMap model) {
         if ("login".equals(login(username, password, null, request, session, model))) {
@@ -77,6 +100,15 @@ public class LoginAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param oldpassword
+     * @param password
+     * @param repassword
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "changePassword", method = RequestMethod.POST)
     public String changeMyselfPassword(String oldpassword, String password, String repassword, HttpServletRequest request,
             HttpSession session, ModelMap model) {
@@ -100,12 +132,19 @@ public class LoginAdminController extends AbstractController {
         return "common/ajaxTimeout";
     }
 
+    /**
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         clearAdminToSession(session);
         return REDIRECT + getDefaultPage();
     }
 
+    /**
+     * @return
+     */
     @RequestMapping(value = "clearCache")
     public String clearCache() {
         cacheComponent.clear();

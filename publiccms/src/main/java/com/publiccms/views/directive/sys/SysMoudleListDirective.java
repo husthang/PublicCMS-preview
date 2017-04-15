@@ -12,6 +12,11 @@ import com.publiccms.logic.service.sys.SysMoudleService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysMoudleListDirective
+ * 
+ */
 @Component
 public class SysMoudleListDirective extends AbstractTemplateDirective {
 

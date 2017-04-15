@@ -11,14 +11,14 @@ import com.sanluan.common.base.BaseMethod;
 
 import freemarker.template.TemplateModelException;
 
+/**
+ *
+ * GetSha1EncodeMethod
+ * 
+ */
 @Component
 public class GetSha1EncodeMethod extends BaseMethod {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateMethodModelEx#exec(java.util.List)
-     */
     @SuppressWarnings("unchecked")
     @Override
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
@@ -39,6 +39,10 @@ public class GetSha1EncodeMethod extends BaseMethod {
         return 1;
     }
 
+    /**
+     * @param sourceString
+     * @return
+     */
     public static String SHA1Encode(String sourceString) {
         String resultString = null;
         try {

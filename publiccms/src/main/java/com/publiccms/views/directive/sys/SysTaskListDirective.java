@@ -12,6 +12,11 @@ import com.publiccms.logic.service.sys.SysTaskService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysTaskListDirective
+ * 
+ */
 @Component
 public class SysTaskListDirective extends AbstractTemplateDirective {
 

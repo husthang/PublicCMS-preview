@@ -8,14 +8,14 @@ import com.sanluan.common.base.BaseMethod;
 
 import freemarker.template.TemplateModelException;
 
+/**
+ *
+ * GetPageMethod
+ * 
+ */
 @Component
 public class GetPageMethod extends BaseMethod {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateMethodModelEx#exec(java.util.List)
-     */
     @SuppressWarnings("unchecked")
     @Override
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {

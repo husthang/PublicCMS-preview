@@ -25,30 +25,96 @@ import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.FacetPageHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsContentService
+ * 
+ */
 @Service
 @Transactional
 public class CmsContentService extends BaseService<CmsContent> {
-    public static final int STATUS_DRAFT = 0, STATUS_NORMAL = 1, STATUS_PEND = 2;
+    
+    /**
+     * 
+     */
+    public static final int STATUS_DRAFT = 0;
+    /**
+     * 
+     */
+    public static final int STATUS_NORMAL = 1;
+    /**
+     * 
+     */
+    public static final int STATUS_PEND = 2;
 
+    /**
+     * @param siteId
+     * @param text
+     * @param tagId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler query(Integer siteId, String text, String tagId, Integer pageIndex, Integer pageSize) {
         return dao.query(siteId, text, tagId, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param categoryId
+     * @param modelId
+     * @param text
+     * @param tagId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public FacetPageHandler facetQuery(Integer siteId, String categoryId, String modelId, String text, String tagId,
             Integer pageIndex, Integer pageSize) {
         return dao.facetQuery(siteId, categoryId, modelId, text, tagId, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void index(int siteId, Serializable[] ids) {
         dao.index(siteId, ids);
     }
 
+    /**
+     * @return
+     */
     public Future<?> reCreateIndex() {
         return dao.reCreateIndex();
     }
 
+    /**
+     * @param siteId
+     * @param status
+     * @param categoryId
+     * @param containChild
+     * @param categoryIds
+     * @param disabled
+     * @param modelIds
+     * @param parentId
+     * @param emptyParent
+     * @param onlyUrl
+     * @param hasImages
+     * @param hasFiles
+     * @param title
+     * @param userId
+     * @param checkUserId
+     * @param startPublishDate
+     * @param endPublishDate
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Integer[] status, Integer categoryId, Boolean containChild, Integer[] categoryIds,
             Boolean disabled, String[] modelIds, Long parentId, Boolean emptyParent, Boolean onlyUrl, Boolean hasImages,
@@ -59,6 +125,10 @@ public class CmsContentService extends BaseService<CmsContent> {
                 orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void refresh(int siteId, Serializable[] ids) {
         Date now = getDate();
         for (CmsContent entity : getEntitys(ids)) {
@@ -70,6 +140,12 @@ public class CmsContentService extends BaseService<CmsContent> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param userId
+     * @param ids
+     * @return
+     */
     public List<CmsContent> check(int siteId, Long userId, Serializable[] ids) {
         List<CmsContent> entityList = new ArrayList<CmsContent>();
         for (CmsContent entity : getEntitys(ids)) {
@@ -82,6 +158,11 @@ public class CmsContentService extends BaseService<CmsContent> {
         return entityList;
     }
 
+    /**
+     * @param id
+     * @param tagIds
+     * @return
+     */
     public CmsContent updateTagIds(Serializable id, String tagIds) {
         CmsContent entity = getEntity(id);
         if (null != entity) {
@@ -90,6 +171,9 @@ public class CmsContentService extends BaseService<CmsContent> {
         return entity;
     }
 
+    /**
+     * @param entitys
+     */
     public void updateStatistics(Collection<CmsContentStatistics> entitys) {
         for (CmsContentStatistics entityStatistics : entitys) {
             CmsContent entity = getEntity(entityStatistics.getId());
@@ -101,6 +185,12 @@ public class CmsContentService extends BaseService<CmsContent> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param id
+     * @param categoryId
+     * @return
+     */
     public CmsContent updateCategoryId(int siteId, Serializable id, int categoryId) {
         CmsContent entity = getEntity(id);
         if (null != entity && siteId == entity.getSiteId()) {
@@ -109,6 +199,11 @@ public class CmsContentService extends BaseService<CmsContent> {
         return entity;
     }
 
+    /**
+     * @param id
+     * @param num
+     * @return
+     */
     public CmsContent updateChilds(Serializable id, int num) {
         CmsContent entity = getEntity(id);
         if (null != entity) {
@@ -117,6 +212,12 @@ public class CmsContentService extends BaseService<CmsContent> {
         return entity;
     }
 
+    /**
+     * @param id
+     * @param url
+     * @param hasStatic
+     * @return
+     */
     public CmsContent updateUrl(Serializable id, String url, boolean hasStatic) {
         CmsContent entity = getEntity(id);
         if (null != entity) {
@@ -126,10 +227,20 @@ public class CmsContentService extends BaseService<CmsContent> {
         return entity;
     }
 
+    /**
+     * @param siteId
+     * @param categoryIds
+     * @return
+     */
     public int deleteByCategoryIds(int siteId, Integer[] categoryIds) {
         return dao.deleteByCategoryIds(siteId, categoryIds);
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public List<CmsContent> delete(int siteId, Serializable[] ids) {
         List<CmsContent> entityList = new ArrayList<CmsContent>();
@@ -172,4 +283,5 @@ public class CmsContentService extends BaseService<CmsContent> {
     private CmsContentDao dao;
     @Autowired
     private CmsCategoryDao categoryDao;
+    
 }

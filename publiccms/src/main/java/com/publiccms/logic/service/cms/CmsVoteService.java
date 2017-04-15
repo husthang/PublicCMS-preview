@@ -13,10 +13,28 @@ import com.publiccms.logic.dao.cms.CmsVoteDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsVoteService
+ * 
+ */
 @Service
 @Transactional
 public class CmsVoteService extends BaseService<CmsVote> {
 
+    /**
+     * @param siteId
+     * @param startStartDate
+     * @param endStartDate
+     * @param startEndDate
+     * @param endEndDate
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Date startStartDate, Date endStartDate, 
                 Date startEndDate, Date endEndDate, Boolean disabled, 
@@ -28,4 +46,5 @@ public class CmsVoteService extends BaseService<CmsVote> {
     
     @Autowired
     private CmsVoteDao dao;
+    
 }

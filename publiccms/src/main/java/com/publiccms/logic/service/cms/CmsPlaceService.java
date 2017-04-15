@@ -17,20 +17,63 @@ import com.publiccms.views.pojo.CmsPlaceStatistics;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsPlaceService
+ * 
+ */
 @Service
 @Transactional
 public class CmsPlaceService extends BaseService<CmsPlace> {
-    public static final int STATUS_CONTRIBUTE = 0, STATUS_NORMAL = 1;
-    public static final String ITEM_TYPE_CONTENT = "content", ITEM_TYPE_CATEGORY = "category", ITEM_TYPE_CUSTOM = "custom";
 
+    /**
+     * 
+     */
+    public static final int STATUS_CONTRIBUTE = 0;
+    /**
+     * 
+     */
+    public static final int STATUS_NORMAL = 1;
+    /**
+     * 
+     */
+    public static final String ITEM_TYPE_CONTENT = "content";
+    /**
+     * 
+     */
+    public static final String ITEM_TYPE_CATEGORY = "category";
+    /**
+     * 
+     */
+    public static final String ITEM_TYPE_CUSTOM = "custom";
+
+    /**
+     * @param siteId
+     * @param userId
+     * @param path
+     * @param itemType
+     * @param itemId
+     * @param startPublishDate
+     * @param endPublishDate
+     * @param status
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
-    public PageHandler getPage(Integer siteId, Long userId, String path, String itemType, Integer itemId,
-            Date startPublishDate, Date endPublishDate, Integer status, Boolean disabled, String orderField, String orderType,
-            Integer pageIndex, Integer pageSize) {
-        return dao.getPage(siteId, userId, path, itemType, itemId, startPublishDate, endPublishDate, status, disabled,
-                orderField, orderType, pageIndex, pageSize);
+    public PageHandler getPage(Integer siteId, Long userId, String path, String itemType, Integer itemId, Date startPublishDate,
+            Date endPublishDate, Integer status, Boolean disabled, String orderField, String orderType, Integer pageIndex,
+            Integer pageSize) {
+        return dao.getPage(siteId, userId, path, itemType, itemId, startPublishDate, endPublishDate, status, disabled, orderField,
+                orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param entitys
+     */
     public void updateStatistics(Collection<CmsPlaceStatistics> entitys) {
         for (CmsPlaceStatistics entityStatistics : entitys) {
             CmsPlace entity = getEntity(entityStatistics.getId());
@@ -40,6 +83,9 @@ public class CmsPlaceService extends BaseService<CmsPlace> {
         }
     }
 
+    /**
+     * @param id
+     */
     public void check(Serializable id) {
         CmsPlace entity = getEntity(id);
         if (null != entity) {
@@ -51,6 +97,10 @@ public class CmsPlaceService extends BaseService<CmsPlace> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void check(int siteId, Serializable[] ids) {
         Date now = getDate();
         for (CmsPlace entity : getEntitys(ids)) {
@@ -63,6 +113,10 @@ public class CmsPlaceService extends BaseService<CmsPlace> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void refresh(int siteId, Serializable[] ids) {
         Date now = getDate();
         for (CmsPlace entity : getEntitys(ids)) {
@@ -81,6 +135,10 @@ public class CmsPlaceService extends BaseService<CmsPlace> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void delete(int siteId, Serializable[] ids) {
         for (CmsPlace entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId() && !entity.isDisabled()) {
@@ -89,10 +147,16 @@ public class CmsPlaceService extends BaseService<CmsPlace> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param path
+     * @return
+     */
     public int delete(int siteId, String path) {
         return dao.delete(siteId, path);
     }
 
     @Autowired
     private CmsPlaceDao dao;
+
 }

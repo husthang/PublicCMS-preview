@@ -13,19 +13,33 @@ import com.publiccms.logic.dao.cms.CmsVoteUserDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsVoteUserService
+ * 
+ */
 @Service
 @Transactional
 public class CmsVoteUserService extends BaseService<CmsVoteUser> {
 
+    /**
+     * @param lotteryId
+     * @param userId
+     * @param ip
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
-    public PageHandler getPage(Integer lotteryId, Long userId, 
-                String ip, Date startCreateDate, Date endCreateDate, 
-                String orderType, Integer pageIndex, Integer pageSize) {
-        return dao.getPage(lotteryId, userId, 
-                ip, startCreateDate, endCreateDate, 
-                orderType, pageIndex, pageSize);
+    public PageHandler getPage(Integer lotteryId, Long userId, String ip, Date startCreateDate, Date endCreateDate,
+            String orderType, Integer pageIndex, Integer pageSize) {
+        return dao.getPage(lotteryId, userId, ip, startCreateDate, endCreateDate, orderType, pageIndex, pageSize);
     }
-    
+
     @Autowired
     private CmsVoteUserDao dao;
+
 }

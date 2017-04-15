@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 import com.publiccms.entities.sys.SysConfigData;
 import com.sanluan.common.base.BaseDao;
 
+/**
+ *
+ * SysConfigDataDao
+ * 
+ */
 @Repository
 public class SysConfigDataDao extends BaseDao<SysConfigData> {
 

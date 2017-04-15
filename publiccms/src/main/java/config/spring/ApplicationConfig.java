@@ -44,13 +44,10 @@ import com.sanluan.common.base.Base;
 import com.sanluan.common.cache.CacheEntityFactory;
 
 /**
- * <h1>ApplicationConfig</h1>
- * <p>
+ * 
  * Spring配置类
- * </p>
- * <p>
- * Spring Config Class
- * </p>
+ * 
+ * Spring Configuration Class
  *
  */
 @Configuration
@@ -62,15 +59,17 @@ import com.sanluan.common.cache.CacheEntityFactory;
 public class ApplicationConfig extends Base {
     @Autowired
     private Environment env;
+    /**
+     * Spring上下文
+     * 
+     * Spring Application Context
+     */
     public static WebApplicationContext webApplicationContext;
 
     /**
-     * <p>
      * 数据源
-     * </P>
-     * <p>
+     * 
      * data source
-     * </p>
      *
      * @return
      * @throws PropertyVetoException
@@ -82,13 +81,11 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * Hibernate 事务管理
-     * </p>
-     * <p>
+     * 
      * Hibernate Transaction Manager
-     * </p>
-     *
+     * 
+     * @param sessionFactory
      * @return
      */
     @Bean
@@ -99,13 +96,11 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
-     * Mybatis 会话工厂
-     * </p>
-     * <p>
-     * Mybatis Session Factory
-     * </p>
+     * Mybatis会话工厂
      * 
+     * Mybatis Session Factory
+     * 
+     * @param dataSource
      * @return
      * @throws IOException
      */
@@ -123,13 +118,11 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * Hibernate 会话工厂类
-     * </p>
-     * <p>
+     * 
      * Hibernate Session Factory
-     * </p>
      *
+     * @param dataSource
      * @return
      * @throws PropertyVetoException
      * @throws IOException
@@ -151,12 +144,9 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * 缓存工厂
-     * </p>
-     * <p>
+     * 
      * Cache Factory
-     * </p>
      * 
      * @return
      * @throws IOException
@@ -168,12 +158,9 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * 国际化处理
-     * </p>
-     * <p>
+     * 
      * Internationalization
-     * </p>
      *
      * @return
      */
@@ -187,12 +174,9 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * 指令组件
-     * </p>
-     * <p>
+     * 
      * Directive Component
-     * </p>
      *
      * @return
      */
@@ -205,12 +189,9 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * 模板组件
-     * </p>
-     * <p>
+     * 
      * Template Component
-     * </p>
      *
      * @return
      */
@@ -222,12 +203,9 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * 站点组件
-     * </p>
-     * <p>
+     * 
      * Site Component
-     * </p>
      *
      * @return
      */
@@ -241,12 +219,9 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * FreeMarker配置工厂
-     * </p>
-     * <p>
+     * 
      * FreeMarker Configuration Factory
-     * </p>
      * 
      * @return
      * @throws IOException
@@ -261,12 +236,9 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * 文件上传解决方案
-     * </p>
-     * <p>
+     * 
      * File Upload Resolver
-     * </p>
      * 
      * @return
      */
@@ -279,12 +251,9 @@ public class ApplicationConfig extends Base {
     }
 
     /**
-     * <p>
      * json、Jsonp消息转换适配器，用于支持RequestBody、ResponseBody
-     * </p>
-     * <p>
+     * 
      * Json、Jsonp Message Converter , Support For RequestBody、ResponseBody
-     * </p>
      * 
      * @return
      */

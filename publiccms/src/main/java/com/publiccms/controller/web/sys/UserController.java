@@ -68,12 +68,11 @@ public class UserController extends AbstractController {
      * @param oldpassword
      * @param password
      * @param repassword
-     * @param callback
+     * @param returnUrl
      * @param request
      * @param session
      * @param response
      * @param model
-     * @return
      */
     @RequestMapping(value = "changePassword", method = RequestMethod.POST)
     public void changePassword(String oldpassword, String password, String repassword, String returnUrl,
@@ -109,10 +108,11 @@ public class UserController extends AbstractController {
 
     /**
      * @param email
+     * @param returnUrl
      * @param request
      * @param session
+     * @param response
      * @param model
-     * @return
      */
     @RequestMapping(value = "saveEmail", method = RequestMethod.POST)
     public void saveEmail(String email, String returnUrl, HttpServletRequest request, HttpSession session,
@@ -156,10 +156,12 @@ public class UserController extends AbstractController {
     }
 
     /**
-     * @param code
+     * @param authToken
+     * @param returnUrl
+     * @param request
      * @param session
+     * @param response
      * @param model
-     * @return
      */
     @RequestMapping(value = "verifyEmail", method = RequestMethod.POST)
     public void verifyEmail(String authToken, String returnUrl, HttpServletRequest request, HttpSession session,

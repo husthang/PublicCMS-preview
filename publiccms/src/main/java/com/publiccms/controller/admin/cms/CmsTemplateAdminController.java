@@ -37,9 +37,9 @@ import com.publiccms.views.pojo.CmsPlaceMetadata;
 import freemarker.template.TemplateException;
 
 /**
- * 
- * CmsTemplateAdminController
  *
+ * CmsTemplateAdminController
+ * 
  */
 @Controller
 @RequestMapping("cmsTemplate")
@@ -61,7 +61,6 @@ public class CmsTemplateAdminController extends AbstractController {
 
     /**
      * @param path
-     * @param type
      * @param content
      * @param request
      * @param session
@@ -130,7 +129,6 @@ public class CmsTemplateAdminController extends AbstractController {
 
     /**
      * @param path
-     * @param type
      * @param request
      * @param session
      * @param model
@@ -160,7 +158,6 @@ public class CmsTemplateAdminController extends AbstractController {
 
     /**
      * @param path
-     * @param type
      * @param request
      * @param session
      * @param model

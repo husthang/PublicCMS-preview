@@ -2,6 +2,11 @@ package com.sanluan.common.hibernate.redis.timestamper;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ *
+ * Timestamper
+ * 
+ */
 public final class Timestamper implements CacheTimestamper {
 
     private final AtomicLong VALUE = new AtomicLong();

@@ -11,6 +11,11 @@ import redis.clients.jedis.JedisPoolConfig;
  * 
  */
 public class RedisUtils {
+    
+    /**
+     * @param redisProperties
+     * @return
+     */
     public static JedisPool createJedisPool(Properties redisProperties) {
         String host = redisProperties.getProperty("redis.host", "localhost");
         int port = Integer.valueOf(redisProperties.getProperty("redis.port", "6379"));

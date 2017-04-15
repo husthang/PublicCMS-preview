@@ -21,10 +21,22 @@ import com.publiccms.entities.sys.SysUserToken;
 import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysUserTokenService;
 
+/**
+ *
+ * SysUserTokenAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysUserToken")
 public class SysUserTokenAdminController extends AbstractController {
 
+    /**
+     * @param authToken
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(String authToken, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);

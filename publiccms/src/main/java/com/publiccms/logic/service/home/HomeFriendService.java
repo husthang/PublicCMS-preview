@@ -11,10 +11,22 @@ import com.publiccms.logic.dao.home.HomeFriendDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeFriendService
+ * 
+ */
 @Service
 @Transactional
 public class HomeFriendService extends BaseService<HomeFriend> {
 
+    /**
+     * @param userId
+     * @param friendId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Long userId, Long friendId, Integer pageIndex, Integer pageSize) {
         return dao.getPage(userId, friendId, pageIndex, pageSize);
@@ -22,4 +34,5 @@ public class HomeFriendService extends BaseService<HomeFriend> {
 
     @Autowired
     private HomeFriendDao dao;
+    
 }

@@ -14,6 +14,11 @@ import com.publiccms.logic.service.cms.CmsContentService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsSearchDirective
+ * 
+ */
 @Component
 public class CmsSearchDirective extends AbstractTemplateDirective {
 

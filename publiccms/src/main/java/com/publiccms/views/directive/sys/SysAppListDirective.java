@@ -12,6 +12,11 @@ import com.publiccms.logic.service.sys.SysAppService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysAppListDirective
+ * 
+ */
 @Component
 public class SysAppListDirective extends AbstractTemplateDirective {
 

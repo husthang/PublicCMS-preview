@@ -11,19 +11,36 @@ import com.publiccms.logic.dao.sys.SysAppDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysAppService
+ * 
+ */
 @Service
 @Transactional
 public class SysAppService extends BaseService<SysApp> {
 
+    /**
+     * @param siteId
+     * @param channel
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, String channel, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, channel, pageIndex, pageSize);
     }
 
+    /**
+     * @param appKey
+     * @return
+     */
     public SysApp getEntity(String appKey) {
         return getEntity(appKey, "appKey");
     }
 
     @Autowired
     private SysAppDao dao;
+    
 }

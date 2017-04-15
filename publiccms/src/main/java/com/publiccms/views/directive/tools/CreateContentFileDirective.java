@@ -18,8 +18,14 @@ import com.sanluan.common.handler.RenderHandler;
 
 import freemarker.template.TemplateException;
 
+/**
+ *
+ * CreateContentFileDirective
+ * 
+ */
 @Component
 public class CreateContentFileDirective extends AbstractTemplateDirective {
+    
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
         Long id = handler.getLong("id");

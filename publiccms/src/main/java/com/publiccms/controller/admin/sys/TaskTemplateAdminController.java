@@ -35,7 +35,6 @@ public class TaskTemplateAdminController extends AbstractController {
 
     /**
      * @param path
-     * @param type
      * @param content
      * @param request
      * @param session

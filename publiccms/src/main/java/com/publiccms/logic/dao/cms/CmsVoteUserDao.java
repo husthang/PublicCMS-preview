@@ -11,8 +11,25 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsVoteUserDao
+ * 
+ */
 @Repository
 public class CmsVoteUserDao extends BaseDao<CmsVoteUser> {
+    
+    /**
+     * @param lotteryId
+     * @param userId
+     * @param ip
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer lotteryId, Long userId, String ip, Date startCreateDate, Date endCreateDate,
             String orderType, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from CmsVoteUser bean");

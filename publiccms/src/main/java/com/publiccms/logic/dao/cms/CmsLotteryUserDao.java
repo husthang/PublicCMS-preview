@@ -11,8 +11,25 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsLotteryUserDao
+ * 
+ */
 @Repository
 public class CmsLotteryUserDao extends BaseDao<CmsLotteryUser> {
+    
+    /**
+     * @param lotteryId
+     * @param userId
+     * @param winning
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Long lotteryId, Long userId, 
                 Boolean winning, Date startCreateDate, Date endCreateDate, 
                 String orderType, Integer pageIndex, Integer pageSize) {

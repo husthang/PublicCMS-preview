@@ -12,6 +12,11 @@ import com.publiccms.logic.service.cms.CmsWordService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsWordListDirective
+ * 
+ */
 @Component
 public class CmsWordListDirective extends AbstractTemplateDirective {
 

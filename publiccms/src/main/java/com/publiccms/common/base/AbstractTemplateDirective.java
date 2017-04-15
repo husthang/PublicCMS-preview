@@ -36,6 +36,11 @@ import com.sanluan.common.handler.RenderHandler;
  *
  */
 public abstract class AbstractTemplateDirective extends BaseTemplateDirective {
+    /**
+     * @param handler
+     * @return
+     * @throws Exception
+     */
     public SysSite getSite(RenderHandler handler) throws Exception {
         return (SysSite) handler.getAttribute(CONTEXT_SITE);
     }
@@ -72,10 +77,16 @@ public abstract class AbstractTemplateDirective extends BaseTemplateDirective {
         return null;
     }
 
+    /**
+     * @return
+     */
     public boolean needAppToken() {
         return false;
     }
 
+    /**
+     * @return
+     */
     public boolean needUserToken() {
         return false;
     }

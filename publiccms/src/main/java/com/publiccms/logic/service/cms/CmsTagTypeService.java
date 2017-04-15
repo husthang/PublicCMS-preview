@@ -17,15 +17,31 @@ import com.publiccms.logic.dao.cms.CmsTagTypeDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsTagTypeService
+ * 
+ */
 @Service
 @Transactional
 public class CmsTagTypeService extends BaseService<CmsTagType> {
 
+    /**
+     * @param siteId
+     * @param name
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, String name, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, name, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void delete(int siteId, Serializable[] ids) {
         for (CmsTagType entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId()) {
@@ -34,6 +50,11 @@ public class CmsTagTypeService extends BaseService<CmsTagType> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param entitys
+     * @return
+     */
     public Integer[] update(int siteId, List<CmsTagType> entitys) {
         Set<Integer> idList = new HashSet<Integer>();
         if (notEmpty(entitys)) {
@@ -55,4 +76,5 @@ public class CmsTagTypeService extends BaseService<CmsTagType> {
 
     @Autowired
     private CmsTagTypeDao dao;
+    
 }

@@ -6,6 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.publiccms.entities.cms.CmsVoteItemAttribute;
 import com.sanluan.common.base.BaseService;
 
+/**
+ *
+ * CmsVoteItemAttributeService
+ * 
+ */
 @Service
 @Transactional
 public class CmsVoteItemAttributeService extends BaseService<CmsVoteItemAttribute> {

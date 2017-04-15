@@ -32,6 +32,15 @@ public class ModelComponent extends Base implements SiteCache,Json {
     @Autowired
     private SiteComponent siteComponent;
 
+    /**
+     * @param site
+     * @param parentId
+     * @param hasChild
+     * @param onlyUrl
+     * @param hasImages
+     * @param hasFiles
+     * @return
+     */
     public List<CmsModel> getList(SysSite site, String parentId, Boolean hasChild, Boolean onlyUrl, Boolean hasImages,
             Boolean hasFiles) {
         List<CmsModel> modelList = new ArrayList<CmsModel>();
@@ -48,6 +57,10 @@ public class ModelComponent extends Base implements SiteCache,Json {
         return modelList;
     }
 
+    /**
+     * @param site
+     * @return
+     */
     public Map<String, CmsModel> getMap(SysSite site) {
         Map<String, CmsModel> modelMap = modelCache.get(site.getId());
         if (empty(modelMap)) {
@@ -98,6 +111,9 @@ public class ModelComponent extends Base implements SiteCache,Json {
         modelCache.remove(siteId);
     }
 
+    /**
+     * @param cacheEntityFactory
+     */
     @Autowired
     public void initCache(CacheEntityFactory cacheEntityFactory) {
         modelCache = cacheEntityFactory.createCacheEntity("cmsModel");

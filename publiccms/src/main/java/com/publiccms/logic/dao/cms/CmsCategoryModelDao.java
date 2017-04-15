@@ -7,8 +7,21 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsCategoryModelDao
+ * 
+ */
 @Repository
 public class CmsCategoryModelDao extends BaseDao<CmsCategoryModel> {
+    
+    /**
+     * @param modelId
+     * @param categoryId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(String modelId, Integer categoryId, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from CmsCategoryModel bean");
         if (notEmpty(modelId)) {

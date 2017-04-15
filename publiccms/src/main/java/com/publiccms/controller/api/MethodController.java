@@ -44,8 +44,8 @@ public class MethodController extends AbstractController {
     /**
      * 接口指令统一分发
      * 
-     * @param method
-     * @param callback
+     * @param name
+     * @param appToken
      * @param request
      * @param response
      * @return
@@ -93,7 +93,6 @@ public class MethodController extends AbstractController {
     /**
      * 接口列表
      * 
-     * @param callback
      * @return
      */
     @RequestMapping("methods")
@@ -102,8 +101,10 @@ public class MethodController extends AbstractController {
     }
 
     /**
-     * @param methodMap
-     *            接口初始化
+     * 接口初始化
+     * 
+     * @param directiveComponent
+     * 
      */
     @Autowired
     public void init(DirectiveComponent directiveComponent) {

@@ -68,7 +68,6 @@ public class DirectiveController extends AbstractController {
     /**
      * 接口列表
      * 
-     * @param callback
      * @return
      */
     @RequestMapping("directives")
@@ -78,8 +77,10 @@ public class DirectiveController extends AbstractController {
     }
 
     /**
-     * @param directiveMap
-     *            接口初始化
+     * 接口初始化
+     * 
+     * @param directiveComponent
+     * 
      */
     @Autowired
     public void init(DirectiveComponent directiveComponent) {

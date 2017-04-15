@@ -2,13 +2,25 @@ package com.sanluan.common.handler;
 
 import java.util.List;
 
+/**
+ *
+ * PageHandler
+ * 
+ */
 public class PageHandler implements java.io.Serializable {
+    
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 
+     */
     public static final int DEFAULT_PAGE_SIZE = 30;
+    /**
+     * 
+     */
     public static final int MAX_PAGE_SIZE = 500;
 
     private int totalCount;
@@ -29,17 +41,26 @@ public class PageHandler implements java.io.Serializable {
         init();
     }
 
+    /**
+     * 
+     */
     public void init() {
         pageSize = 1 > pageSize ? DEFAULT_PAGE_SIZE : MAX_PAGE_SIZE < pageSize ? MAX_PAGE_SIZE : pageSize;
         totalCount = 0 > totalCount ? 0 : totalCount;
         pageIndex = 1 > pageIndex ? 1 : pageIndex > getTotalPage() ? getTotalPage() : pageIndex;
     }
 
+    /**
+     * @return
+     */
     public int getTotalPage() {
         int totalPage = totalCount / pageSize;
         return (0 == totalPage || 0 != totalCount % pageSize) ? ++totalPage : totalPage;
     }
 
+    /**
+     * @return
+     */
     public int getFirstResult() {
         return (pageIndex - 1) * pageSize;
     }
@@ -61,7 +82,7 @@ public class PageHandler implements java.io.Serializable {
 
     /**
      * @param totalCount
-     *            the totalCount to set
+     * @param maxResults
      */
     public void setTotalCount(Integer totalCount, Integer maxResults) {
         setTotalCount(null != maxResults && maxResults < totalCount ? maxResults : totalCount);

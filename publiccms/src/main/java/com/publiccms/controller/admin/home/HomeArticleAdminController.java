@@ -20,10 +20,22 @@ import com.publiccms.entities.log.LogOperate;
 import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.home.HomeArticleService;
 import com.publiccms.logic.service.log.LogLoginService;
+/**
+ *
+ * HomeArticleAdminController
+ * 
+ */
 @Controller
 @RequestMapping("homeArticle")
 public class HomeArticleAdminController extends AbstractController {
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "enable", method = RequestMethod.POST)
     public String enable(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (verifyEquals("admin.operate", getAdminFromSession(session).getId(), id, model)) {
@@ -42,6 +54,13 @@ public class HomeArticleAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "disable", method = RequestMethod.POST)
     public String disable(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (verifyEquals("admin.operate", getAdminFromSession(session).getId(), id, model)) {

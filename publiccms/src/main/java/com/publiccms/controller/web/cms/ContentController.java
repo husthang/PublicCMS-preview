@@ -176,7 +176,8 @@ public class ContentController extends AbstractController {
      * 内容推荐重定向并计数
      * 
      * @param id
-     * @return
+     * @param request
+     * @param response
      */
     @RequestMapping("related/redirect")
     public void relatedRedirect(Long id, HttpServletRequest request, HttpServletResponse response) {
@@ -193,7 +194,8 @@ public class ContentController extends AbstractController {
      * 内容链接重定向并计数
      * 
      * @param id
-     * @return
+     * @param request
+     * @param response
      */
     @RequestMapping("redirect")
     public void redirect(Long id, HttpServletRequest request, HttpServletResponse response) {

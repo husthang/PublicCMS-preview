@@ -31,6 +31,12 @@ import com.sanluan.common.handler.RenderHandler;
  *
  */
 public abstract class AbstractAppDirective extends BaseHttpDirective {
+    /**
+     * @param handler
+     * @return
+     * @throws IOException
+     * @throws Exception
+     */
     public SysSite getSite(RenderHandler handler) throws IOException, Exception {
         HttpServletRequest request = handler.getRequest();
         return siteComponent.getSite(request.getServerName());
@@ -75,10 +81,23 @@ public abstract class AbstractAppDirective extends BaseHttpDirective {
         return null;
     }
 
+    /**
+     * @param handler
+     * @param app
+     * @param user
+     * @throws IOException
+     * @throws Exception
+     */
     public abstract void execute(RenderHandler handler, SysApp app, SysUser user) throws IOException, Exception;
 
+    /**
+     * @return
+     */
     public abstract boolean needAppToken();
 
+    /**
+     * @return
+     */
     public abstract boolean needUserToken();
 
     @Autowired

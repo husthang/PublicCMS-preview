@@ -19,6 +19,11 @@ import com.publiccms.logic.service.cms.CmsVoteService;
 import com.publiccms.logic.service.cms.CmsVoteUserService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * VoteDirective
+ * 
+ */
 @Component
 public class VoteDirective extends AbstractAppDirective {
 

@@ -9,15 +9,13 @@ import freemarker.core.Environment;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
+/**
+ *
+ * ShortMessageTemplateExceptionHandler
+ * 
+ */
 public class ShortMessageTemplateExceptionHandler extends Base implements TemplateExceptionHandler {
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * freemarker.template.TemplateExceptionHandler#handleTemplateException(
-     * freemarker.template.TemplateException, freemarker.core.Environment,
-     * java.io.Writer)
-     */
+    
     @Override
     public void handleTemplateException(TemplateException templateexception, Environment environment, Writer writer)
             throws TemplateException {

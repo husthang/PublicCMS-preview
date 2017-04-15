@@ -11,10 +11,23 @@ import com.publiccms.logic.dao.home.HomeActiveDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeActiveService
+ * 
+ */
 @Service
 @Transactional
 public class HomeActiveService extends BaseService<HomeActive> {
 
+    /**
+     * @param itemType
+     * @param userId
+     * @param userIds
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(String itemType, Long userId, Long[] userIds, Integer pageIndex, Integer pageSize) {
         return dao.getPage(itemType, userId, userIds, pageIndex, pageSize);
@@ -22,4 +35,5 @@ public class HomeActiveService extends BaseService<HomeActive> {
 
     @Autowired
     private HomeActiveDao dao;
+    
 }

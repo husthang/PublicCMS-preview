@@ -20,12 +20,24 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.cms.CmsWordService;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * CmsWordAdminController
+ * 
+ */
 @Controller
 @RequestMapping("cmsWord")
 public class CmsWordAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id", "siteId" };
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(CmsWord entity, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -48,6 +60,13 @@ public class CmsWordAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -63,6 +82,13 @@ public class CmsWordAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("hidden")
     public String hidden(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -78,6 +104,13 @@ public class CmsWordAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("show")
     public String show(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);

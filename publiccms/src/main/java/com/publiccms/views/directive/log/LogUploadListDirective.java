@@ -12,6 +12,11 @@ import com.publiccms.logic.service.log.LogUploadService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * LogUploadListDirective
+ * 
+ */
 @Component
 public class LogUploadListDirective extends AbstractTemplateDirective {
 

@@ -35,12 +35,6 @@ public class RedisCollectionRegion extends RedisTransactionalDataRegion implemen
         super(accessStrategyFactory, redis, configurableRedisRegionFactory, regionName, options, metadata, props);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.CollectionRegion#buildAccessStrategy(org.
-     * hibernate.cache.spi.access.AccessType)
-     */
     @Override
     public CollectionRegionAccessStrategy buildAccessStrategy(AccessType accessType) throws CacheException {
         return accessStrategyFactory.createCollectionRegionAccessStrategy(this, accessType);

@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 import com.publiccms.entities.home.HomeArticleContent;
 import com.sanluan.common.base.BaseDao;
 
+/**
+ *
+ * HomeArticleContentDao
+ * 
+ */
 @Repository
 public class HomeArticleContentDao extends BaseDao<HomeArticleContent> {
 

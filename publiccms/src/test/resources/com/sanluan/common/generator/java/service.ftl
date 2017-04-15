@@ -15,10 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * ${entityName}${serviceSuffix}
+ * 
+ */
 @Service
 @Transactional
 public class ${entityName}${serviceSuffix} extends BaseService<${entityName}> {
 
+	<#include "../include_condition/comment.ftl">
     @Transactional(readOnly = true)
     public PageHandler getPage(<#include "../include_condition/condition.ftl">) {
         return dao.getPage(<#include "../include_condition/invoke.ftl">);
@@ -26,4 +32,5 @@ public class ${entityName}${serviceSuffix} extends BaseService<${entityName}> {
     
     @Autowired
     private ${entityName}Dao dao;
+    
 }

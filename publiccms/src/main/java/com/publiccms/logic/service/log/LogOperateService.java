@@ -12,10 +12,29 @@ import com.publiccms.logic.dao.log.LogOperateDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * LogOperateService
+ * 
+ */
 @Service
 @Transactional
 public class LogOperateService extends BaseService<LogOperate> {
 
+    /**
+     * @param siteId
+     * @param channel
+     * @param operate
+     * @param userId
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param content
+     * @param ip
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, String channel, String operate, Long userId, Date startCreateDate,
             Date endCreateDate, String content, String ip, String orderType, Integer pageIndex, Integer pageSize) {
@@ -23,10 +42,19 @@ public class LogOperateService extends BaseService<LogOperate> {
                 pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param createDate
+     * @return
+     */
     public int delete(Integer siteId, Date createDate) {
         return dao.delete(siteId, createDate);
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void delete(int siteId, Serializable[] ids) {
         for (LogOperate entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId()) {
@@ -37,4 +65,5 @@ public class LogOperateService extends BaseService<LogOperate> {
 
     @Autowired
     private LogOperateDao dao;
+
 }

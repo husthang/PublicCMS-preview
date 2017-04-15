@@ -37,11 +37,6 @@ public class ScheduledJob extends QuartzJobBean {
     private static ScheduledTask scheduledTask;
     private static TemplateComponent templateComponent;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.quartz.Job#execute(org.quartz.JobExecutionContext)
-     */
     @Override
     public void executeInternal(JobExecutionContext context) throws JobExecutionException {
         Integer taskId = (Integer) context.getJobDetail().getJobDataMap().get(ScheduledTask.ID);
@@ -75,22 +70,37 @@ public class ScheduledJob extends QuartzJobBean {
         }
     }
 
+    /**
+     * @param sysTaskService
+     */
     public static void setSysTaskService(SysTaskService sysTaskService) {
         ScheduledJob.sysTaskService = sysTaskService;
     }
 
+    /**
+     * @param logTaskService
+     */
     public static void setLogTaskService(LogTaskService logTaskService) {
         ScheduledJob.logTaskService = logTaskService;
     }
 
+    /**
+     * @param siteService
+     */
     public static void setSiteService(SysSiteService siteService) {
         ScheduledJob.siteService = siteService;
     }
 
+    /**
+     * @param scheduledTask
+     */
     public static void setScheduledTask(ScheduledTask scheduledTask) {
         ScheduledJob.scheduledTask = scheduledTask;
     }
 
+    /**
+     * @param templateComponent
+     */
     public static void setTemplateComponent(TemplateComponent templateComponent) {
         ScheduledJob.templateComponent = templateComponent;
     }

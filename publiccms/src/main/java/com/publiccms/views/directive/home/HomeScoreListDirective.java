@@ -12,6 +12,11 @@ import com.publiccms.logic.service.home.HomeScoreService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeScoreListDirective
+ * 
+ */
 @Component
 public class HomeScoreListDirective extends AbstractTemplateDirective {
 

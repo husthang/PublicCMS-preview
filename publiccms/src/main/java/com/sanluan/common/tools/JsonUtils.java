@@ -12,6 +12,10 @@ import com.sanluan.common.base.Base;
  */
 public final class JsonUtils extends Base implements Json {
 
+    /**
+     * @param object
+     * @return
+     */
     public static String getString(Object object) {
         try {
             return objectMapper.writeValueAsString(object);

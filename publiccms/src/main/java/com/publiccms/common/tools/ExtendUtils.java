@@ -12,7 +12,18 @@ import com.publiccms.views.pojo.ExtendField;
 import com.sanluan.common.api.Json;
 import com.sanluan.common.base.Base;
 
+/**
+ *
+ * ExtendUtils
+ * 
+ */
 public class ExtendUtils extends Base implements Json{
+    
+    /**
+     * @param extendDataList
+     * @param sysExtendFieldList
+     * @return
+     */
     public static Map<String, String> getSysExtentDataMap(List<ExtendData> extendDataList,
             List<SysExtendField> sysExtendFieldList) {
         Map<String, String> map = new HashMap<String, String>();
@@ -33,6 +44,11 @@ public class ExtendUtils extends Base implements Json{
         return map;
     }
 
+    /**
+     * @param extendDataList
+     * @param extendFieldList
+     * @return
+     */
     public static Map<String, String> getExtentDataMap(List<ExtendData> extendDataList, List<ExtendField> extendFieldList) {
         Map<String, String> map = new HashMap<String, String>();
         if (notEmpty(extendDataList)) {
@@ -52,6 +68,10 @@ public class ExtendUtils extends Base implements Json{
         return map;
     }
 
+    /**
+     * @param data
+     * @return
+     */
     public static Map<String, String> getExtendMap(String data) {
         if (notEmpty(data)) {
             try {
@@ -66,6 +86,10 @@ public class ExtendUtils extends Base implements Json{
 
     }
 
+    /**
+     * @param map
+     * @return
+     */
     public static String getExtendString(Map<String, String> map) {
         try {
             return objectMapper.writeValueAsString(map);

@@ -64,26 +64,44 @@ public class DirectiveComponent extends Base {
         log.info(new StringBuilder().append(methodMap.size()).append(" methods created:").append(methodMap.keySet()).toString());
     }
 
+    /**
+     * @param directiveRemoveRegex
+     */
     public void setDirectiveRemoveRegex(String directiveRemoveRegex) {
         this.directiveRemoveRegex = directiveRemoveRegex;
     }
 
+    /**
+     * @param methodRemoveRegex
+     */
     public void setMethodRemoveRegex(String methodRemoveRegex) {
         this.methodRemoveRegex = methodRemoveRegex;
     }
 
+    /**
+     * @return
+     */
     public Map<String, AbstractTemplateDirective> getTemplateDirectiveMap() {
         return templateDirectiveMap;
     }
 
+    /**
+     * @return
+     */
     public Map<String, AbstractAppDirective> getAppDirectiveMap() {
         return appDirectiveMap;
     }
 
+    /**
+     * @return
+     */
     public Map<String, AbstractTaskDirective> getTaskDirectiveMap() {
         return taskDirectiveMap;
     }
 
+    /**
+     * @return
+     */
     public Map<String, BaseMethod> getMethodMap() {
         return methodMap;
     }

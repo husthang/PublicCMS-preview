@@ -2,6 +2,11 @@ package com.publiccms.views.pojo;
 
 import com.publiccms.entities.cms.CmsWord;
 
+/**
+ *
+ * CmsWordStatistics
+ * 
+ */
 public class CmsWordStatistics implements java.io.Serializable {
 
 	/**
@@ -12,32 +17,55 @@ public class CmsWordStatistics implements java.io.Serializable {
 	private int searchCounts;
 	private CmsWord entity;
 
+	/**
+	 * @param id
+	 * @param searchCounts
+	 * @param entity
+	 */
 	public CmsWordStatistics(long id, int searchCounts, CmsWord entity) {
 		this.searchCounts = searchCounts;
 		this.id = id;
 		this.entity = entity;
 	}
 
+	/**
+	 * @return
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getSearchCounts() {
 		return searchCounts;
 	}
 
+	/**
+	 * @param searchCounts
+	 */
 	public void setSearchCounts(int searchCounts) {
 		this.searchCounts = searchCounts;
 	}
 
+	/**
+	 * @return
+	 */
 	public CmsWord getEntity() {
 		return entity;
 	}
 
+	/**
+	 * @param entity
+	 */
 	public void setEntity(CmsWord entity) {
 		this.entity = entity;
 	}

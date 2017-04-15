@@ -12,8 +12,14 @@ import com.publiccms.entities.cms.CmsContentAttribute;
 import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsContentAttributeDao
+ * 
+ */
 @Repository
 public class CmsContentAttributeDao extends BaseDao<CmsContentAttribute> {
+    
     /**
      * @param ids
      * @return

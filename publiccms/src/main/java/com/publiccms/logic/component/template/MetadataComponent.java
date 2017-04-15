@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.publiccms.common.api.Cache;
@@ -20,8 +19,17 @@ import com.sanluan.common.base.Base;
 import com.sanluan.common.cache.CacheEntity;
 import com.sanluan.common.cache.CacheEntityFactory;
 
+/**
+ * 元数据组件
+ * 
+ * MetaData Component
+ * 
+ */
 @Component
 public class MetadataComponent extends Base implements Cache, Json {
+    /**
+     * 
+     */
     public static final String METADATA_FILE = "metadata.data";
 
     private CacheEntity<String, Map<String, CmsPageMetadata>> pageCache;
@@ -32,9 +40,6 @@ public class MetadataComponent extends Base implements Cache, Json {
      * 
      * @param filePath
      * @return
-     * @throws IOException
-     * @throws JsonMappingException
-     * @throws JsonParseException
      */
     public CmsPlaceMetadata getPlaceMetadata(String filePath) {
         File file = new File(filePath);
@@ -50,9 +55,6 @@ public class MetadataComponent extends Base implements Cache, Json {
      * 
      * @param filePath
      * @return
-     * @throws IOException
-     * @throws JsonMappingException
-     * @throws JsonParseException
      */
     public CmsPageMetadata getTemplateMetadata(String filePath) {
         return getTemplateMetadata(filePath, false);
@@ -62,10 +64,8 @@ public class MetadataComponent extends Base implements Cache, Json {
      * 获取模板元数据
      * 
      * @param filePath
+     * @param allowNullValue
      * @return
-     * @throws IOException
-     * @throws JsonMappingException
-     * @throws JsonParseException
      */
     public CmsPageMetadata getTemplateMetadata(String filePath, boolean allowNullValue) {
         File file = new File(filePath);
@@ -84,11 +84,8 @@ public class MetadataComponent extends Base implements Cache, Json {
      * 更新模板元数据
      * 
      * @param filePath
-     * @param map
+     * @param metadata
      * @return
-     * @throws IOException
-     * @throws JsonMappingException
-     * @throws JsonGenerationException
      */
     public boolean updateTemplateMetadata(String filePath, CmsPageMetadata metadata) {
         File file = new File(filePath);
@@ -107,11 +104,8 @@ public class MetadataComponent extends Base implements Cache, Json {
      * 更新推荐位元数据
      * 
      * @param filePath
-     * @param map
+     * @param metadata
      * @return
-     * @throws IOException
-     * @throws JsonMappingException
-     * @throws JsonGenerationException
      */
     public boolean updatePlaceMetadata(String filePath, CmsPlaceMetadata metadata) {
         File file = new File(filePath);
@@ -131,9 +125,6 @@ public class MetadataComponent extends Base implements Cache, Json {
      * 
      * @param filePath
      * @return
-     * @throws JsonGenerationException
-     * @throws JsonMappingException
-     * @throws IOException
      */
     public boolean deleteTemplateMetadata(String filePath) {
         File file = new File(filePath);
@@ -153,9 +144,6 @@ public class MetadataComponent extends Base implements Cache, Json {
      * 
      * @param filePath
      * @return
-     * @throws JsonGenerationException
-     * @throws JsonMappingException
-     * @throws IOException
      */
     public boolean deletePlaceMetadata(String filePath) {
         File file = new File(filePath);
@@ -264,6 +252,9 @@ public class MetadataComponent extends Base implements Cache, Json {
         pageCache.clear();
     }
 
+    /**
+     * @param cacheEntityFactory
+     */
     @Autowired
     public void initCache(CacheEntityFactory cacheEntityFactory) {
         pageCache = cacheEntityFactory.createCacheEntity("pageMetadata");

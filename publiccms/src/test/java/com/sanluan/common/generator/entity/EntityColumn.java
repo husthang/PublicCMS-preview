@@ -1,6 +1,18 @@
 package com.sanluan.common.generator.entity;
 
+/**
+ *
+ * EntityColumn
+ * 
+ */
 public class EntityColumn {
+    
+    /**
+     * @param name
+     * @param type
+     * @param order
+     * @param title
+     */
     public EntityColumn(String name, String type, boolean order, String title) {
         this.name = name;
         this.type = type;

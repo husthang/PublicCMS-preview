@@ -24,6 +24,9 @@ public class SingletonRedisRegionFactory extends AbstractRedisRegionFactory {
     private static final long serialVersionUID = 1L;
     private final AtomicInteger referenceCount = new AtomicInteger();
 
+    /**
+     * @param props
+     */
     public SingletonRedisRegionFactory(Properties props) {
         super(props);
         log.info("create SingletonRedisRegionFactory instance.");

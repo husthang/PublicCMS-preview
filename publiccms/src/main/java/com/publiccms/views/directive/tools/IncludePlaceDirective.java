@@ -22,8 +22,14 @@ import com.sanluan.common.handler.RenderHandler;
 
 import freemarker.template.TemplateException;
 
+/**
+ *
+ * IncludePlaceDirective
+ * 
+ */
 @Component
 public class IncludePlaceDirective extends AbstractTemplateDirective {
+    
     private static ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     @Override

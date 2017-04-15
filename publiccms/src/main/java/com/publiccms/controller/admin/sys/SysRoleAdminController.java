@@ -29,6 +29,11 @@ import com.publiccms.logic.service.sys.SysRoleService;
 import com.publiccms.logic.service.sys.SysRoleUserService;
 import com.publiccms.logic.service.sys.SysUserService;
 
+/**
+ *
+ * SysRoleAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysRole")
 public class SysRoleAdminController extends AbstractController {
@@ -47,6 +52,14 @@ public class SysRoleAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id", "siteId" };
 
+    /**
+     * @param entity
+     * @param moudleIds
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysRole entity, Integer[] moudleIds, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -83,6 +96,13 @@ public class SysRoleAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysRole entity = service.getEntity(id);

@@ -34,34 +34,82 @@ public abstract class BaseMethod extends Base implements TemplateMethodModelEx {
         return null;
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static TemplateHashModelEx getMap(int index, List<TemplateModel> arguments) throws TemplateModelException {
         return converMap(getModel(index, arguments));
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static String getString(int index, List<TemplateModel> arguments) throws TemplateModelException {
         return converString(getModel(index, arguments));
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static Integer getInteger(int index, List<TemplateModel> arguments) throws TemplateModelException {
         return converInteger(getModel(index, arguments));
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static Short getShort(int index, List<TemplateModel> arguments) throws TemplateModelException {
         return converShort(getModel(index, arguments));
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static Long getLong(int index, List<TemplateModel> arguments) throws TemplateModelException {
         return converLong(getModel(index, arguments));
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static Double getDouble(int index, List<TemplateModel> arguments) throws TemplateModelException {
         return converDouble(getModel(index, arguments));
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static String[] getStringArray(int index, List<TemplateModel> arguments) throws TemplateModelException {
         return converStringArray(getModel(index, arguments));
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static Integer[] getIntegerArray(int index, List<TemplateModel> arguments) throws TemplateModelException {
         String[] arr = getStringArray(index, arguments);
         if (notEmpty(arr)) {
@@ -75,6 +123,12 @@ public abstract class BaseMethod extends Base implements TemplateMethodModelEx {
         return null;
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static Long[] getLongArray(int index, List<TemplateModel> arguments) throws TemplateModelException {
         String[] arr = getStringArray(index, arguments);
         if (notEmpty(arr)) {
@@ -88,26 +142,54 @@ public abstract class BaseMethod extends Base implements TemplateMethodModelEx {
         return null;
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     */
     public static Boolean getBoolean(int index, List<TemplateModel> arguments) throws TemplateModelException {
         return converBoolean(getModel(index, arguments));
     }
 
+    /**
+     * @param index
+     * @param arguments
+     * @return
+     * @throws TemplateModelException
+     * @throws ParseException
+     */
     public static Date getDate(int index, List<TemplateModel> arguments) throws TemplateModelException, ParseException {
         return converDate(getModel(index, arguments));
     }
 
+    /**
+     * @return
+     */
     public boolean httpEnabled() {
         return true;
     }
 
+    /**
+     * @return
+     */
     public abstract int minParamtersNumber();
 
+    /**
+     * @return
+     */
     public abstract boolean needAppToken();
     
+    /**
+     * @return
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }

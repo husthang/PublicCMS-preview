@@ -11,29 +11,112 @@ import java.util.TreeSet;
 import com.sanluan.common.handler.RenderHandler;
 
 /**
+ * 指令处理器基类
  * 
- * BaseHandler 指令处理器基类
+ * BaseHandler
  *
  */
 public abstract class BaseHandler extends Base implements RenderHandler {
+    /**
+     * 参数名称
+     * 
+     * Parameters name
+     */
     public static final String PARAMETERS_NAME = "parameters";
+    /**
+     * 控制参数
+     * 
+     * Controller parameters
+     * 
+     */
     public static final String PARAMETERS_CONTROLLER = "showParamters";
+    /**
+     * String类型参数
+     * 
+     * String type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_STRING = "string";
+    /**
+     * Char类型参数
+     * 
+     * Char type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_CHAR = "char";
+    /**
+     * Short类型参数
+     * 
+     * Short type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_SHORT = "short";
+    /**
+     * Long类型参数
+     * 
+     * Long type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_LONG = "long";
+    /**
+     * Double类型参数
+     * 
+     * Double type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_DOUBLE = "double";
-    public static final String PARAMETER_TYPE_LONGARRAY = "longArray";
-    public static final String PARAMETER_TYPE_DATE = "date";
+    /**
+     * Boolean类型参数
+     * 
+     * Boolean type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_BOOLEAN = "boolean";
+    /**
+     * Integer类型参数
+     * 
+     * Integer type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_INTEGER = "integer";
+    /**
+     * Date类型参数
+     * 
+     * Date type parameter
+     * 
+     */
+    public static final String PARAMETER_TYPE_DATE = "date";
+    /**
+     * Long数组类型参数
+     * 
+     * Long array type parameter
+     * 
+     */
+    public static final String PARAMETER_TYPE_LONGARRAY = "longArray";
+    /**
+     * Integer数组类型参数
+     * 
+     * Integer array type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_INTEGERARRAY = "integerArray";
+    /**
+     * String数组类型参数
+     * 
+     * String array type parameter
+     * 
+     */
     public static final String PARAMETER_TYPE_STRINGARRAY = "stringArray";
     protected Map<String, Object> map = new LinkedHashMap<String, Object>();
     protected List<Map<String, Object>> parameterList;
     protected boolean regristerParamters;
     protected boolean renderd = false;
 
+    /**
+     * 注册参数
+     * 
+     * Regrister paramters
+     */
     public void regristerParamters() {
         this.regristerParamters = getBooleanWithoutRegrister(PARAMETERS_CONTROLLER, false);
         if (regristerParamters) {
@@ -56,18 +139,19 @@ public abstract class BaseHandler extends Base implements RenderHandler {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sanluan.common.handler.RenderHandler#put(java.lang.String,
-     * java.lang.Object)
-     */
     @Override
     public RenderHandler put(String key, Object value) {
         map.put(key, value);
         return this;
     }
 
+    /**
+     * 获取结果集大小
+     * 
+     * Get size
+     * 
+     * @return
+     */
     public int getSize() {
         return map.size();
     }
@@ -80,23 +164,12 @@ public abstract class BaseHandler extends Base implements RenderHandler {
 
     protected abstract Boolean getBooleanWithoutRegrister(String name) throws Exception;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sanluan.common.handler.RenderHandler#getString(java.lang.String)
-     */
     @Override
     public String getString(String name) throws Exception {
         regristerParamter(PARAMETER_TYPE_STRING, name);
         return getStringWithoutRegrister(name);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sanluan.common.handler.RenderHandler#getString(java.lang.String,
-     * java.lang.String)
-     */
     @Override
     public String getString(String name, String defaultValue) throws Exception {
         try {
@@ -108,12 +181,6 @@ public abstract class BaseHandler extends Base implements RenderHandler {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getCharacter(java.lang.String)
-     */
     @Override
     public Character getCharacter(String name) throws Exception {
         regristerParamter(PARAMETER_TYPE_CHAR, name);
@@ -124,25 +191,12 @@ public abstract class BaseHandler extends Base implements RenderHandler {
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getInteger(java.lang.String)
-     */
     @Override
     public Integer getInteger(String name) throws Exception {
         regristerParamter(PARAMETER_TYPE_INTEGER, name);
         return getIntegerWithoutRegrister(name);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getInteger(java.lang.String,
-     * int)
-     */
     @Override
     public int getInteger(String name, int defaultValue) {
         try {
@@ -154,13 +208,6 @@ public abstract class BaseHandler extends Base implements RenderHandler {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getIntegerArray(java.lang.String
-     * )
-     */
     @Override
     public Integer[] getIntegerArray(String name) throws Exception {
         regristerParamter(PARAMETER_TYPE_INTEGERARRAY, name);
@@ -180,12 +227,6 @@ public abstract class BaseHandler extends Base implements RenderHandler {
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getLongArray(java.lang.String)
-     */
     @Override
     public Long[] getLongArray(String name) throws Exception {
         regristerParamter(PARAMETER_TYPE_LONGARRAY, name);
@@ -205,13 +246,6 @@ public abstract class BaseHandler extends Base implements RenderHandler {
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getBoolean(java.lang.String,
-     * java.lang.Boolean)
-     */
     protected boolean getBooleanWithoutRegrister(String name, boolean defaultValue) {
         try {
             Boolean result = getBooleanWithoutRegrister(name);
@@ -221,37 +255,18 @@ public abstract class BaseHandler extends Base implements RenderHandler {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getBoolean(java.lang.String)
-     */
     @Override
     public Boolean getBoolean(String name) throws Exception {
         regristerParamter(PARAMETER_TYPE_BOOLEAN, name);
         return getBooleanWithoutRegrister(name);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getBoolean(java.lang.String,
-     * java.lang.Boolean)
-     */
     @Override
     public boolean getBoolean(String name, boolean defaultValue) throws Exception {
         regristerParamter(PARAMETER_TYPE_BOOLEAN, name, defaultValue);
         return getBooleanWithoutRegrister(name, defaultValue);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sanluan.common.handler.RenderHandler#getStringArray(java.lang.String)
-     */
     @Override
     public String[] getStringArray(String name) throws Exception {
         regristerParamter(PARAMETER_TYPE_STRINGARRAY, name);

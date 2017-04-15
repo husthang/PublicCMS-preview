@@ -7,8 +7,21 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysDeptCategoryDao
+ * 
+ */
 @Repository
 public class SysDeptCategoryDao extends BaseDao<SysDeptCategory> {
+
+    /**
+     * @param deptId
+     * @param categoryId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer deptId, Integer categoryId, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysDeptCategory bean");
         if (notEmpty(deptId)) {

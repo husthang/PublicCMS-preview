@@ -17,15 +17,31 @@ import com.publiccms.logic.dao.sys.SysDeptPageDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysDeptPageService
+ * 
+ */
 @Service
 @Transactional
 public class SysDeptPageService extends BaseService<SysDeptPage> {
 
+    /**
+     * @param deptId
+     * @param page
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer deptId, String page, Integer pageIndex, Integer pageSize) {
         return dao.getPage(deptId, page, pageIndex, pageSize);
     }
 
+    /**
+     * @param deptId
+     * @param pages
+     */
     public void updateDeptPages(Integer deptId, String[] pages) {
         if (notEmpty(deptId)) {
             @SuppressWarnings("unchecked")
@@ -46,6 +62,10 @@ public class SysDeptPageService extends BaseService<SysDeptPage> {
         }
     }
     
+    /**
+     * @param deptId
+     * @param page
+     */
     public void delete(Integer deptId, String page) {
         if (notEmpty(page) || notEmpty(deptId)) {
             @SuppressWarnings("unchecked")
@@ -58,4 +78,5 @@ public class SysDeptPageService extends BaseService<SysDeptPage> {
 
     @Autowired
     private SysDeptPageDao dao;
+    
 }

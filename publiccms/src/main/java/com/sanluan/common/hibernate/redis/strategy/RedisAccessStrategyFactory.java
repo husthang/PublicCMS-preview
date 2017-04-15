@@ -9,6 +9,11 @@ import com.sanluan.common.hibernate.redis.regions.RedisCollectionRegion;
 import com.sanluan.common.hibernate.redis.regions.RedisEntityRegion;
 import com.sanluan.common.hibernate.redis.regions.RedisNaturalIdRegion;
 
+/**
+ *
+ * RedisAccessStrategyFactory
+ * 
+ */
 public interface RedisAccessStrategyFactory {
 
     /**

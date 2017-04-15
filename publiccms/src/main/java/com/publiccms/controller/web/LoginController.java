@@ -59,10 +59,8 @@ public class LoginController extends AbstractController {
      * @param password
      * @param returnUrl
      * @param request
-     * @param session
      * @param response
      * @param model
-     * @return
      */
     @RequestMapping(value = "doLogin", method = RequestMethod.POST)
     public void login(String username, String password, String returnUrl, HttpServletRequest request,
@@ -145,10 +143,8 @@ public class LoginController extends AbstractController {
      * @param repassword
      * @param returnUrl
      * @param request
-     * @param session
      * @param response
      * @param model
-     * @return
      */
     @RequestMapping(value = "doRegister", method = RequestMethod.POST)
     public void register(SysUser entity, String repassword, String returnUrl, HttpServletRequest request,
@@ -191,7 +187,6 @@ public class LoginController extends AbstractController {
      * @param request
      * @param response
      * @param model
-     * @return
      */
     @RequestMapping(value = "doLogout", method = RequestMethod.POST)
     public void logout(HttpServletRequest request, HttpServletResponse response, ModelMap model) {

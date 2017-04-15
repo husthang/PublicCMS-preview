@@ -15,6 +15,11 @@ import com.publiccms.entities.home.HomeComment;
 import com.publiccms.logic.service.home.HomeCommentService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * HomeCommentDirective
+ * 
+ */
 @Component
 public class HomeCommentDirective extends AbstractTemplateDirective {
 

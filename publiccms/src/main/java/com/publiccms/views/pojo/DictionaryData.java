@@ -1,5 +1,10 @@
 package com.publiccms.views.pojo;
 
+/**
+ *
+ * DictionaryData
+ * 
+ */
 public class DictionaryData implements java.io.Serializable {
 
     /**
@@ -9,18 +14,30 @@ public class DictionaryData implements java.io.Serializable {
     String value;
     String text;
 
+    /**
+     * @return
+     */
     public String getValue() {
         return this.value;
     }
 
+    /**
+     * @param value
+     */
     public void setValue(String value) {
         this.value = value;
     }
 
+    /**
+     * @return
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     * @param text
+     */
     public void setText(String text) {
         this.text = text;
     }

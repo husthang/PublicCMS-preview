@@ -13,13 +13,14 @@ import com.sanluan.common.base.BaseMethod;
 
 import freemarker.template.TemplateModelException;
 
+/**
+ *
+ * GetHomeGroupPostContentsMethod
+ * 
+ */
 @Component
 public class GetHomeGroupPostContentsMethod extends BaseMethod {
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateMethodModelEx#exec(java.util.List)
-     */
+    
     @SuppressWarnings("unchecked")
     @Override
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
@@ -46,4 +47,5 @@ public class GetHomeGroupPostContentsMethod extends BaseMethod {
 
     @Autowired
     private HomeGroupPostContentService service;
+    
 }

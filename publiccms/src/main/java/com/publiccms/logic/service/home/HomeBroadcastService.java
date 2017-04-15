@@ -13,16 +13,38 @@ import com.publiccms.logic.dao.home.HomeBroadcastDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeBroadcastService
+ * 
+ */
 @Service
 @Transactional
 public class HomeBroadcastService extends BaseService<HomeBroadcast> {
 
+    /**
+     * @param siteId
+     * @param userId
+     * @param reposted
+     * @param repostId
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Long userId, Boolean reposted, Long repostId, Boolean disabled, String orderField,
             String orderType, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, userId, reposted, repostId, disabled, orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param id
+     * @param status
+     * @return
+     */
     public HomeBroadcast updateStatus(Serializable id, boolean status) {
         HomeBroadcast entity = getEntity(id);
         if (null != entity) {
@@ -33,4 +55,5 @@ public class HomeBroadcastService extends BaseService<HomeBroadcast> {
 
     @Autowired
     private HomeBroadcastDao dao;
+
 }

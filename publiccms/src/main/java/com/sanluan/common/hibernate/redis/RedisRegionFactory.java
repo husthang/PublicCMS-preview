@@ -11,8 +11,9 @@ import org.hibernate.cache.CacheException;
 import com.sanluan.common.cache.redis.RedisClient;
 
 /**
- *
- * RedisRegionFactory
+ * Redis领域工厂
+ * 
+ * Redis Region Factory
  * 
  */
 public class RedisRegionFactory extends AbstractRedisRegionFactory {
@@ -22,16 +23,13 @@ public class RedisRegionFactory extends AbstractRedisRegionFactory {
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * @param props
+     */
     public RedisRegionFactory(Properties props) {
         super(props);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.RegionFactory#start(org.hibernate.boot.spi.
-     * SessionFactoryOptions, java.util.Properties)
-     */
     @Override
     public void start(SessionFactoryOptions options, Properties properties) throws CacheException {
         log.debug("RedisRegionFactory is starting... ");
@@ -54,11 +52,6 @@ public class RedisRegionFactory extends AbstractRedisRegionFactory {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.RegionFactory#stop()
-     */
     @Override
     public void stop() {
         if (redisClient == null)

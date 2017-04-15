@@ -17,16 +17,36 @@ import com.publiccms.views.pojo.CmsWordStatistics;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsWordService
+ * 
+ */
 @Service
 @Transactional
 public class CmsWordService extends BaseService<CmsWord> {
 
+    /**
+     * @param siteId
+     * @param hidden
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param name
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Boolean hidden, Date startCreateDate, Date endCreateDate, String name,
             String orderField, String orderType, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, hidden, startCreateDate, endCreateDate, name, orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param entitys
+     */
     public void updateStatistics(Collection<CmsWordStatistics> entitys) {
         for (CmsWordStatistics entityStatistics : entitys) {
             CmsWord entity = getEntity(entityStatistics.getId());
@@ -36,10 +56,20 @@ public class CmsWordService extends BaseService<CmsWord> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param name
+     * @return
+     */
     public CmsWord getEntity(int siteId, String name) {
         return dao.getEntity(siteId, name);
     }
 
+    /**
+     * @param id
+     * @param status
+     * @return
+     */
     public CmsWord updateStatus(Serializable id, boolean status) {
         CmsWord entity = getEntity(id);
         if (null != entity) {
@@ -50,4 +80,5 @@ public class CmsWordService extends BaseService<CmsWord> {
 
     @Autowired
     private CmsWordDao dao;
+    
 }

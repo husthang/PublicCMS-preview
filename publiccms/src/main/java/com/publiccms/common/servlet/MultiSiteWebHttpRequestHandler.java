@@ -18,10 +18,18 @@ import org.springframework.web.util.UrlPathHelper;
 import com.publiccms.logic.component.site.SiteComponent;
 import com.sanluan.common.base.Base;
 
+/**
+ *
+ * MultiSiteWebHttpRequestHandler
+ * 
+ */
 public class MultiSiteWebHttpRequestHandler extends ResourceHttpRequestHandler {
     private UrlPathHelper urlPathHelper = new UrlPathHelper();
     private SiteComponent siteComponent;
 
+    /**
+     * @param siteComponent
+     */
     public MultiSiteWebHttpRequestHandler(SiteComponent siteComponent) {
         this.siteComponent = siteComponent;
     }

@@ -21,7 +21,13 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.config.PropertyRegistry;
 
+/**
+ *
+ * ServicePlugin
+ * 
+ */
 public class ServicePlugin extends PluginAdapter {
+    
     private List<TopLevelClass> services = new ArrayList<TopLevelClass>();
 
     /**

@@ -6,12 +6,15 @@ import java.security.NoSuchAlgorithmException;
 import com.sanluan.common.base.Base;
 
 /**
+ * 安全验证工具类
  * 
- * VerificationUtils 安全验证工具类
+ * VerificationUtils
  *
  */
 public class VerificationUtils extends Base {
+
     /**
+     * @param text
      * @param length
      * @return
      */

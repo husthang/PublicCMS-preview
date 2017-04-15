@@ -10,6 +10,13 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.sanluan.common.cache.CacheEntity;
 
+/**
+ *
+ * MemoryCacheEntity
+ * @param <K> 
+ * @param <V> 
+ * 
+ */
 public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Serializable {
 
     /**
@@ -20,6 +27,9 @@ public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Seria
     private LinkedHashMap<K, V> cachedMap = new LinkedHashMap<K, V>(16, 0.75f, true);
     private ReentrantReadWriteLock  lock = new ReentrantReadWriteLock ();
 
+    /**
+     * @param size
+     */
     public MemoryCacheEntity(int size) {
         this.size = size;
     }
@@ -97,10 +107,16 @@ public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Seria
         return list;
     }
 
+    /**
+     * @return
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * @param size
+     */
     public void setSize(int size) {
         this.size = size;
     }

@@ -21,6 +21,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.cms.CmsVoteService;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * CmsVoteAdminController
+ * 
+ */
 @Controller
 @RequestMapping("cmsVote")
 public class CmsVoteAdminController extends AbstractController {
@@ -29,6 +34,13 @@ public class CmsVoteAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id", "siteId", "itemExtendId", "userCounts" };
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(CmsVote entity, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -51,6 +63,13 @@ public class CmsVoteAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);

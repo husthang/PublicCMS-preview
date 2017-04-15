@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.sanluan.common.base.Base;
 
 /**
+ * Request工具类
  * 
- * RequestUtils Request工具类
+ * RequestUtils 
  * 
  */
 public class RequestUtils extends Base {
@@ -30,10 +31,13 @@ public class RequestUtils extends Base {
     }
 
     /**
+     * 获取转码路径
+     * 
+     * Get Encoded Path
+     * 
      * @param path
      * @param queryString
      * @return
-     * @throws UnsupportedEncodingException
      */
     public static String getEncodePath(String path, String queryString) {
         String url = path;
@@ -49,6 +53,10 @@ public class RequestUtils extends Base {
     }
 
     /**
+     * 获取UserAgent
+     * 
+     * Get UserAgent
+     * 
      * @param request
      * @return
      */
@@ -65,7 +73,7 @@ public class RequestUtils extends Base {
     }
 
     /**
-     * @param request
+     * @param cookies
      * @param name
      * @return
      */
@@ -81,7 +89,7 @@ public class RequestUtils extends Base {
     }
 
     /**
-     * @param request
+     * @param contextPath
      * @param response
      * @param name
      * @param value
@@ -104,7 +112,7 @@ public class RequestUtils extends Base {
     }
 
     /**
-     * @param request
+     * @param contextPath
      * @param response
      * @param name
      * @param domain

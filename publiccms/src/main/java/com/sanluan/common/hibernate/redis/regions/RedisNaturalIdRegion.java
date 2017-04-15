@@ -35,13 +35,6 @@ public class RedisNaturalIdRegion extends RedisTransactionalDataRegion implement
         super(accessStrategyFactory, redis, configurableRedisRegionFactory, regionName, options, metadata, props);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.hibernate.cache.spi.NaturalIdRegion#buildAccessStrategy(org.hibernate
-     * .cache.spi.access.AccessType)
-     */
     @Override
     public NaturalIdRegionAccessStrategy buildAccessStrategy(AccessType accessType) throws CacheException {
         return accessStrategyFactory.createNaturalIdRegionAccessStrategy(this, accessType);

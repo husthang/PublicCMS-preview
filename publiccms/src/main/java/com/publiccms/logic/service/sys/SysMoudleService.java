@@ -15,15 +15,31 @@ import com.publiccms.logic.dao.sys.SysMoudleDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysMoudleService
+ * 
+ */
 @Service
 @Transactional
 public class SysMoudleService extends BaseService<SysMoudle> {
 
+    /**
+     * @param parentId
+     * @param menu
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer parentId, Boolean menu, Integer pageIndex, Integer pageSize) {
         return dao.getPage(parentId, menu, pageIndex, pageSize);
     }
 
+    /**
+     * @param parentId
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public Set<String> getPageUrl(Integer parentId) {
         Set<String> urls = new HashSet<String>();
@@ -39,4 +55,5 @@ public class SysMoudleService extends BaseService<SysMoudle> {
 
     @Autowired
     private SysMoudleDao dao;
+    
 }

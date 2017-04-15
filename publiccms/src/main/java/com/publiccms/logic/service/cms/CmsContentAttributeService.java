@@ -9,19 +9,29 @@ import org.springframework.transaction.annotation.Transactional;
 import com.publiccms.entities.cms.CmsContentAttribute;
 import com.sanluan.common.base.BaseService;
 
+/**
+ *
+ * CmsContentAttributeService
+ * 
+ */
 @Service
 @Transactional
 public class CmsContentAttributeService extends BaseService<CmsContentAttribute> {
+    
     private String[] ignoreProperties = new String[] { "contentId" };
 
     /**
-     * @param id
+     * @param ids
      * @return
      */
     public List<CmsContentAttribute> getEntitysWithoutText(Serializable[] ids) {
         return dao.getEntitys(ids);
     }
     
+    /**
+     * @param contentId
+     * @param entity
+     */
     public void updateAttribute(Long contentId, CmsContentAttribute entity) {
         CmsContentAttribute attribute = getEntity(contentId);
         if (null != attribute) {
@@ -37,4 +47,5 @@ public class CmsContentAttributeService extends BaseService<CmsContentAttribute>
             }
         }
     }
+    
 }

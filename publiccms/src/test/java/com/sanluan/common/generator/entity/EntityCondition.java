@@ -3,7 +3,20 @@ package com.sanluan.common.generator.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * EntityCondition
+ * 
+ */
 public class EntityCondition {
+    
+    /**
+     * @param name
+     * @param type
+     * @param title
+     * @param or
+     * @param like
+     */
     public EntityCondition(String name, String type, String title, boolean or, boolean like) {
         this.name = name;
         this.type = type;
@@ -80,10 +93,16 @@ public class EntityCondition {
         this.title = title;
     }
 
+    /**
+     * @return
+     */
     public List<String> getNameList() {
         return nameList;
     }
 
+    /**
+     * @param nameList
+     */
     public void setNameList(List<String> nameList) {
         this.nameList = nameList;
     }

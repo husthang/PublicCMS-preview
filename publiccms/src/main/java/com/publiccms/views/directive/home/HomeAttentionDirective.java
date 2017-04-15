@@ -16,6 +16,11 @@ import com.publiccms.entities.home.HomeAttentionId;
 import com.publiccms.logic.service.home.HomeAttentionService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * HomeAttentionDirective
+ * 
+ */
 @Component
 public class HomeAttentionDirective extends AbstractTemplateDirective {
 

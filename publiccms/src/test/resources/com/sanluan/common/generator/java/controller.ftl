@@ -22,12 +22,23 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.entities.log.LogOperate;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * ${entityName}${controllerSuffix}
+ * 
+ */
 @Controller
 @RequestMapping("${entityName?uncap_first}")
 public class ${entityName}${controllerSuffix} extends AbstractController {
 
 	private String[] ignoreProperties = new String[]{"id"};
-
+	
+	/**
+     * @param entity
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("save")
     public String save(${entityName} entity, HttpServletRequest request, HttpSession session) {
     	SysSite site = getSite(request);
@@ -45,6 +56,12 @@ public class ${entityName}${controllerSuffix} extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+	/**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer[] ids, HttpServletRequest request, HttpSession session) {
     	SysSite site = getSite(request);

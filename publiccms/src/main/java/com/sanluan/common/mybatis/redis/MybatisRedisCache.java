@@ -8,13 +8,22 @@ import org.apache.ibatis.cache.Cache;
 import com.sanluan.common.base.Base;
 import com.sanluan.common.cache.redis.RedisClient;
 
+/**
+ *
+ * MybatisRedisCache
+ * 
+ */
 public class MybatisRedisCache extends Base implements Cache {
+    
     private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
     protected RedisClient redisClient;
 
     private String id;
 
+    /**
+     * @param id
+     */
     public MybatisRedisCache(String id) {
         if (id == null) {
             throw new IllegalArgumentException("Cache instances require an ID");

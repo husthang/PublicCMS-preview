@@ -9,6 +9,11 @@ import com.publiccms.common.base.AbstractTemplateDirective;
 import com.publiccms.logic.component.site.FileComponent;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * TaskTemplateContentDirective
+ * 
+ */
 @Component
 public class TaskTemplateContentDirective extends AbstractTemplateDirective {
 

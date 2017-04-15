@@ -42,17 +42,11 @@ public class ReadOnlyRedisEntityRegionAccessStrategy extends AbstractRedisAccess
         return region;
     }
 
-    /* (non-Javadoc)
-     * @see com.sanluan.common.hibernate.redis.strategy.AbstractRedisAccessStrategy#get(org.hibernate.engine.spi.SessionImplementor, java.lang.Object, long)
-     */
     @Override
     public Object get(SessionImplementor session, Object key, long txTimestamp) {
         return region.get(key);
     }
 
-    /* (non-Javadoc)
-     * @see com.sanluan.common.hibernate.redis.strategy.AbstractRedisAccessStrategy#putFromLoad(org.hibernate.engine.spi.SessionImplementor, java.lang.Object, java.lang.Object, long, java.lang.Object, boolean)
-     */
     @Override
     public boolean putFromLoad(SessionImplementor session, Object key, Object value, long txTimestamp, Object version,
             boolean minimalPutOverride) {

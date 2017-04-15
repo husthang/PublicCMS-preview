@@ -16,8 +16,14 @@ import com.sanluan.common.handler.RenderHandler;
 
 import freemarker.template.TemplateException;
 
+/**
+ *
+ * CreateCategoryFileDirective
+ * 
+ */
 @Component
 public class CreateCategoryFileDirective extends AbstractTemplateDirective {
+    
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
         Integer id = handler.getInteger("id");

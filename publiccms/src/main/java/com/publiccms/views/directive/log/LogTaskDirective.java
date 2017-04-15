@@ -16,6 +16,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.log.LogTaskService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * LogTaskDirective
+ * 
+ */
 @Component
 public class LogTaskDirective extends AbstractTemplateDirective {
 

@@ -26,25 +26,11 @@ public class ReadWriteRedisNaturalIdRegionAccessStrategy extends AbstractReadWri
         super(region, options);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.access.NaturalIdRegionAccessStrategy#
-     * generateCacheKey(java.lang.Object[],
-     * org.hibernate.persister.entity.EntityPersister,
-     * org.hibernate.engine.spi.SessionImplementor)
-     */
     @Override
     public Object generateCacheKey(Object[] naturalIdValues, EntityPersister persister, SessionImplementor session) {
         return DefaultCacheKeysFactory.staticCreateNaturalIdKey(naturalIdValues, persister, session);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.access.NaturalIdRegionAccessStrategy#
-     * getNaturalIdValues(java.lang.Object)
-     */
     @Override
     public Object[] getNaturalIdValues(Object cacheKey) {
         return DefaultCacheKeysFactory.staticGetNaturalIdValues(cacheKey);

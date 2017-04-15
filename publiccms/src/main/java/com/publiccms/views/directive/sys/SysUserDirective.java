@@ -14,6 +14,11 @@ import com.publiccms.entities.sys.SysUser;
 import com.publiccms.logic.service.sys.SysUserService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysUserDirective
+ * 
+ */
 @Component
 public class SysUserDirective extends AbstractTemplateDirective {
 

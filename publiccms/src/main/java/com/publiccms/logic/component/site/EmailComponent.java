@@ -37,15 +37,46 @@ import com.sanluan.common.cache.CacheEntityFactory;
  */
 @Component
 public class EmailComponent extends Base implements SiteCache, Config {
+    
+    /**
+     * 
+     */
     public static final String CONFIG_CODE = "email";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_SMTP_DEFAULTENCODING = "defaultEncoding";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_SMTP_HOST = "host";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_SMTP_PORT = "port";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_SMTP_USERNAME = "username";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_SMTP_PASSWORD = "password";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_SMTP_TIMEOUT = "timeout";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_SMTP_AUTH = "auth";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_SMTP_FROMADDRESS = "fromAddress";
+    /**
+     * 
+     */
     public static final String CONFIG_CODE_DESCRIPTION = CONFIGPREFIX + CONFIG_CODE;
 
     @Autowired
@@ -55,6 +86,11 @@ public class EmailComponent extends Base implements SiteCache, Config {
 
     private static ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
+    /**
+     * @param siteId
+     * @param config
+     * @return
+     */
     public JavaMailSender getMailSender(int siteId, Map<String, String> config) {
         JavaMailSenderImpl javaMailSender = cache.get(siteId);
         if (null == javaMailSender) {
@@ -74,6 +110,7 @@ public class EmailComponent extends Base implements SiteCache, Config {
     }
 
     /**
+     * @param siteId
      * @param toAddress
      * @param title
      * @param content
@@ -85,6 +122,7 @@ public class EmailComponent extends Base implements SiteCache, Config {
     }
 
     /**
+     * @param siteId
      * @param toAddress
      * @param title
      * @param html
@@ -163,6 +201,9 @@ public class EmailComponent extends Base implements SiteCache, Config {
         cache.clear();
     }
 
+    /**
+     * @param cacheEntityFactory
+     */
     @Autowired
     public void initCache(CacheEntityFactory cacheEntityFactory) {
         cache = cacheEntityFactory.createCacheEntity(CONFIG_CODE, CacheEntityFactory.MEMORY_CACHE_ENTITY);

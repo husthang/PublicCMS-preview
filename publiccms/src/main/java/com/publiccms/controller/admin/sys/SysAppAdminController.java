@@ -22,6 +22,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysAppService;
 
+/**
+ *
+ * SysAppAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysApp")
 public class SysAppAdminController extends AbstractController {
@@ -30,6 +35,14 @@ public class SysAppAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id", "siteId", "channel" };
 
+    /**
+     * @param entity
+     * @param apis
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysApp entity, String[] apis, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -55,6 +68,13 @@ public class SysAppAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);

@@ -15,6 +15,11 @@ import com.publiccms.entities.home.HomeFriendApply;
 import com.publiccms.logic.service.home.HomeFriendApplyService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * HomeFriendApplyDirective
+ * 
+ */
 @Component
 public class HomeFriendApplyDirective extends AbstractTemplateDirective {
 

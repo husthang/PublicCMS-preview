@@ -20,6 +20,9 @@ import freemarker.template.TemplateModelException;
 public class GetTemplateResultMethod extends BaseMethod {
     private Configuration configuration;
 
+    /**
+     * 
+     */
     public GetTemplateResultMethod() {
         configuration = new Configuration(Configuration.getVersion());
         configuration.setDefaultEncoding(DEFAULT_CHARSET_NAME);
@@ -29,11 +32,6 @@ public class GetTemplateResultMethod extends BaseMethod {
         configuration.setLogTemplateExceptions(false);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateMethodModelEx#exec(java.util.List)
-     */
     @SuppressWarnings("unchecked")
     @Override
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {

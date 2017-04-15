@@ -19,20 +19,31 @@ import config.spring.ApplicationConfig;
 import config.spring.CmsConfig;
 
 /**
+ * 管理后台初始化
  * 
- * AdminInitializer Servlet3.0 工程入口类
+ * Management Initializer
  *
  */
 public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletInitializer
         implements WebApplicationInitializer {
+    /**
+     * 管理后台路径
+     * Management Path
+     */
     public static final String BASEPATH = "/admin";
 
     private boolean inited;
 
+    /**
+     * @param inited
+     */
     public AdminInitializer(boolean inited) {
         this.inited = inited;
     }
 
+    /**
+     * 
+     */
     public AdminInitializer() {
         this.inited = false;
     }

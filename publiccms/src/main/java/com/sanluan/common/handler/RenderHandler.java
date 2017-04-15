@@ -7,12 +7,16 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ *
+ * RenderHandler
+ * 
+ */
 public interface RenderHandler {
 
     /**
      * 渲染
      * 
-     * @param templateDirectiveBody
      * @throws IOException
      * @throws Exception
      */
@@ -29,6 +33,7 @@ public interface RenderHandler {
     /**
      * 获取Writer
      * 
+     * @return 
      * @throws IOException
      */
     public Writer getWriter() throws IOException;

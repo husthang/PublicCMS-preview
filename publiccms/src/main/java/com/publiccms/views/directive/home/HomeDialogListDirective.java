@@ -12,6 +12,11 @@ import com.publiccms.logic.service.home.HomeDialogService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeDialogListDirective
+ * 
+ */
 @Component
 public class HomeDialogListDirective extends AbstractTemplateDirective {
 

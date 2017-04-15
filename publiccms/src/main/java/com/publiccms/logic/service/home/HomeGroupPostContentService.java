@@ -6,6 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.publiccms.entities.home.HomeGroupPostContent;
 import com.sanluan.common.base.BaseService;
 
+/**
+ *
+ * HomeGroupPostContentService
+ * 
+ */
 @Service
 @Transactional
 public class HomeGroupPostContentService extends BaseService<HomeGroupPostContent> {

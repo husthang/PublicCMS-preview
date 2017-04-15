@@ -13,13 +13,14 @@ import com.sanluan.common.base.BaseMethod;
 
 import freemarker.template.TemplateModelException;
 
+/**
+ *
+ * GetHomeArticleContentsMethod
+ * 
+ */
 @Component
 public class GetHomeArticleContentsMethod extends BaseMethod {
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateMethodModelEx#exec(java.util.List)
-     */
+    
     @SuppressWarnings("unchecked")
     @Override
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
@@ -46,4 +47,5 @@ public class GetHomeArticleContentsMethod extends BaseMethod {
 
     @Autowired
     private HomeArticleContentService service;
+    
 }

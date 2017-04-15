@@ -6,11 +6,30 @@ import java.util.Map;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+/**
+ *
+ * QueryHandler
+ * 
+ */
 public class QueryHandler {
+    
+    /**
+     * 
+     */
     public static final String COUNT_SQL = "select count(*) ";
+    /**
+     * 
+     */
     public static final String KEYWORD_FROM = " from ";
+    /**
+     * 
+     */
     public static final String KEYWORD_ORDER = " order by ";
+    /**
+     * 
+     */
     public static final String KEYWORD_GROUP = " group by ";
+    
     boolean whereFlag = true;
     boolean orderFlag = true;
     boolean groupFlag = true;
@@ -21,23 +40,41 @@ public class QueryHandler {
     private Integer maxResults;
     private Boolean cacheable;
 
+    /**
+     * @param sql
+     */
     public QueryHandler(String sql) {
         this.sqlBuilder = new StringBuilder(" ");
         sqlBuilder.append(sql);
     }
 
+    /**
+     * 
+     */
     public QueryHandler() {
         this.sqlBuilder = new StringBuilder();
     }
 
+    /**
+     * @param session
+     * @return
+     */
     public Query getQuery(Session session) {
         return getQuery(session, getSql());
     }
 
+    /**
+     * @param session
+     * @return
+     */
     public Query getCountQuery(Session session) {
         return getQuery(session, getCountSql());
     }
 
+    /**
+     * @param condition
+     * @return
+     */
     public QueryHandler condition(String condition) {
         if (whereFlag) {
             whereFlag = false;
@@ -49,6 +86,10 @@ public class QueryHandler {
         return this;
     }
 
+    /**
+     * @param sqlString
+     * @return
+     */
     public QueryHandler order(String sqlString) {
         if (orderFlag) {
             orderFlag = false;
@@ -60,6 +101,10 @@ public class QueryHandler {
         return this;
     }
 
+    /**
+     * @param sqlString
+     * @return
+     */
     public QueryHandler group(String sqlString) {
         if (groupFlag) {
             groupFlag = false;
@@ -71,27 +116,48 @@ public class QueryHandler {
         return this;
     }
 
+    /**
+     * @param sqlString
+     * @return
+     */
     public QueryHandler append(String sqlString) {
         sqlBuilder.append(" ");
         sqlBuilder.append(sqlString);
         return this;
     }
 
+    /**
+     * @param firstResult
+     * @return
+     */
     public QueryHandler setFirstResult(int firstResult) {
         this.firstResult = firstResult;
         return this;
     }
 
+    /**
+     * @param maxResults
+     * @return
+     */
     public QueryHandler setMaxResults(int maxResults) {
         this.maxResults = maxResults;
         return this;
     }
 
+    /**
+     * @param cacheable
+     * @return
+     */
     public QueryHandler setCacheable(boolean cacheable) {
         this.cacheable = cacheable;
         return this;
     }
 
+    /**
+     * @param key
+     * @param value
+     * @return
+     */
     public QueryHandler setParameter(String key, Object value) {
         if (null == map) {
             map = new HashMap<String, Object>();
@@ -100,6 +166,11 @@ public class QueryHandler {
         return this;
     }
 
+    /**
+     * @param key
+     * @param value
+     * @return
+     */
     public QueryHandler setParameter(String key, Object[] value) {
         if (null == arrayMap) {
             arrayMap = new HashMap<String, Object[]>();
@@ -147,4 +218,5 @@ public class QueryHandler {
         }
         return COUNT_SQL + sql;
     }
+    
 }

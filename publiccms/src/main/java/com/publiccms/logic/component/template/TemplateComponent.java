@@ -51,11 +51,13 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModelException;
 
 /**
- * 
- * TemplateComponent 模板处理组件
+ * 模板处理组件 Template Component
  *
  */
 public class TemplateComponent extends Base implements Cache {
+    /**
+     * 包含目录 include directory
+     */
     public static String INCLUDE_DIRECTORY = "include";
 
     private String directivePrefix;
@@ -84,12 +86,15 @@ public class TemplateComponent extends Base implements Cache {
     /**
      * 创建静态化页面
      * 
+     * @param site
      * @param templatePath
      * @param filePath
+     * @param pageIndex
+     * @param metadata
      * @param model
      * @return
-     * @throws TemplateException
      * @throws IOException
+     * @throws TemplateException
      */
     public String createStaticFile(SysSite site, String templatePath, String filePath, Integer pageIndex,
             CmsPageMetadata metadata, Map<String, Object> model) throws IOException, TemplateException {
@@ -116,12 +121,11 @@ public class TemplateComponent extends Base implements Cache {
     /**
      * 内容页面静态化
      * 
+     * @param site
      * @param entity
      * @param category
-     * @param templatePath
+     * @param categoryModel
      * @return
-     * @throws IOException
-     * @throws TemplateException
      */
     public boolean createContentFile(SysSite site, CmsContent entity, CmsCategory category, CmsCategoryModel categoryModel) {
         if (null != site && null != entity) {
@@ -160,10 +164,13 @@ public class TemplateComponent extends Base implements Cache {
     /**
      * 内容页面静态化
      * 
+     * @param site
      * @param entity
      * @param category
+     * @param createMultiContentPage
      * @param templatePath
      * @param filePath
+     * @param pageIndex
      * @return
      * @throws IOException
      * @throws TemplateException
@@ -213,14 +220,11 @@ public class TemplateComponent extends Base implements Cache {
     /**
      * 分类页面静态化
      * 
+     * @param site
      * @param entity
-     * @param templatePath
-     * @param filePath
      * @param pageIndex
      * @param totalPage
      * @return
-     * @throws IOException
-     * @throws TemplateException
      */
     public boolean createCategoryFile(SysSite site, CmsCategory entity, Integer pageIndex, Integer totalPage) {
         if (entity.isOnlyUrl()) {
@@ -251,6 +255,7 @@ public class TemplateComponent extends Base implements Cache {
     /**
      * 分类页面静态化
      * 
+     * @param site
      * @param entity
      * @param templatePath
      * @param filePath
@@ -305,10 +310,11 @@ public class TemplateComponent extends Base implements Cache {
     /**
      * 静态化页面片段
      * 
-     * @param filePath
-     * @return
-     * @throws TemplateException
+     * @param site
+     * @param templatePath
+     * @param metadata
      * @throws IOException
+     * @throws TemplateException
      */
     public void staticPlace(SysSite site, String templatePath, CmsPlaceMetadata metadata) throws IOException, TemplateException {
         if (notEmpty(templatePath)) {
@@ -323,10 +329,12 @@ public class TemplateComponent extends Base implements Cache {
     /**
      * 输出页面片段
      * 
-     * @param filePath
+     * @param site
+     * @param templatePath
+     * @param metadata
      * @return
-     * @throws TemplateException
      * @throws IOException
+     * @throws TemplateException
      */
     public String printPlace(SysSite site, String templatePath, CmsPlaceMetadata metadata) throws IOException, TemplateException {
         StringWriter writer = new StringWriter();
@@ -337,10 +345,12 @@ public class TemplateComponent extends Base implements Cache {
     /**
      * 输出页面片段
      * 
-     * @param filePath
-     * @return
-     * @throws TemplateException
+     * @param writer
+     * @param site
+     * @param templatePath
+     * @param metadata
      * @throws IOException
+     * @throws TemplateException
      */
     public void printPlace(Writer writer, SysSite site, String templatePath, CmsPlaceMetadata metadata)
             throws IOException, TemplateException {
@@ -404,23 +414,56 @@ public class TemplateComponent extends Base implements Cache {
         clearTemplateCache();
     }
 
+    /**
+     * 清理模板缓存
+     * 
+     * Clear Template Cache
+     */
     public void clearTemplateCache() {
         webConfiguration.clearTemplateCache();
         taskConfiguration.clearTemplateCache();
     }
 
+    /**
+     * 获取FreeMarker前台配置
+     * 
+     * Get FreeMarker Web Configuration
+     * 
+     * @return
+     */
     public Configuration getWebConfiguration() {
         return webConfiguration;
     }
 
+    /**
+     * 获取FreeMarker任务计划配置
+     * 
+     * Get FreeMarker Task Configuration
+     * 
+     * @return
+     */
     public Configuration getTaskConfiguration() {
         return taskConfiguration;
     }
 
+    /**
+     * 获取FreeMarker管理后台配置 
+     * 
+     * Get FreeMarker Admin Configuration
+     * 
+     * @return
+     */
     public Configuration getAdminConfiguration() {
         return adminConfiguration;
     }
 
+    /**
+     * 设置指令前缀
+     * 
+     * Set Directive Prefix
+     * 
+     * @param directivePrefix
+     */
     public void setDirectivePrefix(String directivePrefix) {
         this.directivePrefix = directivePrefix;
     }

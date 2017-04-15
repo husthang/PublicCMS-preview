@@ -16,8 +16,16 @@ import com.publiccms.logic.service.sys.SysClusterService;
 import com.sanluan.common.base.Base;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * ClusterComponent
+ * 
+ */
 @Component
 public class ClusterComponent extends Base {
+    /**
+     * 
+     */
     public static final long THEARTBEAT_INTERVAL = 60 * 1000L;
 
     @Autowired
@@ -81,6 +89,9 @@ public class ClusterComponent extends Base {
         }
     }
 
+    /**
+     * 
+     */
     @PreDestroy
     public void destroy() {
         if (CmsVersion.isInitialized()) {

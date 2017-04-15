@@ -12,11 +12,38 @@ import com.publiccms.logic.dao.log.LogLoginDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * LogLoginService
+ * 
+ */
 @Service
 @Transactional
 public class LogLoginService extends BaseService<LogLogin> {
-    public static final String CHANNEL_WEB_MANAGER = "web_manager", CHANNEL_WEB = "web";
 
+    /**
+     * 
+     */
+    public static final String CHANNEL_WEB_MANAGER = "web_manager";
+    /**
+     * 
+     */
+    public static final String CHANNEL_WEB = "web";
+
+    /**
+     * @param siteId
+     * @param userId
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param channel
+     * @param result
+     * @param name
+     * @param ip
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Long userId, Date startCreateDate, Date endCreateDate, String channel,
             Boolean result, String name, String ip, String orderType, Integer pageIndex, Integer pageSize) {
@@ -24,6 +51,10 @@ public class LogLoginService extends BaseService<LogLogin> {
                 pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void delete(int siteId, Serializable[] ids) {
         for (LogLogin entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId()) {
@@ -32,10 +63,16 @@ public class LogLoginService extends BaseService<LogLogin> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param createDate
+     * @return
+     */
     public int delete(Integer siteId, Date createDate) {
         return dao.delete(siteId, createDate);
     }
 
     @Autowired
     private LogLoginDao dao;
+
 }

@@ -15,6 +15,11 @@ import com.publiccms.logic.service.sys.SysDomainService;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysDomainDirective
+ * 
+ */
 @Component
 public class SysDomainDirective extends AbstractTemplateDirective {
 

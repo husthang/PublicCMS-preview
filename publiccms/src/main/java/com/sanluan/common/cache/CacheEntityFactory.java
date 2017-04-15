@@ -12,14 +12,29 @@ import com.sanluan.common.cache.redis.RedisCacheEntity;
 
 import redis.clients.jedis.JedisPool;
 
+/**
+ *
+ * CacheEntityFactory
+ * 
+ */
 public class CacheEntityFactory extends Base {
+    /**
+     * 
+     */
     public static final String MEMORY_CACHE_ENTITY = "memory";
+    /**
+     * 
+     */
     public static final String RADIS_CACHE_ENTITY = "radis";
     private String defaultCacheEntity;
     private JedisPool jedisPool;
     private Properties properties;
     private int defaultSize = 100;
 
+    /**
+     * @param configurationResourceName
+     * @throws IOException
+     */
     public CacheEntityFactory(String configurationResourceName) throws IOException {
         this.properties = loadAllProperties(configurationResourceName);
         try {
@@ -29,6 +44,9 @@ public class CacheEntityFactory extends Base {
         }
     }
 
+    /**
+     * @return
+     */
     public synchronized JedisPool initJedisPool() {
         if (null == jedisPool) {
             jedisPool = createJedisPool(properties);
@@ -36,6 +54,11 @@ public class CacheEntityFactory extends Base {
         return jedisPool;
     }
 
+    /**
+     * @param name
+     * @param type
+     * @return
+     */
     public <K, V> CacheEntity<K, V> createCacheEntity(String name, String type) {
         int size = defaultSize;
         try {
@@ -52,10 +75,17 @@ public class CacheEntityFactory extends Base {
         return cacheEntity;
     }
 
+    /**
+     * @param name
+     * @return
+     */
     public <K, V> CacheEntity<K, V> createCacheEntity(String name) {
         return createCacheEntity(name, getDefaultCacheEntity());
     }
 
+    /**
+     * @return
+     */
     public synchronized String getDefaultCacheEntity() {
         if (null == defaultCacheEntity) {
             defaultCacheEntity = properties.getProperty("cache.type");
@@ -63,6 +93,9 @@ public class CacheEntityFactory extends Base {
         return defaultCacheEntity;
     }
 
+    /**
+     * @param defaultSize
+     */
     public void setDefaultSize(int defaultSize) {
         this.defaultSize = defaultSize;
     }

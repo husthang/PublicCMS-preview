@@ -17,15 +17,31 @@ import com.publiccms.logic.dao.sys.SysRoleUserDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysRoleUserService
+ * 
+ */
 @Service
 @Transactional
 public class SysRoleUserService extends BaseService<SysRoleUser> {
 
+    /**
+     * @param roleId
+     * @param userId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer roleId, Long userId, Integer pageIndex, Integer pageSize) {
         return dao.getPage(roleId, userId, pageIndex, pageSize);
     }
 
+    /**
+     * @param userId
+     * @param roleIds
+     */
     public void dealRoleUsers(Long userId, Integer[] roleIds) {
         @SuppressWarnings("unchecked")
         List<SysRoleUser> list = (List<SysRoleUser>) getPage(null, userId, null, null).getList();
@@ -44,14 +60,23 @@ public class SysRoleUserService extends BaseService<SysRoleUser> {
         }
     }
 
+    /**
+     * @param userId
+     * @return
+     */
     public int deleteByUserId(Long userId) {
         return dao.deleteByUserId(userId);
     }
 
+    /**
+     * @param roleId
+     * @return
+     */
     public int deleteByRoleId(Integer roleId) {
         return dao.deleteByRoleId(roleId);
     }
 
     @Autowired
     private SysRoleUserDao dao;
+    
 }

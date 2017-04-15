@@ -12,6 +12,11 @@ import com.publiccms.logic.service.cms.CmsContentFileService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsContentFileListDirective
+ * 
+ */
 @Component
 public class CmsContentFileListDirective extends AbstractTemplateDirective {
 

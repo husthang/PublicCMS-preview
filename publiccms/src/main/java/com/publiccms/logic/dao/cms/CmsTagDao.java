@@ -9,8 +9,28 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ * 标签DAO
+ * 
+ * CmsTag DAO
+ * 
+ */
 @Repository
 public class CmsTagDao extends BaseDao<CmsTag> {
+    /**
+     * 获取标签列表
+     * 
+     * Get tag list
+     * 
+     * @param siteId
+     * @param typeId
+     * @param name
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Integer typeId, String name, String orderField, String orderType,
             Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from CmsTag bean");
@@ -21,7 +41,7 @@ public class CmsTagDao extends BaseDao<CmsTag> {
             queryHandler.condition("bean.typeId = :typeId").setParameter("typeId", typeId);
         }
         if (notEmpty(name)) {
-            queryHandler.condition("bean.name like :name").setParameter("name", likeStart(name));
+            queryHandler.condition("bean.name like :name").setParameter("name", rightLike(name));
         }
         if ("asc".equalsIgnoreCase(orderType)) {
             orderType = "asc";

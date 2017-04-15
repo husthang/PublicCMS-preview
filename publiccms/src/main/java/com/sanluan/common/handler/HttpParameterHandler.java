@@ -28,14 +28,31 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.sanluan.common.api.Json;
 import com.sanluan.common.base.BaseHandler;
 
+/**
+ *
+ * HttpParameterHandler
+ * 
+ */
 public class HttpParameterHandler extends BaseHandler implements Json {
+    
+    /**
+     * 
+     */
     public static final Pattern FUNCTIONNAME_PATTERN = Pattern.compile("[0-9A-Za-z_\\.]*");
+    
     private MediaType mediaType;
     private HttpMessageConverter<Object> httpMessageConverter;
     private HttpServletRequest request;
     private HttpServletResponse response;
     private String callback;
 
+    /**
+     * @param httpMessageConverter
+     * @param mediaType
+     * @param request
+     * @param callback
+     * @param response
+     */
     public HttpParameterHandler(HttpMessageConverter<Object> httpMessageConverter, MediaType mediaType,
             HttpServletRequest request, String callback, HttpServletResponse response) {
         this.httpMessageConverter = httpMessageConverter;

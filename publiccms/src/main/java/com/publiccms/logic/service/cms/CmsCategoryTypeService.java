@@ -11,15 +11,31 @@ import com.publiccms.logic.dao.cms.CmsCategoryTypeDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsCategoryTypeService
+ * 
+ */
 @Service
 @Transactional
 public class CmsCategoryTypeService extends BaseService<CmsCategoryType> {
 
+    /**
+     * @param siteId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, pageIndex, pageSize);
     }
 
+    /**
+     * @param id
+     * @param extendId
+     * @return
+     */
     public CmsCategoryType updateExtendId(Integer id, Integer extendId) {
         CmsCategoryType entity = getEntity(id);
         if (null != entity) {
@@ -30,4 +46,5 @@ public class CmsCategoryTypeService extends BaseService<CmsCategoryType> {
 
     @Autowired
     private CmsCategoryTypeDao dao;
+    
 }
