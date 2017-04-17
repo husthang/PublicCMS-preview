@@ -30,16 +30,34 @@ import com.sanluan.common.handler.HttpParameterHandler;
 public class ApiController extends AbstractController {
     private Map<String, AbstractAppDirective> appDirectiveMap;
     private List<Map<String, String>> appList = new ArrayList<Map<String, String>>();
+    /**
+     * 
+     */
     public final static String INTERFACE_NOT_FOUND = "interfaceNotFound";
+    /**
+     * 
+     */
     public final static String NEED_APP_TOKEN = "needAppToken";
+    /**
+     * 
+     */
     public final static String UN_AUTHORIZED = "unAuthorized";
+    /**
+     * 
+     */
     public final static String NEED_LOGIN = "needLogin";
+    /**
+     * 
+     */
     public static final Map<String, String> NEED_APP_TOKEN_MAP = new HashMap<String, String>() {
         private static final long serialVersionUID = 1L;
         {
             put(ERROR, NEED_APP_TOKEN);
         }
     };
+    /**
+     * 
+     */
     public static final Map<String, String> NOT_FOUND_MAP = new HashMap<String, String>() {
         private static final long serialVersionUID = 1L;
         {
@@ -50,7 +68,6 @@ public class ApiController extends AbstractController {
     /**
      * 接口请求统一分发
      * 
-     * @param callback
      * @return
      */
     @RequestMapping({ SEPARATOR, "/**" })
@@ -62,7 +79,7 @@ public class ApiController extends AbstractController {
     /**
      * 接口指令统一分发
      * 
-     * @param action
+     * @param api
      * @param callback
      * @param request
      * @param response
@@ -88,7 +105,6 @@ public class ApiController extends AbstractController {
     /**
      * 接口列表
      * 
-     * @param callback
      * @return
      */
     @RequestMapping("apis")
@@ -98,8 +114,10 @@ public class ApiController extends AbstractController {
     }
 
     /**
+     * 接口初始化
+     * 
      * @param directiveMap
-     *            接口初始化
+     * 
      */
     @Autowired(required = false)
     public void init(Map<String, AbstractAppDirective> directiveMap) {

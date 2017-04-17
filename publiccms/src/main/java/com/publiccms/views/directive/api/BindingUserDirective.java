@@ -12,6 +12,11 @@ import com.publiccms.entities.sys.SysUser;
 import com.publiccms.logic.service.sys.SysAppClientService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * BindingUserDirective
+ * 
+ */
 @Component
 public class BindingUserDirective extends AbstractAppDirective {
 

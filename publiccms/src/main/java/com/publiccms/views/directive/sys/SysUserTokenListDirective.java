@@ -12,6 +12,11 @@ import com.publiccms.logic.service.sys.SysUserTokenService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysUserTokenListDirective
+ * 
+ */
 @Component
 public class SysUserTokenListDirective extends AbstractTemplateDirective {
 

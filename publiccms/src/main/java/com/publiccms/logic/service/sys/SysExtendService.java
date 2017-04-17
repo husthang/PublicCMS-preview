@@ -8,6 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.publiccms.entities.sys.SysExtend;
 import com.sanluan.common.base.BaseService;
 
+/**
+ *
+ * SysExtendService
+ * 
+ */
 @Service
 @Transactional
 public class SysExtendService extends BaseService<SysExtend> {

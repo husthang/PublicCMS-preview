@@ -11,6 +11,11 @@ import com.publiccms.common.base.AbstractTemplateDirective;
 import com.publiccms.logic.component.template.MetadataComponent;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * PlaceMetadataDirective
+ * 
+ */
 @Component
 public class PlaceMetadataDirective extends AbstractTemplateDirective {
 

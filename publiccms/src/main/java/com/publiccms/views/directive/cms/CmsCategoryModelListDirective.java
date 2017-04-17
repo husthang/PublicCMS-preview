@@ -12,6 +12,11 @@ import com.publiccms.logic.service.cms.CmsCategoryModelService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsCategoryModelListDirective
+ * 
+ */
 @Component
 public class CmsCategoryModelListDirective extends AbstractTemplateDirective {
 

@@ -13,6 +13,11 @@ import com.sanluan.common.handler.RenderHandler;
 
 import net.coobird.thumbnailator.Thumbnails;
 
+/**
+ *
+ * ThumbDirective
+ * 
+ */
 @Component
 public class ThumbDirective extends AbstractTemplateDirective {
 
@@ -48,4 +53,5 @@ public class ThumbDirective extends AbstractTemplateDirective {
 
     @Autowired
     private FileComponent fileComponent;
+    
 }

@@ -45,8 +45,8 @@ public class IndexController extends AbstractController {
     /**
      * 页面请求统一分发
      * 
+     * @param body
      * @param request
-     * @param response
      * @param model
      * @return
      * @throws PageNotFoundException

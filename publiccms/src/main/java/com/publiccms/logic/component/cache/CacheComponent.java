@@ -12,6 +12,11 @@ import org.springframework.web.servlet.view.AbstractCachingViewResolver;
 import com.publiccms.common.api.Cache;
 import com.publiccms.logic.service.tools.HqlService;
 
+/**
+ *
+ * CacheComponent
+ * 
+ */
 @Component
 public class CacheComponent {
     @Autowired
@@ -21,6 +26,9 @@ public class CacheComponent {
     @Autowired
     private HqlService hqlService;
 
+    /**
+     * 
+     */
     @PreDestroy
     public void clear() {
         for (Cache cache : cacheableList) {
@@ -30,12 +38,18 @@ public class CacheComponent {
         hqlService.clear();
     }
     
+    /**
+     * 
+     */
     public void clearViewCache() {
         for (AbstractCachingViewResolver cachingViewResolver : cachingViewResolverList) {
             cachingViewResolver.clearCache();
         }
     }
 
+    /**
+     * @param cachingViewResolver
+     */
     public void registerCachingViewResolverList(AbstractCachingViewResolver cachingViewResolver) {
         cachingViewResolverList.add(cachingViewResolver);
     }

@@ -11,8 +11,20 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysAppTokenDao
+ * 
+ */
 @Repository
 public class SysAppTokenDao extends BaseDao<SysAppToken> {
+
+    /**
+     * @param appId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer appId, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysAppToken bean");
         if (notEmpty(appId)) {
@@ -22,6 +34,10 @@ public class SysAppTokenDao extends BaseDao<SysAppToken> {
         return getPage(queryHandler, pageIndex, pageSize);
     }
 
+    /**
+     * @param createDate
+     * @return
+     */
     public int delete(Date createDate) {
         if (notEmpty(createDate)) {
             QueryHandler queryHandler = getDeleteQueryHandler("from SysAppToken bean");

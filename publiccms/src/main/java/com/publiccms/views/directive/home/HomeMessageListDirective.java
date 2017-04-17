@@ -12,6 +12,11 @@ import com.publiccms.logic.service.home.HomeMessageService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeMessageListDirective
+ * 
+ */
 @Component
 public class HomeMessageListDirective extends AbstractTemplateDirective {
 

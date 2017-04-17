@@ -16,6 +16,11 @@ import com.publiccms.logic.service.sys.SysAppService;
 import com.publiccms.logic.service.sys.SysAppTokenService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * AppTokenDirective
+ * 
+ */
 @Component
 public class AppTokenDirective extends AbstractAppDirective {
     private final static String KEY_NOT_EXISTS = "keyNotExists";

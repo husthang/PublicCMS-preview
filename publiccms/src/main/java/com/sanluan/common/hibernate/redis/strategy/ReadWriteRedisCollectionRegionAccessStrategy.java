@@ -25,26 +25,12 @@ public class ReadWriteRedisCollectionRegionAccessStrategy extends AbstractReadWr
         super(region, options);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.access.CollectionRegionAccessStrategy#
-     * generateCacheKey(java.lang.Object,
-     * org.hibernate.persister.collection.CollectionPersister,
-     * org.hibernate.engine.spi.SessionFactoryImplementor, java.lang.String)
-     */
     @Override
     public Object generateCacheKey(Object id, CollectionPersister persister, SessionFactoryImplementor factory,
             String tenantIdentifier) {
         return DefaultCacheKeysFactory.staticCreateCollectionKey(id, persister, factory, tenantIdentifier);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.access.CollectionRegionAccessStrategy#
-     * getCacheKeyId(java.lang.Object)
-     */
     @Override
     public Object getCacheKeyId(Object cacheKey) {
         return DefaultCacheKeysFactory.staticGetCollectionId(cacheKey);

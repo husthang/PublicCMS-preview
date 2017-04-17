@@ -10,8 +10,21 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * HqlDao
+ * 
+ */
 @Repository
 public class HqlDao extends BaseDao<Object> {
+    
+    /**
+     * @param hql
+     * @param paramters
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(String hql, Map<String, Object> paramters, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler(hql);
         if (notEmpty(paramters)) {
@@ -22,16 +35,27 @@ public class HqlDao extends BaseDao<Object> {
         return getPage(queryHandler, pageIndex, pageSize);
     }
 
+    /**
+     * @param hql
+     * @return
+     */
     public int update(String hql) {
         QueryHandler queryHandler = getQueryHandler(hql);
         return update(queryHandler);
     }
 
+    /**
+     * @param hql
+     * @return
+     */
     public int delete(String hql) {
         QueryHandler queryHandler = getDeleteQueryHandler(hql);
         return delete(queryHandler);
     }
 
+    /**
+     * @return
+     */
     public Analyzer getAnalyzer() {
         return super.getFullTextSession().getSearchFactory().getAnalyzer("default");
     }
@@ -41,6 +65,9 @@ public class HqlDao extends BaseDao<Object> {
         return entity;
     }
 
+    /**
+     * 
+     */
     public void clear() {
         sessionFactory.getCache().evictAllRegions();
     }

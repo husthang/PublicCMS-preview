@@ -17,13 +17,23 @@ import org.apache.lucene.util.AttributeFactory;
  */
 public class MultiTokenizerFactory extends TokenizerFactory {
     private static String name;
+    /**
+     * 
+     */
     public TokenizerFactory tokenizerFactory;
     protected final Log log = getLog(getClass());
 
+    /**
+     * @param args
+     */
     public MultiTokenizerFactory(Map<String, String> args) {
         this(args, name);
     }
 
+    /**
+     * @param args
+     * @param name
+     */
     public MultiTokenizerFactory(Map<String, String> args, String name) {
         super(args);
         Set<String> set = availableTokenizers();
@@ -41,6 +51,9 @@ public class MultiTokenizerFactory extends TokenizerFactory {
         return tokenizerFactory.create(factory);
     }
 
+    /**
+     * @param name
+     */
     public static void setName(String name) {
         MultiTokenizerFactory.name = name;
     }

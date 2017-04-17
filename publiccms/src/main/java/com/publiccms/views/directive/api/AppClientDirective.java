@@ -17,6 +17,11 @@ import com.publiccms.entities.sys.SysUser;
 import com.publiccms.logic.service.sys.SysAppClientService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * AppClientDirective
+ * 
+ */
 @Component
 public class AppClientDirective extends AbstractAppDirective {
 

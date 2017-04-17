@@ -15,8 +15,14 @@ import com.publiccms.logic.component.template.TemplateComponent;
 import com.publiccms.logic.service.cms.CmsCategoryService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * PublishCategoryDirective
+ * 
+ */
 @Component
 public class PublishCategoryDirective extends AbstractTaskDirective {
+    
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
         Integer id = handler.getInteger("id");
@@ -50,4 +56,5 @@ public class PublishCategoryDirective extends AbstractTaskDirective {
     private TemplateComponent templateComponent;
     @Autowired
     private CmsCategoryService service;
+    
 }

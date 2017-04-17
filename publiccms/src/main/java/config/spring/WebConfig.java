@@ -1,7 +1,5 @@
 package config.spring;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -54,8 +52,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     /**
      * 视图层解析器
      * 
+     * @param templateComponent
      * @return
-     * @throws IOException
      */
     @Bean
     public WebFreeMarkerViewResolver webViewResolver(TemplateComponent templateComponent) {

@@ -20,7 +20,13 @@ import com.sanluan.common.base.Base;
  */
 @Component
 public class LoginConfigComponent extends Base implements Config {
+    /**
+     * 
+     */
     public static final String CONFIG_LOGIN_PATH = "login_path";
+    /**
+     * 
+     */
     public static final String CONFIG_CODE_DESCRIPTION = CONFIGPREFIX + CONFIG_CODE_SITE;
 
     @Override

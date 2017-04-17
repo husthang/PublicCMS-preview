@@ -6,7 +6,13 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import freemarker.template.Configuration;
 
+/**
+ *
+ * WebFreeMarkerViewResolver
+ * 
+ */
 public class WebFreeMarkerViewResolver extends FreeMarkerViewResolver {
+    
     private Configuration configuration;
 
     @Override
@@ -18,6 +24,9 @@ public class WebFreeMarkerViewResolver extends FreeMarkerViewResolver {
         return view;
     }
 
+    /**
+     * @param configuration
+     */
     public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
     }

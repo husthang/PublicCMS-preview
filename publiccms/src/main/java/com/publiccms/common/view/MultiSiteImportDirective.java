@@ -15,9 +15,18 @@ import freemarker.template.TemplateDirectiveModel;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 
+/**
+ *
+ * MultiSiteImportDirective
+ * 
+ */
 public class MultiSiteImportDirective extends Base implements TemplateDirectiveModel {
+    
     private SysSite site;
 
+    /**
+     * @param site
+     */
     public MultiSiteImportDirective(SysSite site) {
         this.site = site;
     }

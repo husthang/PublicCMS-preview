@@ -12,6 +12,11 @@ import com.publiccms.logic.service.cms.CmsLotteryUserService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsLotteryUserListDirective
+ * 
+ */
 @Component
 public class CmsLotteryUserListDirective extends AbstractTemplateDirective {
 

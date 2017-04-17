@@ -12,6 +12,11 @@ import com.publiccms.logic.service.sys.SysClusterService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysClusterListDirective
+ * 
+ */
 @Component
 public class SysClusterListDirective extends AbstractTemplateDirective {
 

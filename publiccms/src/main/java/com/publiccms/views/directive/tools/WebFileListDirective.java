@@ -11,6 +11,11 @@ import com.publiccms.common.base.AbstractTemplateDirective;
 import com.publiccms.logic.component.site.FileComponent;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * WebFileListDirective
+ * 
+ */
 @Component
 public class WebFileListDirective extends AbstractTemplateDirective {
 
@@ -28,4 +33,5 @@ public class WebFileListDirective extends AbstractTemplateDirective {
 
 	@Autowired
 	private FileComponent fileComponent;
+	
 }

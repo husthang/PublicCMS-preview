@@ -12,6 +12,11 @@ import com.publiccms.logic.service.home.HomeFriendService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeFriendListDirective
+ * 
+ */
 @Component
 public class HomeFriendListDirective extends AbstractTemplateDirective {
 

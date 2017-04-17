@@ -9,8 +9,9 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
+ * 请求发生异常时，转换为404错误
  * 
- * ErrorToNotFoundDispatcherServlet 请求发生异常时，转换为404错误
+ * ErrorToNotFoundDispatcherServlet
  *
  */
 public class ErrorToNotFoundDispatcherServlet extends DispatcherServlet {
@@ -19,6 +20,9 @@ public class ErrorToNotFoundDispatcherServlet extends DispatcherServlet {
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * @param webApplicationContext
+     */
     public ErrorToNotFoundDispatcherServlet(WebApplicationContext webApplicationContext) {
         super(webApplicationContext);
     }

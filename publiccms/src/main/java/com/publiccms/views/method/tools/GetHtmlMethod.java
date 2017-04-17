@@ -26,14 +26,14 @@ import freemarker.template.TemplateHashModelEx;
 import freemarker.template.TemplateModelException;
 import freemarker.template.TemplateModelIterator;
 
+/**
+ *
+ * GetHtmlMethod
+ * 
+ */
 @Component
 public class GetHtmlMethod extends BaseMethod {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateMethodModelEx#exec(java.util.List)
-     */
     @SuppressWarnings("unchecked")
     @Override
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {

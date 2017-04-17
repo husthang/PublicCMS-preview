@@ -15,6 +15,11 @@ import com.publiccms.entities.home.HomeGroupPost;
 import com.publiccms.logic.service.home.HomeGroupPostService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * HomeGroupPostDirective
+ * 
+ */
 @Component
 public class HomeGroupPostDirective extends AbstractTemplateDirective {
 

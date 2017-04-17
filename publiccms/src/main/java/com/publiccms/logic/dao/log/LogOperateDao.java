@@ -9,8 +9,28 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * LogOperateDao
+ * 
+ */
 @Repository
 public class LogOperateDao extends BaseDao<LogOperate> {
+
+    /**
+     * @param siteId
+     * @param channel
+     * @param operate
+     * @param userId
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param content
+     * @param ip
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, String channel, String operate, Long userId, Date startCreateDate,
             Date endCreateDate, String content, String ip, String orderType, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from LogOperate bean");
@@ -47,6 +67,11 @@ public class LogOperateDao extends BaseDao<LogOperate> {
         return getPage(queryHandler, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param createDate
+     * @return
+     */
     public int delete(Integer siteId, Date createDate) {
         if (notEmpty(siteId) || notEmpty(createDate)) {
             QueryHandler queryHandler = getDeleteQueryHandler("from LogOperate bean");

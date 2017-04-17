@@ -12,6 +12,11 @@ import com.publiccms.logic.service.sys.SysSiteService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysSiteListDirective
+ * 
+ */
 @Component
 public class SysSiteListDirective extends AbstractTemplateDirective {
 

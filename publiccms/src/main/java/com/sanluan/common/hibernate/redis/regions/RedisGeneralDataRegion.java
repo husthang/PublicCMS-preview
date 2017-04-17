@@ -29,13 +29,6 @@ public class RedisGeneralDataRegion extends RedisDataRegion implements GeneralDa
         super(accessStrategyFactory, redisClient, configurableRedisRegionFactory, regionName, props);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.hibernate.cache.spi.GeneralDataRegion#get(org.hibernate.engine.spi.
-     * SessionImplementor, java.lang.Object)
-     */
     @Override
     public Object get(SessionImplementor session, Object key) throws CacheException {
         try {
@@ -45,13 +38,6 @@ public class RedisGeneralDataRegion extends RedisDataRegion implements GeneralDa
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.hibernate.cache.spi.GeneralDataRegion#put(org.hibernate.engine.spi.
-     * SessionImplementor, java.lang.Object, java.lang.Object)
-     */
     @Override
     public void put(SessionImplementor session, Object key, Object value) throws CacheException {
         try {
@@ -61,11 +47,6 @@ public class RedisGeneralDataRegion extends RedisDataRegion implements GeneralDa
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.GeneralDataRegion#evict(java.lang.Object)
-     */
     @Override
     public void evict(Object key) throws CacheException {
         try {
@@ -75,11 +56,6 @@ public class RedisGeneralDataRegion extends RedisDataRegion implements GeneralDa
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.GeneralDataRegion#evictAll()
-     */
     @Override
     public void evictAll() throws CacheException {
         try {

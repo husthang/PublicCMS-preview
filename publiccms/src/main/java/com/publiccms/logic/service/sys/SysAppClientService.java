@@ -15,10 +15,31 @@ import com.publiccms.logic.dao.sys.SysAppClientDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysAppClientService
+ * 
+ */
 @Service
 @Transactional
 public class SysAppClientService extends BaseService<SysAppClient> {
 
+    /**
+     * @param siteId
+     * @param channel
+     * @param userId
+     * @param allowPush
+     * @param startLastLoginDate
+     * @param endLastLoginDate
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, String channel, Long userId, Boolean allowPush, Date startLastLoginDate,
             Date endLastLoginDate, Date startCreateDate, Date endCreateDate, Boolean disabled, String orderField,
@@ -27,6 +48,11 @@ public class SysAppClientService extends BaseService<SysAppClient> {
                 endCreateDate, disabled, orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param id
+     * @param userId
+     * @return
+     */
     public SysAppClient updateUser(Serializable id, Long userId) {
         SysAppClient entity = getEntity(id);
         if (null != entity) {
@@ -35,6 +61,12 @@ public class SysAppClientService extends BaseService<SysAppClient> {
         return entity;
     }
 
+    /**
+     * @param id
+     * @param clientVersion
+     * @param ip
+     * @return
+     */
     public SysAppClient updateLastLogin(Serializable id, String clientVersion, String ip) {
         SysAppClient entity = getEntity(id);
         if (null != entity) {
@@ -45,6 +77,11 @@ public class SysAppClientService extends BaseService<SysAppClient> {
         return entity;
     }
 
+    /**
+     * @param id
+     * @param status
+     * @return
+     */
     public SysAppClient updateStatus(Serializable id, boolean status) {
         SysAppClient entity = getEntity(id);
         if (null != entity) {
@@ -55,4 +92,5 @@ public class SysAppClientService extends BaseService<SysAppClient> {
 
     @Autowired
     private SysAppClientDao dao;
+
 }

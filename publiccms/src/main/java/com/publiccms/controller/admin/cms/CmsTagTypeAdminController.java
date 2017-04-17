@@ -18,6 +18,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.cms.CmsTagTypeService;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * CmsTagTypeAdminController
+ * 
+ */
 @Controller
 @RequestMapping("cmsTagType")
 public class CmsTagTypeAdminController extends AbstractController {
@@ -26,6 +31,13 @@ public class CmsTagTypeAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id", "siteId" };
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(CmsTagType entity, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -49,6 +61,13 @@ public class CmsTagTypeAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);

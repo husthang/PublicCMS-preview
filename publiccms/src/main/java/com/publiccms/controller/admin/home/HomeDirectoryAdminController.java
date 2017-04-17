@@ -21,10 +21,22 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.home.HomeDirectoryService;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * HomeDirectoryAdminController
+ * 
+ */
 @Controller
 @RequestMapping("homeDirectory")
 public class HomeDirectoryAdminController extends AbstractController {
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "enable", method = RequestMethod.POST)
     public String enable(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (verifyEquals("admin.operate", getAdminFromSession(session).getId(), id, model)) {
@@ -44,6 +56,13 @@ public class HomeDirectoryAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "disable", method = RequestMethod.POST)
     public String disable(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (verifyEquals("admin.operate", getAdminFromSession(session).getId(), id, model)) {

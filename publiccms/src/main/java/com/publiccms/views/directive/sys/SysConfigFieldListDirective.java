@@ -11,6 +11,11 @@ import com.publiccms.common.base.AbstractTemplateDirective;
 import com.publiccms.logic.component.config.ConfigComponent;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysConfigFieldListDirective
+ * 
+ */
 @Component
 public class SysConfigFieldListDirective extends AbstractTemplateDirective {
 

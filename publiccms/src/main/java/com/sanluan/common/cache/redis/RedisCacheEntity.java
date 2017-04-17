@@ -16,6 +16,13 @@ import com.sanluan.common.cache.redis.serializer.StringSerializer;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+/**
+ *
+ * RedisCacheEntity
+ * @param <K> 
+ * @param <V> 
+ * 
+ */
 public class RedisCacheEntity<K, V> extends Base implements CacheEntity<K, V>, java.io.Serializable {
 
     /**
@@ -30,12 +37,21 @@ public class RedisCacheEntity<K, V> extends Base implements CacheEntity<K, V>, j
     private final BinarySerializer<K> keySerializer = new BinarySerializer<K>();
     private final BinarySerializer<V> valueSerializer = new BinarySerializer<V>();
 
+    /**
+     * @param name
+     * @param jedisPool
+     */
     public RedisCacheEntity(String name, JedisPool jedisPool) {
         this.bytePrefix = regionSerializer.serialize(name + DOT);
         this.byteCount = regionSerializer.serialize(name + DOT + "_count_");
         this.jedisPool = jedisPool;
     }
 
+    /**
+     * @param name
+     * @param jedisPool
+     * @param size
+     */
     public RedisCacheEntity(String name, JedisPool jedisPool, int size) {
         this(name, jedisPool);
         this.size = size;
@@ -127,10 +143,16 @@ public class RedisCacheEntity<K, V> extends Base implements CacheEntity<K, V>, j
         return list;
     }
 
+    /**
+     * @return
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * @param size
+     */
     public void setSize(int size) {
         this.size = size;
     }

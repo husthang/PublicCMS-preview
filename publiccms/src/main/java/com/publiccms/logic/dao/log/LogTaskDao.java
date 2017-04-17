@@ -11,11 +11,29 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * LogTaskDao
+ * 
+ */
 @Repository
 public class LogTaskDao extends BaseDao<LogTask> {
+
+    /**
+     * @param siteId
+     * @param taskId
+     * @param startBegintime
+     * @param endBegintime
+     * @param success
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Integer taskId, Date startBegintime, Date endBegintime, Boolean success,
             String orderType, Integer pageIndex, Integer pageSize) {
-        QueryHandler queryHandler = getQueryHandler("select new LogTask(id, siteId, taskId, begintime, endtime, success) from LogTask bean");
+        QueryHandler queryHandler = getQueryHandler(
+                "select new LogTask(id, siteId, taskId, begintime, endtime, success) from LogTask bean");
         if (notEmpty(siteId)) {
             queryHandler.condition("bean.siteId = :siteId").setParameter("siteId", siteId);
         }
@@ -40,6 +58,11 @@ public class LogTaskDao extends BaseDao<LogTask> {
         return getPage(queryHandler, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param begintime
+     * @return
+     */
     public int delete(Integer siteId, Date begintime) {
         if (notEmpty(siteId) || notEmpty(begintime)) {
             QueryHandler queryHandler = getDeleteQueryHandler("from LogTask bean");

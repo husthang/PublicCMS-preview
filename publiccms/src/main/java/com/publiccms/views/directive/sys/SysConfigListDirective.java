@@ -13,6 +13,11 @@ import com.publiccms.logic.component.config.ConfigComponent;
 import com.publiccms.logic.component.config.ConfigComponent.ConfigInfo;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysConfigListDirective
+ * 
+ */
 @Component
 public class SysConfigListDirective extends AbstractTemplateDirective {
 

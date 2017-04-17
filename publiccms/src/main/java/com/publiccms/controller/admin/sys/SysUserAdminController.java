@@ -25,6 +25,11 @@ import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysRoleUserService;
 import com.publiccms.logic.service.sys.SysUserService;
 
+/**
+ *
+ * SysUserAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysUser")
 public class SysUserAdminController extends AbstractController {
@@ -36,6 +41,15 @@ public class SysUserAdminController extends AbstractController {
     private String[] ignoreProperties = new String[] { "id", "registeredDate", "siteId", "authToken", "lastLoginDate",
             "lastLoginIp", "loginCount", "disabled" };
 
+    /**
+     * @param entity
+     * @param repassword
+     * @param roleIds
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysUser entity, String repassword, Integer[] roleIds, HttpServletRequest request, HttpSession session,
             ModelMap model) {
@@ -105,6 +119,13 @@ public class SysUserAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "enable", method = RequestMethod.POST)
     public String enable(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (verifyEquals("admin.operate", getAdminFromSession(session).getId(), id, model)) {
@@ -123,6 +144,13 @@ public class SysUserAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "disable", method = RequestMethod.POST)
     public String disable(Long id, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (verifyEquals("admin.operate", getAdminFromSession(session).getId(), id, model)) {

@@ -19,6 +19,11 @@ import com.publiccms.logic.service.cms.CmsLotteryService;
 import com.publiccms.logic.service.cms.CmsLotteryUserService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * LotteryDirective
+ * 
+ */
 @Component
 public class LotteryDirective extends AbstractAppDirective {
 

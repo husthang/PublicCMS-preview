@@ -9,10 +9,13 @@ import com.publiccms.common.base.AbstractTaskDirective;
 import com.publiccms.logic.service.cms.CmsContentService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * IndexContentDirective
+ * 
+ */
 @Component
 public class IndexContentDirective extends AbstractTaskDirective {
-    @Autowired
-    private CmsContentService service;
 
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
@@ -24,4 +27,8 @@ public class IndexContentDirective extends AbstractTaskDirective {
             service.index(getSite(handler).getId(), new Long[] { id });
         }
     }
+
+    @Autowired
+    private CmsContentService service;
+    
 }

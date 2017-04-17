@@ -10,6 +10,11 @@ import org.hibernate.persister.entity.EntityPersister;
 
 import com.sanluan.common.hibernate.redis.regions.RedisNaturalIdRegion;
 
+/**
+ *
+ * ReadOnlyRedisNaturalIdRegionAccessStrategy
+ * 
+ */
 public class ReadOnlyRedisNaturalIdRegionAccessStrategy extends AbstractRedisAccessStrategy<RedisNaturalIdRegion>
         implements NaturalIdRegionAccessStrategy {
 
@@ -21,14 +26,6 @@ public class ReadOnlyRedisNaturalIdRegionAccessStrategy extends AbstractRedisAcc
         super(region, options);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.access.NaturalIdRegionAccessStrategy#
-     * generateCacheKey(java.lang.Object[],
-     * org.hibernate.persister.entity.EntityPersister,
-     * org.hibernate.engine.spi.SessionImplementor)
-     */
     @Override
     public Object generateCacheKey(Object[] naturalIdValues, EntityPersister persister, SessionImplementor session) {
         return DefaultCacheKeysFactory.staticCreateNaturalIdKey(naturalIdValues, persister, session);
@@ -44,9 +41,6 @@ public class ReadOnlyRedisNaturalIdRegionAccessStrategy extends AbstractRedisAcc
         return region;
     }
 
-    /* (non-Javadoc)
-     * @see com.sanluan.common.hibernate.redis.strategy.AbstractRedisAccessStrategy#putFromLoad(org.hibernate.engine.spi.SessionImplementor, java.lang.Object, java.lang.Object, long, java.lang.Object, boolean)
-     */
     @Override
     public boolean putFromLoad(SessionImplementor session, Object key, Object value, long txTimestamp, Object version,
             boolean minimalPutOverride) {

@@ -10,6 +10,7 @@ import com.sanluan.common.hibernate.redis.regions.RedisTransactionalDataRegion;
 /**
  *
  * AbstractReadWriteRedisAccessStrategy
+ * @param <T> 
  * 
  */
 public abstract class AbstractReadWriteRedisAccessStrategy<T extends RedisTransactionalDataRegion>
@@ -27,15 +28,15 @@ public abstract class AbstractReadWriteRedisAccessStrategy<T extends RedisTransa
         this.versionComparator = region.getCacheDataDescription().getVersionComparator();
     }
 
-    /* (non-Javadoc)
-     * @see com.sanluan.common.hibernate.redis.strategy.AbstractRedisAccessStrategy#putFromLoad(org.hibernate.engine.spi.SessionImplementor, java.lang.Object, java.lang.Object, long, java.lang.Object, boolean)
-     */
     public boolean putFromLoad(SessionImplementor session, Object key, Object value, long txTimestamp, Object version,
             boolean minimalPutOverride) {
         region.put(key, value);
         return true;
     }
 
+    /**
+     * @return
+     */
     public Comparator<T> getVersionComparator() {
         return versionComparator;
     }

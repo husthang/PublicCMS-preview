@@ -36,15 +36,22 @@ import freemarker.template.TemplateHashModelEx;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
 
+/**
+ *
+ * TemplateDirectiveHandler
+ * 
+ */
 public class TemplateDirectiveHandler extends BaseHandler implements Json {
+    
     private Map<String, TemplateModel> parameters;
     private TemplateModel[] loopVars;
     private TemplateDirectiveBody templateDirectiveBody;
     private Environment environment;
 
     /**
-     * @param environment
      * @param parameters
+     * @param loopVars
+     * @param environment
      * @param templateDirectiveBody
      * @throws Exception
      */
@@ -113,6 +120,11 @@ public class TemplateDirectiveHandler extends BaseHandler implements Json {
         return parameters.get(name);
     }
 
+    /**
+     * @param name
+     * @return
+     * @throws TemplateModelException
+     */
     public TemplateHashModelEx getMap(String name) throws TemplateModelException {
         return converMap(getModel(name));
     }

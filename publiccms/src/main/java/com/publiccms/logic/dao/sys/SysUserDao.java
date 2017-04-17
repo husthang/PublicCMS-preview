@@ -9,8 +9,31 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysUserDao
+ * 
+ */
 @Repository
 public class SysUserDao extends BaseDao<SysUser> {
+    
+    /**
+     * @param siteId
+     * @param deptId
+     * @param startRegisteredDate
+     * @param endRegisteredDate
+     * @param startLastLoginDate
+     * @param endLastLoginDate
+     * @param superuserAccess
+     * @param emailChecked
+     * @param disabled
+     * @param name
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Integer deptId, Date startRegisteredDate, Date endRegisteredDate,
             Date startLastLoginDate, Date endLastLoginDate, Boolean superuserAccess, Boolean emailChecked, Boolean disabled,
             String name, String orderField, String orderType, Integer pageIndex, Integer pageSize) {
@@ -74,6 +97,11 @@ public class SysUserDao extends BaseDao<SysUser> {
         return getPage(queryHandler, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param name
+     * @return
+     */
     public SysUser findByName(int siteId, String name) {
         QueryHandler queryHandler = getQueryHandler("from SysUser bean");
         queryHandler.condition("bean.siteId = :siteId").setParameter("siteId", siteId);
@@ -81,6 +109,11 @@ public class SysUserDao extends BaseDao<SysUser> {
         return getEntity(queryHandler);
     }
 
+    /**
+     * @param siteId
+     * @param nickname
+     * @return
+     */
     public SysUser findByNickName(int siteId, String nickname) {
         QueryHandler queryHandler = getQueryHandler("from SysUser bean");
         queryHandler.condition("bean.siteId = :siteId").setParameter("siteId", siteId);
@@ -88,6 +121,11 @@ public class SysUserDao extends BaseDao<SysUser> {
         return getEntity(queryHandler);
     }
 
+    /**
+     * @param siteId
+     * @param email
+     * @return
+     */
     public SysUser findByEmail(int siteId, String email) {
         QueryHandler queryHandler = getQueryHandler("from SysUser bean");
         queryHandler.condition("bean.siteId = :siteId").setParameter("siteId", siteId);

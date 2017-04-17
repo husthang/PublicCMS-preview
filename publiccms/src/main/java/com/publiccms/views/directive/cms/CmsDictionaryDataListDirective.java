@@ -12,6 +12,11 @@ import com.publiccms.logic.service.cms.CmsDictionaryDataService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsDictionaryDataListDirective
+ * 
+ */
 @Component
 public class CmsDictionaryDataListDirective extends AbstractTemplateDirective {
 

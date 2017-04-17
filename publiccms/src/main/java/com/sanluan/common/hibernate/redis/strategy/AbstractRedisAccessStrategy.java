@@ -7,6 +7,12 @@ import org.hibernate.engine.spi.SessionImplementor;
 
 import com.sanluan.common.hibernate.redis.regions.RedisTransactionalDataRegion;
 
+/**
+ *
+ * AbstractRedisAccessStrategy
+ * @param <T> 
+ * 
+ */
 public abstract class AbstractRedisAccessStrategy<T extends RedisTransactionalDataRegion> {
 
     protected final T region;
@@ -58,6 +64,8 @@ public abstract class AbstractRedisAccessStrategy<T extends RedisTransactionalDa
 
     /**
      * Region locks are not supported
+     * 
+     * @return
      */
     public final SoftLock lockRegion() {
         return null;

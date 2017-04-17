@@ -32,11 +32,31 @@ import com.publiccms.views.pojo.ExtendField;
 import com.sanluan.common.api.Json;
 import com.sanluan.common.base.Base;
 
+/**
+ *
+ * CmsUpgrader
+ * 
+ */
 public class CmsUpgrader extends Base implements Json {
+    /**
+     * 
+     */
     public final static String VERSION_20160423 = "V2016.0423";
+    /**
+     * 
+     */
     public final static String VERSION_20160510 = "V2016.0510";
+    /**
+     * 
+     */
     public final static String VERSION_20160828 = "V2016.0828";
+    /**
+     * 
+     */
     public final static String VERSION_20170318 = "V2017.0318";
+    /**
+     * 
+     */
     public final static List<String> VERSION_LIST = Arrays
             .asList(new String[] { VERSION_20160423, VERSION_20160510, VERSION_20160828, VERSION_20170318 });
     private DataSource dataSource;
@@ -44,6 +64,12 @@ public class CmsUpgrader extends Base implements Json {
     private String version;
     private Properties properties;
 
+    /**
+     * @param databaseType
+     * @param dataSource
+     * @param version
+     * @throws Exception
+     */
     public CmsUpgrader(String databaseType, DataSource dataSource, String version) throws Exception {
         this.databaseType = databaseType;
         this.dataSource = dataSource;
@@ -51,6 +77,10 @@ public class CmsUpgrader extends Base implements Json {
         this.version = version;
     }
 
+    /**
+     * @throws SQLException
+     * @throws IOException
+     */
     public void update() throws SQLException, IOException {
         switch (version) {
         case VERSION_20160423:
@@ -131,6 +161,9 @@ public class CmsUpgrader extends Base implements Json {
         version = toVersion;
     }
 
+    /**
+     * @return
+     */
     public String getVersion() {
         return version;
     }

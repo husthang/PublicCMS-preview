@@ -16,6 +16,11 @@ import com.publiccms.logic.service.sys.SysRoleAuthorizedService;
 import com.publiccms.logic.service.sys.SysRoleService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysAuthorizedDirective
+ * 
+ */
 @Component
 public class SysAuthorizedDirective extends AbstractTemplateDirective {
 

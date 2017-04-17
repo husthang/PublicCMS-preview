@@ -20,12 +20,23 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.home.HomeGroupService;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * HomeGroupAdminController
+ * 
+ */
 @Controller
 @RequestMapping("homeGroup")
 public class HomeGroupAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id" };
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("save")
     public String save(HomeGroup entity, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);
@@ -43,6 +54,12 @@ public class HomeGroupAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer[] ids, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);

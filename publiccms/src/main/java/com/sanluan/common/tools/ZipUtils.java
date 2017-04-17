@@ -20,7 +20,9 @@ import org.apache.tools.zip.ZipOutputStream;
 import com.sanluan.common.base.Base;
 
 /**
- * ZipUtils 压缩/解压缩zip包处理类
+ * 压缩/解压缩zip包处理类
+ * 
+ * ZipUtils 
  *
  */
 public class ZipUtils extends Base {
@@ -29,8 +31,9 @@ public class ZipUtils extends Base {
     }
 
     /**
-     * @param srcPathName
+     * @param sourceFilePath 
      * @param zipFilePath
+     * @return 
      * @throws IOException
      */
     public static boolean zip(String sourceFilePath, String zipFilePath) throws IOException {
@@ -126,6 +129,7 @@ public class ZipUtils extends Base {
     /**
      * @param zipFilePath
      * @param targetPath
+     * @param overwrite 
      * @throws IOException
      */
     public static void unzip(String zipFilePath, String targetPath, boolean overwrite) throws IOException {

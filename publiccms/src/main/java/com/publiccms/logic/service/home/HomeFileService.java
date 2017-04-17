@@ -13,10 +13,29 @@ import com.publiccms.logic.dao.home.HomeFileDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeFileService
+ * 
+ */
 @Service
 @Transactional
 public class HomeFileService extends BaseService<HomeFile> {
 
+    /**
+     * @param siteId
+     * @param userId
+     * @param directoryId
+     * @param title
+     * @param filePath
+     * @param image
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Long userId, Long directoryId, String title, String filePath, Boolean image,
             Boolean disabled, String orderField, String orderType, Integer pageIndex, Integer pageSize) {
@@ -24,6 +43,11 @@ public class HomeFileService extends BaseService<HomeFile> {
                 pageSize);
     }
 
+    /**
+     * @param id
+     * @param status
+     * @return
+     */
     public HomeFile updateStatus(Serializable id, boolean status) {
         HomeFile entity = getEntity(id);
         if (null != entity) {
@@ -34,4 +58,5 @@ public class HomeFileService extends BaseService<HomeFile> {
 
     @Autowired
     private HomeFileDao dao;
+    
 }

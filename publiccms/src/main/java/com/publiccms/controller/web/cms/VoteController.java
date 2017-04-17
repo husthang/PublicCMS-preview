@@ -14,13 +14,25 @@ import com.publiccms.entities.sys.SysUser;
 import com.publiccms.views.directive.api.VoteDirective;
 import com.sanluan.common.handler.HttpParameterHandler;
 
+/**
+ *
+ * VoteController
+ * 
+ */
 @Controller
 @RequestMapping("vote")
 @ResponseBody
 public class VoteController extends AbstractController {
+    
     @Autowired
     private VoteDirective voteDirective;
 
+    /**
+     * @param callback
+     * @param request
+     * @param session
+     * @param response
+     */
     @RequestMapping("vote")
     public void lottery(String callback, HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         try {

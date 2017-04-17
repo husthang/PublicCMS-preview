@@ -12,6 +12,11 @@ import com.publiccms.logic.service.cms.CmsContentRelatedService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsContentRelatedListDirective
+ * 
+ */
 @Component
 public class CmsContentRelatedListDirective extends AbstractTemplateDirective {
 

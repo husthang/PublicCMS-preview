@@ -17,15 +17,31 @@ import com.publiccms.logic.dao.sys.SysRoleMoudleDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysRoleMoudleService
+ * 
+ */
 @Service
 @Transactional
 public class SysRoleMoudleService extends BaseService<SysRoleMoudle> {
 
+    /**
+     * @param roleId
+     * @param moudleId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer roleId, Integer moudleId, Integer pageIndex, Integer pageSize) {
         return dao.getPage(roleId, moudleId, pageIndex, pageSize);
     }
 
+    /**
+     * @param roleId
+     * @param moudleIds
+     */
     public void updateRoleMoudles(Integer roleId, Integer[] moudleIds) {
         if (notEmpty(roleId)) {
             @SuppressWarnings("unchecked")
@@ -45,24 +61,43 @@ public class SysRoleMoudleService extends BaseService<SysRoleMoudle> {
         }
     }
 
+    /**
+     * @param roleIds
+     * @param moudleIds
+     * @return
+     */
     @Transactional(readOnly = true)
     public List<SysRoleMoudle> getEntitys(Integer[] roleIds, Integer[] moudleIds) {
         return dao.getEntitys(roleIds, moudleIds);
     }
 
+    /**
+     * @param roleIds
+     * @param moudleId
+     * @return
+     */
     @Transactional(readOnly = true)
     public SysRoleMoudle getEntity(Integer[] roleIds, Integer moudleId) {
         return dao.getEntity(roleIds, moudleId);
     }
 
+    /**
+     * @param roleId
+     * @return
+     */
     public int deleteByRoleId(Integer roleId) {
         return dao.deleteByRoleId(roleId);
     }
 
+    /**
+     * @param moudleId
+     * @return
+     */
     public int deleteByMoudleId(Integer moudleId) {
         return dao.deleteByMoudleId(moudleId);
     }
 
     @Autowired
     private SysRoleMoudleDao dao;
+    
 }

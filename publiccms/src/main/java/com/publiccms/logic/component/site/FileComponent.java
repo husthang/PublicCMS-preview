@@ -37,7 +37,6 @@ public class FileComponent extends Base {
      * 
      * @param dirPath
      * @return
-     * @throws IOException
      */
     public List<FileInfo> getFileList(String dirPath) {
         List<FileInfo> fileList = new ArrayList<FileInfo>();
@@ -66,7 +65,7 @@ public class FileComponent extends Base {
     /**
      * 写入文件
      * 
-     * @param filePath
+     * @param file
      * @param content
      * @return
      * @throws IOException
@@ -97,7 +96,7 @@ public class FileComponent extends Base {
     /**
      * 修改文件内容
      * 
-     * @param filePath
+     * @param file
      * @param content
      * @return
      * @throws IOException
@@ -169,6 +168,11 @@ public class FileComponent extends Base {
      * FileInfo 文件信息封装类
      *
      */
+    /**
+     *
+     * FileInfo
+     * 
+     */
     public class FileInfo {
         private String fileName;
         private boolean directory;
@@ -177,6 +181,11 @@ public class FileComponent extends Base {
         private Date creationTime;
         private long size;
 
+        /**
+         * @param fileName
+         * @param directory
+         * @param attrs
+         */
         public FileInfo(String fileName, boolean directory, BasicFileAttributes attrs) {
             this.fileName = fileName;
             this.directory = directory;
@@ -186,50 +195,86 @@ public class FileComponent extends Base {
             this.size = attrs.size();
         }
 
+        /**
+         * @return
+         */
         public String getFileName() {
             return fileName;
         }
 
+        /**
+         * @param fileName
+         */
         public void setFileName(String fileName) {
             this.fileName = fileName;
         }
 
+        /**
+         * @return
+         */
         public Date getLastModifiedTime() {
             return lastModifiedTime;
         }
 
+        /**
+         * @param lastModifiedTime
+         */
         public void setLastModifiedTime(Date lastModifiedTime) {
             this.lastModifiedTime = lastModifiedTime;
         }
 
+        /**
+         * @return
+         */
         public Date getLastAccessTime() {
             return lastAccessTime;
         }
 
+        /**
+         * @param lastAccessTime
+         */
         public void setLastAccessTime(Date lastAccessTime) {
             this.lastAccessTime = lastAccessTime;
         }
 
+        /**
+         * @return
+         */
         public Date getCreationTime() {
             return creationTime;
         }
 
+        /**
+         * @param creationTime
+         */
         public void setCreationTime(Date creationTime) {
             this.creationTime = creationTime;
         }
 
+        /**
+         * @return
+         */
         public long getSize() {
             return size;
         }
 
+        /**
+         * @param size
+         */
         public void setSize(long size) {
             this.size = size;
         }
 
+        /**
+         * @return
+         */
         public boolean isDirectory() {
             return directory;
         }
 
+        /**
+         * @param directory
+         */
         public void setDirectory(boolean directory) {
             this.directory = directory;
         }

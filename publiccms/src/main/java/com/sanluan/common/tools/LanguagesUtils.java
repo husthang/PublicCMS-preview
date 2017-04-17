@@ -9,8 +9,9 @@ import com.sanluan.common.base.Base;
 import config.spring.ApplicationConfig;
 
 /**
+ * 获得国际化信息
  * 
- * LanguagesUtils 获得国际化信息
+ * LanguagesUtils 
  *
  */
 public final class LanguagesUtils extends Base {

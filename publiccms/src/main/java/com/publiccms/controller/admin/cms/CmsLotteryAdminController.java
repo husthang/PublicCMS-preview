@@ -20,6 +20,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.cms.CmsLotteryService;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * CmsLotteryAdminController
+ * 
+ */
 @Controller
 @RequestMapping("cmsLottery")
 public class CmsLotteryAdminController extends AbstractController {
@@ -28,6 +33,13 @@ public class CmsLotteryAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id", "siteId", "extendId" };
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(CmsLottery entity, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -52,6 +64,13 @@ public class CmsLotteryAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer id, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);

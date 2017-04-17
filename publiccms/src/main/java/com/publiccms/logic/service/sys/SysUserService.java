@@ -16,10 +16,32 @@ import com.publiccms.logic.dao.sys.SysUserDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysUserService
+ * 
+ */
 @Service
 @Transactional
 public class SysUserService extends BaseService<SysUser> {
     
+    /**
+     * @param siteId
+     * @param deptId
+     * @param startRegisteredDate
+     * @param endRegisteredDate
+     * @param startLastLoginDate
+     * @param endLastLoginDate
+     * @param superuserAccess
+     * @param emailChecked
+     * @param disabled
+     * @param name
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Integer deptId, Date startRegisteredDate, Date endRegisteredDate,
             Date startLastLoginDate, Date endLastLoginDate, Boolean superuserAccess, Boolean emailChecked, Boolean disabled,
@@ -28,18 +50,37 @@ public class SysUserService extends BaseService<SysUser> {
                 superuserAccess, emailChecked, disabled, name, orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param name
+     * @return
+     */
     public SysUser findByName(int siteId, String name) {
         return dao.findByName(siteId, name);
     }
 
+    /**
+     * @param siteId
+     * @param nickname
+     * @return
+     */
     public SysUser findByNickName(int siteId, String nickname) {
         return dao.findByNickName(siteId, nickname);
     }
 
+    /**
+     * @param siteId
+     * @param email
+     * @return
+     */
     public SysUser findByEmail(int siteId, String email) {
         return dao.findByEmail(siteId, email);
     }
 
+    /**
+     * @param id
+     * @param password
+     */
     public void updatePassword(Serializable id, String password) {
         SysUser entity = getEntity(id);
         if (null != entity) {
@@ -47,6 +88,11 @@ public class SysUserService extends BaseService<SysUser> {
         }
     }
 
+    /**
+     * @param id
+     * @param ip
+     * @return
+     */
     public SysUser updateLoginStatus(Serializable id, String ip) {
         SysUser entity = getEntity(id);
         if (null != entity) {
@@ -57,6 +103,10 @@ public class SysUserService extends BaseService<SysUser> {
         return entity;
     }
 
+    /**
+     * @param userId
+     * @param roleId
+     */
     public void deleteRoleIds(Serializable userId, Integer roleId) {
         SysUser entity = getEntity(userId);
         if (null != entity) {
@@ -67,6 +117,10 @@ public class SysUserService extends BaseService<SysUser> {
         }
     }
 
+    /**
+     * @param id
+     * @param email
+     */
     public void checked(Serializable id, String email) {
         SysUser entity = getEntity(id);
         if (null != entity) {
@@ -75,6 +129,11 @@ public class SysUserService extends BaseService<SysUser> {
         }
     }
 
+    /**
+     * @param id
+     * @param status
+     * @return
+     */
     public SysUser updateStatus(Serializable id, boolean status) {
         SysUser entity = getEntity(id);
         if (null != entity) {
@@ -85,4 +144,5 @@ public class SysUserService extends BaseService<SysUser> {
 
     @Autowired
     private SysUserDao dao;
+    
 }

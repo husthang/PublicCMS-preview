@@ -15,6 +15,11 @@ import com.sanluan.common.handler.FacetPageHandler;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsFacetSearchDirective
+ * 
+ */
 @Component
 public class CmsFacetSearchDirective extends AbstractTemplateDirective {
 

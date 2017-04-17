@@ -16,6 +16,11 @@ import com.publiccms.logic.service.sys.SysRoleService;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysRoleDirective
+ * 
+ */
 @Component
 public class SysRoleDirective extends AbstractTemplateDirective {
 

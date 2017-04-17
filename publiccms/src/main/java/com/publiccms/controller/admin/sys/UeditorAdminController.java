@@ -38,6 +38,11 @@ import com.publiccms.logic.service.log.LogUploadService;
 import com.publiccms.views.pojo.UeditorConfig;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * UeditorAdminController
+ * 
+ */
 @Controller
 @RequestMapping("ueditor")
 public class UeditorAdminController extends AbstractController {
@@ -73,6 +78,10 @@ public class UeditorAdminController extends AbstractController {
         }
     };
 
+    /**
+     * @param request
+     * @return
+     */
     @RequestMapping(params = "action=" + ACTION_CONFIG)
     @ResponseBody
     public UeditorConfig config(HttpServletRequest request) {
@@ -108,6 +117,13 @@ public class UeditorAdminController extends AbstractController {
         return config;
     }
 
+    /**
+     * @param file
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(params = "action=" + ACTION_UPLOAD)
     public String upload(MultipartFile file, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
@@ -135,6 +151,12 @@ public class UeditorAdminController extends AbstractController {
         return "common/mapResult";
     }
 
+    /**
+     * @param file
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping(params = "action=" + ACTION_UPLOAD_SCRAW)
     @ResponseBody
     public Map<String, Object> uploadScraw(String file, HttpServletRequest request, HttpSession session) {
@@ -163,6 +185,11 @@ public class UeditorAdminController extends AbstractController {
         return getResultMap(false);
     }
 
+    /**
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping(params = "action=" + ACTION_CATCHIMAGE)
     @ResponseBody
     public Map<String, Object> catchimage(HttpServletRequest request, HttpSession session) {
@@ -208,6 +235,12 @@ public class UeditorAdminController extends AbstractController {
         return getResultMap(false);
     }
 
+    /**
+     * @param start
+     * @param request
+     * @param session
+     * @return
+     */
     @SuppressWarnings("unchecked")
     @RequestMapping(params = "action=" + ACTION_LISTFILE)
     @ResponseBody

@@ -21,12 +21,23 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.home.HomeCommentService;
 import com.publiccms.logic.service.log.LogLoginService;
 
+/**
+ *
+ * HomeCommentAdminController
+ * 
+ */
 @Controller
 @RequestMapping("homeComment")
 public class HomeCommentAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id" };
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("save")
     public String save(HomeComment entity, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);
@@ -44,6 +55,12 @@ public class HomeCommentAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer[] ids, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);

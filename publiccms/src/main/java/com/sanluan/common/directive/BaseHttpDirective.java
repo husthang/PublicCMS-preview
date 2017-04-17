@@ -12,8 +12,9 @@ import com.sanluan.common.base.Base;
 import com.sanluan.common.handler.HttpParameterHandler;
 
 /**
+ * 指令基类
  * 
- * BaseDirective 自定义模板指令，接口指令基类
+ * Base directive class 
  *
  */
 public abstract class BaseHttpDirective extends Base implements HttpDirective, Directive {
@@ -29,6 +30,9 @@ public abstract class BaseHttpDirective extends Base implements HttpDirective, D
         return this.name;
     }
 
+    /**
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }

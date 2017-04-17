@@ -29,43 +29,123 @@ import com.sanluan.common.handler.FacetPageHandler;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ * DAO基类
+ * 
+ * Base DAO
+ * 
+ * @param <E>
+ * 
+ */
 public abstract class BaseDao<E> extends Base {
+    /**
+     * 分面名称搜索前缀
+     * 
+     * Facet name suffix
+     */
     public static String FACET_NAME_SUFFIX = "FacetRequest";
     private Class<E> clazz;
 
+    /**
+     * 明天
+     * 
+     * Tomorrow
+     * 
+     * @param date
+     * @return
+     */
     public static Date tomorrow(Date date) {
         return addDays(date, 1);
     }
 
+    /**
+     * 获取查询处理器
+     * 
+     * Get queryhandler
+     * 
+     * @param sql
+     * @return
+     */
     public static QueryHandler getQueryHandler(String sql) {
         return new QueryHandler(sql);
     }
 
-    public static QueryHandler getDeleteQueryHandler(String sql) {
-        return getQueryHandler("delete").append(sql);
-    }
-
-    public static QueryHandler getCountQueryHandler(String sql) {
-        return getQueryHandler("select count(*)").append(sql);
-    }
-
+    /**
+     * 获取查询处理器
+     * 
+     * Get queryhandler
+     * 
+     * @return
+     */
     public static QueryHandler getQueryHandler() {
         return new QueryHandler();
     }
 
+    /**
+     * 获取删除查询处理器
+     * 
+     * Get delete queryhandler
+     * 
+     * @param sql
+     * @return
+     */
+    public static QueryHandler getDeleteQueryHandler(String sql) {
+        return getQueryHandler("delete").append(sql);
+    }
+
+    /**
+     * 获取统计查询处理器
+     * 
+     * Get count queryhandler
+     * 
+     * @param sql
+     * @return
+     */
+    public static QueryHandler getCountQueryHandler(String sql) {
+        return getQueryHandler("select count(*)").append(sql);
+    }
+
+    /**
+     * Like查询
+     * 
+     * like Search
+     * 
+     * @param var
+     * @return
+     */
     public static String like(String var) {
         return "%" + var + "%";
     }
 
-    public static String likeEnd(String var) {
+    /**
+     * 左Like查询
+     * 
+     * Left like search
+     * 
+     * @param var
+     * @return
+     */
+    public static String leftLike(String var) {
         return "%" + var;
     }
 
-    public static String likeStart(String var) {
+    /**
+     * 右Like查询
+     * 
+     * Right like search
+     * 
+     * @param var
+     * @return
+     */
+    public static String rightLike(String var) {
         return var + "%";
     }
 
     /**
+     * 获取实体
+     * 
+     * Get entity
+     * 
      * @param id
      * @return
      */
@@ -74,16 +154,25 @@ public abstract class BaseDao<E> extends Base {
     }
 
     /**
+     * 获取实体
+     * 
+     * Get entity
+     * 
      * @param id
+     * @param primaryKeyName
      * @return
      */
-    public E getEntity(Serializable id, String pk) {
+    public E getEntity(Serializable id, String primaryKeyName) {
         QueryHandler queryHandler = getQueryHandler("from").append(getEntityClass().getSimpleName()).append("bean");
-        queryHandler.condition("bean." + pk).append("= :id").setParameter("id", id);
+        queryHandler.condition("bean." + primaryKeyName).append("= :id").setParameter("id", id);
         return getEntity(queryHandler);
     }
 
     /**
+     * 获取实体集合
+     * 
+     * Get entity list
+     * 
      * @param ids
      * @return
      */
@@ -92,6 +181,10 @@ public abstract class BaseDao<E> extends Base {
     }
 
     /**
+     * 获取实体集合
+     * 
+     * Get entity list
+     * 
      * @param ids
      * @param pk
      * @return
@@ -108,6 +201,10 @@ public abstract class BaseDao<E> extends Base {
     }
 
     /**
+     * 保存
+     * 
+     * Save
+     * 
      * @param entity
      * @return
      */
@@ -116,8 +213,11 @@ public abstract class BaseDao<E> extends Base {
     }
 
     /**
+     * 删除
+     * 
+     * Delete
+     * 
      * @param id
-     * @return
      */
     public void delete(Serializable id) {
         E entity = getEntity(id);
@@ -127,6 +227,10 @@ public abstract class BaseDao<E> extends Base {
     }
 
     /**
+     * 获取实体
+     * 
+     * Get entity
+     * 
      * @param queryHandler
      * @return
      */
@@ -140,6 +244,10 @@ public abstract class BaseDao<E> extends Base {
     }
 
     /**
+     * 更新
+     * 
+     * Update
+     * 
      * @param query
      * @return
      */
@@ -148,6 +256,10 @@ public abstract class BaseDao<E> extends Base {
     }
 
     /**
+     * 刪除
+     * 
+     * Delete
+     * 
      * @param query
      * @return
      */
@@ -156,6 +268,10 @@ public abstract class BaseDao<E> extends Base {
     }
 
     /**
+     * 获取列表
+     * 
+     * Get list
+     * 
      * @param query
      * @return
      */
@@ -334,7 +450,7 @@ public abstract class BaseDao<E> extends Base {
                         facetManager.getFacetGroup(facetField + FACET_NAME_SUFFIX).selectFacets(facet);
                     }
                 }
-                page.getMap().put(facetField, facetMap);
+                page.getFacetMap().put(facetField, facetMap);
             }
             page.setTotalCount(fullTextQuery.getResultSize(), maxResults);
             page.init();

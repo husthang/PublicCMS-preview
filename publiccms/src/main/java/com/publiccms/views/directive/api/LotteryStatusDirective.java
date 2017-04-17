@@ -17,6 +17,11 @@ import com.publiccms.logic.service.cms.CmsLotteryUserService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * LotteryStatusDirective
+ * 
+ */
 @Component
 public class LotteryStatusDirective extends AbstractAppDirective {
 

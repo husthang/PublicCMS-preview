@@ -10,9 +10,17 @@ import org.apache.lucene.search.TermRangeQuery;
 import org.hibernate.search.annotations.Factory;
 import org.hibernate.search.filter.impl.CachingWrapperFilter;
 
+/**
+ *
+ * PublishDateFilterFactory
+ * 
+ */
 public class PublishDateFilterFactory {
     private Date publishDate;
 
+    /**
+     * @return
+     */
     @Factory
     public Filter getFilter() {
         Query query = TermRangeQuery.newStringRange("publishDate", null,
@@ -20,6 +28,9 @@ public class PublishDateFilterFactory {
         return new CachingWrapperFilter(new QueryWrapperFilter(query));
     }
 
+    /**
+     * @param publishDate
+     */
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
     }

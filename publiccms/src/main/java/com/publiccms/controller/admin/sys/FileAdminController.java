@@ -21,6 +21,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.component.site.FileComponent;
 import com.publiccms.logic.service.log.LogUploadService;
 
+/**
+ *
+ * FileAdminController
+ * 
+ */
 @Controller
 @RequestMapping("file")
 public class FileAdminController extends AbstractController {
@@ -29,6 +34,15 @@ public class FileAdminController extends AbstractController {
     @Autowired
     protected LogUploadService logUploadService;
 
+    /**
+     * @param file
+     * @param field
+     * @param onlyImage
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "doUpload", method = RequestMethod.POST)
     public String upload(MultipartFile file, String field, Boolean onlyImage, HttpServletRequest request, HttpSession session,
             ModelMap model) {

@@ -12,11 +12,20 @@ import org.hibernate.persister.entity.EntityPersister;
 import com.sanluan.common.cache.redis.RedisClient;
 import com.sanluan.common.hibernate.redis.regions.RedisNaturalIdRegion;
 
+/**
+ *
+ * TransactionalRedisNaturalIdRegionAccessStrategy
+ * 
+ */
 public class TransactionalRedisNaturalIdRegionAccessStrategy extends AbstractRedisAccessStrategy<RedisNaturalIdRegion>
         implements NaturalIdRegionAccessStrategy {
 
     private final RedisClient redisClient;
 
+    /**
+     * @param region
+     * @param options
+     */
     public TransactionalRedisNaturalIdRegionAccessStrategy(RedisNaturalIdRegion region, SessionFactoryOptions options) {
         super(region, options);
         this.redisClient = region.getRedisClient();
@@ -90,6 +99,9 @@ public class TransactionalRedisNaturalIdRegionAccessStrategy extends AbstractRed
         return true;
     }
 
+    /**
+     * @return
+     */
     public RedisClient getRedisClient() {
         return redisClient;
     }

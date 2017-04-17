@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 import com.publiccms.entities.cms.CmsVoteItemAttribute;
 import com.sanluan.common.base.BaseDao;
 
+/**
+ *
+ * CmsVoteItemAttributeDao
+ * 
+ */
 @Repository
 public class CmsVoteItemAttributeDao extends BaseDao<CmsVoteItemAttribute> {
 

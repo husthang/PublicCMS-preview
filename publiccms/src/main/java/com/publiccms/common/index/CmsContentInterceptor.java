@@ -6,6 +6,11 @@ import org.hibernate.search.indexes.interceptor.IndexingOverride;
 import com.publiccms.entities.cms.CmsContent;
 import com.publiccms.logic.service.cms.CmsContentService;
 
+/**
+ *
+ * CmsContentInterceptor
+ * 
+ */
 public class CmsContentInterceptor implements EntityIndexingInterceptor<CmsContent> {
     @Override
     public IndexingOverride onAdd(CmsContent entity) {

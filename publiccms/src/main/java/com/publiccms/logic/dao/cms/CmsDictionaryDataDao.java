@@ -10,8 +10,19 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsDictionaryDataDao
+ * 
+ */
 @Repository
 public class CmsDictionaryDataDao extends BaseDao<CmsDictionaryData> {
+    
+    /**
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(
                 Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from CmsDictionaryData bean");

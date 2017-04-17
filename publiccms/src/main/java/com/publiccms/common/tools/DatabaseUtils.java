@@ -9,7 +9,19 @@ import java.util.Properties;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+/**
+ *
+ * DatabaseUtils
+ * 
+ */
 public class DatabaseUtils {
+    
+    /**
+     * @param configFile
+     * @return
+     * @throws IOException
+     * @throws PropertyVetoException
+     */
     public static ComboPooledDataSource getDataSource(String configFile) throws IOException, PropertyVetoException {
         Properties dbconfigProperties = loadAllProperties(configFile);
         ComboPooledDataSource dataSource = new ComboPooledDataSource();

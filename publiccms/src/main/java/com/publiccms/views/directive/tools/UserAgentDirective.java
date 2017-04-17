@@ -11,6 +11,11 @@ import org.springframework.stereotype.Component;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * UserAgentDirective
+ * 
+ */
 @Component
 public class UserAgentDirective extends AbstractTemplateDirective {
 
@@ -26,4 +31,5 @@ public class UserAgentDirective extends AbstractTemplateDirective {
     public boolean needAppToken() {
         return false;
     }
+    
 }

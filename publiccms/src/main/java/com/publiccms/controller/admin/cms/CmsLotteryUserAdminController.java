@@ -7,12 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.publiccms.common.base.AbstractController;
 import com.publiccms.entities.cms.CmsLotteryUser;
 import com.publiccms.logic.service.cms.CmsLotteryUserService;
+/**
+ *
+ * CmsLotteryUserAdminController
+ * 
+ */
 @Controller
 @RequestMapping("cmsLotteryUser")
 public class CmsLotteryUserAdminController extends AbstractController {
 
 	private String[] ignoreProperties = new String[]{"id"};
 
+    /**
+     * @param entity
+     * @return
+     */
     @RequestMapping("save")
     public String save(CmsLotteryUser entity) {
         if (null != entity.getId()) {
@@ -23,6 +32,10 @@ public class CmsLotteryUserAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer id) {
         service.delete(id);

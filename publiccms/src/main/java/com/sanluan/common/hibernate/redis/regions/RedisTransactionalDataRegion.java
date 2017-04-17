@@ -96,10 +96,16 @@ public class RedisTransactionalDataRegion extends RedisDataRegion implements Tra
         }
     }
 
+    /**
+     * @return
+     */
     public SessionFactoryOptions getOptions() {
         return options;
     }
 
+    /**
+     * @return
+     */
     public CacheDataDescription getMetadata() {
         return metadata;
     }

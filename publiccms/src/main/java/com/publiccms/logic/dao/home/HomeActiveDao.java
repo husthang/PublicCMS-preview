@@ -9,8 +9,22 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * HomeActiveDao
+ * 
+ */
 @Repository
 public class HomeActiveDao extends BaseDao<HomeActive> {
+    
+    /**
+     * @param itemType
+     * @param userId
+     * @param userIds
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(String itemType, Long userId, Long[] userIds, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from HomeActive bean");
         if (notEmpty(itemType)) {

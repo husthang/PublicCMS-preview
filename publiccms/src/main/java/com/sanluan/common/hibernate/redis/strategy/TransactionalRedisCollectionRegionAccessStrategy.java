@@ -73,6 +73,9 @@ public class TransactionalRedisCollectionRegionAccessStrategy extends AbstractRe
         region.remove(key);
     }
 
+    /**
+     * @return
+     */
     public RedisClient getRedisClient() {
         return redisClient;
     }

@@ -23,7 +23,9 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
 
 /**
- * FreeMarkerUtils FreeMarker工具类
+ * FreeMarker工具类
+ * 
+ * FreeMarkerUtils 
  * 
  */
 public class FreeMarkerUtils extends Base {
@@ -32,7 +34,7 @@ public class FreeMarkerUtils extends Base {
     /**
      * @param templateFilePath
      * @param destFilePath
-     * @param config
+     * @param configuration 
      * @param model
      * @throws IOException
      * @throws TemplateException
@@ -90,7 +92,7 @@ public class FreeMarkerUtils extends Base {
 
     /**
      * @param template
-     * @param configurationuration
+     * @param configuration 
      * @return
      * @throws TemplateException
      * @throws IOException

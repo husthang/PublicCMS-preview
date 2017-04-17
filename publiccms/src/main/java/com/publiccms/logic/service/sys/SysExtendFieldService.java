@@ -14,16 +14,30 @@ import com.publiccms.entities.sys.SysExtendField;
 import com.publiccms.logic.dao.sys.SysExtendFieldDao;
 import com.sanluan.common.base.BaseService;
 
+/**
+ *
+ * SysExtendFieldService
+ * 
+ */
 @Service
 @Transactional
 public class SysExtendFieldService extends BaseService<SysExtendField> {
+    
     private String[] ignoreProperties = new String[] { "id" };
 
+    /**
+     * @param extendId
+     * @return
+     */
     @Transactional(readOnly = true)
     public List<SysExtendField> getList(Integer extendId) {
         return dao.getList(extendId);
     }
 
+    /**
+     * @param extendId
+     * @param entitys
+     */
     public void update(Integer extendId, List<SysExtendField> entitys) {
         if (notEmpty(extendId)) {
             Set<String> codeList = new HashSet<String>();
@@ -48,4 +62,5 @@ public class SysExtendFieldService extends BaseService<SysExtendField> {
 
     @Autowired
     private SysExtendFieldDao dao;
+    
 }

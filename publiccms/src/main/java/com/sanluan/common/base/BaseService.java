@@ -10,6 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sanluan.common.datasource.MultiDataSource;
 
+/**
+ *
+ * BaseService
+ * @param <E> 
+ * 
+ */
 @Transactional
 public abstract class BaseService<E> extends Base {
     @Autowired
@@ -33,7 +39,8 @@ public abstract class BaseService<E> extends Base {
     }
 
     /**
-     * @param id
+     * @param ids
+     * @param pk
      * @return
      */
     public List<E> getEntitys(Serializable[] ids, String pk) {
@@ -41,7 +48,7 @@ public abstract class BaseService<E> extends Base {
     }
 
     /**
-     * @param id
+     * @param ids
      * @return
      */
     public List<E> getEntitys(Serializable[] ids) {
@@ -49,8 +56,7 @@ public abstract class BaseService<E> extends Base {
     }
 
     /**
-     * @param id
-     * @return
+     * @param ids
      */
     public void delete(Serializable[] ids) {
         for (Serializable id : ids) {
@@ -60,7 +66,6 @@ public abstract class BaseService<E> extends Base {
 
     /**
      * @param id
-     * @return
      */
     public void delete(Serializable id) {
         dao.delete(id);
@@ -112,10 +117,16 @@ public abstract class BaseService<E> extends Base {
         }
     }
     
+    /**
+     * @param dataSourceName
+     */
     public void setDataSourceName(String dataSourceName){
         MultiDataSource.setDataSourceName(dataSourceName);
     }
 
+    /**
+     * 
+     */
     public void resetDataSourceName() {
         MultiDataSource.resetDataSourceName();
     }

@@ -11,8 +11,26 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsWordDao
+ * 
+ */
 @Repository
 public class CmsWordDao extends BaseDao<CmsWord> {
+    
+    /**
+     * @param siteId
+     * @param hidden
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param name
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Boolean hidden, Date startCreateDate, Date endCreateDate, String name,
             String orderField, String orderType, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from CmsWord bean");
@@ -52,6 +70,11 @@ public class CmsWordDao extends BaseDao<CmsWord> {
         return getPage(queryHandler, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param name
+     * @return
+     */
     public CmsWord getEntity(int siteId, String name) {
         if (notEmpty(name)) {
             QueryHandler queryHandler = getQueryHandler("from CmsWord bean");

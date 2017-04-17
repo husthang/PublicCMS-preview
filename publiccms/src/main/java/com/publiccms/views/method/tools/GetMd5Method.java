@@ -9,14 +9,14 @@ import static com.sanluan.common.tools.VerificationUtils.encode;
 
 import freemarker.template.TemplateModelException;
 
+/**
+ *
+ * GetMd5Method
+ * 
+ */
 @Component
 public class GetMd5Method extends BaseMethod {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see freemarker.template.TemplateMethodModelEx#exec(java.util.List)
-     */
     @SuppressWarnings("unchecked")
     @Override
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {

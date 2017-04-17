@@ -17,6 +17,11 @@ import org.springframework.stereotype.Component;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * ${entityName}${directiveSuffix}
+ * 
+ */
 @Component
 public class ${entityName}${directiveSuffix} extends AbstractTemplateDirective {
 

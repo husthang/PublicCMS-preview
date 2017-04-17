@@ -17,11 +17,13 @@ import static org.springframework.util.ClassUtils.*;
 import com.sanluan.common.base.Base;
 
 /**
+ * 类扫描工具类
  * 
- * ScanClassUtils 类扫描工具类
+ * ScanClassUtils
  *
  */
 public class ScanClassUtils extends Base {
+    
     private static final String RESOURCE_PATTERN = "/**/*.class";
     private static final ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
 

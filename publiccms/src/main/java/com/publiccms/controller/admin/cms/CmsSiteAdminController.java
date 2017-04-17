@@ -19,6 +19,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysSiteService;
 
+/**
+ *
+ * CmsSiteAdminController
+ * 
+ */
 @Controller
 @RequestMapping("cmsSite")
 public class CmsSiteAdminController extends AbstractController {
@@ -27,6 +32,12 @@ public class CmsSiteAdminController extends AbstractController {
     
     private String[] ignoreProperties = new String[] { "id", "useStatic", "useSsi", "disabled" };
 
+    /**
+     * @param entity
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysSite entity, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);

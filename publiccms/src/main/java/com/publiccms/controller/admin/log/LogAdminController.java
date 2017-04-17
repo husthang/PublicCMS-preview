@@ -17,8 +17,14 @@ import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.log.LogTaskService;
 import com.publiccms.logic.service.log.LogUploadService;
 
+/**
+ *
+ * LogAdminController
+ * 
+ */
 @Controller
 public class LogAdminController extends AbstractController {
+    
     @Autowired
     private LogLoginService logLoginService;
     @Autowired
@@ -26,6 +32,12 @@ public class LogAdminController extends AbstractController {
     @Autowired
     private LogUploadService logUploadService;
 
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("logLogin/delete")
     public String logLoginDelete(Long[] ids, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);
@@ -37,6 +49,12 @@ public class LogAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("logOperate/delete")
     public String logOperateDelete(Long[] ids, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);
@@ -48,6 +66,12 @@ public class LogAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("logTask/delete")
     public String logTaskDelete(Long[] ids, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);
@@ -59,6 +83,12 @@ public class LogAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("logUpload/delete")
     public String logUploadDelete(Long[] ids, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);

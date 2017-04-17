@@ -23,8 +23,17 @@ import com.sanluan.common.base.Base;
  */
 @Component
 public class EmailTemplateConfigComponent extends Base implements Config {
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_TITLE = "email_title";
+    /**
+     * 
+     */
     public static final String CONFIG_EMAIL_PATH = "email_path";
+    /**
+     * 
+     */
     public static final String CONFIG_CODE_DESCRIPTION = CONFIGPREFIX + CONFIG_CODE;
 
     @Autowired

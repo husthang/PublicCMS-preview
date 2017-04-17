@@ -9,8 +9,24 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsContentFileDao
+ * 
+ */
 @Repository
 public class CmsContentFileDao extends BaseDao<CmsContentFile> {
+    
+    /**
+     * @param contentId
+     * @param userId
+     * @param image
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Long contentId, Long userId, Boolean image, String orderField, String orderType,
             Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from CmsContentFile bean");

@@ -14,8 +14,14 @@ import com.sanluan.common.handler.RenderHandler;
 
 import freemarker.template.TemplateException;
 
+/**
+ *
+ * CreateTemplateFileDirective
+ * 
+ */
 @Component
 public class CreateTemplateFileDirective extends AbstractTemplateDirective {
+    
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
         String templatePath = handler.getString("templatePath");

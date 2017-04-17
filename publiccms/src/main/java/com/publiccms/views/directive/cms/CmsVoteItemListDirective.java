@@ -12,6 +12,11 @@ import com.publiccms.logic.service.cms.CmsVoteItemService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsVoteItemListDirective
+ * 
+ */
 @Component
 public class CmsVoteItemListDirective extends AbstractTemplateDirective {
 

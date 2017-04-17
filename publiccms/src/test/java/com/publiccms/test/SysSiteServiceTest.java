@@ -14,6 +14,11 @@ import com.publiccms.logic.service.sys.SysSiteService;
 import com.publiccms.test.config.CmsTestConfig;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysSiteServiceTest
+ * 
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = CmsTestConfig.class)
 @Transactional
@@ -21,6 +26,9 @@ public class SysSiteServiceTest {
     @Autowired
     SysSiteService service;
 
+    /**
+     * 
+     */
     @SuppressWarnings("unchecked")
     @Test
     public void test() {

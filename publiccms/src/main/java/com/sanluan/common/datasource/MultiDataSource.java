@@ -12,6 +12,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  *
  */
 public class MultiDataSource extends AbstractRoutingDataSource {
+    
     private static final ThreadLocal<String> HOLDER = new ThreadLocal<String>();
 
     @Override
@@ -19,6 +20,10 @@ public class MultiDataSource extends AbstractRoutingDataSource {
         return HOLDER.get();
     }
 
+    /**
+     * @param targetDataSources
+     * @param defaultDatabase
+     */
     public void setTargetDataSources(Map<Object, Object> targetDataSources, DataSource defaultDatabase) {
         setTargetDataSources(targetDataSources);
         if (null != defaultDatabase) {
@@ -33,6 +38,9 @@ public class MultiDataSource extends AbstractRoutingDataSource {
         HOLDER.set(name);
     }
 
+    /**
+     * 
+     */
     public static void resetDataSourceName() {
         HOLDER.remove();
     }

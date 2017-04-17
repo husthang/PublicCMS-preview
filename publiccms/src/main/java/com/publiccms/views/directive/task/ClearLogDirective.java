@@ -17,6 +17,11 @@ import com.publiccms.logic.service.log.LogOperateService;
 import com.publiccms.logic.service.log.LogTaskService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * ClearLogDirective
+ * 
+ */
 @Component
 public class ClearLogDirective extends AbstractTaskDirective {
     @Override

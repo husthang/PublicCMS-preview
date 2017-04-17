@@ -16,6 +16,11 @@ import com.publiccms.logic.service.cms.CmsTagService;
 import com.publiccms.common.base.AbstractTemplateDirective;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsTagDirective
+ * 
+ */
 @Component
 public class CmsTagDirective extends AbstractTemplateDirective {
 

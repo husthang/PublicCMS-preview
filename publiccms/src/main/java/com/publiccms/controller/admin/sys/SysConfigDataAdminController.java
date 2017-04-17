@@ -28,12 +28,25 @@ import com.publiccms.logic.service.log.LogLoginService;
 import com.publiccms.logic.service.sys.SysConfigDataService;
 import com.publiccms.views.pojo.SysConfigParamters;
 
+/**
+ *
+ * SysConfigDataAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysConfigData")
 public class SysConfigDataAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id" };
 
+    /**
+     * @param entity
+     * @param sysConfigParamters
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysConfigData entity, @ModelAttribute SysConfigParamters sysConfigParamters, HttpServletRequest request,
             HttpSession session, ModelMap model) {
@@ -67,6 +80,12 @@ public class SysConfigDataAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param code
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(String code, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);

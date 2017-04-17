@@ -27,6 +27,11 @@ import com.publiccms.logic.service.sys.SysDeptCategoryService;
 import com.publiccms.logic.service.sys.SysDeptPageService;
 import com.publiccms.logic.service.sys.SysDeptService;
 
+/**
+ *
+ * SysDeptAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysDept")
 public class SysDeptAdminController extends AbstractController {
@@ -39,6 +44,15 @@ public class SysDeptAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id", "siteId" };
 
+    /**
+     * @param entity
+     * @param categoryIds
+     * @param pages
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysDept entity, Integer[] categoryIds, String[] pages, HttpServletRequest request, HttpSession session,
             ModelMap model) {
@@ -78,6 +92,12 @@ public class SysDeptAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("delete")
     public String delete(Integer id, HttpServletRequest request, HttpSession session) {
         SysSite site = getSite(request);

@@ -9,8 +9,21 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysMoudleDao
+ * 
+ */
 @Repository
 public class SysMoudleDao extends BaseDao<SysMoudle> {
+    
+    /**
+     * @param parentId
+     * @param menu
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer parentId, Boolean menu, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysMoudle bean");
         if (notEmpty(parentId)) {

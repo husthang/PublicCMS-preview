@@ -12,6 +12,11 @@ import com.publiccms.logic.service.log.LogOperateService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * LogOperateListDirective
+ * 
+ */
 @Component
 public class LogOperateListDirective extends AbstractTemplateDirective {
 

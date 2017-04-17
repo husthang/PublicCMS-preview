@@ -13,10 +13,26 @@ import com.publiccms.logic.dao.cms.CmsLotteryUserDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsLotteryUserService
+ * 
+ */
 @Service
 @Transactional
 public class CmsLotteryUserService extends BaseService<CmsLotteryUser> {
 
+    /**
+     * @param lotteryId
+     * @param userId
+     * @param winning
+     * @param startCreateDate
+     * @param endCreateDate
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Long lotteryId, Long userId, Boolean winning, Date startCreateDate, Date endCreateDate,
             String orderType, Integer pageIndex, Integer pageSize) {
@@ -25,4 +41,5 @@ public class CmsLotteryUserService extends BaseService<CmsLotteryUser> {
 
     @Autowired
     private CmsLotteryUserDao dao;
+
 }

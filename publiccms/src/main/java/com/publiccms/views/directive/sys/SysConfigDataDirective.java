@@ -18,6 +18,11 @@ import com.publiccms.entities.sys.SysSite;
 import com.publiccms.logic.service.sys.SysConfigDataService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysConfigDataDirective
+ * 
+ */
 @Component
 public class SysConfigDataDirective extends AbstractTemplateDirective {
 

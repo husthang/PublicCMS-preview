@@ -2,7 +2,6 @@ package com.publiccms.logic.dao.home;
 
 // Generated 2016-11-19 9:58:46 by com.sanluan.common.source.SourceGenerator
 
-
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.entities.home.HomeGroupPost;
@@ -10,11 +9,27 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * HomeGroupPostDao
+ * 
+ */
 @Repository
 public class HomeGroupPostDao extends BaseDao<HomeGroupPost> {
-    public PageHandler getPage(Integer siteId, Long groupId, 
-                Long userId, Boolean disabled, 
-                String orderField, String orderType, Integer pageIndex, Integer pageSize) {
+
+    /**
+     * @param siteId
+     * @param groupId
+     * @param userId
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    public PageHandler getPage(Integer siteId, Long groupId, Long userId, Boolean disabled, String orderField, String orderType,
+            Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from HomeGroupPost bean");
         if (notEmpty(siteId)) {
             queryHandler.condition("bean.siteId = :siteId").setParameter("siteId", siteId);
@@ -28,20 +43,29 @@ public class HomeGroupPostDao extends BaseDao<HomeGroupPost> {
         if (notEmpty(disabled)) {
             queryHandler.condition("bean.disabled = :disabled").setParameter("disabled", disabled);
         }
-        if("asc".equalsIgnoreCase(orderType)){
+        if ("asc".equalsIgnoreCase(orderType)) {
             orderType = "asc";
-        }else{
+        } else {
             orderType = "desc";
         }
-        if(null == orderField){
-            orderField="";
+        if (null == orderField) {
+            orderField = "";
         }
-        switch(orderField) {
-            case "scores" : queryHandler.order("bean.scores " + orderType); break;
-            case "comments" : queryHandler.order("bean.comments " + orderType); break;
-            case "clicks" : queryHandler.order("bean.clicks " + orderType); break;
-            case "createDate" : queryHandler.order("bean.createDate " + orderType); break;
-            default : queryHandler.order("bean.id " + orderType);
+        switch (orderField) {
+        case "scores":
+            queryHandler.order("bean.scores " + orderType);
+            break;
+        case "comments":
+            queryHandler.order("bean.comments " + orderType);
+            break;
+        case "clicks":
+            queryHandler.order("bean.clicks " + orderType);
+            break;
+        case "createDate":
+            queryHandler.order("bean.createDate " + orderType);
+            break;
+        default:
+            queryHandler.order("bean.id " + orderType);
         }
         return getPage(queryHandler, pageIndex, pageSize);
     }

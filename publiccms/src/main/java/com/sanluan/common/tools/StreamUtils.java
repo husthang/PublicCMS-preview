@@ -7,12 +7,19 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * StreamUtils 流输出工具类
+ * 流输出工具类
+ * 
+ * StreamUtils
  * 
  */
 public class StreamUtils {
-    public static final int BUFFER_SIZE = 1024 * 1024;
 
+    private static final int BUFFER_SIZE = 1024 * 1024;
+
+    /**
+     * @param outputStream
+     * @return
+     */
     public static BufferedOutputStream getBufferedOutputStream(OutputStream outputStream) {
         return new BufferedOutputStream(outputStream, BUFFER_SIZE);
     }

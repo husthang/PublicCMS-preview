@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 import com.publiccms.entities.cms.CmsLotteryUserAttribute;
 import com.sanluan.common.base.BaseDao;
 
+/**
+ *
+ * CmsLotteryUserAttributeDao
+ * 
+ */
 @Repository
 public class CmsLotteryUserAttributeDao extends BaseDao<CmsLotteryUserAttribute> {
 

@@ -17,17 +17,36 @@ import com.publiccms.views.pojo.CmsContentRelatedStatistics;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsContentRelatedService
+ * 
+ */
 @Service
 @Transactional
 public class CmsContentRelatedService extends BaseService<CmsContentRelated> {
+    
     private String[] ignoreProperties = new String[] { "id", "contentId", "userId" };
     
+    /**
+     * @param contentId
+     * @param relatedContentId
+     * @param userId
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Long contentId, Long relatedContentId, Long userId, String orderField, String orderType,
             Integer pageIndex, Integer pageSize) {
         return dao.getPage(contentId, relatedContentId, userId, orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param entitys
+     */
     public void updateStatistics(Collection<CmsContentRelatedStatistics> entitys) {
         for (CmsContentRelatedStatistics entityStatistics : entitys) {
             CmsContentRelated entity = getEntity(entityStatistics.getId());
@@ -37,6 +56,11 @@ public class CmsContentRelatedService extends BaseService<CmsContentRelated> {
         }
     }
 
+    /**
+     * @param contentId
+     * @param userId
+     * @param entitys
+     */
     @SuppressWarnings("unchecked")
     public void update(long contentId, long userId, List<CmsContentRelated> entitys) {
         Set<Long> idList = new HashSet<Long>();
@@ -62,4 +86,5 @@ public class CmsContentRelatedService extends BaseService<CmsContentRelated> {
 
     @Autowired
     private CmsContentRelatedDao dao;
+    
 }

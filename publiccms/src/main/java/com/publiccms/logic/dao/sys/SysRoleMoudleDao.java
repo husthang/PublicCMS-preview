@@ -12,8 +12,21 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysRoleMoudleDao
+ * 
+ */
 @Repository
 public class SysRoleMoudleDao extends BaseDao<SysRoleMoudle> {
+
+    /**
+     * @param roleId
+     * @param moudleId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer roleId, Integer moudleId, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysRoleMoudle bean");
         if (notEmpty(roleId)) {
@@ -25,6 +38,11 @@ public class SysRoleMoudleDao extends BaseDao<SysRoleMoudle> {
         return getPage(queryHandler, pageIndex, pageSize);
     }
 
+    /**
+     * @param roleIds
+     * @param moudleId
+     * @return
+     */
     public SysRoleMoudle getEntity(Integer[] roleIds, Integer moudleId) {
         if (notEmpty(roleIds) && notEmpty(moudleId)) {
             QueryHandler queryHandler = getQueryHandler("from SysRoleMoudle bean");
@@ -35,6 +53,11 @@ public class SysRoleMoudleDao extends BaseDao<SysRoleMoudle> {
         return null;
     }
 
+    /**
+     * @param roleIds
+     * @param moudleIds
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public List<SysRoleMoudle> getEntitys(Integer[] roleIds, Integer[] moudleIds) {
         if (notEmpty(roleIds) && notEmpty(moudleIds)) {
@@ -46,6 +69,10 @@ public class SysRoleMoudleDao extends BaseDao<SysRoleMoudle> {
         return new ArrayList<SysRoleMoudle>();
     }
 
+    /**
+     * @param roleId
+     * @return
+     */
     public int deleteByRoleId(Integer roleId) {
         if (notEmpty(roleId)) {
             QueryHandler queryHandler = getDeleteQueryHandler("from SysRoleMoudle bean where bean.id.roleId = :roleId");
@@ -55,6 +82,10 @@ public class SysRoleMoudleDao extends BaseDao<SysRoleMoudle> {
         return 0;
     }
 
+    /**
+     * @param moudleId
+     * @return
+     */
     public int deleteByMoudleId(Integer moudleId) {
         if (notEmpty(moudleId)) {
             QueryHandler queryHandler = getDeleteQueryHandler("from SysRoleMoudle bean where bean.id.moudleId = :moudleId");

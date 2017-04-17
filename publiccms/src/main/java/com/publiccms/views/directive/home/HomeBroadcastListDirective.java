@@ -12,6 +12,11 @@ import com.publiccms.logic.service.home.HomeBroadcastService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeBroadcastListDirective
+ * 
+ */
 @Component
 public class HomeBroadcastListDirective extends AbstractTemplateDirective {
 

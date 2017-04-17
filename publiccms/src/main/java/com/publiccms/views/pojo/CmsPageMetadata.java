@@ -8,6 +8,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sanluan.common.base.Base;
 
+/**
+ *
+ * CmsPageMetadata
+ * 
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CmsPageMetadata extends Base implements java.io.Serializable {
 
@@ -26,41 +31,71 @@ public class CmsPageMetadata extends Base implements java.io.Serializable {
 	private List<ExtendData> extendDataList;
 	private Map<String, String> extendData;
 
+	/**
+	 * 
+	 */
 	public CmsPageMetadata() {
 	}
 
+	/**
+	 * @return
+	 */
 	public String getAlias() {
 		return alias;
 	}
 
+	/**
+	 * @param alias
+	 */
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getPublishPath() {
 		return publishPath;
 	}
 
+	/**
+	 * @param publishPath
+	 */
 	public void setPublishPath(String publishPath) {
 		this.publishPath = publishPath;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isNeedLogin() {
 		return needLogin;
 	}
 
+	/**
+	 * @param needLogin
+	 */
 	public void setNeedLogin(boolean needLogin) {
 		this.needLogin = needLogin;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<ExtendField> getExtendList() {
 		return extendList;
 	}
 
+	/**
+	 * @param extendList
+	 */
 	public void setExtendList(List<ExtendField> extendList) {
 		this.extendList = extendList;
 	}
 
+	/**
+	 * @return
+	 */
 	@JsonIgnore
 	public Map<String, String> getExtendData() {
 		if (empty(extendData)) {
@@ -74,42 +109,72 @@ public class CmsPageMetadata extends Base implements java.io.Serializable {
 		return extendData;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<ExtendData> getExtendDataList() {
 		return extendDataList;
 	}
 
+	/**
+	 * @param extendDataList
+	 */
 	public void setExtendDataList(List<ExtendData> extendDataList) {
 		this.extendDataList = extendDataList;
 	}
 
+	/**
+	 * @return
+	 */
 	public Integer getCacheTime() {
 		return cacheTime;
 	}
 
+	/**
+	 * @param cacheTime
+	 */
 	public void setCacheTime(Integer cacheTime) {
 		this.cacheTime = cacheTime;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getAcceptParamters() {
 		return acceptParamters;
 	}
 
+	/**
+	 * @param acceptParamters
+	 */
 	public void setAcceptParamters(String acceptParamters) {
 		this.acceptParamters = acceptParamters;
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean isUseDynamic() {
 		return useDynamic;
 	}
 
+	/**
+	 * @param useDynamic
+	 */
 	public void setUseDynamic(boolean useDynamic) {
 		this.useDynamic = useDynamic;
 	}
 
+    /**
+     * @return
+     */
     public boolean isNeedBody() {
         return needBody;
     }
 
+    /**
+     * @param needBody
+     */
     public void setNeedBody(boolean needBody) {
         this.needBody = needBody;
     }

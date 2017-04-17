@@ -15,8 +15,14 @@ import com.publiccms.logic.component.template.TemplateComponent;
 import com.publiccms.logic.service.cms.CmsContentService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * PublishContentDirective
+ * 
+ */
 @Component
 public class PublishContentDirective extends AbstractTaskDirective {
+    
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
         Long id = handler.getLong("id");
@@ -40,4 +46,5 @@ public class PublishContentDirective extends AbstractTaskDirective {
     private TemplateComponent templateComponent;
     @Autowired
     private CmsContentService service;
+    
 }

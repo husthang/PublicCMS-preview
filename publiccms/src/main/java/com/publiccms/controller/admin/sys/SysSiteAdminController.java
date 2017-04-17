@@ -36,6 +36,11 @@ import com.publiccms.logic.service.sys.SysRoleUserService;
 import com.publiccms.logic.service.sys.SysSiteService;
 import com.publiccms.logic.service.sys.SysUserService;
 
+/**
+ *
+ * SysSiteAdminController
+ * 
+ */
 @Controller
 @RequestMapping("sysSite")
 public class SysSiteAdminController extends AbstractController {
@@ -56,6 +61,18 @@ public class SysSiteAdminController extends AbstractController {
 
     private String[] ignoreProperties = new String[] { "id" };
 
+    /**
+     * @param entity
+     * @param domainName
+     * @param roleName
+     * @param deptName
+     * @param userName
+     * @param password
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("save")
     public String save(SysSite entity, String domainName, String roleName, String deptName, String userName, String password,
             HttpServletRequest request, HttpSession session, ModelMap model) {
@@ -94,6 +111,13 @@ public class SysSiteAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
     @SuppressWarnings("unchecked")
     @RequestMapping("delete")
     public String delete(Integer id, HttpServletRequest request, HttpSession session, ModelMap model) {
@@ -118,6 +142,11 @@ public class SysSiteAdminController extends AbstractController {
         return TEMPLATE_DONE;
     }
 
+    /**
+     * @param request
+     * @param session
+     * @return
+     */
     @RequestMapping("reCreateIndex")
     public String reCreateIndex(HttpServletRequest request, HttpSession session) {
         contentService.reCreateIndex();

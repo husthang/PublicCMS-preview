@@ -23,6 +23,9 @@ import com.sanluan.common.servlet.ErrorToNotFoundDispatcherServlet;
  */
 public class MultiSiteDispatcherServlet extends ErrorToNotFoundDispatcherServlet {
     private SiteComponent siteComponent;
+    /**
+     * 
+     */
     public static final String GLOBLE_URL_PREFIX = "globle:";
     private static final int GLOBLE_URL_PREFIX_LENGTH = GLOBLE_URL_PREFIX.length();
     private DefaultServletHttpRequestHandler installHandler;
@@ -60,6 +63,9 @@ public class MultiSiteDispatcherServlet extends ErrorToNotFoundDispatcherServlet
         return super.resolveViewName(multiSiteViewName, model, locale, request);
     }
 
+    /**
+     * @return
+     */
     public SiteComponent getSiteComponent() {
         if (null == siteComponent) {
             siteComponent = getWebApplicationContext().getBean(SiteComponent.class);
@@ -67,6 +73,9 @@ public class MultiSiteDispatcherServlet extends ErrorToNotFoundDispatcherServlet
         return siteComponent;
     }
 
+    /**
+     * @return
+     */
     public DefaultServletHttpRequestHandler getInstallHandler() {
         if (null == installHandler) {
             installHandler = new DefaultServletHttpRequestHandler();

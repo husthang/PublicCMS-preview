@@ -21,6 +21,13 @@ import com.sanluan.common.base.Base;
  */
 public class ImageUtils extends Base {
 
+    /**
+     * @param width
+     * @param height
+     * @param text
+     * @return
+     * @throws IOException
+     */
     public static String getImageData(int width, int height, String text) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         drawImage(width, height, text, byteArrayOutputStream);
@@ -31,6 +38,13 @@ public class ImageUtils extends Base {
         return sb.toString();
     }
 
+    /**
+     * @param width
+     * @param height
+     * @param text
+     * @param outputStream
+     * @throws IOException
+     */
     public static void drawImage(int width, int height, String text, OutputStream outputStream) throws IOException {
         BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics g = bufferedImage.getGraphics();

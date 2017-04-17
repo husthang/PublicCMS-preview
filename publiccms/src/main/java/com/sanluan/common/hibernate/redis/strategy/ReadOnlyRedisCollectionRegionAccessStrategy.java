@@ -11,9 +11,18 @@ import org.hibernate.persister.collection.CollectionPersister;
 
 import com.sanluan.common.hibernate.redis.regions.RedisCollectionRegion;
 
+/**
+ *
+ * ReadOnlyRedisCollectionRegionAccessStrategy
+ * 
+ */
 public class ReadOnlyRedisCollectionRegionAccessStrategy extends AbstractRedisAccessStrategy<RedisCollectionRegion>
         implements CollectionRegionAccessStrategy {
 
+    /**
+     * @param region
+     * @param options
+     */
     public ReadOnlyRedisCollectionRegionAccessStrategy(RedisCollectionRegion region, SessionFactoryOptions options) {
         super(region, options);
     }

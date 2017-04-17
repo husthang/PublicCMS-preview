@@ -2,7 +2,6 @@ package com.publiccms.logic.dao.home;
 
 // Generated 2016-11-19 9:58:46 by com.sanluan.common.source.SourceGenerator
 
-
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.entities.home.HomeDialog;
@@ -10,17 +9,29 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * HomeDialogDao
+ * 
+ */
 @Repository
 public class HomeDialogDao extends BaseDao<HomeDialog> {
-    public PageHandler getPage(Boolean disabled, 
-                String orderType, Integer pageIndex, Integer pageSize) {
+
+    /**
+     * @param disabled
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    public PageHandler getPage(Boolean disabled, String orderType, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from HomeDialog bean");
         if (notEmpty(disabled)) {
             queryHandler.condition("bean.disabled = :disabled").setParameter("disabled", disabled);
         }
-        if("asc".equalsIgnoreCase(orderType)){
+        if ("asc".equalsIgnoreCase(orderType)) {
             orderType = "asc";
-        }else{
+        } else {
             orderType = "desc";
         }
         queryHandler.order("bean.lastMessageDate " + orderType);

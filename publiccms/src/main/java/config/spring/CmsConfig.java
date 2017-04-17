@@ -16,13 +16,9 @@ import com.publiccms.common.servlet.MultiSiteWebHttpRequestHandler;
 import com.publiccms.logic.component.site.SiteComponent;
 
 /**
- * <h1>CmsRootConfig</h1>
- * <p>
- * Cms跟配置类
- * </p>
- * <p>
+ * Cms根配置类
+ * 
  * Spring Config Class
- * </p>
  *
  */
 @Import(ApplicationConfig.class)
@@ -31,12 +27,9 @@ public class CmsConfig {
     private Environment env;
 
     /**
-     * <p>
      * 资源处理器
-     * </p>
-     * <p>
+     * 
      * DefaultServletHttpRequestHandler
-     * </p>
      * 
      * @return
      */
@@ -47,13 +40,11 @@ public class CmsConfig {
     }
 
     /**
-     * <p>
      * 站点静态页面处理器
-     * </p>
-     * <p>
-     * DefaultServletHttpRequestHandler
-     * </p>
      * 
+     * DefaultServletHttpRequestHandler
+     * 
+     * @param siteComponent 
      * @return
      */
     @Bean
@@ -63,12 +54,10 @@ public class CmsConfig {
     }
 
     /**
-     * <p>
+     * 
      * 任务计划工厂
-     * </p>
-     * <p>
+     * 
      * Task Scheduler Factory
-     * </p>
      * 
      * @return
      */

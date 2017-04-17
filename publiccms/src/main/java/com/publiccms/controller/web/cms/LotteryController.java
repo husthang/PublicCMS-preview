@@ -15,15 +15,27 @@ import com.publiccms.views.directive.api.LotteryDirective;
 import com.publiccms.views.directive.api.LotteryStatusDirective;
 import com.sanluan.common.handler.HttpParameterHandler;
 
+/**
+ *
+ * LotteryController
+ * 
+ */
 @Controller
 @RequestMapping("lottery")
 @ResponseBody
 public class LotteryController extends AbstractController {
+    
     @Autowired
     private LotteryDirective lotteryDirective;
     @Autowired
     private LotteryStatusDirective lotteryStatusDirective;
 
+    /**
+     * @param callback
+     * @param request
+     * @param session
+     * @param response
+     */
     @RequestMapping("lottery")
     public void lottery(String callback, HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         try {
@@ -38,6 +50,12 @@ public class LotteryController extends AbstractController {
         }
     }
 
+    /**
+     * @param callback
+     * @param request
+     * @param session
+     * @param response
+     */
     @RequestMapping("status")
     public void check(String callback, HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         try {

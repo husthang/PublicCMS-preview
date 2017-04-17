@@ -15,16 +15,35 @@ import com.publiccms.logic.dao.sys.SysClusterDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysClusterService
+ * 
+ */
 @Service
 @Transactional
 public class SysClusterService extends BaseService<SysCluster> {
 
+    /**
+     * @param startHeartbeatDate
+     * @param endHeartbeatDate
+     * @param master
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Date startHeartbeatDate, Date endHeartbeatDate, Boolean master, String orderField,
             String orderType, Integer pageIndex, Integer pageSize) {
         return dao.getPage(startHeartbeatDate, endHeartbeatDate, master, orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param id
+     * @param date
+     */
     public void updateHeartbeatDate(Serializable id, Date date) {
         SysCluster entity = getEntity(id);
         if (null != entity) {
@@ -32,6 +51,10 @@ public class SysClusterService extends BaseService<SysCluster> {
         }
     }
     
+    /**
+     * @param id
+     * @param master
+     */
     public void updateMaster(Serializable id, boolean master) {
         SysCluster entity = getEntity(id);
         if (null != entity) {
@@ -41,4 +64,5 @@ public class SysClusterService extends BaseService<SysCluster> {
 
     @Autowired
     private SysClusterDao dao;
+    
 }

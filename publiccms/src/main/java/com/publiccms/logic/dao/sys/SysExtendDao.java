@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 import com.publiccms.entities.sys.SysExtend;
 import com.sanluan.common.base.BaseDao;
 
+/**
+ *
+ * SysExtendDao
+ * 
+ */
 @Repository
 public class SysExtendDao extends BaseDao<SysExtend> {
 

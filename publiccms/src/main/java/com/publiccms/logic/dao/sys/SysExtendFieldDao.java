@@ -11,8 +11,18 @@ import com.publiccms.entities.sys.SysExtendField;
 import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysExtendFieldDao
+ * 
+ */
 @Repository
 public class SysExtendFieldDao extends BaseDao<SysExtendField> {
+
+    /**
+     * @param extendId
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public List<SysExtendField> getList(Integer extendId) {
         if (notEmpty(extendId)) {

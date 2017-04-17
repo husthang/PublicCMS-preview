@@ -11,6 +11,11 @@ import com.publiccms.common.base.AbstractTemplateDirective;
 import com.publiccms.logic.component.site.FileComponent;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * TemplateListDirective
+ * 
+ */
 @Component
 public class TemplateListDirective extends AbstractTemplateDirective {
 

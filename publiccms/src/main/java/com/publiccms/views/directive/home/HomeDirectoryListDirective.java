@@ -12,6 +12,11 @@ import com.publiccms.logic.service.home.HomeDirectoryService;
 import com.sanluan.common.handler.RenderHandler;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeDirectoryListDirective
+ * 
+ */
 @Component
 public class HomeDirectoryListDirective extends AbstractTemplateDirective {
 

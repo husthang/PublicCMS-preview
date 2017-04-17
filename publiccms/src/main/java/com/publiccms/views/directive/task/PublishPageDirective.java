@@ -23,8 +23,14 @@ import com.sanluan.common.handler.RenderHandler;
 
 import freemarker.template.TemplateException;
 
+/**
+ *
+ * PublishPageDirective
+ * 
+ */
 @Component
 public class PublishPageDirective extends AbstractTaskDirective {
+    
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
         String path = handler.getString("path", SEPARATOR);
@@ -89,4 +95,5 @@ public class PublishPageDirective extends AbstractTaskDirective {
     private TemplateComponent templateComponent;
     @Autowired
     private MetadataComponent metadataComponent;
+    
 }

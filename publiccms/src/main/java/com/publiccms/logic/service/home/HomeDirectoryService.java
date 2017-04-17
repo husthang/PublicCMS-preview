@@ -13,16 +13,35 @@ import com.publiccms.logic.dao.home.HomeDirectoryDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * HomeDirectoryService
+ * 
+ */
 @Service
 @Transactional
 public class HomeDirectoryService extends BaseService<HomeDirectory> {
 
+    /**
+     * @param siteId
+     * @param userId
+     * @param disabled
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Long userId, Boolean disabled, String orderType, Integer pageIndex,
             Integer pageSize) {
         return dao.getPage(siteId, userId, disabled, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param id
+     * @param status
+     * @return
+     */
     public HomeDirectory updateStatus(Serializable id, boolean status) {
         HomeDirectory entity = getEntity(id);
         if (null != entity) {
@@ -33,4 +52,5 @@ public class HomeDirectoryService extends BaseService<HomeDirectory> {
 
     @Autowired
     private HomeDirectoryDao dao;
+
 }

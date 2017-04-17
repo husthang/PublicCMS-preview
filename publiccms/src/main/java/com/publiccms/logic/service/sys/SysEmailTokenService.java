@@ -11,19 +11,35 @@ import com.publiccms.logic.dao.sys.SysEmailTokenDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysEmailTokenService
+ * 
+ */
 @Service
 @Transactional
 public class SysEmailTokenService extends BaseService<SysEmailToken> {
 
+    /**
+     * @param userId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Long userId, Integer pageIndex, Integer pageSize) {
         return dao.getPage(userId, pageIndex, pageSize);
     }
 
+    /**
+     * @param createDate
+     * @return
+     */
     public int delete(Date createDate) {
         return dao.delete(createDate);
     }
     
     @Autowired
     private SysEmailTokenDao dao;
+    
 }

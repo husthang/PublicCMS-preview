@@ -27,7 +27,13 @@ import com.sanluan.common.proxy.UsernamePasswordAuthenticator;
  *
  */
 public class InitializationInitializer implements WebApplicationInitializer {
+    /**
+     * 
+     */
     public static final String CMS_CONFIG_FILE = "cms.properties";
+    /**
+     * 
+     */
     public static final String PROPERTY_NAME_DATABASE = "cms.database.configFilePath";
 
     @Override

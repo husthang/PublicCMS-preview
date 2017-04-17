@@ -32,7 +32,7 @@ public abstract class RedisDataRegion extends Base implements Region {
 
     /**
      * @param accessStrategyFactory
-     * @param redis
+     * @param redisClient 
      * @param configurableRedisRegionFactory
      * @param regionName
      * @param props
@@ -64,11 +64,6 @@ public abstract class RedisDataRegion extends Base implements Region {
     public void destroy() throws CacheException {
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.Region#contains(java.lang.Object)
-     */
     @Override
     public boolean contains(Object key) {
         try {
@@ -80,11 +75,6 @@ public abstract class RedisDataRegion extends Base implements Region {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.Region#getSizeInMemory()
-     */
     @Override
     public long getSizeInMemory() {
         try {
@@ -97,11 +87,6 @@ public abstract class RedisDataRegion extends Base implements Region {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.hibernate.cache.spi.Region#getElementCountInMemory()
-     */
     @Override
     public long getElementCountInMemory() {
         return redisClient.getDataSize(regionName);
@@ -122,6 +107,9 @@ public abstract class RedisDataRegion extends Base implements Region {
         return cacheTimestamper.next();
     }
 
+    /**
+     * @return
+     */
     public int getExpireInSeconds() {
         return expireInSeconds;
     }
@@ -131,6 +119,9 @@ public abstract class RedisDataRegion extends Base implements Region {
         return 0;
     }
 
+    /**
+     * @return
+     */
     public RedisClient getRedisClient() {
         return redisClient;
     }

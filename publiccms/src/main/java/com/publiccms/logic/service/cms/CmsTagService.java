@@ -19,16 +19,35 @@ import com.publiccms.views.pojo.CmsTagStatistics;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsTagService
+ * 
+ */
 @Service
 @Transactional
 public class CmsTagService extends BaseService<CmsTag> {
 
+    /**
+     * @param siteId
+     * @param typeId
+     * @param name
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Integer typeId, String name, String orderField, String orderType,
             Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, typeId, name, orderField, orderType, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void delete(int siteId, Serializable[] ids) {
         for (CmsTag entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId()) {
@@ -37,6 +56,9 @@ public class CmsTagService extends BaseService<CmsTag> {
         }
     }
 
+    /**
+     * @param entitys
+     */
     public void updateStatistics(Collection<CmsTagStatistics> entitys) {
         for (CmsTagStatistics entityStatistics : entitys) {
             CmsTag entity = getEntity(entityStatistics.getId());
@@ -46,6 +68,11 @@ public class CmsTagService extends BaseService<CmsTag> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param entitys
+     * @return
+     */
     public Long[] update(int siteId, List<CmsTag> entitys) {
         Set<Long> idList = new HashSet<Long>();
         if (notEmpty(entitys)) {
@@ -67,4 +94,5 @@ public class CmsTagService extends BaseService<CmsTag> {
 
     @Autowired
     private CmsTagDao dao;
+    
 }

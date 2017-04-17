@@ -42,6 +42,12 @@ public class ConfigComponent extends Base implements SiteCache, Json {
     private List<Config> configPluginList;
     private CacheEntity<Integer, Map<String, Map<String, String>>> cache;
 
+    /**
+     * @param site
+     * @param code
+     * @param locale
+     * @return
+     */
     public ConfigInfo getConfig(SysSite site, String code, Locale locale) {
         Map<String, SysConfig> map = getMap(site);
         SysConfig entity = map.get(code);
@@ -60,6 +66,11 @@ public class ConfigComponent extends Base implements SiteCache, Json {
         return configInfo;
     }
 
+    /**
+     * @param site
+     * @param locale
+     * @return
+     */
     public List<ConfigInfo> getConfigList(SysSite site, Locale locale) {
         List<ConfigInfo> configList = new ArrayList<ConfigInfo>();
         List<String> configCodeList = new ArrayList<String>();
@@ -83,6 +94,13 @@ public class ConfigComponent extends Base implements SiteCache, Json {
         return configList;
     }
 
+    /**
+     * @param site
+     * @param code
+     * @param customed
+     * @param locale
+     * @return
+     */
     public List<ExtendField> getFieldList(SysSite site, String code, Boolean customed, Locale locale) {
         List<ExtendField> fieldList = new ArrayList<ExtendField>();
         if ((empty(customed) || !customed) && notEmpty(configPluginList)) {
@@ -101,6 +119,11 @@ public class ConfigComponent extends Base implements SiteCache, Json {
         return fieldList;
     }
 
+    /**
+     * @param siteId
+     * @param code
+     * @return
+     */
     public Map<String, String> getConfigData(int siteId, String code) {
         Map<String, Map<String, String>> siteMap = cache.get(siteId);
         if (empty(siteMap)) {
@@ -123,6 +146,10 @@ public class ConfigComponent extends Base implements SiteCache, Json {
     @Autowired
     private SiteComponent siteComponent;
 
+    /**
+     * @param site
+     * @return
+     */
     public Map<String, SysConfig> getMap(SysSite site) {
         Map<String, SysConfig> modelMap;
         File file = new File(siteComponent.getConfigFilePath(site));
@@ -159,6 +186,10 @@ public class ConfigComponent extends Base implements SiteCache, Json {
         return true;
     }
 
+    /**
+     * @param siteId
+     * @param code
+     */
     public void removeCache(int siteId, String code) {
         Map<String, Map<String, String>> map = cache.get(siteId);
         if (notEmpty(map)) {
@@ -176,11 +207,19 @@ public class ConfigComponent extends Base implements SiteCache, Json {
         cache.clear();
     }
 
+    /**
+     * @param cacheEntityFactory
+     */
     @Autowired
     public void initCache(CacheEntityFactory cacheEntityFactory) {
         cache = cacheEntityFactory.createCacheEntity("config");
     }
 
+    /**
+     *
+     * ConfigInfo
+     * 
+     */
     public class ConfigInfo implements java.io.Serializable {
 
         /**
@@ -191,31 +230,53 @@ public class ConfigComponent extends Base implements SiteCache, Json {
         private String description;
         private boolean customed;
 
+        /**
+         * @param code
+         * @param description
+         */
         public ConfigInfo(String code, String description) {
             this.code = code;
             this.description = description;
         }
 
+        /**
+         * @return
+         */
         public String getCode() {
             return code;
         }
 
+        /**
+         * @param code
+         */
         public void setCode(String code) {
             this.code = code;
         }
 
+        /**
+         * @return
+         */
         public String getDescription() {
             return description;
         }
 
+        /**
+         * @param description
+         */
         public void setDescription(String description) {
             this.description = description;
         }
 
+        /**
+         * @return
+         */
         public boolean isCustomed() {
             return customed;
         }
 
+        /**
+         * @param customed
+         */
         public void setCustomed(boolean customed) {
             this.customed = customed;
         }

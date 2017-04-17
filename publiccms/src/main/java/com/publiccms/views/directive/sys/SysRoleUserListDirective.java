@@ -12,6 +12,11 @@ import com.publiccms.logic.service.sys.SysRoleUserService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * SysRoleUserListDirective
+ * 
+ */
 @Component
 public class SysRoleUserListDirective extends AbstractTemplateDirective {
 

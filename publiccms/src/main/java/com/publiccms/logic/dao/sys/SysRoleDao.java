@@ -9,8 +9,20 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysRoleDao
+ * 
+ */
 @Repository
 public class SysRoleDao extends BaseDao<SysRole> {
+
+    /**
+     * @param siteId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysRole bean");
         if (notEmpty(siteId)) {

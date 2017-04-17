@@ -14,6 +14,11 @@ import com.publiccms.logic.service.cms.CmsContentService;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * MyContentListDirective
+ * 
+ */
 @Component
 public class MyContentListDirective extends AbstractAppDirective {
 

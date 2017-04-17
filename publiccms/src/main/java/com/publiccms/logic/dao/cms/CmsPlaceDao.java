@@ -11,8 +11,30 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsPlaceDao
+ * 
+ */
 @Repository
 public class CmsPlaceDao extends BaseDao<CmsPlace> {
+    
+    /**
+     * @param siteId
+     * @param userId
+     * @param path
+     * @param itemType
+     * @param itemId
+     * @param startPublishDate
+     * @param endPublishDate
+     * @param status
+     * @param disabled
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, Long userId, String path, String itemType, Integer itemId,
             Date startPublishDate, Date endPublishDate, Integer status, Boolean disabled, String orderField, String orderType,
             Integer pageIndex, Integer pageSize) {
@@ -65,6 +87,11 @@ public class CmsPlaceDao extends BaseDao<CmsPlace> {
         return getPage(queryHandler, pageIndex, pageSize);
     }
 
+    /**
+     * @param siteId
+     * @param path
+     * @return
+     */
     public int delete(int siteId, String path) {
         if (notEmpty(path)) {
             QueryHandler queryHandler = getDeleteQueryHandler("from CmsPlace bean");

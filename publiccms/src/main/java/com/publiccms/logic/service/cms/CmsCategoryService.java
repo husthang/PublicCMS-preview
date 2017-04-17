@@ -13,16 +13,37 @@ import com.publiccms.logic.dao.cms.CmsCategoryDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * CmsCategoryService
+ * 
+ */
 @Service
 @Transactional
 public class CmsCategoryService extends BaseService<CmsCategory> {
 
+    /**
+     * @param siteId
+     * @param parentId
+     * @param queryAll
+     * @param typeId
+     * @param allowContribute
+     * @param hidden
+     * @param disabled
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Integer parentId, Boolean queryAll, Integer typeId, Boolean allowContribute,
             Boolean hidden, Boolean disabled, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, parentId, queryAll, typeId, allowContribute, hidden, disabled, pageIndex, pageSize);
     }
 
+    /**
+     * @param parentId
+     * @param id
+     */
     public void addChildIds(Serializable parentId, Serializable id) {
         if (null != parentId) {
             CmsCategory parent = getEntity(parentId);
@@ -60,6 +81,10 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         return childIds.toString();
     }
 
+    /**
+     * @param siteId
+     * @param parentId
+     */
     public void generateChildIds(int siteId, Integer parentId) {
         if (notEmpty(parentId)) {
             updateChildIds(parentId, getChildIds(siteId, parentId));
@@ -70,6 +95,10 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         }
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     */
     public void delete(int siteId, Integer[] ids) {
         for (CmsCategory entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId() && !entity.isDisabled()) {
@@ -85,6 +114,10 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         }
     }
 
+    /**
+     * @param id
+     * @param childIds
+     */
     public void updateChildIds(Serializable id, String childIds) {
         CmsCategory entity = getEntity(id);
         if (null != entity) {
@@ -92,6 +125,10 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         }
     }
 
+    /**
+     * @param id
+     * @param tagTypeIds
+     */
     public void updateTagTypeIds(Serializable id, String tagTypeIds) {
         CmsCategory entity = getEntity(id);
         if (null != entity) {
@@ -99,6 +136,11 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         }
     }
 
+    /**
+     * @param id
+     * @param extendId
+     * @return
+     */
     public CmsCategory updateExtendId(Integer id, Integer extendId) {
         CmsCategory entity = getEntity(id);
         if (null != entity) {
@@ -107,6 +149,11 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         return entity;
     }
 
+    /**
+     * @param siteId
+     * @param id
+     * @param parentId
+     */
     public void updateParentId(int siteId, Serializable id, Integer parentId) {
         CmsCategory entity = getEntity(id);
         if (null != entity && siteId == entity.getSiteId()) {
@@ -114,6 +161,11 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         }
     }
 
+    /**
+     * @param id
+     * @param url
+     * @param hasStatic
+     */
     public void updateUrl(Serializable id, String url, boolean hasStatic) {
         CmsCategory entity = getEntity(id);
         if (null != entity) {
@@ -122,6 +174,10 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         }
     }
 
+    /**
+     * @param id
+     * @param num
+     */
     public void updateContents(Serializable id, int num) {
         CmsCategory entity = getEntity(id);
         if (null != entity) {

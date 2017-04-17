@@ -6,11 +6,20 @@ import org.springframework.transaction.annotation.Transactional;
 import com.publiccms.entities.cms.CmsCategoryAttribute;
 import com.sanluan.common.base.BaseService;
 
+/**
+ *
+ * CmsCategoryAttributeService
+ * 
+ */
 @Service
 @Transactional
 public class CmsCategoryAttributeService extends BaseService<CmsCategoryAttribute> {
     private String[] ignoreProperties = new String[] { "categoryId" };
 
+    /**
+     * @param categoryId
+     * @param entity
+     */
     public void updateAttribute(Integer categoryId, CmsCategoryAttribute entity) {
         CmsCategoryAttribute attribute = getEntity(categoryId);
         if (null != attribute) {

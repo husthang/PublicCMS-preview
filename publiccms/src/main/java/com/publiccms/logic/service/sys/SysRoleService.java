@@ -13,15 +13,30 @@ import com.publiccms.logic.dao.sys.SysRoleDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysRoleService
+ * 
+ */
 @Service
 @Transactional
 public class SysRoleService extends BaseService<SysRole> {
 
+    /**
+     * @param siteId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Integer siteId, Integer pageIndex, Integer pageSize) {
         return dao.getPage(siteId, pageIndex, pageSize);
     }
 
+    /**
+     * @param roleIds
+     * @return
+     */
     @Transactional(readOnly = true)
     public boolean showAllMoudle(Integer[] roleIds) {
         List<SysRole> list = getEntitys(roleIds);
@@ -33,6 +48,10 @@ public class SysRoleService extends BaseService<SysRole> {
         return false;
     }
 
+    /**
+     * @param roleIds
+     * @return
+     */
     @Transactional(readOnly = true)
     public boolean ownsAllRight(Integer[] roleIds) {
         List<SysRole> list = getEntitys(roleIds);
@@ -46,4 +65,5 @@ public class SysRoleService extends BaseService<SysRole> {
 
     @Autowired
     private SysRoleDao dao;
+    
 }

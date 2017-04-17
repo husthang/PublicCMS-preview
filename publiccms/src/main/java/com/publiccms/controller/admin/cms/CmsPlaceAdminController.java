@@ -132,7 +132,6 @@ public class CmsPlaceAdminController extends AbstractController {
 
     /**
      * @param path
-     * @param type
      * @param request
      * @param session
      * @param model

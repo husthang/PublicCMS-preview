@@ -11,10 +11,21 @@ import com.publiccms.entities.cms.CmsContentAttribute;
 import com.publiccms.logic.service.cms.CmsContentAttributeService;
 import com.sanluan.common.base.Base;
 
+/**
+ *
+ * CmsContentBridge
+ * 
+ */
 @Component
 public class CmsContentBridge extends Base implements FieldBridge {
+    /**
+     * 
+     */
     public static CmsContentAttributeService contentAttributeService;
 
+    /**
+     * @param contentAttributeService
+     */
     @Autowired
     public void init(CmsContentAttributeService contentAttributeService) {
         CmsContentBridge.contentAttributeService = contentAttributeService;

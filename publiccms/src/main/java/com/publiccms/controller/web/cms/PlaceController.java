@@ -32,6 +32,11 @@ import com.publiccms.views.pojo.CmsPlaceMetadata;
 import com.publiccms.views.pojo.CmsPlaceParamters;
 import com.publiccms.views.pojo.CmsPlaceStatistics;
 
+/**
+ *
+ * PlaceController
+ * 
+ */
 @Controller
 @RequestMapping("place")
 public class PlaceController extends AbstractController {
@@ -48,12 +53,12 @@ public class PlaceController extends AbstractController {
 
     /**
      * @param entity
-     * @param callback
+     * @param returnUrl
      * @param placeParamters
      * @param request
      * @param session
+     * @param response
      * @param model
-     * @return
      */
     @RequestMapping(value = "save")
     public void save(CmsPlace entity, String returnUrl, @ModelAttribute CmsPlaceParamters placeParamters,
@@ -104,11 +109,11 @@ public class PlaceController extends AbstractController {
 
     /**
      * @param id
-     * @param callback
+     * @param returnUrl
      * @param request
      * @param session
+     * @param response
      * @param model
-     * @return
      */
     @RequestMapping("delete")
     public void delete(Long id, String returnUrl, HttpServletRequest request, HttpSession session, HttpServletResponse response,
@@ -135,12 +140,12 @@ public class PlaceController extends AbstractController {
     }
 
     /**
-     * @param ids
+     * @param id
+     * @param returnUrl
      * @param request
      * @param session
+     * @param response
      * @param model
-     * @return
-     * @return
      */
     @RequestMapping("check")
     public void check(Long id, String returnUrl, HttpServletRequest request, HttpSession session, HttpServletResponse response,
@@ -167,10 +172,9 @@ public class PlaceController extends AbstractController {
     }
 
     /**
-     * 推荐位链接重定向并计数
-     * 
      * @param id
-     * @return
+     * @param request
+     * @param response
      */
     @RequestMapping("redirect")
     public void clicks(Long id, HttpServletRequest request, HttpServletResponse response) {

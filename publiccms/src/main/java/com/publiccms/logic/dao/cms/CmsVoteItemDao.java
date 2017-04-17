@@ -10,8 +10,22 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * CmsVoteItemDao
+ * 
+ */
 @Repository
 public class CmsVoteItemDao extends BaseDao<CmsVoteItem> {
+    
+    /**
+     * @param voteId
+     * @param orderField
+     * @param orderType
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer voteId, 
                 String orderField, String orderType, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from CmsVoteItem bean");

@@ -24,6 +24,11 @@ import com.sanluan.common.base.BaseInterceptor;
 
 import config.initializer.AdminInitializer;
 
+/**
+ *
+ * AdminContextInterceptor
+ * 
+ */
 public class AdminContextInterceptor extends BaseInterceptor {
     private String[] needNotLoginUrls;
     private String[] needNotAuthorizedUrls;
@@ -145,22 +150,37 @@ public class AdminContextInterceptor extends BaseInterceptor {
         return true;
     }
 
+    /**
+     * @param loginUrl
+     */
     public void setLoginUrl(String loginUrl) {
         this.loginUrl = AdminInitializer.BASEPATH + loginUrl;
     }
 
+    /**
+     * @param needNotLoginUrls
+     */
     public void setNeedNotLoginUrls(String[] needNotLoginUrls) {
         this.needNotLoginUrls = needNotLoginUrls;
     }
 
+    /**
+     * @param loginJsonUrl
+     */
     public void setLoginJsonUrl(String loginJsonUrl) {
         this.loginJsonUrl = AdminInitializer.BASEPATH + loginJsonUrl;
     }
 
+    /**
+     * @param unauthorizedUrl
+     */
     public void setUnauthorizedUrl(String unauthorizedUrl) {
         this.unauthorizedUrl = AdminInitializer.BASEPATH + unauthorizedUrl;
     }
 
+    /**
+     * @param needNotAuthorizedUrls
+     */
     public void setNeedNotAuthorizedUrls(String[] needNotAuthorizedUrls) {
         this.needNotAuthorizedUrls = needNotAuthorizedUrls;
     }

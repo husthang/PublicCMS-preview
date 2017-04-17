@@ -17,8 +17,9 @@ import com.publiccms.common.view.admin.AdminFreeMarkerView;
 import com.publiccms.logic.component.cache.CacheComponent;
 
 /**
+ * AdminServlet配置类
  * 
- * AdminConfig AdminServlet配置类
+ * AdminConfig 
  *
  */
 @Configuration

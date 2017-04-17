@@ -9,8 +9,21 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * SysAppDao
+ * 
+ */
 @Repository
 public class SysAppDao extends BaseDao<SysApp> {
+
+    /**
+     * @param siteId
+     * @param channel
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Integer siteId, String channel, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from SysApp bean");
         if (notEmpty(siteId)) {

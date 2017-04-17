@@ -9,8 +9,21 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
+/**
+ *
+ * HomeAttentionDao
+ * 
+ */
 @Repository
 public class HomeAttentionDao extends BaseDao<HomeAttention> {
+    
+    /**
+     * @param userId
+     * @param attentionId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     public PageHandler getPage(Long userId, Long attentionId, Integer pageIndex, Integer pageSize) {
         QueryHandler queryHandler = getQueryHandler("from HomeAttention bean");
         if (notEmpty(userId)) {

@@ -15,6 +15,11 @@ import com.publiccms.entities.cms.CmsLottery;
 import com.publiccms.logic.service.cms.CmsLotteryService;
 import com.sanluan.common.handler.RenderHandler;
 
+/**
+ *
+ * CmsLotteryDirective
+ * 
+ */
 @Component
 public class CmsLotteryDirective extends AbstractTemplateDirective {
 

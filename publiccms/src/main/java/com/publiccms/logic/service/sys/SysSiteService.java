@@ -11,15 +11,31 @@ import com.publiccms.logic.dao.sys.SysSiteDao;
 import com.sanluan.common.base.BaseService;
 import com.sanluan.common.handler.PageHandler;
 
+/**
+ *
+ * SysSiteService
+ * 
+ */
 @Service
 @Transactional
 public class SysSiteService extends BaseService<SysSite> {
 
+    /**
+     * @param disabled
+     * @param name
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Transactional(readOnly = true)
     public PageHandler getPage(Boolean disabled, String name, Integer pageIndex, Integer pageSize) {
         return dao.getPage(disabled, name, pageIndex, pageSize);
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public SysSite delete(Integer id) {
         SysSite entity = getEntity(id);
         if (null != entity) {
@@ -30,4 +46,5 @@ public class SysSiteService extends BaseService<SysSite> {
     
     @Autowired
     private SysSiteDao dao;
+    
 }
