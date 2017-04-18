@@ -79,7 +79,7 @@
 			<tr target="sid" rel="${a.id}">
 				<td><input name="ids" value="${a.id}" type="checkbox"></td>
 				<td>${a.id}</td>
-				<td><a href="${a.url}" target="_blank">${a.title}</a></td>
+				<td><#if a.url?has_content><a href="${a.url}" target="_blank">${a.title}</a><#else>${a.title}</#if></td>
 				<td>${a.publishDate}</td>
 				<td>${a.createDate}</td>
 				<td>${(userMap[a.userId?string].nickName)!}</td>

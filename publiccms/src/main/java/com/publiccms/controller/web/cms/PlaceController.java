@@ -72,8 +72,8 @@ public class PlaceController extends AbstractController {
             String filePath = siteComponent.getWebTemplateFilePath(site, INCLUDE_DIRECTORY + entity.getPath());
             CmsPlaceMetadata metadata = metadataComponent.getPlaceMetadata(filePath);
             SysUser user = getUserFromSession(session);
-            if (verifyCustom("contribute",
-                    null == user || null == metadata || !metadata.isAllowContribute() || 0 >= metadata.getSize(), model)) {
+            if (verifyCustom("contribute", null == metadata || !metadata.isAllowContribute() || 0 >= metadata.getSize()
+                    || (null == user && !metadata.isAllowAnonymous()), model)) {
                 redirect(response, returnUrl);
                 return;
             }
@@ -180,10 +180,11 @@ public class PlaceController extends AbstractController {
     public void clicks(Long id, HttpServletRequest request, HttpServletResponse response) {
         SysSite site = getSite(request);
         CmsPlaceStatistics placeStatistics = statisticsComponent.placeClicks(id);
-        if (null != placeStatistics.getEntity() && site.getId() == placeStatistics.getEntity().getSiteId()) {
+        if (null != placeStatistics.getEntity() && site.getId() == placeStatistics.getEntity().getSiteId()
+                && notEmpty(placeStatistics.getEntity().getUrl())) {
             redirectPermanently(response, placeStatistics.getEntity().getUrl());
         } else {
-            redirectPermanently(response, site.getSitePath());
+            redirectPermanently(response, site.getDynamicPath());
         }
     }
 }
