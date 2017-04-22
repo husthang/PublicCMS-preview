@@ -60,7 +60,7 @@ import com.publiccms.views.pojo.CmsModel;
 import com.publiccms.views.pojo.ExtendField;
 
 /**
- * 
+ *
  * CmsContentController
  *
  */
@@ -101,7 +101,7 @@ public class CmsContentAdminController extends AbstractController {
 
     /**
      * 保存内容
-     * 
+     *
      * @param entity
      * @param attribute
      * @param contentParamters
@@ -231,6 +231,7 @@ public class CmsContentAdminController extends AbstractController {
     public String check(Long[] ids, HttpServletRequest request, HttpSession session, ModelMap model) {
         if (notEmpty(ids)) {
             SysSite site = getSite(request);
+			service.refresh(site.getId(), ids);
             Long userId = getAdminFromSession(session).getId();
             List<CmsContent> entityList = service.check(site.getId(), userId, ids);
             Set<Integer> categoryIdSet = new HashSet<Integer>();
@@ -239,6 +240,7 @@ public class CmsContentAdminController extends AbstractController {
                     if (notEmpty(entity.getParentId())) {
                         publish(new Long[] { entity.getParentId() }, request, session, model);
                     }
+					publish(new Long[] { entity.getId() }, request, session, model);
                     categoryIdSet.add(entity.getCategoryId());
                 }
             }

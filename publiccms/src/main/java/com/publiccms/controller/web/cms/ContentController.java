@@ -186,7 +186,7 @@ public class ContentController extends AbstractController {
         if (null != contentRelatedStatistics.getEntity()) {
             redirectPermanently(response, contentRelatedStatistics.getEntity().getUrl());
         } else {
-            redirectPermanently(response, site.getSitePath());
+            redirectPermanently(response, site.getDynamicPath());
         }
     }
 
@@ -204,7 +204,7 @@ public class ContentController extends AbstractController {
         if (null != contentStatistics.getEntity() && site.getId() == contentStatistics.getEntity().getSiteId()) {
             redirectPermanently(response, contentStatistics.getEntity().getUrl());
         } else {
-            redirectPermanently(response, site.getSitePath());
+            redirectPermanently(response, site.getDynamicPath());
         }
     }
 

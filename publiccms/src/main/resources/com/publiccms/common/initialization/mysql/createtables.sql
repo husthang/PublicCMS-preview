@@ -264,7 +264,7 @@ CREATE TABLE `cms_place` (
   `id` bigint(20) NOT NULL auto_increment,
   `site_id` int(11) NOT NULL COMMENT '站点ID',
   `path` varchar(255) NOT NULL COMMENT '模板路径',
-  `user_id` bigint(20) NOT NULL COMMENT '提交用户',
+  `user_id` bigint(20) default NULL COMMENT '提交用户',
   `item_type` varchar(50) default NULL COMMENT '推荐项目类型',
   `item_id` int(11) default NULL COMMENT '推荐项目ID',
   `title` varchar(255) NOT NULL COMMENT '标题',

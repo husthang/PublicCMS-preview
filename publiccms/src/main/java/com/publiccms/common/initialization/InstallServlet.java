@@ -194,7 +194,7 @@ public class InstallServlet extends HttpServlet {
         }
         sb.append("/");
         sb.append(database);
-        sb.append("?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=round");
+        sb.append("?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=round&useSSL=true");
         dbconfigProperties.setProperty("jdbc.url", sb.toString());
         dbconfigProperties.setProperty("jdbc.username", username);
         dbconfigProperties.setProperty("jdbc.password", password);

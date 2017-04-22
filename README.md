@@ -25,8 +25,10 @@ https://git.oschina.net/sanluan/PublicCMS-lib
 
 框架升级:
 
-1. freemarker升级到2.3.26-incubating
-1. jackson升级到2.8.8
+1. Freemarker 2.3.26-incubating
+1. Jackson 2.8.8
+1. Spring 4.3.8.RELEASE
+1. Spring Boot 1.5.3.RELEASE
 
 BUG修复:
 
@@ -34,6 +36,8 @@ BUG修复:
 1. 导入数据库脚本乱码
 1. 内容列表没有子内容模型新建按钮
 1. 网站文件列表中查看文件路径错误
+1. 高版本Mysql打印警告信息修复
+1. 推荐位匿名投稿错误
 
 新增功能:
 
@@ -44,3 +48,4 @@ BUG修复:
 其他提升:
 
 1. 删除cms_content_tag表及相关代码
+1. 界面修改、字体行距等调大

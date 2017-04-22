@@ -54,14 +54,14 @@ $(function(){
 <header>
 	<a class="logo" href="./"></a>
 	<ul class="nav">
-		<li>${(admin.nickName)!}</li>
+		<li><i class="icon-user icon-large"></i> ${(admin.nickName)!}</li>
 		<li>
-			<a href="${site.useStatic?then(site.sitePath!,site.dynamicPath!)}" target="_blank">网站首页</a>
+			<a href="${site.useStatic?then(site.sitePath!,site.dynamicPath!)}" target="_blank"><i class="icon-home icon-large"></i> 网站首页</a>
 		</li>
 		<@_sysAuthorized roleIds=admin.roles url='clearCache'>
-			<li><a href="clearCache" target="ajaxTodo">刷新缓存</a></li>
+			<li><a href="clearCache" target="ajaxTodo"><i class="icon-refresh icon-large"></i> 刷新缓存</a></li>
 		</@_sysAuthorized>
-		<li><a href="logout">退出</a></li>
+		<li><a href="logout"><i class="icon-signout icon-large"></i> 退出</a></li>
 	</ul>
 	<ul id="navMenu">
 <@_sysMoudleList>
@@ -86,14 +86,14 @@ $(function(){
 <main>
 	<div id="leftside">
 		<div id="sidebar_s">
-			<div class="collapse">
-				<div class="toggleCollapse"><div></div></div>
-			</div>
+			<a href="javascript:;"><i class="icon-reorder icon-large"></i></a>
 		</div>
 		<div id="sidebar">
-			<div class="toggleCollapse"><div></div></div>
 			<div id="menu">
 <#include "menus.html"/>
+			</div>
+			<div class="collapse">
+				<a href="javascript:;" class="toggleCollapse"><i class="icon icon-chevron-sign-left icon-large"></i></a>
 			</div>
 		</div>
 	</div>
@@ -104,9 +104,9 @@ $(function(){
 					<li tabid="main" class="main"><a href="javascript:;"><i class="icon-home icon-large"></i> 工作台</a></li>
 				</ul>
 			</div>
-			<div class="tabsLeft">left</div>
-			<div class="tabsRight">right</div>
-			<div class="tabsMore">more</div>
+			<a href="javascript:;" class="tabsLeft"><i class="icon-backward icon-large"></i></a>
+			<a href="javascript:;" class="tabsRight"><i class="icon-forward icon-large"></i></a>
+			<a href="javascript:;" class="tabsMore"><i class="icon-th-list icon-large"></i></a>
 		</div>
 		<ul class="tabsMoreList">
 			<li><a href="javascript:;"><i class="icon-home icon-large"></i> 工作台</a></li>
@@ -116,17 +116,17 @@ $(function(){
 				<#include "main.html"/>
 			</div>
 		</div>
+		<footer>
+			Copyright &copy; ${.now?string('yyyy')}
+			<ul class="themeList" id="themeList">
+				<li theme="azure"><div class="selected">天蓝</div></li>
+				<li theme="silver"><div>银色</div></li>
+				<li theme="purple"><div>紫色</div></li>
+				<li theme="default"><div>淡青</div></li>
+			</ul>
+		</footer>
 	</div>
 </main>
-<footer>
-	Copyright &copy; ${.now?string('yyyy')}
-	<ul class="themeList" id="themeList">
-		<li theme="azure"><div class="selected">天蓝</div></li>
-		<li theme="silver"><div>银色</div></li>
-		<li theme="purple"><div>紫色</div></li>
-		<li theme="default"><div>淡青</div></li>
-	</ul>
-</footer>
 <script>
 var _hmt = _hmt || [];
 (function() {
