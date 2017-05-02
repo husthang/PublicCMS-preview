@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>管理后台 - ${site.name}</title>
-	<link href="${res}/themes/css/core.css" rel="stylesheet" media="screen"/>
+	<link href="${res}/themes/css/core.css?0423" rel="stylesheet" media="screen"/>
 	<link href="${res}/themes/css/print.css" rel="stylesheet" media="print"/>
 	<link href="${res}/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
 	<!--[if IE 7]>
@@ -24,9 +24,9 @@
 	<script src="${res}/ueditor/ueditor.all.min.js"></script>
 	<script src="${res}/ueditor/lang/zh-cn/zh-cn.js"></script>
 
-	<script src="${res}/js/dwz.min.js?1107"></script>
+	<script src="${res}/js/dwz.min.js?042301"></script>
 	<script src="${res}/js/dwz.regional.zh.js"></script>
-	
+
 	<link href="${res}/codemirror/lib/codemirror.css" rel="stylesheet" type="text/css" />
 	<script src="${res}/codemirror/lib/codemirror.js"></script>
 	<script src="${res}/codemirror/mode/xml/xml.js"></script>
@@ -44,7 +44,7 @@ $(function(){
 		debug:false,	// 调试模式 【true|false】
 		callback:function(){
 			initEnv();
-			$("#themeList").theme({themeBase:"${res}/themes",defaultTheme:"azure"}); // themeBase 相对于index页面的主题base路径
+			$("#themeList").theme({themeBase:"${res}/themes",defaultTheme:"azure",version:"0423"}); // themeBase 相对于index页面的主题base路径
 		}
 	});
 });
@@ -116,17 +116,17 @@ $(function(){
 				<#include "main.html"/>
 			</div>
 		</div>
-		<footer>
-			Copyright &copy; ${.now?string('yyyy')}
-			<ul class="themeList" id="themeList">
-				<li theme="azure"><div class="selected">天蓝</div></li>
-				<li theme="silver"><div>银色</div></li>
-				<li theme="purple"><div>紫色</div></li>
-				<li theme="default"><div>淡青</div></li>
-			</ul>
-		</footer>
 	</div>
 </main>
+<footer>
+	Copyright &copy; ${.now?string('yyyy')}
+	<ul class="themeList" id="themeList">
+		<li theme="azure"><div class="selected">天蓝</div></li>
+		<li theme="silver"><div>银色</div></li>
+		<li theme="purple"><div>紫色</div></li>
+		<li theme="default"><div>淡青</div></li>
+	</ul>
+</footer>
 <script>
 var _hmt = _hmt || [];
 (function() {

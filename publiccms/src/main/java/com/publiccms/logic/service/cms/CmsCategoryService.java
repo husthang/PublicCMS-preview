@@ -68,17 +68,22 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         if (0 < list.size()) {
             for (CmsCategory category : list) {
                 childIds.append(category.getId());
+                childIds.append(COMMA_DELIMITED);
                 String childChildIds = getChildIds(siteId, category.getId());
                 if (childChildIds.length() > 0) {
                     childIds.append(childChildIds);
+                    childIds.append(COMMA_DELIMITED);
                 }
-                childIds.append(COMMA_DELIMITED);
             }
             if (0 < childIds.length()) {
                 childIds.setLength(childIds.length() - 1);
             }
         }
-        return childIds.toString();
+        if (0 < childIds.length()) {
+            return childIds.toString();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -86,7 +91,7 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
      * @param parentId
      */
     public void generateChildIds(int siteId, Integer parentId) {
-        if (notEmpty(parentId)) {
+        if (null != parentId) {
             updateChildIds(parentId, getChildIds(siteId, parentId));
             CmsCategory parent = getEntity(parentId);
             if (null != parent) {
@@ -108,8 +113,8 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
                 for (CmsCategory child : list) {
                     child.setParentId(entity.getParentId());
                 }
-                generateChildIds(entity.getSiteId(), entity.getParentId());
                 entity.setDisabled(true);
+                generateChildIds(entity.getSiteId(), entity.getParentId());
             }
         }
     }

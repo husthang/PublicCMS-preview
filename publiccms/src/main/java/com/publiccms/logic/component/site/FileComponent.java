@@ -73,6 +73,8 @@ public class FileComponent extends Base {
     public boolean createFile(File file, String content) throws IOException {
         if (empty(file)) {
             writeStringToFile(file, content, DEFAULT_CHARSET);
+            file.setReadable(true, false);
+            file.setWritable(true, false);
             return true;
         }
         return false;
@@ -160,6 +162,8 @@ public class FileComponent extends Base {
         File dest = new File(fileName);
         dest.getParentFile().mkdirs();
         file.transferTo(dest);
+        dest.setReadable(true, false);
+        dest.setWritable(true, false);
         return dest.getName();
     }
 

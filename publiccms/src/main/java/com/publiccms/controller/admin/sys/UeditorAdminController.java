@@ -167,7 +167,8 @@ public class UeditorAdminController extends AbstractController {
             try {
                 File dest = new File(siteComponent.getWebFilePath(site, fileName));
                 writeByteArrayToFile(dest, data);
-
+                dest.setReadable(true, false);
+                dest.setWritable(true, false);
                 logUploadService.save(new LogUpload(site.getId(), getAdminFromSession(session).getId(), CHANNEL_WEB_MANAGER, true,
                         dest.length(), getIpAddress(request), getDate(), fileName));
                 Map<String, Object> map = getResultMap(true);
@@ -213,6 +214,8 @@ public class UeditorAdminController extends AbstractController {
                         String fileName = fileComponent.getUploadFileName(suffix);
                         File dest = new File(siteComponent.getWebFilePath(site, fileName));
                         copyInputStreamToFile(entity.getContent(), dest);
+                        dest.setReadable(true, false);
+                        dest.setWritable(true, false);
                         logUploadService.save(new LogUpload(site.getId(), getAdminFromSession(session).getId(),
                                 CHANNEL_WEB_MANAGER, true, dest.length(), getIpAddress(request), getDate(), fileName));
                         Map<String, Object> map = getResultMap(true);

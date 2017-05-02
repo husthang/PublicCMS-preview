@@ -42,17 +42,6 @@ INSERT INTO `cms_category_attribute` VALUES ('19', '案例', 'PublicCMS案例', 
 INSERT INTO `cms_category_attribute` VALUES ('20', '热门推荐楼盘', '海南,楼盘', '居住？投资？其实很多时候它们是同一种思路，适合居住的地方一定有投资前景，而适合投资之处也一定有适合它的居住人群。', NULL);
 
 -- ----------------------------
--- Table structure for cms_category_model
--- ----------------------------
-DROP TABLE IF EXISTS `cms_category_model`;
-CREATE TABLE `cms_category_model` (
-  `category_id` int(11) NOT NULL COMMENT '分类ID',
-  `model_id` varchar(20) NOT NULL COMMENT '模型编码',
-  `template_path` varchar(200) default NULL COMMENT '内容模板路径',
-  PRIMARY KEY  (`category_id`,`model_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='分类模型';
-
--- ----------------------------
 -- Records of cms_category_model
 -- ----------------------------
 INSERT INTO `cms_category_model` VALUES ('9', '1', '/system/article.html');

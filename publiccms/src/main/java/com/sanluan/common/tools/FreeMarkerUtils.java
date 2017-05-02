@@ -84,6 +84,8 @@ public class FreeMarkerUtils extends Base {
                     Writer out = new OutputStreamWriter(outputStream, DEFAULT_CHARSET);) {
                 t.process(model, out);
             }
+            destFile.setReadable(true, false);
+            destFile.setWritable(true, false);
             log.info(destFilePath + "    saved!");
         } else {
             log.error(destFilePath + "    already exists!");

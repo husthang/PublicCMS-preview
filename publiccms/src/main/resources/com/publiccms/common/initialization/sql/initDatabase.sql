@@ -752,7 +752,7 @@ CREATE TABLE `log_login` (
   `name` varchar(50) NOT NULL COMMENT '用户名',
   `user_id` bigint(20) default NULL COMMENT '用户ID',
   `ip` varchar(64) NOT NULL COMMENT 'IP',
-  `channel` varchar(50) NOT NULL default 'web' COMMENT '登陆渠道',
+  `channel` varchar(50) NOT NULL COMMENT '登陆渠道',
   `result` tinyint(1) NOT NULL COMMENT '结果',
   `create_date` datetime NOT NULL COMMENT '创建日期',
   `error_password` varchar(100) default NULL COMMENT '错误密码',

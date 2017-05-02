@@ -60,7 +60,6 @@ public class CmsUpgrader extends Base implements Json {
     public final static List<String> VERSION_LIST = Arrays
             .asList(new String[] { VERSION_20160423, VERSION_20160510, VERSION_20160828, VERSION_20170318 });
     private DataSource dataSource;
-    private String databaseType;
     private String version;
     private Properties properties;
 
@@ -70,8 +69,7 @@ public class CmsUpgrader extends Base implements Json {
      * @param version
      * @throws Exception
      */
-    public CmsUpgrader(String databaseType, DataSource dataSource, String version) throws Exception {
-        this.databaseType = databaseType;
+    public CmsUpgrader(DataSource dataSource, String version) throws Exception {
         this.dataSource = dataSource;
         properties = loadAllProperties(CMS_CONFIG_FILE);
         this.version = version;
@@ -142,6 +140,8 @@ public class CmsUpgrader extends Base implements Json {
                 modelMap.put(entity.getId(), entity);
                 try {
                     objectMapper.writeValue(file, modelMap);
+                    file.setReadable(true, false);
+                    file.setWritable(true, false);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -155,7 +155,7 @@ public class CmsUpgrader extends Base implements Json {
         runner.setErrorLogWriter(null);
         runner.setAutoCommit(true);
         try (InputStream inputStream = getClass()
-                .getResourceAsStream(databaseType + "/" + fromVersion + "-" + toVersion + ".sql");) {
+                .getResourceAsStream(fromVersion + "-" + toVersion + ".sql");) {
             runner.runScript(new InputStreamReader(inputStream, DEFAULT_CHARSET));
         }
         version = toVersion;

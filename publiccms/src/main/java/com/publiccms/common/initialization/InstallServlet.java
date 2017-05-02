@@ -40,7 +40,7 @@ import freemarker.template.TemplateException;
  * 
  */
 public class InstallServlet extends HttpServlet {
-    
+
     /**
      * 
      */
@@ -128,7 +128,7 @@ public class InstallServlet extends HttpServlet {
                 case STEP_INITDATABASE:
                     if (null != dataSource) {
                         try {
-                            map.put("history", install("mysql", null != request.getParameter("useSimple")));
+                            map.put("history", install(null != request.getParameter("useSimple")));
                             map.put("message", "success");
                         } catch (Exception e) {
                             map.put("message", "failed");
@@ -145,7 +145,7 @@ public class InstallServlet extends HttpServlet {
                         if (null != dataSource) {
                             CmsUpgrader upgrader = null;
                             try {
-                                upgrader = new CmsUpgrader("mysql", dataSource, fromVersion);
+                                upgrader = new CmsUpgrader(dataSource, fromVersion);
                                 upgrader.update();
                                 map.put("message", "success");
                             } catch (Exception e) {
@@ -194,7 +194,7 @@ public class InstallServlet extends HttpServlet {
         }
         sb.append("/");
         sb.append(database);
-        sb.append("?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=round&useSSL=true");
+        sb.append("?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=round&useSSL=false");
         dbconfigProperties.setProperty("jdbc.url", sb.toString());
         dbconfigProperties.setProperty("jdbc.username", username);
         dbconfigProperties.setProperty("jdbc.password", password);
@@ -203,16 +203,16 @@ public class InstallServlet extends HttpServlet {
         }
     }
 
-    private String install(String databaseType, boolean useSimple) throws SQLException, IOException {
+    private String install(boolean useSimple) throws SQLException, IOException {
         StringWriter stringWriter = new StringWriter();
         ScriptRunner runner = new ScriptRunner(dataSource.getConnection());
         runner.setLogWriter(null);
         runner.setErrorLogWriter(new PrintWriter(stringWriter));
         runner.setAutoCommit(true);
-        try (InputStream inputStream = getClass().getResourceAsStream(databaseType + "/createtables.sql");) {
+        try (InputStream inputStream = getClass().getResourceAsStream("sql/initDatabase.sql");) {
             runner.runScript(new InputStreamReader(inputStream, Base.DEFAULT_CHARSET));
             if (useSimple) {
-                try (InputStream simpleInputStream = getClass().getResourceAsStream(databaseType + "/simpledata.sql")) {
+                try (InputStream simpleInputStream = getClass().getResourceAsStream("sql/initDatabase.sql")) {
                     runner.runScript(new InputStreamReader(simpleInputStream, Base.DEFAULT_CHARSET));
                 }
             }

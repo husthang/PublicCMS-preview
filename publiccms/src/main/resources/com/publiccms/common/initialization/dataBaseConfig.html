@@ -19,7 +19,7 @@
 	<h1>欢迎使用PublicCMS</h1>
 <#if message?has_content&&'success'=message>
 	<h3>数据库信息配置正确</h3>
-	<#include "include/install_form.html"/>
+	<#include "install_form.html"/>
 <#else>
 	<h3>数据库信息配置错误</h3>
 	<p class="error">${error!}</p>

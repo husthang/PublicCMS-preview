@@ -94,6 +94,8 @@ public class ModelComponent extends Base implements SiteCache,Json {
         }
         try {
             objectMapper.writeValue(file, modelMap);
+            file.setReadable(true, false);
+            file.setWritable(true, false);
         } catch (IOException e) {
             return false;
         }

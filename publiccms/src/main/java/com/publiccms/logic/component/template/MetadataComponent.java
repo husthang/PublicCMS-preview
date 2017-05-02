@@ -224,6 +224,8 @@ public class MetadataComponent extends Base implements Cache, Json {
             file.getParentFile().mkdirs();
         }
         objectMapper.writeValue(file, metadataMap);
+        file.setReadable(true, false);
+        file.setWritable(true, false);
         pageCache.clear();
     }
 
@@ -243,6 +245,8 @@ public class MetadataComponent extends Base implements Cache, Json {
             file.getParentFile().mkdirs();
         }
         objectMapper.writeValue(file, metadataMap);
+        file.setReadable(true, false);
+        file.setWritable(true, false);
         placeCache.clear();
     }
 

@@ -22,7 +22,7 @@ import com.sanluan.common.base.Base;
 /**
  * 压缩/解压缩zip包处理类
  * 
- * ZipUtils 
+ * ZipUtils
  *
  */
 public class ZipUtils extends Base {
@@ -31,9 +31,9 @@ public class ZipUtils extends Base {
     }
 
     /**
-     * @param sourceFilePath 
+     * @param sourceFilePath
      * @param zipFilePath
-     * @return 
+     * @return
      * @throws IOException
      */
     public static boolean zip(String sourceFilePath, String zipFilePath) throws IOException {
@@ -56,6 +56,8 @@ public class ZipUtils extends Base {
                 zipFile.getParentFile().mkdirs();
                 try (ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(zipFile));) {
                     compress(Paths.get(sourceFilePath), zipOutputStream, BLANK);
+                    zipFile.setReadable(true, false);
+                    zipFile.setWritable(true, false);
                     return true;
                 }
             }
@@ -129,7 +131,7 @@ public class ZipUtils extends Base {
     /**
      * @param zipFilePath
      * @param targetPath
-     * @param overwrite 
+     * @param overwrite
      * @throws IOException
      */
     public static void unzip(String zipFilePath, String targetPath, boolean overwrite) throws IOException {

@@ -30,13 +30,15 @@ public class ThumbDirective extends AbstractTemplateDirective {
         if (notEmpty(path) && notEmpty(width) && notEmpty(height)) {
             String thumbPath = path.substring(0, path.lastIndexOf(DOT)) + "_" + width + "_" + height
                     + fileComponent.getSuffix(path);
-            String fulleThumbPath = siteComponent.getWebFilePath(site, thumbPath);
+            File thumbFile = new File(siteComponent.getWebFilePath(site, thumbPath));
             thumbPath = site.getSitePath() + thumbPath;
-            if ((new File(fulleThumbPath)).exists()) {
+            if (thumbFile.exists()) {
                 handler.print(thumbPath);
             } else {
                 try {
-                    Thumbnails.of(siteComponent.getWebFilePath(site, path)).size(width, height).toFile(fulleThumbPath);
+                    Thumbnails.of(siteComponent.getWebFilePath(site, path)).size(width, height).toFile(thumbFile);
+                    thumbFile.setReadable(true, false);
+                    thumbFile.setWritable(true, false);
                     handler.print(thumbPath);
                 } catch (IOException e) {
                     handler.print(site.getSitePath() + path);

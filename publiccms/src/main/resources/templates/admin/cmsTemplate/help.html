@@ -128,7 +128,7 @@
 					<a href="javascript:;">工具方法</a>
 					<ul>
 						<li><a href="javascript:;" <@getAction r'${getDate(.now,"thisSunday")}' '日期处理(参数1为日期，参数2[thisSunday:本周日,thisMonday:本周一,lastMonday:上周一,lastSunday:上周日]，少于两个参数输出当前时间)'/>>日期处理</a></li>
-						<li><a href="javascript:;" <@getAction r'${getDate(.now)}' '日期转数字(参数1为日期)'/>>日期转数字</a></li>
+						<li><a href="javascript:;" <@getAction r'${getDateNumber(.now)}' '日期转数字(参数1为日期)'/>>日期转数字</a></li>
 						<li><a href="javascript:;" <@getAction r'${getHtml(url,paramter)}' '获取远程文本内容(参数1为网址，参数2为参数组成的map或字符串消息体，参数2可以为空)'/>>获取远程文本内容</a></li>
 						<li><a href="javascript:;" <@getAction r'<#list getKeywords(word) as a>${a}<#sep>,</#list>' '获取文字中的关键词(参数1为字符串内容)'/>>获取文字中的关键词</a></li>
 						<li><a href="javascript:;" <@getAction r'${getMd5(value)}' '输出文本MD5加密结果(参数1为字符串)'/>>输出文本MD5加密结果</a></li>
