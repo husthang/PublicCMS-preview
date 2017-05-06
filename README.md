@@ -52,6 +52,6 @@ BUG修复:
 
 1. 删除cms_content_tag表及相关代码
 1. 界面修改、字体行距等调大
-1. 编辑器文件上传按钮Chrome下反应慢问题
-1. Linux文件读写权限由默认644改为666
+1. 将数据库配置文件位置改为数据目录下
+1. 将包名改为org.publiccms,将com.sanluan包独立到publiccms-common工程
 

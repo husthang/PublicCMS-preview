@@ -4,6 +4,8 @@ import static org.springframework.scheduling.quartz.SchedulerFactoryBean.PROP_TH
 
 import java.util.Properties;
 
+import org.publiccms.common.servlet.MultiSiteWebHttpRequestHandler;
+import org.publiccms.logic.component.site.SiteComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -11,9 +13,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
-
-import com.publiccms.common.servlet.MultiSiteWebHttpRequestHandler;
-import com.publiccms.logic.component.site.SiteComponent;
 
 /**
  * Cms根配置类

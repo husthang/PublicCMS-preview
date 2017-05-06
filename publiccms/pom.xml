@@ -6,12 +6,24 @@
 	<packaging>war</packaging>
 	<version>V2017.0412</version>
 	<parent>
-		<groupId>com.publiccms</groupId>
+		<groupId>org.publiccms</groupId>
 		<artifactId>publiccms-maven</artifactId>
 		<relativePath>../publiccms-maven/pom.xml</relativePath>
 		<version>1.0</version>
 	</parent>
 	<dependencies>
+		<dependency>
+			<groupId>com.publiccms</groupId>
+			<artifactId>publiccms-common</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- 商业版插件
+		<dependency>
+			<groupId>com.publiccms</groupId>
+			<artifactId>publiccms-improve</artifactId>
+			<version>V2017.0412</version>
+		</dependency>
+		-->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -69,10 +81,6 @@
 			<artifactId>lucene-analyzers-smartcn</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
 		</dependency>
@@ -121,10 +129,6 @@
 			<artifactId>cglib-nodep</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.ant</groupId>
-			<artifactId>ant</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 		</dependency>
@@ -132,11 +136,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis.generator</groupId>
-			<artifactId>mybatis-generator-core</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

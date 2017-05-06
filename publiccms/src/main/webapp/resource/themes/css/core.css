@@ -3,6 +3,8 @@
 /* Core Code */
 html, body, *{ padding:0;margin:0;font-size:12px;font-family:Arial, sans-serif;word-break:break-all;}
 input[type="checkbox"] { margin:5px;width:16px;height:16px;}
+.clearfix { *zoom: 1;}
+.clearfix:after {display:block; content:"."; height:0; clear:both; visibility:hidden;}
 /* Remember to define focus styles! */
 :focus{ outline:0;}
 body{ width:100%;height:100%;color:black;overflow:hidden;}

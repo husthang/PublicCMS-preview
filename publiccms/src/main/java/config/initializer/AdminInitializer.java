@@ -11,11 +11,11 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import org.springframework.web.util.IntrospectorCleanupListener;
 
-import com.sanluan.common.base.Base;
-import com.sanluan.common.servlet.ErrorToNotFoundDispatcherServlet;
+import com.publiccms.common.base.Base;
+import com.publiccms.common.servlet.ErrorToNotFoundDispatcherServlet;
+import com.publiccms.common.tools.LanguagesUtils;
 
 import config.spring.AdminConfig;
-import config.spring.ApplicationConfig;
 import config.spring.CmsConfig;
 
 /**
@@ -56,7 +56,7 @@ public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletI
 
     @Override
     protected DispatcherServlet createDispatcherServlet(WebApplicationContext servletAppContext) {
-        ApplicationConfig.webApplicationContext = servletAppContext;
+        LanguagesUtils.webApplicationContext = servletAppContext;
         return new ErrorToNotFoundDispatcherServlet(servletAppContext);
     }
 
