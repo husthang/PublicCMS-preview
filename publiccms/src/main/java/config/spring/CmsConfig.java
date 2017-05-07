@@ -4,7 +4,7 @@ import static org.springframework.scheduling.quartz.SchedulerFactoryBean.PROP_TH
 
 import java.util.Properties;
 
-import org.publiccms.common.servlet.MultiSiteWebHttpRequestHandler;
+import org.publiccms.common.servlet.WebFileHttpRequestHandler;
 import org.publiccms.logic.component.site.SiteComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +22,11 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
  */
 @Import(ApplicationConfig.class)
 public class CmsConfig {
+    /**
+     * 
+     */
+    public static String CMS_FILEPATH;
+    
     @Autowired
     private Environment env;
 
@@ -48,7 +53,7 @@ public class CmsConfig {
      */
     @Bean
     public HttpRequestHandler webfileServlet(SiteComponent siteComponent) {
-        MultiSiteWebHttpRequestHandler bean = new MultiSiteWebHttpRequestHandler(siteComponent);
+        WebFileHttpRequestHandler bean = new WebFileHttpRequestHandler(siteComponent);
         return bean;
     }
 

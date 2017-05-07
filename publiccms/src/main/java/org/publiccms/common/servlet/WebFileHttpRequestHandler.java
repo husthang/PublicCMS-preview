@@ -23,14 +23,14 @@ import com.publiccms.common.base.Base;
  * MultiSiteWebHttpRequestHandler
  * 
  */
-public class MultiSiteWebHttpRequestHandler extends ResourceHttpRequestHandler {
+public class WebFileHttpRequestHandler extends ResourceHttpRequestHandler {
     private UrlPathHelper urlPathHelper = new UrlPathHelper();
     private SiteComponent siteComponent;
 
     /**
      * @param siteComponent
      */
-    public MultiSiteWebHttpRequestHandler(SiteComponent siteComponent) {
+    public WebFileHttpRequestHandler(SiteComponent siteComponent) {
         this.siteComponent = siteComponent;
     }
 

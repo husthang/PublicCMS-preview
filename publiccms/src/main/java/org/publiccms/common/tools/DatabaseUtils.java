@@ -16,15 +16,14 @@ import org.publiccms.common.database.CmsDataSource;
  */
 public class DatabaseUtils {
 
-    public static Connection getConnection(String databaseConfiFile)
+    public static Connection getConnection(String databaseConfigFile)
             throws SQLException, IOException, PropertyVetoException, ClassNotFoundException {
-        Properties dbconfigProperties = CmsDataSource.loadDatabaseConfig(databaseConfiFile);
+        Properties dbconfigProperties = CmsDataSource.loadDatabaseConfig(databaseConfigFile);
         String driverClassName = dbconfigProperties.getProperty("jdbc.driverClassName");
         String url = dbconfigProperties.getProperty("jdbc.url");
         String userName = dbconfigProperties.getProperty("jdbc.username");
         String password = dbconfigProperties.getProperty("jdbc.password");
-        Connection connection = getConnection(driverClassName, url, userName, password);
-        return connection;
+        return getConnection(driverClassName, url, userName, password);
     }
 
     public static Connection getConnection(String driverClassName, String url, String userName, String password)

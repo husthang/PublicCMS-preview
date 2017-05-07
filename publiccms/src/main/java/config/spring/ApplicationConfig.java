@@ -1,6 +1,7 @@
 package config.spring;
 
 import static config.initializer.InitializationInitializer.CMS_CONFIG_FILE;
+import static config.spring.CmsConfig.CMS_FILEPATH;
 import static java.lang.Integer.parseInt;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
@@ -57,6 +58,7 @@ import com.publiccms.common.cache.CacheEntityFactory;
 @EnableTransactionManagement
 @EnableScheduling
 public class ApplicationConfig extends Base {
+
     @Autowired
     private Environment env;
 
@@ -70,7 +72,7 @@ public class ApplicationConfig extends Base {
      */
     @Bean
     public DataSource dataSource() throws PropertyVetoException {
-        CmsDataSource bean = new CmsDataSource(getDirPath("")+DATABASE_CONFIG_FILENAME);
+        CmsDataSource bean = new CmsDataSource(getDirPath("") + DATABASE_CONFIG_FILENAME);
         return bean;
     }
 
@@ -257,7 +259,7 @@ public class ApplicationConfig extends Base {
     }
 
     private String getDirPath(String path) {
-        String filePath = env.getProperty("cms.filePath") + path;
+        String filePath = CMS_FILEPATH + path;
         File dir = new File(filePath);
         dir.mkdirs();
         return dir.getAbsolutePath();

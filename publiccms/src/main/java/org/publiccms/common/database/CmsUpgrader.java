@@ -1,5 +1,6 @@
 package org.publiccms.common.database;
 
+import static config.spring.CmsConfig.CMS_FILEPATH;
 import static org.publiccms.logic.component.site.SiteComponent.MODEL_FILE;
 import static org.publiccms.logic.component.site.SiteComponent.SITE_PATH_PREFIX;
 import static org.publiccms.logic.component.site.SiteComponent.TEMPLATE_PATH;
@@ -62,6 +63,7 @@ public class CmsUpgrader extends Base implements Json {
             .asList(new String[] { VERSION_20160423, VERSION_20160510, VERSION_20160828, VERSION_20170318 });
     private Connection connection;
     private String version;
+    @SuppressWarnings("unused")
     private Properties config;
 
     /**
@@ -100,7 +102,7 @@ public class CmsUpgrader extends Base implements Json {
                 ResultSet rs = statement.executeQuery("select * from cms_model");) {
             while (rs.next()) {
                 CmsModel entity = new CmsModel();
-                String filePath = config.getProperty("cms.filePath") + SEPARATOR + TEMPLATE_PATH + SEPARATOR + SITE_PATH_PREFIX
+                String filePath = CMS_FILEPATH + SEPARATOR + TEMPLATE_PATH + SEPARATOR + SITE_PATH_PREFIX
                         + rs.getString("site_id") + SEPARATOR + MODEL_FILE;
                 File file = new File(filePath);
                 file.getParentFile().mkdirs();

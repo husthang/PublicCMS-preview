@@ -6,7 +6,7 @@ import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.split;
 import static org.apache.commons.logging.LogFactory.getLog;
 import static org.publiccms.common.base.AbstractFreemarkerView.exposeAttribute;
-import static org.publiccms.common.servlet.MultiSiteDispatcherServlet.GLOBLE_URL_PREFIX;
+import static org.publiccms.common.servlet.WebDispatcherServlet.GLOBLE_URL_PREFIX;
 import static org.publiccms.logic.component.template.TemplateCacheComponent.CACHE_VAR;
 
 import java.io.File;

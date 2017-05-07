@@ -1,7 +1,9 @@
 package org.publiccms.common.servlet;
 
 import static config.initializer.InitializationInitializer.INSTALL_LOCK_FILENAME;
+import static config.spring.CmsConfig.CMS_FILEPATH;
 import static org.apache.commons.io.FileUtils.writeStringToFile;
+import static org.apache.commons.logging.LogFactory.getLog;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_TEMPLATE;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
@@ -27,6 +29,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.publiccms.common.constants.CmsVersion;
 import org.publiccms.common.database.CmsDataSource;
@@ -69,6 +72,9 @@ public class InstallServlet extends HttpServlet {
      *
      */
     public static final String STEP_START = "start";
+
+    private final Log log = getLog(getClass());
+
     private Connection connection;
     private freemarker.template.Configuration freemarkerConfiguration;
     private String startStep;
@@ -116,7 +122,7 @@ public class InstallServlet extends HttpServlet {
                         dbconfig.setProperty("jdbc.username", request.getParameter("username"));
                         dbconfig.setProperty("jdbc.password", request.getParameter("password"));
 
-                        String databaseConfiFile = config.getProperty("cms.filePath") + DATABASE_CONFIG_FILENAME;
+                        String databaseConfiFile = CMS_FILEPATH + DATABASE_CONFIG_FILENAME;
                         File file = new File(databaseConfiFile);
                         try (FileOutputStream fos = new FileOutputStream(file)) {
                             dbconfig.store(fos, null);
@@ -138,7 +144,7 @@ public class InstallServlet extends HttpServlet {
                     break;
                 case STEP_CHECKDATABASE:
                     try {
-                        String databaseConfiFile = config.getProperty("cms.filePath") + DATABASE_CONFIG_FILENAME;
+                        String databaseConfiFile = CMS_FILEPATH + DATABASE_CONFIG_FILENAME;
                         connection = getConnection(databaseConfiFile);
                         map.put("message", "success");
                     } catch (PropertyVetoException | SQLException | ClassNotFoundException e) {
@@ -229,10 +235,11 @@ public class InstallServlet extends HttpServlet {
     private void start() throws IOException, PropertyVetoException {
         CmsVersion.setInitialized(true);
         CmsDataSource.initDefautlDataSource();
-        File file = new File(config.getProperty("cms.filePath") + INSTALL_LOCK_FILENAME);
+        File file = new File(CMS_FILEPATH + INSTALL_LOCK_FILENAME);
         writeStringToFile(file, CmsVersion.getVersion(), Base.DEFAULT_CHARSET);
         file.setReadable(true, false);
         file.setWritable(true, false);
+        log.info("PublicCMS " + CmsVersion.getVersion() + " started!");
     }
 
     private void render(String step, Map<String, Object> model, HttpServletResponse response) {

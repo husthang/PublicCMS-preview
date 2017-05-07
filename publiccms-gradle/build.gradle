@@ -91,6 +91,8 @@ project(':publiccms') {
 		compile project(':publiccms-common')
 		// compile project(':publiccms-improve') //商业版插件
 	    compile (
+	    	// http://mvnrepository.com/artifact/redis.clients/jedis
+	        // "redis.clients:jedis:2.9.0",  //商业版插件
 	        // http://mvnrepository.com/artifact/commons-io/commons-io
 	        "commons-io:commons-io:2.5",
 	        // http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload

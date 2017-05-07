@@ -1,5 +1,6 @@
 package config.initializer;
 
+import static config.spring.CmsConfig.CMS_FILEPATH;
 import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
 import static org.publiccms.common.servlet.InstallServlet.STEP_CHECKDATABASE;
@@ -46,6 +47,7 @@ public class InitializationInitializer extends Base implements WebApplicationIni
         Connection connection = null;
         try {
             config = loadAllProperties(CMS_CONFIG_FILE);
+            CMS_FILEPATH = System.getProperty("cms.filePath", config.getProperty("cms.filePath"));
             if ("true".equalsIgnoreCase(config.getProperty("cms.proxy.enable", "false"))) {
                 Properties proxyProperties = loadAllProperties("cms.proxy.configFilePath");
                 for (String key : proxyProperties.stringPropertyNames()) {
@@ -53,18 +55,23 @@ public class InitializationInitializer extends Base implements WebApplicationIni
                 }
                 Authenticator.setDefault(new UsernamePasswordAuthenticator("cms.proxy.userName", "cms.proxy.password"));
             }
-            connection = getConnection(config.getProperty("cms.filePath") + DATABASE_CONFIG_FILENAME);
-            connection.close();
-            File file = new File(config.getProperty("cms.filePath") + INSTALL_LOCK_FILENAME);
+            File file = new File(CMS_FILEPATH + INSTALL_LOCK_FILENAME);
             if (file.exists()) {
+                connection = getConnection(CMS_FILEPATH + DATABASE_CONFIG_FILENAME);
+                connection.close();
                 String version = readFileToString(file, DEFAULT_CHARSET);
                 if (CmsVersion.getVersion().equals(version)) {
                     CmsVersion.setInitialized(true);
+                    log.info("PublicCMS " + CmsVersion.getVersion() + " will start normally in " + CMS_FILEPATH);
                 } else {
                     createInstallServlet(servletcontext, config, STEP_CHECKDATABASE, version);
+                    log.warn("PublicCMS " + CmsVersion.getVersion() + " installer will start in " + CMS_FILEPATH
+                            + ", please upgrade your database!");
                 }
             } else {
-                createInstallServlet(servletcontext, config, STEP_CHECKDATABASE, null);
+                createInstallServlet(servletcontext, config, null, null);
+                log.warn("PublicCMS " + CmsVersion.getVersion() + " installer will start in " + CMS_FILEPATH
+                        + ", please configure your database information and initialize the database!");
             }
         } catch (PropertyVetoException | SQLException | IOException | ClassNotFoundException e) {
             if (null != connection) {
@@ -74,6 +81,8 @@ public class InitializationInitializer extends Base implements WebApplicationIni
                 }
             }
             createInstallServlet(servletcontext, config, null, null);
+            log.warn("PublicCMS " + CmsVersion.getVersion() + " installer will start in " + CMS_FILEPATH
+                    + ", please modify your database configuration!");
         }
     }
 

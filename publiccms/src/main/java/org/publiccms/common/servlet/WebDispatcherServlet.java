@@ -21,7 +21,7 @@ import com.publiccms.common.servlet.ErrorToNotFoundDispatcherServlet;
  * MultiSiteDispatcherServlet 多站点
  *
  */
-public class MultiSiteDispatcherServlet extends ErrorToNotFoundDispatcherServlet {
+public class WebDispatcherServlet extends ErrorToNotFoundDispatcherServlet {
     private SiteComponent siteComponent;
     /**
      * 
@@ -45,7 +45,7 @@ public class MultiSiteDispatcherServlet extends ErrorToNotFoundDispatcherServlet
     /**
      * @param webApplicationContext
      */
-    public MultiSiteDispatcherServlet(WebApplicationContext webApplicationContext) {
+    public WebDispatcherServlet(WebApplicationContext webApplicationContext) {
         super(webApplicationContext);
     }
 

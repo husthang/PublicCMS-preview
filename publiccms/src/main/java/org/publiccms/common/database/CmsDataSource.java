@@ -3,6 +3,7 @@ package org.publiccms.common.database;
 import static java.lang.Integer.parseInt;
 
 import java.beans.PropertyVetoException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -47,6 +48,12 @@ public class CmsDataSource extends MultiDataSource {
 
     public static Properties loadDatabaseConfig(String configFilePath) throws FileNotFoundException, IOException {
         Properties properties = new Properties();
+        File file = new File(configFilePath);
+        if (!file.exists()) {
+            file.createNewFile();
+            file.setReadable(true, false);
+            file.setWritable(true, false);
+        }
         try (FileInputStream fis = new FileInputStream(configFilePath)) {
             properties.load(fis);
         }
