@@ -4,6 +4,7 @@
 	<parent>
 		<groupId>org.publiccms</groupId>
 		<artifactId>publiccms-maven</artifactId>
+		<relativePath>../publiccms-maven/pom.xml</relativePath>
 		<version>1.0</version>
 	</parent>
 	<groupId>com.publiccms</groupId>
