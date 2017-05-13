@@ -29,6 +29,12 @@ https://git.oschina.net/sanluan/PublicCMS-lib
 1. Jackson 2.8.8
 1. Spring 4.3.8.RELEASE
 1. Spring Boot 1.5.3.RELEASE
+1. Quartz 2.3.0
+1. lucene 5.5.4
+1. Hibernate 5.1.6.Final
+1. Hibernate Search 5.6.1.Final
+1. Mybatis 3.4.4
+1. C3p0 0.9.5.2
 
 BUGÐÞ¸´:
 

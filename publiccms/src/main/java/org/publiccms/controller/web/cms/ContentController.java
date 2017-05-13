@@ -101,7 +101,7 @@ public class ContentController extends AbstractController {
         SysUser user = getUserFromSession(session);
         CmsCategoryModel categoryModel = categoryModelService
                 .getEntity(new CmsCategoryModelId(entity.getCategoryId(), entity.getModelId()));
-        if (verifyNotEmpty("categoryModel", categoryModel, model)) {
+        if (verifyNotEmpty("categoryModel", categoryModel, model) || verifyCustom("contribute", null == user, model)) {
             redirect(response, returnUrl);
             return;
         }

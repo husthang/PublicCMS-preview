@@ -65,7 +65,7 @@ public class CmsContent implements java.io.Serializable {
     @Field
     private String title;
     @GeneratorColumn(title = "发布用户", condition = true)
-    private long userId;
+    private Long userId;
     @GeneratorColumn(title = "审核用户", condition = true)
     private Long checkUserId;
     @GeneratorColumn(title = "分类", condition = true)
@@ -129,12 +129,11 @@ public class CmsContent implements java.io.Serializable {
     public CmsContent() {
     }
 
-    public CmsContent(int siteId, String title, long userId, int categoryId, String modelId, boolean copied, boolean onlyUrl,
+    public CmsContent(int siteId, String title, int categoryId, String modelId, boolean copied, boolean onlyUrl,
             boolean hasImages, boolean hasFiles, boolean hasStatic, int childs, int scores, int comments, int clicks,
             Date publishDate, Date createDate, int status, boolean disabled) {
         this.siteId = siteId;
         this.title = title;
-        this.userId = userId;
         this.categoryId = categoryId;
         this.modelId = modelId;
         this.copied = copied;
@@ -152,7 +151,7 @@ public class CmsContent implements java.io.Serializable {
         this.disabled = disabled;
     }
 
-    public CmsContent(int siteId, String title, long userId, Long checkUserId, int categoryId, String modelId, Long parentId,
+    public CmsContent(int siteId, String title, Long userId, Long checkUserId, int categoryId, String modelId, Long parentId,
             boolean copied, String author, String editor, boolean onlyUrl, boolean hasImages, boolean hasFiles, boolean hasStatic,
             String url, String description, String tagIds, String cover, int childs, int scores, int comments, int clicks,
             Date publishDate, Date createDate, int status, boolean disabled) {
@@ -214,12 +213,12 @@ public class CmsContent implements java.io.Serializable {
         this.title = title;
     }
 
-    @Column(name = "user_id", nullable = false)
-    public long getUserId() {
+    @Column(name = "user_id")
+    public Long getUserId() {
         return this.userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

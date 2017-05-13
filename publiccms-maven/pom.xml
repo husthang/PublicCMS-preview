@@ -6,6 +6,7 @@
 	<packaging>pom</packaging>
 	<version>1.0</version>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<!-- http://projects.spring.io/spring-framework/ -->
 		<version.spring>4.3.8.RELEASE</version.spring>
@@ -15,10 +16,23 @@
 		<!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<version.jackson>2.8.8</version.jackson>
 		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-		<version.hibernate>5.1.3.Final</version.hibernate>
+		<!-- http://hibernate.org/orm/downloads/ -->
+		<version.hibernate>5.1.6.Final</version.hibernate>
 		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-search -->
-		<version.hibernateSearch>5.5.6.Final</version.hibernateSearch>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- http://hibernate.org/search/downloads/ -->
+		<version.hibernateSearch>5.6.1.Final</version.hibernateSearch>
+		<!-- http://mvnrepository.com/artifact/org.freemarker/freemarker -->
+		<version.freemarker>2.3.26-incubating</version.freemarker>
+		<!-- http://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<version.mybatis>3.4.4</version.mybatis>
+		<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-smartcn -->
+		<version.lucene>5.5.4</version.lucene>
+		<!-- http://mvnrepository.com/artifact/redis.clients/jedis -->
+		<version.jedis>2.9.0</version.jedis>
+		<!-- http://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<version.quartz>2.3.0</version.quartz>
+		<!-- http://mvnrepository.com/artifact/com.mchange/c3p0 -->
+		<version.c3p0>0.9.5.2</version.c3p0>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -52,11 +66,10 @@
 				<artifactId>commons-lang3</artifactId>
 				<version>3.5</version>
 			</dependency>
-			<!-- http://mvnrepository.com/artifact/org.freemarker/freemarker -->
 			<dependency>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
-				<version>2.3.26-incubating</version>
+				<version>${version.freemarker}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -73,11 +86,10 @@
 				<artifactId>spring-webmvc</artifactId>
 				<version>${version.spring}</version>
 			</dependency>
-			<!-- http://mvnrepository.com/artifact/org.mybatis/mybatis -->
 			<dependency>
 				<groupId>org.mybatis</groupId>
 				<artifactId>mybatis</artifactId>
-				<version>3.4.2</version>
+				<version>${version.mybatis}</version>
 			</dependency>
 			<!-- http://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 			<dependency>
@@ -100,23 +112,20 @@
 				<artifactId>hibernate-search-orm</artifactId>
 				<version>${version.hibernateSearch}</version>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-smartcn -->
 			<dependency>
 				<groupId>org.apache.lucene</groupId>
 				<artifactId>lucene-analyzers-smartcn</artifactId>
-				<version>5.3.1</version>
+				<version>${version.lucene}</version>
 			</dependency>
-			<!-- http://mvnrepository.com/artifact/redis.clients/jedis -->
 			<dependency>
 				<groupId>redis.clients</groupId>
 				<artifactId>jedis</artifactId>
-				<version>2.9.0</version>
+				<version>${version.jedis}</version>
 			</dependency>
-			<!-- http://mvnrepository.com/artifact/c3p0/c3p0 -->
 			<dependency>
-				<groupId>c3p0</groupId>
+				<groupId>com.mchange</groupId>
 				<artifactId>c3p0</artifactId>
-				<version>0.9.1.2</version>
+				<version>${version.c3p0}</version>
 			</dependency>
 			<!-- http://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 			<dependency>
@@ -186,11 +195,10 @@
 				<artifactId>ant</artifactId>
 				<version>1.9.9</version>
 			</dependency>
-			<!-- http://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
 				<artifactId>quartz</artifactId>
-				<version>2.2.3</version>
+				<version>${version.quartz}</version>
 			</dependency>
 			<!-- http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 			<dependency>
