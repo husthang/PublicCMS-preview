@@ -140,6 +140,7 @@ project(':publiccms') {
 	        "org.hibernate:hibernate-core:${hibernateVersion}",
 	        "org.hibernate:hibernate-search-orm:${hibernateSearchVersion}",
 	        "org.apache.lucene:lucene-analyzers-smartcn:${luceneVersion}",
+	        "org.apache.lucene:lucene-backward-codecs:${luceneVersion}",
 
 	        "com.mchange:c3p0:${c3p0Version}",
 	        // http://mvnrepository.com/artifact/mysql/mysql-connector-java

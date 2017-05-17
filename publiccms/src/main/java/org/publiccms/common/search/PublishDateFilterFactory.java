@@ -15,6 +15,7 @@ import org.hibernate.search.filter.impl.CachingWrapperFilter;
  * PublishDateFilterFactory
  * 
  */
+@SuppressWarnings("deprecation")
 public class PublishDateFilterFactory {
     private Date publishDate;
 

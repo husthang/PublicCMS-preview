@@ -12,6 +12,7 @@ import org.hibernate.search.filter.impl.CachingWrapperFilter;
  * SiteIdFilterFactory
  * 
  */
+@SuppressWarnings("deprecation")
 public class SiteIdFilterFactory {
     private Integer siteId;
 
