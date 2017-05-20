@@ -16,14 +16,14 @@ public class CmsVersion {
      * @return
      */
     public static final String getVersion() {
-        return "V2017.0318";
+        return "V2017.0520";
     }
 
     /**
      * @return
      */
     public static boolean isPreview() {
-        return true;
+        return false;
     }
 
     /**

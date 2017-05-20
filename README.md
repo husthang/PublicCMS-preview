@@ -1,5 +1,11 @@
 # PublicCMS 2017 Preview
 
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=89ffe8cd3abc04f6794965a330b0a278fdbc31f53e46fd5ee1c4f54ed43a6b28"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="Public CMS-开源JAVACMS 1群" title="Public CMS-开源JAVACMS 1群"></a> <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=088c921c4eb74328eef0192bac1e63c7228eb31b0524a373d40cdd907ddd2d3c"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="Public CMS-开源JAVACMS 2群" title="Public CMS-开源JAVACMS 2群"></a>
+
+## 简介
+
+PublicCMS是采用2017年最新主流技术开发的免费开源JAVACMS系统。架构科学，轻松支持上千万数据、千万PV；支持全站静态化，SSI，动态页面局部静态化等为您快速建站，建设大规模站点提供强大驱动，也是企业级项目产品原型的良好选择。
+
 ## 获取可运行程序
 
 https://git.oschina.net/sanluan/PublicCMS-war
@@ -47,6 +53,9 @@ BUG修复:
 1. 删除分类后父分类childIds不为空错误
 1. 模板帮助getDateNumber错误
 1. 分类类型删除提示有分类已使用错误
+1. Chrome浏览器上传文件按钮反应延迟
+1. 500错误页面报错信息不支持Throwable类型
+1. 我的登陆日志不能过滤成功登陆类型
 
 新增功能:
 
@@ -61,4 +70,6 @@ BUG修复:
 1. 界面修改、字体行距等调大
 1. 将数据库配置文件位置改为数据目录下
 1. 将包名改为org.publiccms,将com.sanluan包独立到publiccms-common工程
-
+1. 统计代码清理
+1. 取消cms.autoInstall配置文件项
+1. 将数据库配置文件改到数据目录中

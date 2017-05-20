@@ -1,4 +1,4 @@
-package com.sanluan.common.generator;
+package com.publiccms.common.generator;
 
 import static com.publiccms.common.tools.FreeMarkerUtils.generateFileByFile;
 import static com.publiccms.common.tools.ScanClassUtils.getClasses;
@@ -19,8 +19,8 @@ import java.util.Set;
 
 import com.publiccms.common.base.Base;
 import com.publiccms.common.generator.annotation.GeneratorColumn;
-import com.sanluan.common.generator.entity.EntityColumn;
-import com.sanluan.common.generator.entity.EntityCondition;
+import com.publiccms.common.generator.entity.EntityColumn;
+import com.publiccms.common.generator.entity.EntityCondition;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -245,7 +245,7 @@ public class SourceGenerator extends Base {
      */
     public SourceGenerator() throws IOException {
         config = new freemarker.template.Configuration(Configuration.getVersion());
-        config.setDirectoryForTemplateLoading(new File("src/test/resources/com/sanluan/common/generator/"));
+        config.setDirectoryForTemplateLoading(new File("src/test/resources/generator/"));
         config.setDefaultEncoding("utf-8");
     }
 

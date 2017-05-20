@@ -107,7 +107,7 @@ project(':publiccms') {
 	delete this line for spring boot */
 
 	group = 'org.publiccms'
-	version = "V2017.0412"
+	version = "V2017.0520"
 
 	dependencies {
 		compile project(':publiccms-common')

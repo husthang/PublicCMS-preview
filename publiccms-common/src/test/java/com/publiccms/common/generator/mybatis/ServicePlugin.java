@@ -3,7 +3,7 @@
  * @Email: 442559691@qq.com
  */
 
-package com.sanluan.common.generator.mybatis;
+package com.publiccms.common.generator.mybatis;
 
 import java.util.ArrayList;
 import java.util.List;

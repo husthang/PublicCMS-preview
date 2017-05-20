@@ -33,11 +33,11 @@ import com.publiccms.common.proxy.UsernamePasswordAuthenticator;
  */
 public class InitializationInitializer extends Base implements WebApplicationInitializer {
     /**
-     * 
+     * 配置文件
      */
     public static final String CMS_CONFIG_FILE = "cms.properties";
     /**
-     * 主键策略
+     * 安装锁
      */
     public static final String INSTALL_LOCK_FILENAME = "/install.lock";
 
@@ -53,7 +53,7 @@ public class InitializationInitializer extends Base implements WebApplicationIni
                 for (String key : proxyProperties.stringPropertyNames()) {
                     System.setProperty(key, proxyProperties.getProperty(key));
                 }
-                Authenticator.setDefault(new UsernamePasswordAuthenticator("cms.proxy.userName", "cms.proxy.password"));
+                Authenticator.setDefault(new UsernamePasswordAuthenticator(config.getProperty("cms.proxy.userName"), config.getProperty("cms.proxy.password")));
             }
             File file = new File(CMS_FILEPATH + INSTALL_LOCK_FILENAME);
             if (file.exists()) {

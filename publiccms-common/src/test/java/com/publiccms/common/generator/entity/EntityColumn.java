@@ -1,4 +1,4 @@
-package com.sanluan.common.generator.entity;
+package com.publiccms.common.generator.entity;
 
 /**
  *

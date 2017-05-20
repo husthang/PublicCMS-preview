@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>publiccms</artifactId>
 	<packaging>war</packaging>
-	<version>V2017.0412</version>
+	<version>V2017.0520</version>
 	<parent>
 		<groupId>org.publiccms</groupId>
 		<artifactId>publiccms-maven</artifactId>
