@@ -78,7 +78,9 @@ $(function(){
 	</#list>
 </@_sysMoudleList>
 	<@_masterSite>
-		<li><a href="sysSite/menu.html"><i class="icon-sitemap icon-large"></i> 站点</a></li>
+		<@_sysAuthorized roleIds=admin.roles url='sysSite/menu'>
+			<li><a href="sysSite/menu.html"><i class="icon-sitemap icon-large"></i> 站点</a></li>
+		</@_sysAuthorized>
 	</@_masterSite>
 	</ul>
 	<script>$('#navMenu li:eq(0)').addClass("selected");</script>
@@ -119,7 +121,7 @@ $(function(){
 	</div>
 </main>
 <footer>
-	Copyright &copy; ${.now?string('yyyy')}
+	<@_version><#if businessEdition>商业版授权</#if></@_version> Copyright &copy; ${.now?string('yyyy')}
 	<ul class="themeList" id="themeList">
 		<li theme="azure"><div class="selected">天蓝</div></li>
 		<li theme="silver"><div>银色</div></li>

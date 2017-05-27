@@ -6,6 +6,10 @@
 
 PublicCMS是采用2017年最新主流技术开发的免费开源JAVACMS系统。架构科学，轻松支持上千万数据、千万PV；支持全站静态化，SSI，动态页面局部静态化等为您快速建站，建设大规模站点提供强大驱动，也是企业级项目产品原型的良好选择。
 
+## 视频、文档及windows一键运行包下载
+
+http://pan.baidu.com/s/1eSG6l5S
+
 ## 获取可运行程序
 
 https://git.oschina.net/sanluan/PublicCMS-war
@@ -17,59 +21,23 @@ https://git.oschina.net/sanluan/PublicCMS
 https://github.com/sanluan/PublicCMS
 https://code.csdn.net/zyyy358/publiccms
 
-## 参与研发(预览版)
+## 参与研发
 
 https://git.oschina.net/sanluan/PublicCMS-preview
 https://github.com/sanluan/PublicCMS-preview
 
-## 相关下载及文档(知识库)
+## 贡献文档
 
 https://github.com/sanluan/PublicCMS-lib
 https://git.oschina.net/sanluan/PublicCMS-lib
 
 ### 预览版更新
 
-框架升级:
-
-1. Freemarker 2.3.26-incubating
-1. Jackson 2.8.8
-1. Spring 4.3.8.RELEASE
-1. Spring Boot 1.5.3.RELEASE
-1. Quartz 2.3.0
-1. lucene 5.5.4
-1. Hibernate 5.1.6.Final
-1. Hibernate Search 5.6.1.Final
-1. Mybatis 3.4.4
-1. C3p0 0.9.5.2
-
 BUG修复:
 
-1. CMS部署路径有空格时配置错误
-1. 导入数据库脚本乱码
-1. 内容列表没有子内容模型新建按钮
-1. 网站文件列表中查看文件路径错误
-1. 高版本Mysql打印警告信息修复
-1. 推荐位匿名投稿错误
-1. 删除分类后父分类childIds不为空错误
-1. 模板帮助getDateNumber错误
-1. 分类类型删除提示有分类已使用错误
-1. Chrome浏览器上传文件按钮反应延迟
-1. 500错误页面报错信息不支持Throwable类型
-1. 我的登陆日志不能过滤成功登陆类型
-
-新增功能:
-
-1. 前台推荐位投稿管理
-1. 内容投稿
-1. 内容投稿模板帮助
-1. 启动命令指定数据目录位置
-
-其他提升:
-
-1. 删除cms_content_tag表及相关代码
-1. 界面修改、字体行距等调大
-1. 将数据库配置文件位置改为数据目录下
-1. 将包名改为org.publiccms,将com.sanluan包独立到publiccms-common工程
-1. 统计代码清理
-1. 取消cms.autoInstall配置文件项
-1. 将数据库配置文件改到数据目录中
+1. 指令获取数组，参数为空字符串时报错问题修复
+1. 分类查询可能产生空指针问题修复
+1. 模块非菜单隐藏问题修复
+1. 分类设置前台隐藏导致后台也隐藏问题修复
+1. 增加商业版本认证和标识
+1. maven配置工程后，提示库URI冲突问题修复

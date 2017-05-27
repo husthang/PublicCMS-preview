@@ -20,6 +20,7 @@ public class VersionDirective extends AbstractTemplateDirective {
     public void execute(RenderHandler handler) throws IOException, Exception {
         handler.put("cms", CmsVersion.getVersion());
         handler.put("preview", CmsVersion.isPreview());
+        handler.put("businessEdition", CmsVersion.isBusinessEdition());
         handler.put("cluster", CmsVersion.getClusterId());
         handler.put("master", CmsVersion.isMaster());
         handler.render();
