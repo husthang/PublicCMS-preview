@@ -1,4 +1,4 @@
-maven(使用以下文件：pom.xml)
+maven(使用以下文件：.mvn,pom.xml,mvnw,mvnw.cmd)
 
 清空 ：clean
 打包 ：install
@@ -10,7 +10,7 @@ maven(使用以下文件：pom.xml)
 配置idea工程 ：idea:idea
 运行工程：jetty:run
 
-gradle(使用以下文件：gradle,settings.gradle,build.gradle,gradlew.bat,gradlew)
+gradle(使用以下文件：gradle,settings.gradle,build.gradle,gradlew,gradlew.bat)
 
 清空 ：clean
 打包 ：war
