@@ -22,8 +22,8 @@
 				<input name="ownsAllRight" type="checkbox" onclick="if($(this).is(':checked')){$('.ownsAllRight',navTab.getCurrentPanel()).hide();}else{$('.ownsAllRight').show();}"/>
 			</dd>
 		</dl>
-<#macro moudleTree parentId>
-	<@_sysMoudleList parentId=parentId menu=true>
+<#macro moudleTree parentId=''>
+	<@_sysMoudleList parentId=parentId advanced=true>
 		<#if page.totalCount gt 0>
 			<ul>
 				<#list page.list as a>
@@ -44,19 +44,10 @@
 					<input name="showAllMoudle" type="checkbox"/>
 				</dd>
 			</dl>
-			<ul class="tree treeFolder treeCheck expand">
+			<ul class="tree treeFolder treeCheck">
 				<li>
 					<a href="javascript:;" onclick="return false;">所有模块</a>
-					<ul>
-				<@_sysMoudleList menu=true>
-					<#list page.list as a>
-						<li>
-							<a tname="moudleIds" tvalue="${a.id}">${a.name}</a>
-							<@moudleTree a.id/>
-						</li>
-					</#list>
-				</@_sysMoudleList>
-					</ul>
+					<@moudleTree/>
 				</li>
 			</ul>
 <#if a??>
