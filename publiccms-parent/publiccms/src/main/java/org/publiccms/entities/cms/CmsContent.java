@@ -65,6 +65,8 @@ public class CmsContent implements java.io.Serializable {
     @Field
     private String title;
     @GeneratorColumn(title = "发布用户", condition = true)
+    @Field(analyze = Analyze.NO)
+    @Facet(encoding = FacetEncodingType.STRING)
     private Long userId;
     @GeneratorColumn(title = "审核用户", condition = true)
     private Long checkUserId;

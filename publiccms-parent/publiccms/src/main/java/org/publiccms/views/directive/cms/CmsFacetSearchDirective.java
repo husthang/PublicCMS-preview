@@ -32,18 +32,21 @@ public class CmsFacetSearchDirective extends AbstractTemplateDirective {
             if (notEmpty(word)) {
                 statisticsComponent.search(site.getId(), word);
             }
-            if (notEmpty(tagId)) {
-                try {
-                    statisticsComponent.searchTag(Long.parseLong(tagId));
-                } catch (NumberFormatException e) {
+            String[] tagIds = handler.getStringArray("tagId");
+            if (notEmpty(tagIds)) {
+                for (String id : tagIds) {
+                    try {
+                        statisticsComponent.searchTag(Long.parseLong(id));
+                    } catch (NumberFormatException e) {
+                    }
                 }
             }
             PageHandler page;
             Integer pageIndex = handler.getInteger("pageIndex", 1);
             Integer count = handler.getInteger("count", 30);
             try {
-                page = service.facetQuery(site.getId(), handler.getString("categoryId"), handler.getString("modelId"), word,
-                        tagId, pageIndex, count);
+                page = service.facetQuery(site.getId(), handler.getStringArray("categoryId"), handler.getStringArray("modelId"),
+                        handler.getStringArray("userId"), word, tagId, pageIndex, count);
             } catch (Exception e) {
                 page = new FacetPageHandler(pageIndex, count, 0, null);
             }

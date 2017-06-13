@@ -312,7 +312,7 @@
 	<modules>
 		<!-- 商业版插件
 		<module>publiccms-improve</module>
-		-->
+		商业版插件 -->
 		<module>publiccms</module>
 		<module>publiccms-common</module>
 	</modules>

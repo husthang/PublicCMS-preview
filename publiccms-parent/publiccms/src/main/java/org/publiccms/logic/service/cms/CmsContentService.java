@@ -33,7 +33,7 @@ import com.publiccms.common.handler.PageHandler;
 @Service
 @Transactional
 public class CmsContentService extends BaseService<CmsContent> {
-    
+
     /**
      * 
      */
@@ -62,8 +62,9 @@ public class CmsContentService extends BaseService<CmsContent> {
 
     /**
      * @param siteId
-     * @param categoryId
-     * @param modelId
+     * @param categoryIds 
+     * @param modelIds 
+     * @param userIds 
      * @param text
      * @param tagId
      * @param pageIndex
@@ -71,9 +72,9 @@ public class CmsContentService extends BaseService<CmsContent> {
      * @return
      */
     @Transactional(readOnly = true)
-    public FacetPageHandler facetQuery(Integer siteId, String categoryId, String modelId, String text, String tagId,
-            Integer pageIndex, Integer pageSize) {
-        return dao.facetQuery(siteId, categoryId, modelId, text, tagId, pageIndex, pageSize);
+    public FacetPageHandler facetQuery(Integer siteId, String[] categoryIds, String[] modelIds, String[] userIds, String text,
+            String tagId, Integer pageIndex, Integer pageSize) {
+        return dao.facetQuery(siteId, categoryIds, modelIds, userIds, text, tagId, pageIndex, pageSize);
     }
 
     /**
@@ -287,5 +288,5 @@ public class CmsContentService extends BaseService<CmsContent> {
     private CmsContentDao dao;
     @Autowired
     private CmsCategoryDao categoryDao;
-    
+
 }

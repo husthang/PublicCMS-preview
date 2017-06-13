@@ -107,10 +107,14 @@ project(':publiccms') {
 
 	dependencies {
 		compile project(':publiccms-common')
-		// compile project(':publiccms-improve') //商业版插件
+		/* 商业版插件
+		compile project(':publiccms-improve')
+		商业版插件 */
 	    compile (
-	        // "redis.clients:jedis:${jedisVersion}",  //商业版插件
-
+	        /* 商业版插件
+	        "redis.clients:jedis:${jedisVersion}",
+			商业版插件 */
+			
 	        // http://mvnrepository.com/artifact/commons-io/commons-io
 	        "commons-io:commons-io:2.5",
 	        // http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload

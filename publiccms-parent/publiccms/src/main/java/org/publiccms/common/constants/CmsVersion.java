@@ -47,6 +47,7 @@ public class CmsVersion {
     }
 
     /**
+     * @param activateCode 
      * @return
      */
     public static boolean activate(String activateCode) {

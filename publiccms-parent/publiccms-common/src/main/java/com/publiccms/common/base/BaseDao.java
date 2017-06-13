@@ -419,7 +419,7 @@ public abstract class BaseDao<E> extends Base {
      * @param pageSize
      * @return
      */
-    protected FacetPageHandler getFacetPage(FullTextQuery fullTextQuery, String[] facetFields, Map<String, String> valueMap,
+    protected FacetPageHandler getFacetPage(FullTextQuery fullTextQuery, String[] facetFields, Map<String, List<String>> valueMap,
             Integer pageIndex, Integer pageSize) {
         return getFacetPage(fullTextQuery, facetFields, valueMap, pageIndex, pageSize, null);
     }
@@ -433,21 +433,34 @@ public abstract class BaseDao<E> extends Base {
      * @param maxResults
      * @return
      */
-    protected FacetPageHandler getFacetPage(FullTextQuery fullTextQuery, String[] facetFields, Map<String, String> valueMap,
+    protected FacetPageHandler getFacetPage(FullTextQuery fullTextQuery, String[] facetFields, Map<String, List<String>> valueMap,
             Integer pageIndex, Integer pageSize, Integer maxResults) {
         FacetPageHandler page = new FacetPageHandler(pageIndex, pageSize, fullTextQuery.getResultSize(), maxResults);
         if (notEmpty(pageSize)) {
             fullTextQuery.setFirstResult(page.getFirstResult()).setMaxResults(page.getPageSize());
         }
-        if (0 < page.getTotalCount() && notEmpty(facetFields)) {
+        if (0 < page.getTotalCount() && notEmpty(facetFields) && notEmpty(valueMap)) {
             FacetManager facetManager = fullTextQuery.getFacetManager();
             for (String facetField : facetFields) {
                 List<Facet> facets = facetManager.getFacets(facetField + FACET_NAME_SUFFIX);
                 Map<String, Integer> facetMap = new LinkedHashMap<String, Integer>();
-                for (Facet facet : facets) {
-                    facetMap.put(facet.getValue(), facet.getCount());
-                    if (facet.getValue().equalsIgnoreCase(valueMap.get(facetField))) {
-                        facetManager.getFacetGroup(facetField + FACET_NAME_SUFFIX).selectFacets(facet);
+                if (notEmpty(valueMap.get(facetField))) {
+                    List<Facet> facetList = new ArrayList<Facet>();
+                    for (Facet facet : facets) {
+                        facetMap.put(facet.getValue(), facet.getCount());
+                        if (valueMap.get(facetField).contains(facet.getValue())) {
+                            facetList.add(facet);
+                        }
+                    }
+                    if (0 < facetList.size()) {
+                        facetManager.getFacetGroup(facetField + FACET_NAME_SUFFIX)
+                                .selectFacets(facetList.toArray(new Facet[] {}));
+                    } else {
+                        page.setFacetResult(false);
+                    }
+                } else {
+                    for (Facet facet : facets) {
+                        facetMap.put(facet.getValue(), facet.getCount());
                     }
                 }
                 page.getFacetMap().put(facetField, facetMap);

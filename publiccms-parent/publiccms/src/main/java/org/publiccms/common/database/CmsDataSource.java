@@ -52,7 +52,7 @@ public class CmsDataSource extends MultiDataSource {
     }
 
     /**
-     * @param configFilePath
+     * @param properties 
      * @return
      * @throws IOException
      * @throws PropertyVetoException

@@ -1,11 +1,13 @@
 package org.publiccms.logic.dao.cms;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 // Generated 2015-5-8 16:50:23 by com.publiccms.common.source.SourceGenerator
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.hibernate.search.FullTextQuery;
@@ -26,7 +28,7 @@ import com.publiccms.common.handler.QueryHandler;
 public class CmsContentDao extends BaseDao<CmsContent> {
     private static final String[] textFields = new String[] { "title", "author", "editor", "description" };
     private static final String[] tagFields = new String[] { "tagIds" };
-    private static final String[] facetFields = new String[] { "categoryId", "modelId" };
+    private static final String[] facetFields = new String[] { "categoryId", "modelId", "userId" };
 
     /**
      * @param siteId
@@ -50,16 +52,17 @@ public class CmsContentDao extends BaseDao<CmsContent> {
 
     /**
      * @param siteId
-     * @param categoryId
-     * @param modelId
+     * @param categoryIds 
+     * @param modelIds 
+     * @param userIds 
      * @param text
      * @param tagId
      * @param pageIndex
      * @param pageSize
      * @return
      */
-    public FacetPageHandler facetQuery(Integer siteId, String categoryId, String modelId, String text, String tagId,
-            Integer pageIndex, Integer pageSize) {
+    public FacetPageHandler facetQuery(Integer siteId, String[] categoryIds, String[] modelIds, String[] userIds, String text,
+            String tagId, Integer pageIndex, Integer pageSize) {
         FullTextQuery query;
         if (notEmpty(tagId)) {
             query = getFacetQuery(tagFields, facetFields, tagId, 10);
@@ -68,12 +71,15 @@ public class CmsContentDao extends BaseDao<CmsContent> {
         }
         query.enableFullTextFilter("publishDate").setParameter("publishDate", getDate());
         query.enableFullTextFilter("siteId").setParameter("siteId", siteId);
-        Map<String, String> valueMap = new HashMap<String, String>();
-        if (notEmpty(categoryId)) {
-            valueMap.put("categoryId", categoryId);
+        Map<String, List<String>> valueMap = new HashMap<String, List<String>>();
+        if (notEmpty(categoryIds)) {
+            valueMap.put("categoryId", Arrays.asList(categoryIds));
         }
-        if (notEmpty(modelId)) {
-            valueMap.put("modelId", modelId);
+        if (notEmpty(modelIds)) {
+            valueMap.put("modelId", Arrays.asList(modelIds));
+        }
+        if (notEmpty(userIds)) {
+            valueMap.put("userId", Arrays.asList(userIds));
         }
         return getFacetPage(query, facetFields, valueMap, pageIndex, pageSize);
     }
