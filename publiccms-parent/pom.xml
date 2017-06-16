@@ -9,7 +9,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<!-- http://projects.spring.io/spring-framework/ -->
-		<version.spring>4.3.8.RELEASE</version.spring>
+		<version.spring>4.3.9.RELEASE</version.spring>
 		<!-- http://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<!-- http://hc.apache.org/downloads.cgi -->
 		<version.httpclient>4.5.3</version.httpclient>
@@ -17,10 +17,10 @@
 		<version.jackson>2.8.8</version.jackson>
 		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<!-- http://hibernate.org/orm/downloads/ -->
-		<version.hibernate>5.1.6.Final</version.hibernate>
+		<version.hibernate>5.1.7.Final</version.hibernate>
 		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-search -->
 		<!-- http://hibernate.org/search/downloads/ -->
-		<version.hibernateSearch>5.6.1.Final</version.hibernateSearch>
+		<version.hibernateSearch>5.6.2.Final</version.hibernateSearch>
 		<!-- http://mvnrepository.com/artifact/org.freemarker/freemarker -->
 		<version.freemarker>2.3.26-incubating</version.freemarker>
 		<!-- http://mvnrepository.com/artifact/org.mybatis/mybatis -->
@@ -232,7 +232,7 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
-				<version>1.5.3.RELEASE</version>
+				<version>1.5.4.RELEASE</version>
 				<exclusions>
 					<exclusion>
 						<groupId>org.springframework.boot</groupId>
@@ -261,7 +261,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>1.5.1.RELEASE</version>
+				<version>1.5.4.RELEASE</version>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-maven-plugin -->
 			<plugin>

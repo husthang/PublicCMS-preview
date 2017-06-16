@@ -5,7 +5,7 @@ buildscript {
 	}
     dependencies {
         // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-gradle-plugin
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE")
     }
 }
 subprojects{
@@ -16,7 +16,7 @@ subprojects{
 	ext {
 	    // http://mvnrepository.com/artifact/org.springframework/spring-core
 	    // http://projects.spring.io/spring-framework/
-	    springVersion = "4.3.8.RELEASE"
+	    springVersion = "4.3.9.RELEASE"
 	    // http://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
 	    // http://hc.apache.org/downloads.cgi
 	    httpclientVersion = "4.5.3"
@@ -24,10 +24,10 @@ subprojects{
 	    jacksonVersion = "2.8.8"
 	    // http://mvnrepository.com/artifact/org.hibernate/hibernate-core
 	    // http://hibernate.org/orm/downloads/
-	    hibernateVersion = "5.1.6.Final"
+	    hibernateVersion = "5.1.7.Final"
 	    // http://mvnrepository.com/artifact/org.hibernate/hibernate-search
 	    // http://hibernate.org/search/downloads/
-	    hibernateSearchVersion = "5.6.1.Final"
+	    hibernateSearchVersion = "5.6.2.Final"
 	    // http://mvnrepository.com/artifact/org.freemarker/freemarker
 	    freemarkerVersion = "2.3.26-incubating"
 	    // http://mvnrepository.com/artifact/org.mybatis/mybatis
@@ -179,7 +179,7 @@ project(':publiccms') {
 	    )
 	    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
 	    /** delete this line for spring boot
-	    compile("org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE") {
+	    compile("org.springframework.boot:spring-boot-starter-web:1.5.4.RELEASE") {
 	    	exclude group:"org.springframework.boot", module: 'spring-boot-starter-logging'
 	    }
 	    delete this line for spring boot */

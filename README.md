@@ -25,6 +25,13 @@ https://github.com/sanluan/PublicCMS-preview
 
 ### 预览版更新
 
+框架升级:
+
+1. Spring 4.3.9.RELEASE
+1. Spring Boot 1.5.4.RELEASE
+1. Hibernate 5.1.7.Final
+1. Hibernate Search 5.6.2.Final
+
 BUG修复:
 
 1. 指令获取数组，参数为空字符串时报错问题修复
