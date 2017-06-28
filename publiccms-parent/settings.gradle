@@ -1,0 +1,6 @@
+rootProject.name = 'publiccms-gradle'
+include 'publiccms'
+include 'publiccms-common'
+/* 商业版插件
+include 'publiccms-improve'
+商业版插件 */
